@@ -13,8 +13,6 @@ import os
 import shutil
 import sys
 
-from typing import Dict, List, Tuple
-
 import safetensors
 import safetensors.torch
 import torch
@@ -62,7 +60,7 @@ def should_quantize(name: str, weight: torch.Tensor) -> bool:
     return True
 
 
-def quantize_mxfp8(weight: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
+def quantize_mxfp8(weight: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
     """
     Mirror sglang _quantize_and_swizzle_with_triton_kernel but do not swizzle scales.
     Returns:
@@ -83,11 +81,16 @@ def quantize_mxfp8(weight: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
 
 class ConversionResult:
     def __init__(self) -> None:
-        self.weight_map: Dict[str, str] = {}
+        self.weight_map: dict[str, str] = {}
         self.total_size: int = 0
-        self.modules_to_not_convert: List[str] = []
+        self.modules_to_not_convert: list[str] = []
 
-    def add_result(self, filename: str, q_weights: Dict[str, torch.Tensor], module_names: List[str]) -> None:
+    def add_result(
+        self,
+        filename: str,
+        q_weights: dict[str, torch.Tensor],
+        module_names: list[str],
+    ) -> None:
         for key, tensor in q_weights.items():
             self.weight_map[key] = filename
             self.total_size += tensor.numel() * tensor.element_size()
@@ -104,14 +107,14 @@ def process_file(
     if not filename.endswith(".safetensors"):
         return
 
-    weights: Dict[str, torch.Tensor] = {}
-    q_weights: Dict[str, torch.Tensor] = {}
+    weights: dict[str, torch.Tensor] = {}
+    q_weights: dict[str, torch.Tensor] = {}
 
     with safetensors.safe_open(os.path.join(input_path, filename), framework="pt", device=device) as f:
         for key in f.keys():
             weights[key] = f.get_tensor(key)
 
-    modules_to_not_convert: List[str] = []
+    modules_to_not_convert: list[str] = []
     for key, tensor in weights.items():
         if should_quantize(key, tensor):
             qweight, scale = quantize_mxfp8(tensor)
@@ -183,12 +186,20 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    if torch.device(args.device).type != "cuda":
-        raise RuntimeError("MXFP8 quantization requires a CUDA device.")
     if not torch.cuda.is_available():
         raise RuntimeError("CUDA is not available, cannot run MXFP8 quantization.")
 
-    torch.cuda.set_device(torch.device(args.device))
+    if isinstance(args.device, str) and args.device.isdigit():
+        device = torch.device(f"cuda:{args.device}")
+    else:
+        device = torch.device(args.device)
+
+    if device.type != "cuda":
+        raise RuntimeError("MXFP8 quantization requires a CUDA device.")
+    if device.index is None:
+        device = torch.device("cuda:0")
+
+    torch.cuda.set_device(device)
 
     if not os.path.exists(args.save_dir):
         print(f"Creating directory {args.save_dir}")
@@ -196,7 +207,7 @@ def main() -> None:
     elif not os.path.isdir(args.save_dir):
         raise ValueError("The save_dir should be a directory.")
 
-    convert_mxfp8(args.model_dir, args.save_dir, args.device)
+    convert_mxfp8(args.model_dir, args.save_dir, str(device))
 
 
 if __name__ == "__main__":
