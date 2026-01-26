@@ -323,6 +323,7 @@ def post_process_weights(
     """
     Trigger post-process for int4/fp4 quantization on all rollout engines.
     """
+    print("@@@ miles ray post_process_weights")
     ray.get(
         [
             engine.post_process_weights.remote(
