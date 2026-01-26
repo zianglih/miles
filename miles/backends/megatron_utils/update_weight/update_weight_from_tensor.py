@@ -13,8 +13,9 @@ from miles.utils.distributed_utils import get_gloo_group
 
 from ..sglang import FlattenedTensorBucket, MultiprocessingSerializer
 from .debug_utils import (
-    debug_save_first_weight_sync_enabled,
-    maybe_dump_first_weight_sync,
+    debug_save_weight_sync_enabled,
+    finalize_weight_sync_dump,
+    record_weight_sync_chunk,
     should_stop_after_debug_save,
 )
 from .hf_weight_iterator_base import HfWeightIteratorBase
@@ -139,18 +140,36 @@ class UpdateWeightFromTensor:
                 "compressed-tensors",
                 "mxfp8",
             ]:
-                post_process_weights(
-                    restore_weights_before_load=False,
-                    post_process_quantization=True,
-                    rollout_engines=self.rollout_engines,
-                )
+                if not (debug_save_weight_sync_enabled() and should_stop_after_debug_save()):
+                    post_process_weights(
+                        restore_weights_before_load=False,
+                        post_process_quantization=True,
+                        rollout_engines=self.rollout_engines,
+                    )
         dist.barrier(group=get_gloo_group())
+
+        if debug_save_weight_sync_enabled():
+            debug_dir = None
+            if rank == 0:
+                debug_dir = finalize_weight_sync_dump()
+
+            world_size = dist.get_world_size(group=get_gloo_group())
+            all_debug_dirs = [None] * world_size
+            dist.all_gather_object(all_debug_dirs, debug_dir, group=get_gloo_group())
+            resolved_dir = next((d for d in all_debug_dirs if d), None)
+
+            stop_flag = should_stop_after_debug_save() and resolved_dir is not None
+            all_stop_flags = [None] * world_size
+            dist.all_gather_object(all_stop_flags, stop_flag, group=get_gloo_group())
+            if any(all_stop_flags):
+                raise RuntimeError(
+                    f"[debug] Saved full weight-sync checkpoint to {resolved_dir}. Stopping before sending weights."
+                )
 
     def _send_hf_params(self, hf_named_tensors) -> tuple[list[ObjectRef], Any]:
         all_refs = []
 
-        if debug_save_first_weight_sync_enabled():
-            debug_dir = None
+        if debug_save_weight_sync_enabled():
             if dist.get_rank() == 0:
                 engine = getattr(self, "_ipc_engine", None)
                 if (
@@ -167,14 +186,10 @@ class UpdateWeightFromTensor:
                     def fetcher(name: str, truncate_size: int):
                         return ray.get(engine.get_weights_by_name.remote(name, truncate_size))
 
-                debug_dir = maybe_dump_first_weight_sync(hf_named_tensors, fetch_sglang_weight=fetcher)
+                record_weight_sync_chunk(hf_named_tensors, fetch_sglang_weight=fetcher)
 
             if should_stop_after_debug_save():
-                raise RuntimeError(
-                    "[debug] Saved first weight-sync chunk"
-                    + (f" to {debug_dir}" if debug_dir else "")
-                    + ". Stopping before sending weights."
-                )
+                return [], []
 
         refs_colocated, long_lived_tensors = _send_to_colocated_engine(
             hf_named_tensors,
