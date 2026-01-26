@@ -225,6 +225,13 @@ class SGLangEngine(RayActor):
             raise
         return response.json()
 
+    def get_weights_by_name(self, name: str, truncate_size: int = 100):
+        payload = {"name": name, "truncate_size": truncate_size}
+        response = self._make_request("get_weights_by_name", payload)
+        if response is None:
+            return None
+        return response.get("parameter")
+
     def health_generate(self, timeout: float = 5.0) -> bool:
         """Run /health_generate on the underlying SGLang HTTP server.
 

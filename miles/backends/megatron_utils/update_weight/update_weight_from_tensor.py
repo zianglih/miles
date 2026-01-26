@@ -12,6 +12,11 @@ from ray.actor import ActorHandle
 from miles.utils.distributed_utils import get_gloo_group
 
 from ..sglang import FlattenedTensorBucket, MultiprocessingSerializer
+from .debug_utils import (
+    debug_save_first_weight_sync_enabled,
+    maybe_dump_first_weight_sync,
+    should_stop_after_debug_save,
+)
 from .hf_weight_iterator_base import HfWeightIteratorBase
 from .update_weight_from_distributed import (
     connect_rollout_engines_from_distributed,
@@ -143,6 +148,33 @@ class UpdateWeightFromTensor:
 
     def _send_hf_params(self, hf_named_tensors) -> tuple[list[ObjectRef], Any]:
         all_refs = []
+
+        if debug_save_first_weight_sync_enabled():
+            debug_dir = None
+            if dist.get_rank() == 0:
+                engine = getattr(self, "_ipc_engine", None)
+                if (
+                    engine is None
+                    and getattr(self, "use_distribute", False)
+                    and getattr(self, "_is_distributed_src_rank", False)
+                    and getattr(self, "distributed_rollout_engines", None)
+                ):
+                    engine = self.distributed_rollout_engines[0]
+
+                fetcher = None
+                if engine is not None:
+
+                    def fetcher(name: str, truncate_size: int):
+                        return ray.get(engine.get_weights_by_name.remote(name, truncate_size))
+
+                debug_dir = maybe_dump_first_weight_sync(hf_named_tensors, fetch_sglang_weight=fetcher)
+
+            if should_stop_after_debug_save():
+                raise RuntimeError(
+                    "[debug] Saved first weight-sync chunk"
+                    + (f" to {debug_dir}" if debug_dir else "")
+                    + ". Stopping before sending weights."
+                )
 
         refs_colocated, long_lived_tensors = _send_to_colocated_engine(
             hf_named_tensors,

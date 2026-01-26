@@ -15,6 +15,11 @@ from miles.utils.distributed_utils import get_gloo_group, init_process_group
 
 from ..megatron_to_hf import convert_to_hf
 from .common import all_gather_param, named_params_and_buffers
+from .debug_utils import (
+    debug_save_first_weight_sync_enabled,
+    maybe_dump_first_weight_sync,
+    should_stop_after_debug_save,
+)
 
 
 class UpdateWeightFromDistributed:
@@ -41,6 +46,7 @@ class UpdateWeightFromDistributed:
         self.quantization_config = quantization_config
         self.weight_version = 0
         self._model_update_groups = None
+        self._debug_stop_requested = False
 
     def connect_rollout_engines(
         self, rollout_engines: Sequence[ActorHandle], rollout_engine_lock: ActorHandle
@@ -100,6 +106,7 @@ class UpdateWeightFromDistributed:
             buffer_size = self._update_weight_from_distributed(
                 name, param, converted_named_tensors, buffer_size, pbar=pbar
             )
+            self._sync_debug_stop()
 
         if converted_named_tensors:
             self._update_bucket_weights_from_distributed(converted_named_tensors, pbar=pbar)
@@ -114,6 +121,7 @@ class UpdateWeightFromDistributed:
             buffer_size = self._update_expert_weight_from_distributed(
                 name, param, named_tensors, buffer_size, pbar=pbar
             )
+            self._sync_debug_stop()
 
         if named_tensors:
             self._update_expert_bucket_weights_from_distributed(named_tensors, pbar=pbar)
@@ -224,6 +232,20 @@ class UpdateWeightFromDistributed:
         """
         Lock → broadcast → clear → unlock → pbar++. Lock prevents NCCL deadlock.
         """
+        if debug_save_first_weight_sync_enabled():
+            fetcher = None
+            if getattr(self, "rollout_engines", None):
+                engine = self.rollout_engines[0]
+
+                def fetcher(name: str, truncate_size: int):
+                    return ray.get(engine.get_weights_by_name.remote(name, truncate_size))
+
+            debug_dir = maybe_dump_first_weight_sync(converted_named_tensors, fetch_sglang_weight=fetcher)
+            if debug_dir and should_stop_after_debug_save():
+                self._debug_stop_requested = True
+                converted_named_tensors.clear()
+                return
+
         # lock the rollout engines to prevent dead lock on broadcast.
         while not ray.get(self.rollout_engine_lock.acquire.remote()):
             time.sleep(0.1)
@@ -240,6 +262,14 @@ class UpdateWeightFromDistributed:
         converted_named_tensors.clear()
         ray.get(self.rollout_engine_lock.release.remote())
         pbar.update(1)
+
+    def _sync_debug_stop(self) -> None:
+        if not debug_save_first_weight_sync_enabled():
+            return
+        stop_flag = [self._debug_stop_requested]
+        dist.broadcast_object_list(stop_flag, src=0, group=get_gloo_group())
+        if stop_flag[0]:
+            raise RuntimeError("[debug] Saved first weight-sync chunk. Stopping before broadcasting weights.")
 
 
 def connect_rollout_engines_from_distributed(
