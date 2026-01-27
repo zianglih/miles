@@ -232,16 +232,30 @@ eval:
         }
 
     if args.train_fp8:
-        misc_args += (
-            "--transformer-impl transformer_engine "
-            "--bf16 "
-            "--fp8-format e4m3 "
-            "--fp8-recipe blockwise "
-            "--fp8-param-gather "
-        )
-        misc_env_vars |= {
-            "NVTE_FP8_BLOCK_SCALING_FP32_SCALES": "1",
-        }
+        match (args.hardware):
+            case "H100":
+                misc_args += (
+                    "--transformer-impl transformer_engine "
+                    "--bf16 "
+                    "--fp8-format e4m3 "
+                    "--fp8-recipe blockwise "
+                    "--fp8-param-gather "
+                )
+                misc_env_vars |= {
+                    "NVTE_FP8_BLOCK_SCALING_FP32_SCALES": "1",
+                }
+            case "GB200" | "GB300":
+                misc_args += (
+                    "--transformer-impl transformer_engine "
+                    "--bf16 "
+                    "--fp8-format e4m3 "
+                    "--fp8-recipe mxfp8 "
+                    "--fp8-param-gather "
+                    "--overlap-param-gather "
+                    "--overlap-grad-reduce "
+                    "--reuse-grad-buf-for-mxfp8-param-ag "
+                    # --moe-router-padding-for-quantization
+                )
 
     if args.enable_megatron_bridge:
         misc_args += "--megatron-to-hf-mode bridge "
