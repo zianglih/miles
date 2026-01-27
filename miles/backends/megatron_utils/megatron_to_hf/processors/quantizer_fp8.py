@@ -13,13 +13,13 @@ def quantize_params_fp8(args, megatron_name, converted_named_params, quantizatio
     assert quantization_config["activation_scheme"] == "dynamic"
     weight_block_size = quantization_config.get("weight_block_size", None)
 
-    decoder_layers_pattern = r"decoder\.layers\.(\d+)\.(.+)"
-    match = re.search(decoder_layers_pattern, megatron_name)
+    decoder_layers_pattern = r"module\.module\.decoder\.layers\.(\d+)\.(.+)"
+    match = re.match(decoder_layers_pattern, megatron_name)
 
     if not match:
         # check mtp layers
-        mtp_layer_pattern = r"mtp\.layers\.(\d+)\.(.+)"
-        match = re.search(mtp_layer_pattern, megatron_name)
+        mtp_layer_pattern = r"module\.module\.mtp\.layers\.(\d+)\.(.+)"
+        match = re.match(mtp_layer_pattern, megatron_name)
         if not match:
             return converted_named_params
         layer_idx, rest = match.groups()
