@@ -11,27 +11,18 @@ import gc
 import json
 import os
 import shutil
-import sys
 
 import safetensors
 import safetensors.torch
 import torch
 from tqdm import tqdm
 
-
-def _import_mxfp8_group_quantize():
-    try:
-        from sglang.srt.layers.quantization.fp8_utils import mxfp8_group_quantize
-    except ImportError:
-        repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-        sglang_path = os.path.join(repo_root, "sglang", "python")
-        if sglang_path not in sys.path:
-            sys.path.append(sglang_path)
-        from sglang.srt.layers.quantization.fp8_utils import mxfp8_group_quantize
-    return mxfp8_group_quantize
-
-
-MXFP8_GROUP_QUANTIZE = _import_mxfp8_group_quantize()
+try:
+    from sglang.srt.layers.quantization.fp8_utils import mxfp8_group_quantize
+except ImportError as exc:
+    raise ImportError(
+        "Missing sglang dependency: mxfp8_group_quantize must be importable from sglang.srt.layers.quantization.fp8_utils."
+    ) from exc
 
 
 SKIP_WEIGHT_SUBSTRINGS = (
@@ -73,7 +64,7 @@ def quantize_mxfp8(weight: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
         raise ValueError(f"Last dim {k} must be divisible by 32 for MXFP8.")
 
     weight_flat = weight.view(-1, k).contiguous()
-    qweight, scale = MXFP8_GROUP_QUANTIZE(weight_flat)
+    qweight, scale = mxfp8_group_quantize(weight_flat)
     qweight = qweight.view_as(weight)
     scale = scale.view(*weight.shape[:-1], k // 32).contiguous()
     return qweight, scale
