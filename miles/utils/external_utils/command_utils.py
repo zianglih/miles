@@ -67,9 +67,9 @@ def rsync_simple(path_src: str, path_dst: str):
     exec_command(f"mkdir -p {path_dst} && rsync -a --info=progress2 {path_src}/ {path_dst}")
 
 
-def hf_download_dataset(full_name: str):
+def hf_download_dataset(full_name: str, data_dir: str = "/root/datasets"):
     _, partial_name = full_name.split("/")
-    exec_command(f"hf download --repo-type dataset {full_name} --local-dir /root/datasets/{partial_name}")
+    exec_command(f"hf download --repo-type dataset {full_name} --local-dir {data_dir}/{partial_name}")
 
 
 def fp8_cast_bf16(path_src, path_dst):
@@ -88,6 +88,7 @@ class ExecuteTrainConfig:
     cuda_core_dump: bool = False
     num_nodes: int = int(os.environ.get("SLURM_JOB_NUM_NODES", "1"))
     extra_env_vars: str = ""
+    external_ray: bool = True  # Skip Ray startup if Ray is already running externally (e.g., in Kubernetes/devbox)
 
 
 def execute_train(
@@ -103,8 +104,20 @@ def execute_train(
         extra_env_vars = {}
     if config is None:
         config = ExecuteTrainConfig()
-    external_ray = get_bool_env_var("MILES_SCRIPT_EXTERNAL_RAY")
-    master_addr = os.environ.get("MASTER_ADDR", "127.0.0.1")
+    external_ray = config.external_ray or get_bool_env_var("MILES_SCRIPT_EXTERNAL_RAY")
+    master_addr = os.environ.get("MASTER_ADDR")
+    if not master_addr:
+        # Auto-detect from Ray head node
+        import ray
+
+        if ray.is_initialized() or external_ray:
+            try:
+                ray.init(address="auto", ignore_reinit_error=True)
+                master_addr = ray.get_runtime_context().gcs_address.split(":")[0]
+            except Exception:
+                master_addr = "127.0.0.1"
+        else:
+            master_addr = "127.0.0.1"
 
     train_backend_fsdp = "--train-backend fsdp" in train_args
     assert train_backend_fsdp == (megatron_model_type is None)
@@ -129,7 +142,7 @@ def execute_train(
     if not external_ray:
         exec_command(
             # will prevent ray from buffering stdout/stderr
-            f"export PYTHONBUFFERED=16 && "
+            f"export PYTHONUNBUFFERED=1 && "
             f"ray start --head --node-ip-address {master_addr} --num-gpus {num_gpus_per_node} --disable-usage-stats"
         )
 
@@ -148,6 +161,15 @@ def execute_train(
                         "CUDA_DEVICE_MAX_CONNECTIONS": "1",
                     }
                 ),
+                "GLOO_SOCKET_IFNAME": "bond0",
+                "NCCL_SOCKET_IFNAME": "bond0",
+                # NCCL
+                "NCCL_IB_HCA": "=mlx5_0:1,=mlx5_1:1,=mlx5_2:1,=mlx5_5:1,=mlx5_6:1,=mlx5_11:1,=mlx5_14:1,=mlx5_15:1",
+                # NVShmem
+                "NVSHMEM_ENABLE_NIC_PE_MAPPING": "1",
+                "NVSHMEM_HCA_LIST": "mlx5_0:1,mlx5_1:1,mlx5_2:1,mlx5_5:1,mlx5_6:1,mlx5_11:1,mlx5_14:1,mlx5_15:1",
+                "NVSHMEM_IB_GID_INDEX": "3",
+                "NVSHMEM_DEBUG": "TRACE",
                 "NCCL_NVLS_ENABLE": str(int(check_has_nvlink())),
                 "no_proxy": f"127.0.0.1,{master_addr}",
                 # This is needed by megatron / torch distributed in multi-node setup
@@ -175,14 +197,120 @@ def execute_train(
             else ""
         )
         exec_command(
-            f"export no_proxy=127.0.0.1 && export PYTHONBUFFERED=16 && "
+            f"export no_proxy=127.0.0.1 && export PYTHONUNBUFFERED=1 && "
             f"{cmd_megatron_model_source}"
             f'ray job submit --address="http://127.0.0.1:8265" '
+            f"--working-dir /root/miles "
             f"--runtime-env-json='{runtime_env_json}' "
             f"-- python3 {train_script} "
             f"{'${MODEL_ARGS[@]}' if megatron_model_type is not None else ''} "
             f"{train_args}"
         )
+
+
+def execute_distributed_command(
+    command_template: str,
+    num_nodes: int,
+    num_gpus_per_node: int,
+    master_addr: str | None = None,
+    master_port: int = 23456,
+    extra_env_vars: dict | None = None,
+):
+    """
+    Execute a command on all nodes in a Ray cluster using actors.
+
+    The command_template can use these placeholders:
+    - {node_rank}: The rank of the current node (0 to num_nodes-1)
+    - {num_nodes}: Total number of nodes
+    - {master_addr}: Address of the master node
+    - {master_port}: Port for distributed communication
+    - {num_gpus_per_node}: GPUs per node
+
+    Args:
+        command_template: Command with placeholders to run on each node
+        num_nodes: Number of nodes to run on
+        num_gpus_per_node: Number of GPUs per node
+        master_addr: Master node address (defaults to MASTER_ADDR env var or Ray head node)
+        master_port: Port for distributed communication
+        extra_env_vars: Additional environment variables
+    """
+    import ray
+
+    if not ray.is_initialized():
+        ray.init(address="auto")
+
+    if extra_env_vars is None:
+        extra_env_vars = {}
+
+    # Get all node IPs in the cluster
+    nodes = ray.nodes()
+    alive_nodes = [n for n in nodes if n["Alive"]]
+
+    if len(alive_nodes) < num_nodes:
+        raise RuntimeError(f"Requested {num_nodes} nodes but only {len(alive_nodes)} alive nodes in cluster")
+
+    # Get node IPs (excluding head node's GCS address)
+    node_ips = [n["NodeManagerAddress"] for n in alive_nodes[:num_nodes]]
+
+    if master_addr is None:
+        master_addr = os.environ.get("MASTER_ADDR", node_ips[0])
+
+    print(f"Executing distributed command on {num_nodes} nodes: {node_ips}")
+    print(f"Master address: {master_addr}")
+
+    # Use num_cpus=0 since actual GPU work is done by subprocess (torchrun), not the Ray task
+    @ray.remote(num_cpus=0)
+    class NodeWorker:
+        def run(
+            self, cmd_template: str, node_rank: int, nnodes: int, master: str, port: int, gpus: int, env_vars: dict
+        ) -> int:
+            import os as _os
+            import subprocess
+
+            # Set environment variables
+            env = _os.environ.copy()
+            env["PYTHONPATH"] = "/root/Megatron-LM/"
+            env["CUDA_DEVICE_MAX_CONNECTIONS"] = "1"
+            env["MASTER_ADDR"] = master
+            env.update(env_vars)
+
+            # Format the command with node-specific values
+            cmd = cmd_template.format(
+                node_rank=node_rank,
+                num_nodes=nnodes,
+                master_addr=master,
+                master_port=port,
+                num_gpus_per_node=gpus,
+            )
+
+            print(f"[Node {node_rank}] Running: {cmd}")
+            result = subprocess.run(["bash", "-c", cmd], env=env)
+            return result.returncode
+
+    # Create one worker per node, scheduled on specific node IPs
+    workers = []
+    for i, node_ip in enumerate(node_ips):
+        # Schedule actor on specific node using node IP resource
+        worker = NodeWorker.options(resources={f"node:{node_ip}": 0.001}).remote()
+        workers.append((i, worker))
+
+    # Run command on all nodes in parallel
+    futures = [
+        worker.run.remote(
+            command_template, node_rank, num_nodes, master_addr, master_port, num_gpus_per_node, extra_env_vars
+        )
+        for node_rank, worker in workers
+    ]
+
+    # Wait for all to complete
+    results = ray.get(futures)
+
+    # Check for failures
+    for i, rc in enumerate(results):
+        if rc != 0:
+            raise RuntimeError(f"Node {i} failed with return code {rc}")
+
+    print(f"All {num_nodes} nodes completed successfully")
 
 
 def _parse_extra_env_vars(text: str):

@@ -6,6 +6,8 @@ import typer
 
 import miles.utils.external_utils.command_utils as U
 
+hostname = os.environ.get("HOSTNAME")
+
 
 @dataclass
 class ScriptArgs(U.ExecuteTrainConfig):
@@ -24,29 +26,33 @@ class ScriptArgs(U.ExecuteTrainConfig):
     enable_mis: bool = False
     # TODO improve, should be able to override more easily
     tis_use_rs: bool = True
+    external_ray: bool = True  # Kubernetes/devbox manages Ray lifecycle
+    models_dir: str = f"/data/home/ziangli/models/{hostname}"  # root/models -> {args.models_dir}
+    data_dir: str = "/data/home/ziangli/datasets"  # root/datasets -> {args.data_dir}
 
     def __post_init__(self):
         self.num_gpus_per_node = self.num_gpus_per_node or U.NUM_GPUS_OF_HARDWARE[self.hardware]
 
 
 def prepare(args: ScriptArgs):
-    U.exec_command("mkdir -p /root/models /root/datasets")
-    U.exec_command(f"huggingface-cli download Qwen/{args.model_name} --local-dir /root/models/{args.model_name}")
-    U.hf_download_dataset("zhuzilin/dapo-math-17k")
-    U.hf_download_dataset("zhuzilin/aime-2024")
+    U.exec_command(f"mkdir -p {args.models_dir} {args.data_dir}")
+    U.exec_command(f"huggingface-cli download Qwen/{args.model_name} --local-dir {args.models_dir}/{args.model_name}")
+    U.hf_download_dataset("zhuzilin/dapo-math-17k", data_dir=args.data_dir)
+    U.hf_download_dataset("zhuzilin/aime-2024", data_dir=args.data_dir)
 
     use_blackwell_fp8 = args.hardware in ("GB200", "GB300") and (args.rollout_fp8 or args.train_fp8)
+    # use_blackwell_fp8 = False
 
     if args.rollout_fp8 and not use_blackwell_fp8:
         U.exec_command(
-            f"huggingface-cli download Qwen/{args.model_name}-FP8 --local-dir /root/models/{args.model_name}-FP8"
+            f"huggingface-cli download Qwen/{args.model_name}-FP8 --local-dir {args.models_dir}/{args.model_name}-FP8"
         )
 
     if use_blackwell_fp8:
-        mxfp8_path = f"/root/models/{args.model_name}-MXFP8"
+        mxfp8_path = f"{args.models_dir}/{args.model_name}-MXFP8"
         if not os.path.isdir(mxfp8_path):
             U.exec_command(
-                f"python tools/convert_hf_to_mxfp8.py --model-dir /root/models/{args.model_name} --save-dir {mxfp8_path}"
+                f"python tools/convert_hf_to_mxfp8.py --model-dir {args.models_dir}/{args.model_name} --save-dir {mxfp8_path}"
             )
 
     if not args.enable_megatron_bridge:
@@ -54,26 +60,28 @@ def prepare(args: ScriptArgs):
             model_name=args.model_name,
             megatron_model_type=args.megatron_model_type,
             num_gpus_per_node=args.num_gpus_per_node,
+            hf_checkpoint=f"{args.models_dir}/{args.model_name}",
             # To support multi-node training, for simplicity, we put model into shared folder
-            dir_dst="/root/models",
+            dir_dst=f"{args.models_dir}",
         )
 
 
 # TODO improve layering: split algorithm vs infra
 def execute(args: ScriptArgs):
     ref_load_path = (
-        f"/root/models/{args.model_name}/"
+        f"{args.models_dir}/{args.model_name}/"
         if args.enable_megatron_bridge
-        else f"/root/models/{args.model_name}_torch_dist"
+        else f"{args.models_dir}/{args.model_name}_torch_dist"
     )
     load_save_path = f"/root/shared_data/{args.run_id}/checkpoints"
     use_blackwell_fp8 = args.hardware in ("GB200", "GB300") and (args.rollout_fp8 or args.train_fp8)
+    # use_blackwell_fp8 = False
     if use_blackwell_fp8:
-        hf_checkpoint = f"/root/models/{args.model_name}-MXFP8"
+        hf_checkpoint = f"{args.models_dir}/{args.model_name}-MXFP8"
     elif args.rollout_fp8:
-        hf_checkpoint = f"/root/models/{args.model_name}-FP8"
+        hf_checkpoint = f"{args.models_dir}/{args.model_name}-FP8"
     else:
-        hf_checkpoint = f"/root/models/{args.model_name}"
+        hf_checkpoint = f"{args.models_dir}/{args.model_name}"
     ckpt_args = (
         f"--hf-checkpoint {hf_checkpoint}/ "
         f"--ref-load {ref_load_path} "
@@ -84,7 +92,7 @@ def execute(args: ScriptArgs):
     )
 
     rollout_args = (
-        "--prompt-data /root/datasets/dapo-math-17k/dapo-math-17k.jsonl "
+        f"--prompt-data {args.data_dir}/dapo-math-17k/dapo-math-17k.jsonl "
         "--input-key prompt "
         "--label-key label "
         "--apply-chat-template "
@@ -103,7 +111,7 @@ def execute(args: ScriptArgs):
     if (args.mode != "debug_minimal") and args.enable_eval:
         eval_args += (
             "--eval-interval 20 "
-            "--eval-prompt-data aime /root/datasets/aime-2024/aime-2024.jsonl "
+            f"--eval-prompt-data aime {args.data_dir}/aime-2024/aime-2024.jsonl "
             "--n-samples-per-eval-prompt 16 "
             "--eval-max-response-len 16384 "
             "--eval-top-p 1 "
@@ -171,6 +179,9 @@ def execute(args: ScriptArgs):
                     # "--reuse-grad-buf-for-mxfp8-param-ag "
                     # --moe-router-padding-for-quantization
                 )
+                misc_env_vars |= {
+                    "NVTE_KEEP_BACKWARD_UNQUANTIZED": "1",
+                }
             case "H100" | "H200":
                 # ref: fp8 blog
                 misc_args += (
@@ -211,7 +222,7 @@ def execute(args: ScriptArgs):
                 "--sequence-parallel "
                 "--pipeline-model-parallel-size 1 "
                 "--context-parallel-size 1 "
-                "--expert-model-parallel-size 4 "
+                f"--expert-model-parallel-size {args.num_gpus_per_node} "
                 "--expert-tensor-parallel-size 1 "
             )
             sglang_args = (
@@ -225,13 +236,25 @@ def execute(args: ScriptArgs):
                 sglang_decode_max_bs = 256
                 sglang_args += (
                     # f"--sglang-ep-size {sglang_world_size} "
-                    "--sglang-fp8-gemm-backend triton "
-                    "--sglang-moe-runner-backend cutlass "
+                    # "--sglang-fp8-gemm-backend triton "
+                    # "--sglang-moe-runner-backend cutlass "
                     # "--sglang-moe-a2a-backend deepep "
                     f"--sglang-max-running-requests {sglang_world_size * sglang_decode_max_bs // sglang_attn_tp_size} "
                     f"--sglang-chunked-prefill-size {sglang_world_size * sglang_decode_max_bs} "
                     f"--sglang-cuda-graph-max-bs {sglang_decode_max_bs} "
                 )
+                if use_blackwell_fp8:
+                    print("@@@ YES using Blackwell FP8")
+                    sglang_args += (
+                        "--sglang-fp8-gemm-backend triton "
+                        "--sglang-moe-runner-backend cutlass "
+                    )
+                else:
+                    print("@@@ NOT using Blackwell FP8")
+                    sglang_args += (
+                        # "--sglang-fp8-gemm-backend triton "
+                        "--sglang-moe-runner-backend triton "
+                    )
             else:
                 sglang_args += "--sglang-cuda-graph-max-bs 512 "
         case _:
