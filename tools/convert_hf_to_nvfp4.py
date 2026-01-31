@@ -1,6 +1,6 @@
 """
 python tools/convert_hf_to_nvfp4.py [-h] [--model-dir MODEL_DIR] [--save-dir SAVE_DIR]
-                                   [--device DEVICE]
+                                   [--device DEVICE] [--keep-last-n KEEP_LAST_N]
 
 Convert a BF16/FP16/FP32 HF safetensors checkpoint to NVFP4 (E2M1) for MoE
 expert GEMMs only. Dense linear layers are left unmodified.
@@ -54,7 +54,63 @@ def _is_moe_expert_weight_name(name: str) -> bool:
     return any(name.endswith(suffix) for suffix in EXPERT_WEIGHT_SUFFIXES)
 
 
-def should_quantize(name: str, weight: torch.Tensor) -> bool:
+def _extract_layer_id(name: str) -> int | None:
+    parts = name.split(".")
+    for idx, part in enumerate(parts):
+        if part == "layers" and idx + 1 < len(parts):
+            layer_id = parts[idx + 1]
+            if layer_id.isdigit():
+                return int(layer_id)
+    return None
+
+
+def _get_num_hidden_layers(model_dir: str) -> int:
+    config_path = os.path.join(model_dir, "config.json")
+    if not os.path.exists(config_path):
+        raise ValueError("config.json is required to use --keep-last-n.")
+    cfg = json.load(open(config_path))
+    num_layers = cfg.get("num_hidden_layers")
+    if num_layers is None and isinstance(cfg.get("text_config"), dict):
+        num_layers = cfg["text_config"].get("num_hidden_layers")
+    if num_layers is None:
+        raise ValueError("num_hidden_layers not found in config.json.")
+    return int(num_layers)
+
+
+def _get_last_n_layer_ids(num_layers: int, keep_last_n: int) -> set[int]:
+    if keep_last_n <= 0:
+        return set()
+    start = max(0, num_layers - keep_last_n)
+    return set(range(start, num_layers))
+
+
+def _build_keep_last_n_ignore_list(num_layers: int, keep_last_n: int) -> list[str]:
+    if keep_last_n <= 0:
+        return []
+    start = max(0, num_layers - keep_last_n)
+    ignore_list = []
+    for layer_id in range(start, num_layers):
+        prefix = f"model.layers.{layer_id}"
+        ignore_list.extend(
+            [
+                f"{prefix}.self_attn.qkv_proj",
+                f"{prefix}.self_attn.o_proj",
+                f"{prefix}.mlp",
+                f"{prefix}.mlp.experts",
+            ]
+        )
+    return ignore_list
+
+
+def should_quantize(
+    name: str,
+    weight: torch.Tensor,
+    skip_layers: set[int] | None = None,
+) -> bool:
+    if skip_layers:
+        layer_id = _extract_layer_id(name)
+        if layer_id is not None and layer_id in skip_layers:
+            return False
     if not _is_moe_expert_weight_name(name):
         return False
     if weight.dtype not in (torch.float16, torch.bfloat16, torch.float32):
@@ -248,6 +304,7 @@ def process_file(
     filename: str,
     result_collector: ConversionResult,
     device: str,
+    skip_layers: set[int],
 ) -> None:
     if not filename.endswith(".safetensors"):
         return
@@ -261,7 +318,7 @@ def process_file(
 
     modules_to_not_convert: list[str] = []
     for key, tensor in weights.items():
-        if should_quantize(key, tensor):
+        if should_quantize(key, tensor, skip_layers):
             qweight, block_scale, weight_scale_2 = quantize_nvfp4(tensor)
             q_weights[key] = qweight
             q_weights[key.replace(".weight", ".weight_scale")] = block_scale
@@ -276,7 +333,7 @@ def process_file(
     result_collector.add_result(filename, q_weights, modules_to_not_convert)
 
 
-def convert_nvfp4(model_dir: str, save_dir: str, device: str) -> None:
+def convert_nvfp4(model_dir: str, save_dir: str, device: str, keep_last_n: int) -> None:
     input_path = os.path.abspath(model_dir)
     output_path = os.path.abspath(save_dir)
     os.makedirs(output_path, exist_ok=True)
@@ -287,14 +344,25 @@ def convert_nvfp4(model_dir: str, save_dir: str, device: str) -> None:
 
     safetensors_files = [f for f in os.listdir(input_path) if f.endswith(".safetensors")]
 
+    num_layers = _get_num_hidden_layers(input_path) if keep_last_n > 0 else 0
+    skip_layers = _get_last_n_layer_ids(num_layers, keep_last_n)
+    keep_last_ignore = _build_keep_last_n_ignore_list(num_layers, keep_last_n)
+
     result_collector = ConversionResult()
     for filename in tqdm(safetensors_files, desc="Processing files"):
-        process_file(input_path, output_path, filename, result_collector, device)
+        process_file(
+            input_path,
+            output_path,
+            filename,
+            result_collector,
+            device,
+            skip_layers,
+        )
         gc.collect()
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
 
-    ignore_list = _augment_ignore_list(result_collector.modules_to_not_convert)
+    ignore_list = _augment_ignore_list(result_collector.modules_to_not_convert + keep_last_ignore)
 
     config_path = os.path.join(input_path, "config.json")
     if os.path.exists(config_path):
@@ -325,6 +393,12 @@ def main() -> None:
         default="cuda",
         help="Torch device to run quantization on (default: cuda).",
     )
+    parser.add_argument(
+        "--keep-last-n",
+        type=int,
+        default=0,
+        help="Keep the last N transformer layers unquantized (BF16/FP16).",
+    )
     args = parser.parse_args()
 
     if isinstance(args.device, str) and args.device.isdigit():
@@ -345,7 +419,7 @@ def main() -> None:
     elif not os.path.isdir(args.save_dir):
         raise ValueError("The save_dir should be a directory.")
 
-    convert_nvfp4(args.model_dir, args.save_dir, str(device))
+    convert_nvfp4(args.model_dir, args.save_dir, str(device), args.keep_last_n)
 
 
 if __name__ == "__main__":
