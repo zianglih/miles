@@ -1,3 +1,5 @@
+import json
+import os
 import re
 
 import torch
@@ -42,7 +44,7 @@ def quantize_params_nvfp4(args, megatron_name, converted_named_params, quantizat
             "linear_fc1",
             "linear_fc2",
         ]:
-            return _quantize_moe_params(converted_named_params, group_size)
+            return _quantize_moe_params(args, converted_named_params, group_size)
 
     # shared expert
     shared_expert_pattern = r"mlp.shared_experts\.(.+)"
@@ -53,7 +55,7 @@ def quantize_params_nvfp4(args, megatron_name, converted_named_params, quantizat
             "linear_fc1.weight",
             "linear_fc2.weight",
         ]:
-            return _quantize_moe_params(converted_named_params, group_size)
+            return _quantize_moe_params(args, converted_named_params, group_size)
 
     # for other parameters, we just return the original converted_named_params
     return converted_named_params
@@ -66,7 +68,55 @@ def _resolve_group_size(quantization_config):
     return group_size
 
 
-def _quantize_moe_params(converted_named_params, group_size):
+_HF_WEIGHT_MAP_CACHE: dict[str, dict[str, str] | None] = {}
+
+
+def _get_hf_weight_map(hf_checkpoint: str | None) -> dict[str, str] | None:
+    if not hf_checkpoint:
+        return None
+    hf_checkpoint = os.path.abspath(hf_checkpoint)
+    if hf_checkpoint in _HF_WEIGHT_MAP_CACHE:
+        return _HF_WEIGHT_MAP_CACHE[hf_checkpoint]
+
+    index_path = None
+    if os.path.isdir(hf_checkpoint):
+        for candidate in ("model.safetensors.index.json", "pytorch_model.bin.index.json"):
+            candidate_path = os.path.join(hf_checkpoint, candidate)
+            if os.path.isfile(candidate_path):
+                index_path = candidate_path
+                break
+    elif os.path.isfile(hf_checkpoint) and hf_checkpoint.endswith(".index.json"):
+        index_path = hf_checkpoint
+
+    if index_path is None:
+        _HF_WEIGHT_MAP_CACHE[hf_checkpoint] = None
+        return None
+
+    with open(index_path, encoding="utf-8") as handle:
+        payload = json.load(handle)
+    weight_map = payload.get("weight_map")
+    if not isinstance(weight_map, dict):
+        weight_map = None
+    _HF_WEIGHT_MAP_CACHE[hf_checkpoint] = weight_map
+    return weight_map
+
+
+def _should_share_gated_pair_amax(args, base: str) -> bool:
+    # Default to shared amax unless explicitly matching HF sharding (debug).
+    if not getattr(args, "debug_first_weight_sync", False):
+        return True
+    weight_map = _get_hf_weight_map(getattr(args, "hf_checkpoint", None))
+    if not weight_map:
+        return True
+    for gate_suffix, up_suffix in ((".gate_proj.weight", ".up_proj.weight"), (".w1.weight", ".w3.weight")):
+        gate_key = base + gate_suffix
+        up_key = base + up_suffix
+        if gate_key in weight_map and up_key in weight_map:
+            return weight_map[gate_key] == weight_map[up_key]
+    return True
+
+
+def _quantize_moe_params(args, converted_named_params, group_size):
     shared_global_amax = {}
     gated_candidates = {}
     for converted_name, param in converted_named_params:
@@ -77,7 +127,7 @@ def _quantize_moe_params(converted_named_params, group_size):
             gated_candidates.setdefault(base, {})[role] = param
 
     for base, roles in gated_candidates.items():
-        if "gate" in roles and "up" in roles:
+        if "gate" in roles and "up" in roles and _should_share_gated_pair_amax(args, base):
             gate_amax = roles["gate"].abs().max().to(torch.float32)
             up_amax = roles["up"].abs().max().to(torch.float32)
             shared_global_amax[base] = torch.max(gate_amax, up_amax)
