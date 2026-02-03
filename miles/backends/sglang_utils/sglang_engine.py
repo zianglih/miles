@@ -391,6 +391,28 @@ class SGLangEngine(RayActor):
             payload,
         )
 
+    def update_weights_from_disk(
+        self,
+        model_path: str,
+        *,
+        load_format: str | None = None,
+        weight_version: str | None = None,
+        flush_cache: bool = True,
+        abort_all_requests: bool = False,
+        recapture_cuda_graph: bool = False,
+    ):
+        payload = {
+            "model_path": model_path,
+            "flush_cache": flush_cache,
+            "abort_all_requests": abort_all_requests,
+            "recapture_cuda_graph": recapture_cuda_graph,
+        }
+        if load_format is not None:
+            payload["load_format"] = load_format
+        if weight_version is not None:
+            payload["weight_version"] = weight_version
+        return self._make_request("update_weights_from_disk", payload)
+
     def pause_generation(self):
         response = requests.post(f"http://{self.server_host}:{self.server_port}/pause_generation", json={})
         response.raise_for_status()

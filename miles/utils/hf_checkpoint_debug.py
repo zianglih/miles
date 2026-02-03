@@ -376,3 +376,94 @@ class DebugFirstWeightSync:
             label_a="debug_first_weight_sync",
             label_b="sglang_hf_checkpoint",
         )
+
+
+class WeightSyncCheckpointWriter:
+    def __init__(self, output_dir: str, write_rank: bool) -> None:
+        self.output_dir = Path(output_dir)
+        self.output_dir.mkdir(parents=True, exist_ok=True)
+        self.write_rank = write_rank
+        self.rank = dist.get_rank() if dist.is_initialized() else 0
+        self._shard_idx = 0
+        self._weight_map: dict[str, str] = {}
+        self._use_safetensors, self._safetensors = self._resolve_safetensors_backend()
+
+    @staticmethod
+    def _resolve_safetensors_backend() -> tuple[bool, object | None]:
+        try:
+            import safetensors.torch as safetensors_torch
+
+            return True, safetensors_torch
+        except Exception:  # pragma: no cover - optional dependency
+            logger.warning(
+                "safetensors is unavailable; falling back to torch.save for weight sync shards. "
+                "This can be slower and ignores index ordering for .bin checkpoints."
+            )
+            return False, None
+
+    def write_chunk(self, named_tensors: list[tuple[str, torch.Tensor]]) -> None:
+        if not self.write_rank:
+            return
+        if not named_tensors:
+            return
+        state_dict = {name: tensor.detach().cpu().contiguous() for name, tensor in named_tensors}
+        self._shard_idx += 1
+        if self._use_safetensors:
+            file_name = f"model.rank{self.rank:05d}-{self._shard_idx:05d}.safetensors"
+        else:
+            file_name = f"pytorch_model.rank{self.rank:05d}-{self._shard_idx:05d}.bin"
+        file_path = self.output_dir / file_name
+        if self._use_safetensors:
+            assert self._safetensors is not None
+            self._safetensors.save_file(state_dict, str(file_path), metadata={"format": "pt"})
+        else:
+            torch.save(state_dict, file_path)
+        for name in state_dict:
+            if name in self._weight_map and self._weight_map[name] != file_name:
+                logger.warning(
+                    "Duplicate weight key %s encountered in weight sync writer; keeping first entry.",
+                    name,
+                )
+                continue
+            self._weight_map[name] = file_name
+        del state_dict
+
+    def finalize(self, group: dist.ProcessGroup | None = None) -> None:
+        if not dist.is_initialized():
+            if self.write_rank:
+                self._write_index(self._weight_map)
+            return
+        dist.barrier(group=group)
+        local_map = self._weight_map if self.write_rank else {}
+        all_maps = [None] * dist.get_world_size() if dist.get_rank() == 0 else None
+        dist.gather_object(local_map, object_gather_list=all_maps, dst=0, group=group)
+
+        if dist.get_rank() == 0:
+            merged: dict[str, str] = {}
+            for rank_map in all_maps or []:
+                if not rank_map:
+                    continue
+                for key, value in rank_map.items():
+                    if key in merged and merged[key] != value:
+                        logger.warning(
+                            "Duplicate weight key %s across ranks; keeping first entry.",
+                            key,
+                        )
+                        continue
+                    merged[key] = value
+            self._write_index(merged)
+
+        dist.barrier(group=group)
+
+    def _write_index(self, weight_map: dict[str, str]) -> None:
+        index_file = "model.safetensors.index.json" if self._use_safetensors else "pytorch_model.bin.index.json"
+        index_path = self.output_dir / index_file
+        total_size = 0
+        for file_name in set(weight_map.values()):
+            file_path = self.output_dir / file_name
+            if file_path.exists():
+                total_size += file_path.stat().st_size
+        payload = {"metadata": {"total_size": total_size}, "weight_map": weight_map}
+        with open(index_path, "w", encoding="utf-8") as handle:
+            json.dump(payload, handle, indent=2, sort_keys=True)
+        logger.info("Saved weight sync checkpoint to %s", self.output_dir)

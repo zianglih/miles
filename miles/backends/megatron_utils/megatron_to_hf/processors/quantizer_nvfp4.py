@@ -180,8 +180,8 @@ def _quantize_nvfp4_1d(
     fp4_max = torch.tensor(FP4_E2M1_MAX, device=weight.device, dtype=torch.float32)
     fp8_max = torch.tensor(FP8_E4M3_MAX, device=weight.device, dtype=torch.float32)
 
-    global_encode_scale = torch.div(fp8_max * fp4_max, global_amax)
-    # global_encode_scale = torch.tensor(1.0, device=weight.device, dtype=torch.float32)
+    # global_encode_scale = torch.div(fp8_max * fp4_max, global_amax)
+    global_encode_scale = torch.tensor(1.0, device=weight.device, dtype=torch.float32)
     global_encode_scale = torch.min(
         global_encode_scale,
         torch.tensor(torch.finfo(torch.float32).max, device=weight.device, dtype=torch.float32),

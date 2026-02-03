@@ -1,3 +1,4 @@
+import os
 import socket
 import time
 from argparse import Namespace
@@ -89,6 +90,24 @@ class UpdateWeightFromDistributed:
                 source_checkpoint=self.args.hf_checkpoint,
                 write_rank=getattr(self, "_is_pp_src_rank", False),
             )
+        use_disk_sync = getattr(self.args, "weight_sync_via_disk", False)
+        if use_disk_sync:
+            from miles.utils.hf_checkpoint_debug import WeightSyncCheckpointWriter
+
+            output_root = self.args.weight_sync_disk_dir or "/tmp/miles-weight-sync"
+            self._disk_output_dir = os.path.join(
+                os.path.abspath(output_root), f"weight_sync_{self.weight_version:06d}"
+            )
+            if dist.get_rank() == 0:
+                os.makedirs(self._disk_output_dir, exist_ok=True)
+            dist.barrier(group=get_gloo_group())
+            self._disk_writer = WeightSyncCheckpointWriter(
+                output_dir=self._disk_output_dir,
+                write_rank=getattr(self, "_is_pp_src_rank", False),
+            )
+        else:
+            self._disk_writer = None
+            self._disk_output_dir = None
 
         if dist.get_rank() == 0:
             ray.get([engine.pause_generation.remote() for engine in self.rollout_engines])
@@ -131,13 +150,27 @@ class UpdateWeightFromDistributed:
         if named_tensors:
             self._update_expert_bucket_weights_from_distributed(named_tensors, pbar=pbar)
 
+        if use_disk_sync and self._disk_writer is not None:
+            self._disk_writer.finalize(group=get_gloo_group())
+        dist.barrier(group=get_gloo_group())
         if dist.get_rank() == 0:
-            ray.get([engine.continue_generation.remote() for engine in self.rollout_engines])
-            # int4/fp4 post_process, mxfp8/nvfp4 post-process (swizzle MoE scales).
-            if self.quantization_config and (
-                self.quantization_config.get("quant_method") in ["compressed-tensors", "mxfp8"]
-                or self.quantization_config.get("quant_algo") == "NVFP4"
-            ):
+            if use_disk_sync and self._disk_output_dir is not None:
+                ray.get(
+                    [
+                        engine.update_weights_from_disk.remote(
+                            model_path=self._disk_output_dir,
+                            load_format=None,
+                            weight_version=str(self.weight_version),
+                            flush_cache=True,
+                            abort_all_requests=False,
+                        )
+                        for engine in self.rollout_engines
+                    ]
+                )
+                ray.get([engine.continue_generation.remote() for engine in self.rollout_engines])
+            else:
+                ray.get([engine.continue_generation.remote() for engine in self.rollout_engines])
+                # Post-process weights after distributed update to refresh derived quant buffers.
                 post_process_weights(
                     restore_weights_before_load=False,
                     post_process_quantization=True,
@@ -244,6 +277,12 @@ class UpdateWeightFromDistributed:
         """
         if self._debug_first_weight_sync is not None:
             self._debug_first_weight_sync.write_chunk(converted_named_tensors)
+        if self._disk_writer is not None:
+            self._disk_writer.write_chunk(converted_named_tensors)
+            converted_named_tensors.clear()
+            if pbar is not None:
+                pbar.update(1)
+            return
         # lock the rollout engines to prevent dead lock on broadcast.
         while not ray.get(self.rollout_engine_lock.acquire.remote()):
             time.sleep(0.1)

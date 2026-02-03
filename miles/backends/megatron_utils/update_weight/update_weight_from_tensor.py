@@ -1,3 +1,4 @@
+import os
 from argparse import Namespace
 from collections.abc import Callable, Mapping, Sequence
 from typing import Any
@@ -123,6 +124,19 @@ class UpdateWeightFromTensor:
                 write_rank=dist.get_rank() == 0,
             )
 
+        use_disk_sync = getattr(self.args, "weight_sync_via_disk", False)
+        disk_writer = None
+        disk_output_dir = None
+        if use_disk_sync:
+            from miles.utils.hf_checkpoint_debug import WeightSyncCheckpointWriter
+
+            output_root = self.args.weight_sync_disk_dir or "/tmp/miles-weight-sync"
+            disk_output_dir = os.path.join(os.path.abspath(output_root), f"weight_sync_{self.weight_version:06d}")
+            if dist.get_rank() == 0:
+                os.makedirs(disk_output_dir, exist_ok=True)
+            dist.barrier(group=get_gloo_group())
+            disk_writer = WeightSyncCheckpointWriter(output_dir=disk_output_dir, write_rank=dist.get_rank() == 0)
+
         rank = dist.get_rank()
         if rank == 0:
             ray.get([engine.flush_cache.remote() for engine in self.rollout_engines])
@@ -139,20 +153,46 @@ class UpdateWeightFromTensor:
         for hf_named_tensors in self._hf_weight_iterator.get_hf_weight_chunks(megatron_local_weights):
             if debug_first_weight_sync and self._debug_first_weight_sync is not None:
                 self._debug_first_weight_sync.write_chunk(hf_named_tensors)
+            if use_disk_sync:
+                if disk_writer is not None:
+                    disk_writer.write_chunk(hf_named_tensors)
+                continue
             refs, long_lived_tensors = self._send_hf_params(hf_named_tensors)
             ray.get(refs)
             del long_lived_tensors
 
-        # int4/fp4 post_process, mxfp8/nvfp4 post-process (swizzle MoE scales).
-        if rank == 0:
-            if self.quantization_config and (
-                self.quantization_config.get("quant_method") in ["compressed-tensors", "mxfp8"]
-                or self.quantization_config.get("quant_algo") == "NVFP4"
-            ):
+        # Ensure all ranks finish sending weight chunks before post-processing.
+        dist.barrier(group=get_gloo_group())
+
+        if use_disk_sync:
+            if disk_writer is not None:
+                disk_writer.finalize(group=get_gloo_group())
+            if rank == 0 and disk_output_dir is not None:
+                engines = list(self.rollout_engines)
+                if self.use_distribute:
+                    engines.extend(self.distributed_rollout_engines)
+                ray.get(
+                    [
+                        engine.update_weights_from_disk.remote(
+                            model_path=disk_output_dir,
+                            load_format=None,
+                            weight_version=str(self.weight_version),
+                            flush_cache=True,
+                            abort_all_requests=False,
+                        )
+                        for engine in engines
+                    ]
+                )
+        else:
+            # Post-process weights after tensor update to refresh derived quant buffers.
+            if rank == 0:
+                engines = list(self.rollout_engines)
+                if self.use_distribute:
+                    engines.extend(self.distributed_rollout_engines)
                 post_process_weights(
                     restore_weights_before_load=False,
                     post_process_quantization=True,
-                    rollout_engines=self.rollout_engines,
+                    rollout_engines=engines,
                 )
         dist.barrier(group=get_gloo_group())
         if debug_first_weight_sync and self._debug_first_weight_sync is not None:

@@ -1102,6 +1102,25 @@ def get_miles_extra_args_provider(add_custom_arguments=None):
                 ),
             )
             parser.add_argument(
+                "--weight-sync-via-disk",
+                action="store_true",
+                default=False,
+                help=(
+                    "If set, write HF checkpoint shards to disk for each weight sync and update "
+                    "SGLang via /update_weights_from_disk instead of tensor streaming. Requires "
+                    "a shared filesystem accessible by rollout engines."
+                ),
+            )
+            parser.add_argument(
+                "--weight-sync-disk-dir",
+                type=str,
+                default=None,
+                help=(
+                    "Base directory to store weight-sync checkpoints when --weight-sync-via-disk is set. "
+                    "A versioned subdirectory will be created per weight sync."
+                ),
+            )
+            parser.add_argument(
                 "--save-debug-train-data",
                 type=str,
                 default=None,
