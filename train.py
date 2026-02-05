@@ -8,6 +8,7 @@ from miles.utils.tracking_utils import init_tracking
 
 
 def train(args):
+    args.offload_rollout = False
     configure_logger()
     # allocate the GPUs
     pgs = create_placement_groups(args)
