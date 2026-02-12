@@ -22,6 +22,7 @@ class ScriptArgs(U.ExecuteTrainConfig):
     train_fp8: bool = False
     enable_megatron_bridge: bool = False
     enable_mis: bool = False
+    num_layers_at_end_in_bf16: int = 0
     # TODO improve, should be able to override more easily
     tis_use_rs: bool = True
 
@@ -46,7 +47,10 @@ def prepare(args: ScriptArgs):
         mxfp8_path = f"/root/models/{args.model_name}-MXFP8"
         if not os.path.isdir(mxfp8_path):
             U.exec_command(
-                f"python tools/convert_hf_to_mxfp8.py --model-dir /root/models/{args.model_name} --save-dir {mxfp8_path}"
+                "python tools/convert_hf_to_mxfp8.py "
+                f"--model-dir /root/models/{args.model_name} "
+                f"--save-dir {mxfp8_path} "
+                f"--num-layers-at-end-in-bf16 {args.num_layers_at_end_in_bf16}"
             )
 
     if not args.enable_megatron_bridge:
@@ -183,6 +187,13 @@ def execute(args: ScriptArgs):
                 misc_env_vars |= {
                     "NVTE_FP8_BLOCK_SCALING_FP32_SCALES": "1",
                 }
+
+    if args.train_fp8 and args.num_layers_at_end_in_bf16 > 0:
+        misc_args += (
+            "--first-last-layers-bf16 "
+            "--num-layers-at-start-in-bf16 0 "
+            f"--num-layers-at-end-in-bf16 {args.num_layers_at_end_in_bf16} "
+        )
 
     if args.enable_megatron_bridge:
         misc_args += "--megatron-to-hf-mode bridge "
