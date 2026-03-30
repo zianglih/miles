@@ -167,9 +167,10 @@ def execute(args: ScriptArgs):
         # need to comment this when using model with MLA
         "--attention-backend flash "
         f"--actor-num-nodes {args.num_nodes} "
-        f"--actor-num-gpus-per-node {args.num_gpus_per_node} "
+        f"--actor-num-gpus-per-node 4 "
+        f"--rollout-num-gpus 4 "
         f"--num-gpus-per-node {args.num_gpus_per_node} "
-        "--colocate "
+        # "--colocate "
         "--use-fault-tolerance "
         f"--dump-details {args.output_dir}/{args.run_id}/dump_details "
     )
@@ -233,7 +234,7 @@ def execute(args: ScriptArgs):
                 "--sequence-parallel "
                 "--pipeline-model-parallel-size 1 "
                 "--context-parallel-size 1 "
-                f"--expert-model-parallel-size {args.num_gpus_per_node if args.train_mxfp8 else 4} "
+                "--expert-model-parallel-size 4 "
                 "--expert-tensor-parallel-size 1 "
             )
             sglang_args = "--sglang-mem-fraction-static 0.7 " "--sglang-attention-backend trtllm_mha "

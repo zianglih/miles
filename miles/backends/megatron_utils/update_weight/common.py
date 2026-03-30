@@ -14,6 +14,25 @@ from miles.utils.types import ParamInfo
 
 logger = logging.getLogger(__name__)
 
+try:
+    from megatron.core.fp8_utils import dequantize_fp8_tensor, is_float8tensor
+except Exception:  # pragma: no cover - fallback for environments without TE fp8 utils.
+    dequantize_fp8_tensor = None
+
+    def is_float8tensor(_tensor: torch.Tensor) -> bool:
+        return False
+
+
+def _materialize_param_data_for_sync(param: torch.Tensor) -> torch.Tensor:
+    """Materialize a sync-safe dense tensor view for weight export.
+
+    FP8 params can be TE QuantizedTensor wrappers (including MXFP8Tensor). In that case,
+    export path should use dequantized tensors to keep numerics consistent with BF16 path.
+    """
+    if dequantize_fp8_tensor is not None and is_float8tensor(param):
+        return dequantize_fp8_tensor(param).contiguous()
+    return param.data.contiguous()
+
 
 def _gather_with_stride(
     param_partitions: list[torch.Tensor], partition_dim: int, partition_stride: int
@@ -55,7 +74,7 @@ def all_gather_param(args: Namespace, name: str, param: torch.nn.Parameter) -> t
 
     assert hasattr(param, "tensor_model_parallel"), f"{name} does not have tensor_model_parallel attribute"
     if not param.tensor_model_parallel or getattr(param, "parallel_mode", None) == "duplicated":
-        return param.data
+        return _materialize_param_data_for_sync(param)
 
     if ".experts." in name:
         tp_size = mpu.get_expert_tensor_parallel_world_size()
@@ -64,8 +83,9 @@ def all_gather_param(args: Namespace, name: str, param: torch.nn.Parameter) -> t
         tp_size = mpu.get_tensor_model_parallel_world_size()
         tp_group = mpu.get_tensor_model_parallel_group()
 
-    param_partitions = [torch.empty_like(param.data) for _ in range(tp_size)]
-    dist.all_gather(param_partitions, param.data, group=tp_group)
+    local_param = _materialize_param_data_for_sync(param)
+    param_partitions = [torch.empty_like(local_param) for _ in range(tp_size)]
+    dist.all_gather(param_partitions, local_param, group=tp_group)
     partition_dim = param.partition_dim
     partition_stride = param.partition_stride
 
@@ -93,7 +113,7 @@ def all_gather_params_async(
             gather_tasks.append((info, param, None, None, None, None))
             handles.append(None)
         elif not param.tensor_model_parallel or getattr(param, "parallel_mode", None) == "duplicated":
-            gather_tasks.append((info, param.data, None, None, None, None))
+            gather_tasks.append((info, _materialize_param_data_for_sync(param), None, None, None, None))
             handles.append(None)
         else:
             # Start async all_gather
@@ -104,8 +124,9 @@ def all_gather_params_async(
                 tp_size = mpu.get_tensor_model_parallel_world_size()
                 tp_group = mpu.get_tensor_model_parallel_group()
 
-            param_partitions = [torch.empty_like(param.data) for _ in range(tp_size)]
-            handle = dist.all_gather(param_partitions, param.data, group=tp_group, async_op=True)
+            local_param = _materialize_param_data_for_sync(param)
+            param_partitions = [torch.empty_like(local_param) for _ in range(tp_size)]
+            handle = dist.all_gather(param_partitions, local_param, group=tp_group, async_op=True)
             gather_tasks.append((info, None, handle, param_partitions, param.partition_dim, param.partition_stride))
             handles.append(handle)
 

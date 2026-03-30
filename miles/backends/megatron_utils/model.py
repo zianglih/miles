@@ -14,6 +14,7 @@ from megatron.core.distributed import finalize_model_grads
 from megatron.core.enums import ModelType
 from megatron.core.models.gpt import GPTModel
 from megatron.core.optimizer import OptimizerConfig, get_megatron_optimizer
+from megatron.core.optimizer.distrib_optimizer import DistributedOptimizer
 from megatron.core.optimizer.optimizer import MegatronOptimizer
 from megatron.core.optimizer_param_scheduler import OptimizerParamScheduler
 from megatron.core.pipeline_parallel import get_forward_backward_func
@@ -165,6 +166,10 @@ def disable_forward_pre_hook(model_chunks: Sequence[DDP], param_sync: bool = Tru
     """
     for model_chunk in model_chunks:
         assert isinstance(model_chunk, DDP)
+        # In Miles, `train()` is invoked rollout-by-rollout while Megatron's helper
+        # assumes one long training loop. Keep this idempotent across rollouts.
+        if len(getattr(model_chunk, "remove_forward_pre_hook_handles", {})) == 0:
+            continue
         model_chunk.disable_forward_pre_hook(param_sync=param_sync)
 
 
@@ -345,6 +350,19 @@ def train_one_step(
     for model_chunk in model:
         model_chunk.zero_grad_buffer()
     optimizer.zero_grad()
+
+    # Keep MXFP8 param/grad shared-buffer path consistent with upstream Megatron.
+    # When reuse_grad_buf_for_mxfp8_param_ag + overlap_param_gather is enabled,
+    # zero_grad_buffer() clears the shared buffer and we must copy updated master
+    # params back before the next forward.
+    if args.reuse_grad_buf_for_mxfp8_param_ag and args.overlap_param_gather:
+        forward_pre_hook_enabled = (
+            hasattr(model[0], "remove_forward_pre_hook_handles") and len(model[0].remove_forward_pre_hook_handles) > 0
+        )
+        if forward_pre_hook_enabled:
+            for optim_instance in optimizer.chained_optimizers:
+                if isinstance(optim_instance, DistributedOptimizer):
+                    optim_instance._copy_main_params_to_param_buffer()
 
     if args.custom_megatron_before_train_step_hook_path:
         from miles.utils.misc import load_function
@@ -530,10 +548,8 @@ def train(
     config.grad_scale_func = optimizer.scale_loss
     config.timers = None
     if isinstance(model[0], DDP) and args.overlap_grad_reduce:
-        assert config.no_sync_func is None, (
-            "When overlap_grad_reduce is True, config.no_sync_func must be None; "
-            "a custom no_sync_func is not supported when overlapping grad-reduce"
-        )
+        # `config` is reused across rollouts. Rebuild overlap callbacks each rollout
+        # to avoid tripping on stale values left by previous steps.
         config.no_sync_func = [model_chunk.no_sync for model_chunk in model]
         if len(model) == 1:
             config.no_sync_func = config.no_sync_func[0]
