@@ -241,21 +241,20 @@ def execute(args: ScriptArgs):
                     f"--sglang-cuda-graph-max-bs {sglang_decode_max_bs} "
                     "--sglang-moe-dense-tp-size 1 "
                 )
-                
-                if args.extra_high_precision_layers or args.extra_high_precision_layers_megatron:
-                    misc_args += (
-                        f"--extra-high-precision-layers {args.extra_high_precision_layers} "
-                        f"--extra-high-precision-layers-megatron {args.extra_high_precision_layers_megatron} "
-                    )
-                else:
-                    misc_args += (
-                        "--extra-high-precision-layers .kv_b_proj "
-                        "--extra-high-precision-layers-megatron .linear_kv_up_proj .linear_k_up_proj .linear_v_up_proj "
-                    )
+
+                extra_high_precision_layers = [".kv_b_proj."]
+                extra_high_precision_layers_megatron = [".linear_kv_up_proj", ".linear_k_up_proj", ".linear_v_up_proj"]
+                if args.extra_high_precision_layers:
+                    extra_high_precision_layers = args.extra_high_precision_layers
+                if args.extra_high_precision_layers_megatron:
+                    extra_high_precision_layers_megatron = args.extra_high_precision_layers_megatron
+                misc_args += (
+                    f"--extra-high-precision-layers {' '.join(extra_high_precision_layers)} "
+                    f"--extra-high-precision-layers-megatron {' '.join(extra_high_precision_layers_megatron)} "
+                )
                 optimizer_args += (
                     "--optimizer-cpu-offload " "--overlap-cpu-optimizer-d2h-h2d " "--use-precision-aware-optimizer "
                 )
-                misc_env_vars["SGLANG_DEEPEP_NUM_MAX_DISPATCH_TOKENS_PER_RANK"] = "256"
                 te_precision_config_text = """
 configs:
   bf16:
