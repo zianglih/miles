@@ -3,7 +3,7 @@ import io
 import logging
 import os
 
-from transformers import AutoProcessor, AutoTokenizer, PreTrainedTokenizerBase, ProcessorMixin
+from transformers import AutoConfig, AutoProcessor, AutoTokenizer, PreTrainedTokenizerBase, ProcessorMixin
 
 logger = logging.getLogger(__name__)
 
@@ -42,6 +42,11 @@ def load_tokenizer(name_or_path: str, chat_template_path: str | None = None, **k
         with open(chat_template_path) as f:
             tokenizer.chat_template = f.read()
         logger.info("Loaded custom chat template from %s", chat_template_path)
+    try:
+        config = AutoConfig.from_pretrained(name_or_path, trust_remote_code=kwargs.get("trust_remote_code", False))
+        tokenizer.model_type = str(config.model_type).lower()
+    except Exception as e:
+        logger.debug("Failed to resolve model_type from %s: %s", name_or_path, e)
 
     if cache_key is not None:
         _TOKENIZER_CACHE[cache_key] = tokenizer
