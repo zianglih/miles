@@ -176,7 +176,12 @@ def update_weights_from_distributed(
     ]
 
     handles = []
+    # broadcast_tensors: list[torch.Tensor] = []
     for _, param in converted_named_tensors:
+        # tensor = param if param.is_contiguous() else param.contiguous()
+        # Keep references to temporary contiguous tensors alive until communication completes.
+        # broadcast_tensors.append(tensor)
+        # handles.append(dist.broadcast(tensor, 0, group=group, async_op=True))
         handles.append(dist.broadcast(param.data, 0, group=group, async_op=True))
     for handle in handles:
         handle.wait()

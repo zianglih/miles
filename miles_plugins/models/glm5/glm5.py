@@ -50,6 +50,64 @@ class DSASelfAttentionSubmodules:
     weights_proj: ModuleSpec | type = None
 
 
+def build_indexer_query_key_with_rope(
+    index_q: torch.Tensor,
+    index_k: torch.Tensor,
+    qk_pos_emb_head_dim: int,
+    index_head_dim: int,
+    cu_seqlens_q: torch.Tensor,
+    cu_seqlens_kv: torch.Tensor,
+    fuse_rope,
+    indexer_rope_interleave: bool,
+) -> tuple[torch.Tensor, torch.Tensor]:
+    """Apply indexer RoPE and preserve the expected layout.
+
+    DeepSeek-v3.2 / SGLang path:
+    - split as [rope, no-rope]
+    - apply non-interleaved RoPE on the rope chunk
+    - concatenate back as [rope, no-rope]
+
+    Legacy GLM-5 path:
+    - split as [no-rope, rope]
+    - apply interleaved RoPE on the rope chunk
+    - concatenate back as [no-rope, rope]
+    """
+    if indexer_rope_interleave:
+        index_q_no_pe, index_q_pe = torch.split(
+            index_q,
+            [index_head_dim - qk_pos_emb_head_dim, qk_pos_emb_head_dim],
+            dim=-1,
+        )
+        index_q_pe = fuse_rope(index_q_pe, cu_seqlens_q, gathered=False, interleaved=True)
+        index_query = torch.cat([index_q_no_pe, index_q_pe], dim=-1)
+
+        index_k_no_pe, index_k_pe = torch.split(
+            index_k,
+            [index_head_dim - qk_pos_emb_head_dim, qk_pos_emb_head_dim],
+            dim=-1,
+        )
+        index_k_pe = fuse_rope(index_k_pe, cu_seqlens_kv, gathered=True, interleaved=True)
+        index_key = torch.cat([index_k_no_pe, index_k_pe], dim=-1)
+    else:
+        index_q_pe, index_q_no_pe = torch.split(
+            index_q,
+            [qk_pos_emb_head_dim, index_head_dim - qk_pos_emb_head_dim],
+            dim=-1,
+        )
+        index_q_pe = fuse_rope(index_q_pe, cu_seqlens_q, gathered=False, interleaved=False)
+        index_query = torch.cat([index_q_pe, index_q_no_pe], dim=-1)
+
+        index_k_pe, index_k_no_pe = torch.split(
+            index_k,
+            [qk_pos_emb_head_dim, index_head_dim - qk_pos_emb_head_dim],
+            dim=-1,
+        )
+        index_k_pe = fuse_rope(index_k_pe, cu_seqlens_kv, gathered=True, interleaved=False)
+        index_key = torch.cat([index_k_pe, index_k_no_pe], dim=-1)
+
+    return index_query, index_key
+
+
 class DSAMultiLatentAttention(Attention):
     """Multi-Latent Attention layer abstract class.
 
@@ -542,39 +600,16 @@ class DSAMLASelfAttention(DSAMultiLatentAttention):
         if self.config.sequence_parallel:
             head_weights = gather_from_sequence_parallel_region(head_weights)
 
-        if self.config.indexer_rope_interleave:
-            index_q_no_pe, index_q_pe = torch.split(
-                index_q,
-                [self.config.index_head_dim - self.config.qk_pos_emb_head_dim, self.config.qk_pos_emb_head_dim],
-                dim=-1,
-            )
-            index_q_pe = fuse_rope(index_q_pe, cu_seqlens_q, gathered=False, interleaved=True)
-            index_query = torch.cat([index_q_no_pe, index_q_pe], dim=-1)
-
-            index_k_no_pe, index_k_pe = torch.split(
-                index_k,
-                [self.config.index_head_dim - self.config.qk_pos_emb_head_dim, self.config.qk_pos_emb_head_dim],
-                dim=-1,
-            )
-            index_k_pe = fuse_rope(index_k_pe, cu_seqlens_kv, gathered=True, interleaved=True)
-            index_key = torch.cat([index_k_no_pe, index_k_pe], dim=-1)
-        else:
-            # DeepSeek v3.2 indexer uses non-interleaved RoPE with rope dims first.
-            index_q_pe, index_q_no_pe = torch.split(
-                index_q,
-                [self.config.qk_pos_emb_head_dim, self.config.index_head_dim - self.config.qk_pos_emb_head_dim],
-                dim=-1,
-            )
-            index_q_pe = fuse_rope(index_q_pe, cu_seqlens_q, gathered=False, interleaved=False)
-            index_query = torch.cat([index_q_pe, index_q_no_pe], dim=-1)
-
-            index_k_pe, index_k_no_pe = torch.split(
-                index_k,
-                [self.config.qk_pos_emb_head_dim, self.config.index_head_dim - self.config.qk_pos_emb_head_dim],
-                dim=-1,
-            )
-            index_k_pe = fuse_rope(index_k_pe, cu_seqlens_kv, gathered=True, interleaved=False)
-            index_key = torch.cat([index_k_pe, index_k_no_pe], dim=-1)
+        index_query, index_key = build_indexer_query_key_with_rope(
+            index_q=index_q,
+            index_k=index_k,
+            qk_pos_emb_head_dim=self.config.qk_pos_emb_head_dim,
+            index_head_dim=self.config.index_head_dim,
+            cu_seqlens_q=cu_seqlens_q,
+            cu_seqlens_kv=cu_seqlens_kv,
+            fuse_rope=fuse_rope,
+            indexer_rope_interleave=self.config.indexer_rope_interleave,
+        )
 
         return query, key, w_vc, index_query, index_key, head_weights
 
