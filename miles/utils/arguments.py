@@ -1520,6 +1520,11 @@ def get_miles_extra_args_provider(add_custom_arguments=None):
             """
             # Custom arguments can be added here
             parser.add_argument(
+                "--freeze-indexer",
+                action="store_true",
+                default=False,
+            )
+            parser.add_argument(
                 "--custom-megatron-init-path",
                 type=str,
                 default=None,
@@ -1721,6 +1726,10 @@ def parse_args(add_custom_arguments=None):
         if args.hf_checkpoint:
             hf_config = AutoConfig.from_pretrained(args.hf_checkpoint, trust_remote_code=True)
             hf_validate_args(args, hf_config)
+            # For DSA models
+            if hasattr(hf_config, "indexer_rope_interleave"):
+                logger.info(f"Patching indexer_rope_interleave: {hf_config.indexer_rope_interleave} into args")
+                args.indexer_rope_interleave = bool(hf_config.indexer_rope_interleave)
 
         args.rank = 0
         args.world_size = args.actor_num_nodes * args.actor_num_gpus_per_node

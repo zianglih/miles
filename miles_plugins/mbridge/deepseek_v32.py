@@ -15,6 +15,40 @@ class DeepseekV32Bridge(DeepseekV3Bridge):
     }
     _ATTENTION_MAPPING = {**DeepseekV3Bridge._ATTENTION_MAPPING, **_DSA_ATTENTION_MAPPING}
 
+    def _prepare_rope_fields(self):
+        """Normalize rope fields."""
+        rope_scaling = getattr(self.hf_config, "rope_scaling", None)
+        rope_parameters = getattr(self.hf_config, "rope_parameters", None)
+
+        if isinstance(rope_scaling, dict):
+            # V3.2 style
+            for key in ("factor", "beta_fast", "beta_slow", "mscale", "mscale_all_dim"):
+                value = rope_scaling.get(key)
+                if isinstance(value, int):
+                    rope_scaling[key] = float(value)
+
+            self.hf_config.rope_scaling = rope_scaling
+            rope_theta = getattr(self.hf_config, "rope_theta", None)
+            if rope_theta is None:
+                rope_theta = rope_scaling.get("rope_theta")
+            if rope_theta is None:
+                raise ValueError("V3.2 rope_scaling must contain rope_theta")
+            self.hf_config.rope_theta = float(rope_theta)
+            return
+        if isinstance(rope_parameters, dict):
+            # GLM-5 style
+            self.hf_config.rope_theta = float(rope_parameters["rope_theta"])
+            return
+        raise ValueError("Unsupported rope config for deepseek_v32 bridge")
+
+    def _build_config(self):
+        self._prepare_rope_fields()
+        return super()._build_config()
+
+    def _get_gptmodel_args(self) -> dict:
+        self._prepare_rope_fields()
+        return super()._get_gptmodel_args()
+
     def _weight_to_hf_format(
         self, mcore_weights_name: str, mcore_weights: torch.Tensor
     ) -> tuple[list[str], list[torch.Tensor]]:
@@ -23,6 +57,9 @@ class DeepseekV32Bridge(DeepseekV3Bridge):
         Our training uses last half for rope while DeepSeek uses first half,
         so we swap the two halves.
         """
+        if not self.hf_config.indexer_rope_interleave:
+            return super()._weight_to_hf_format(mcore_weights_name, mcore_weights)
+
         if "self_attention.wq_b.weight" in mcore_weights_name:
             hf_names = self._weight_name_mapping_mcore_to_hf(mcore_weights_name)
             wq_b = mcore_weights
@@ -51,6 +88,9 @@ class DeepseekV32Bridge(DeepseekV3Bridge):
 
         The swap operation is its own inverse: swap the two halves back.
         """
+        if not self.hf_config.indexer_rope_interleave:
+            return super()._weight_to_mcore_format(mcore_weights_name, hf_weights)
+
         if "self_attention.wq_b.weight" in mcore_weights_name:
             wq_b = hf_weights[0]
             wq_b = wq_b.view(-1, 128, wq_b.shape[-1])  # hard code 128
