@@ -3,6 +3,7 @@ python tools/convert_hf_to_nvfp4.py [-h] [--model-dir MODEL_DIR] [--save-dir SAV
                                    [--device DEVICE]
                                    [--num-layers-at-start-in-bf16 NUM_LAYERS_AT_START_IN_BF16]
                                    [--num-layers-at-end-in-bf16 NUM_LAYERS_AT_END_IN_BF16]
+                                   [--nvfp4-4over6 {auto,none,weights,all}]
                                    [--extra-high-precision-layers-hf ...]
 
 Convert a BF16/FP16/FP32 HF safetensors checkpoint to NVFP4 (E2M1) for MoE
@@ -11,9 +12,9 @@ Use --extra-high-precision-layers-hf to keep additional HF weight-name
 substrings unquantized.
 
 This follows the NVFP4 reference quantization in Transformer Engine and uses
-1D block scaling (NVTE_NVFP4_1D_SCALING, group size = 16). Set
-NVTE_NVFP4_4OVER6=weights or NVTE_NVFP4_4OVER6=all to use TE's 4over6
-reference quantization for weights. Set
+1D block scaling (NVTE_NVFP4_1D_SCALING, group size = 16). Use
+--nvfp4-4over6=weights or set NVTE_NVFP4_4OVER6=weights/all to use TE's
+4over6 reference quantization for weights. Set
 NVTE_NVFP4_4OVER6_E4M3_USE_256=none to use the standard 448 E4M3 global
 scale bound for 4over6 weights. By default, 4over6 weight conversion uses
 the 256 bound, matching TE's NVFP4BlockScaling recipe. Set
@@ -96,6 +97,13 @@ def _nvfp4_4over6_enabled(quantization_config: dict | None = None) -> bool:
 
 def _nvfp4_4over6_weight_scope(use_4over6: bool) -> str:
     return "weights" if use_4over6 else "none"
+
+
+def _parse_nvfp4_4over6_arg(value: str) -> bool | None:
+    value = value.strip().lower()
+    if value == "auto":
+        return None
+    return _nvfp4_4over6_weight_scope_enabled(value)
 
 
 def _nvfp4_weight_e4m3_max(use_4over6: bool) -> int:
@@ -536,6 +544,16 @@ def main() -> None:
         default=[],
         help="Additional HF weight-name substrings to keep unquantized.",
     )
+    parser.add_argument(
+        "--nvfp4-4over6",
+        type=str,
+        choices=("auto", "none", "weights", "all"),
+        default="auto",
+        help=(
+            "4over6 mode for converted NVFP4 weights. 'auto' reads NVTE_NVFP4_4OVER6/env config; "
+            "'weights' and 'all' enable 4over6 for weights; 'none' disables it."
+        ),
+    )
     args, _ = parser.parse_known_args()
 
     if isinstance(args.device, str) and args.device.isdigit():
@@ -565,6 +583,7 @@ def main() -> None:
         extra_high_precision_layers_hf=tuple(
             s.strip() for s in args.extra_high_precision_layers_hf if isinstance(s, str) and s.strip()
         ),
+        use_4over6=_parse_nvfp4_4over6_arg(args.nvfp4_4over6),
     )
 
 
