@@ -11,13 +11,21 @@ Use --extra-high-precision-layers-hf to keep additional HF weight-name
 substrings unquantized.
 
 This follows the NVFP4 reference quantization in Transformer Engine and uses
-1D block scaling (NVTE_NVFP4_1D_SCALING, group size = 16).
+1D block scaling (NVTE_NVFP4_1D_SCALING, group size = 16). Set
+NVTE_NVFP4_4OVER6=weights or NVTE_NVFP4_4OVER6=all to use TE's 4over6
+reference quantization for weights. Set
+NVTE_NVFP4_4OVER6_E4M3_USE_256=none to use the standard 448 E4M3 global
+scale bound for 4over6 weights. By default, 4over6 weight conversion uses
+the 256 bound, matching TE's NVFP4BlockScaling recipe. Set
+NVTE_NVFP4_4OVER6_ERR_MODE=MAE or MSE to choose the 4over6 candidate selection
+error metric.
 """
 
 import argparse
 import gc
 import json
 import os
+import re
 import shutil
 
 import safetensors
@@ -55,6 +63,52 @@ GATED_PAIR_SUFFIXES = {
     ".w1.weight": "gate",
     ".w3.weight": "up",
 }
+
+
+def _str_to_bool(value) -> bool:
+    if isinstance(value, bool):
+        return value
+    if value is None:
+        return False
+    return str(value).strip().lower() in ("1", "true", "yes", "on")
+
+
+def _nvfp4_4over6_weight_scope_enabled(value) -> bool:
+    if isinstance(value, str):
+        value = value.strip().lower()
+        if value in ("weights", "all"):
+            return True
+        if value in ("none", "activations"):
+            return False
+    return _str_to_bool(value)
+
+
+def _nvfp4_4over6_enabled(quantization_config: dict | None = None) -> bool:
+    env_value = os.getenv("NVTE_NVFP4_4OVER6")
+    if env_value is not None:
+        return _nvfp4_4over6_weight_scope_enabled(env_value)
+    if not isinstance(quantization_config, dict):
+        return False
+    if _nvfp4_4over6_weight_scope_enabled(quantization_config.get("nvfp4_4over6")):
+        return True
+    return any(_str_to_bool(quantization_config.get(key)) for key in ("enable_4over6", "use_4over6"))
+
+
+def _nvfp4_4over6_weight_scope(use_4over6: bool) -> str:
+    return "weights" if use_4over6 else "none"
+
+
+def _nvfp4_weight_e4m3_max(use_4over6: bool) -> int:
+    if use_4over6 and _nvfp4_4over6_weight_scope_enabled(os.getenv("NVTE_NVFP4_4OVER6_E4M3_USE_256", "all")):
+        return 256
+    return int(FP8_E4M3_MAX)
+
+
+def _nvfp4_4over6_err_mode() -> str:
+    err_mode = os.getenv("NVTE_NVFP4_4OVER6_ERR_MODE", "MAE").strip().upper()
+    if err_mode not in ("MAE", "MSE"):
+        raise ValueError("NVTE_NVFP4_4OVER6_ERR_MODE must be one of: 'MAE', 'MSE'.")
+    return err_mode
 
 
 def _is_moe_expert_weight_name(name: str) -> bool:
@@ -100,9 +154,9 @@ def should_quantize(
     return True
 
 
-def _nvfp4_global_decode_scale_te(global_amax: torch.Tensor) -> torch.Tensor:
+def _nvfp4_global_decode_scale_te(global_amax: torch.Tensor, nvfp4_e4m3_max: int = 448) -> torch.Tensor:
     fp4_max = torch.tensor(FP4_E2M1_MAX, device=global_amax.device, dtype=torch.float32)
-    fp8_max = torch.tensor(FP8_E4M3_MAX, device=global_amax.device, dtype=torch.float32)
+    fp8_max = torch.tensor(float(nvfp4_e4m3_max), device=global_amax.device, dtype=torch.float32)
     global_encode_scale = torch.div(fp8_max * fp4_max, global_amax.to(torch.float32))
     global_encode_scale = torch.min(
         global_encode_scale,
@@ -127,6 +181,7 @@ def _nvfp4_global_decode_scale_te(global_amax: torch.Tensor) -> torch.Tensor:
 def _quantize_nvfp4_1d(
     weight: torch.Tensor,
     global_amax: torch.Tensor | None = None,
+    use_4over6: bool = False,
 ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
     """
     NVFP4 1D quantization (tile shape = 1x16), adapted from
@@ -146,8 +201,10 @@ def _quantize_nvfp4_1d(
         global_amax = torch.max(torch.abs(weight.to(torch.float32)))
     else:
         global_amax = global_amax.to(device=weight.device, dtype=torch.float32)
+    nvfp4_e4m3_max = _nvfp4_weight_e4m3_max(use_4over6)
+    nvfp4_4over6_err_mode = _nvfp4_4over6_err_mode()
 
-    from transformer_engine.pytorch.custom_recipes.quantization_nvfp4 import NVFP4QuantizerRef
+    from transformer_engine.pytorch.custom_recipes.quantization_ref_nvfp4 import NVFP4QuantizerRef
 
     qweight, block_scale = NVFP4QuantizerRef._quantize_blockwise_reference(
         weight,
@@ -155,17 +212,23 @@ def _quantize_nvfp4_1d(
         NVFP4_GROUP_SIZE,
         1,
         pow_2_scales=False,
+        nvfp4_use_4over6=use_4over6,
+        nvfp4_e4m3_max=nvfp4_e4m3_max,
+        nvfp4_4over6_err_mode=nvfp4_4over6_err_mode,
         eps=0.0,
     )
-    return qweight, block_scale, _nvfp4_global_decode_scale_te(global_amax)
+    return qweight, block_scale, _nvfp4_global_decode_scale_te(global_amax, nvfp4_e4m3_max)
 
 
 def quantize_nvfp4(
     weight: torch.Tensor,
     global_amax: torch.Tensor | None = None,
+    use_4over6: bool | None = None,
 ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+    if use_4over6 is None:
+        use_4over6 = _nvfp4_4over6_enabled()
     if weight.dim() == 2:
-        return _quantize_nvfp4_1d(weight, global_amax=global_amax)
+        return _quantize_nvfp4_1d(weight, global_amax=global_amax, use_4over6=use_4over6)
     if weight.dim() == 3:
         if global_amax is not None:
             raise ValueError("global_amax override is only supported for 2D weights.")
@@ -173,7 +236,7 @@ def quantize_nvfp4(
         block_scales = []
         global_scales = []
         for idx in range(weight.shape[0]):
-            qweight, block_scale, global_scale = _quantize_nvfp4_1d(weight[idx])
+            qweight, block_scale, global_scale = _quantize_nvfp4_1d(weight[idx], use_4over6=use_4over6)
             qweights.append(qweight)
             block_scales.append(block_scale)
             global_scales.append(global_scale)
@@ -198,7 +261,7 @@ class ConversionResult:
         self.modules_to_not_convert.extend(module_names)
 
 
-def _update_quantization_config(cfg: dict, ignore_list: list[str]) -> None:
+def _update_quantization_config(cfg: dict, ignore_list: list[str], use_4over6: bool) -> None:
     quant_cfg = cfg.get("quantization_config")
     if not isinstance(quant_cfg, dict):
         quant_cfg = {}
@@ -206,6 +269,7 @@ def _update_quantization_config(cfg: dict, ignore_list: list[str]) -> None:
     quant_cfg["quant_algo"] = "NVFP4"
     quant_cfg["quant_method"] = "modelopt"
     quant_cfg["group_size"] = NVFP4_GROUP_SIZE
+    quant_cfg["nvfp4_4over6"] = _nvfp4_4over6_weight_scope(use_4over6)
     quant_cfg["ignore"] = ignore_list
     quant_cfg.setdefault("kv_cache_scheme", DEFAULT_KV_CACHE_SCHEME)
 
@@ -227,7 +291,7 @@ def _update_quantization_config(cfg: dict, ignore_list: list[str]) -> None:
     cfg["quantization_config"] = quant_cfg
 
 
-def _write_hf_quant_config(output_path: str, ignore_list: list[str], input_path: str) -> None:
+def _write_hf_quant_config(output_path: str, ignore_list: list[str], input_path: str, use_4over6: bool) -> None:
     hf_quant_path = os.path.join(input_path, "hf_quant_config.json")
     if os.path.exists(hf_quant_path):
         with open(hf_quant_path) as f:
@@ -242,6 +306,7 @@ def _write_hf_quant_config(output_path: str, ignore_list: list[str], input_path:
     quant_section["quant_algo"] = "NVFP4"
     quant_section["kv_cache_quant_algo"] = DEFAULT_KV_CACHE_QUANT_ALGO
     quant_section["group_size"] = NVFP4_GROUP_SIZE
+    quant_section["nvfp4_4over6"] = _nvfp4_4over6_weight_scope(use_4over6)
     quant_section["exclude_modules"] = ignore_list
     hf_quant_cfg["quantization"] = quant_section
 
@@ -258,6 +323,9 @@ def _augment_ignore_list(ignore_list: list[str]) -> list[str]:
                 if name.endswith(suffix):
                     extra.add(name[: -len(suffix)] + ".qkv_proj")
                     break
+        match = re.match(r"(.*\.mlp\.experts)\.\d+\.(gate_proj|up_proj|down_proj)$", name)
+        if match:
+            extra.add(match.group(1))
     ignore_set.update(extra)
     return sorted(ignore_set)
 
@@ -315,6 +383,7 @@ def process_file(
     num_layers_at_end_in_bf16: int,
     extra_high_precision_layers_hf: tuple[str, ...],
     shared_global_amax: dict[str, torch.Tensor],
+    use_4over6: bool,
 ) -> None:
     if not filename.endswith(".safetensors"):
         return
@@ -341,7 +410,9 @@ def process_file(
             if should_quantize(key, tensor, skip_weight_substrings=dynamic_skip_substrings):
                 base, _role = _split_gated_pair_name(key)
                 global_amax = shared_global_amax.get(base) if base else None
-                qweight, block_scale, weight_scale_2 = quantize_nvfp4(tensor, global_amax=global_amax)
+                qweight, block_scale, weight_scale_2 = quantize_nvfp4(
+                    tensor, global_amax=global_amax, use_4over6=use_4over6
+                )
                 q_weights[key] = qweight
                 q_weights[key.replace(".weight", ".weight_scale")] = block_scale
                 q_weights[key.replace(".weight", ".weight_scale_2")] = weight_scale_2
@@ -364,7 +435,11 @@ def convert_nvfp4(
     num_layers_at_start_in_bf16: int = 0,
     num_layers_at_end_in_bf16: int = 0,
     extra_high_precision_layers_hf: tuple[str, ...] = (),
+    use_4over6: bool | None = None,
 ) -> None:
+    if use_4over6 is None:
+        use_4over6 = _nvfp4_4over6_enabled()
+
     input_path = os.path.abspath(model_dir)
     output_path = os.path.abspath(save_dir)
     os.makedirs(output_path, exist_ok=True)
@@ -405,6 +480,7 @@ def convert_nvfp4(
             num_layers_at_end_in_bf16,
             extra_high_precision_layers_hf,
             shared_global_amax,
+            use_4over6,
         )
         gc.collect()
         if torch.cuda.is_available():
@@ -415,10 +491,10 @@ def convert_nvfp4(
     config_path = os.path.join(input_path, "config.json")
     if os.path.exists(config_path):
         cfg = json.load(open(config_path))
-        _update_quantization_config(cfg, ignore_list)
+        _update_quantization_config(cfg, ignore_list, use_4over6)
         json.dump(cfg, open(os.path.join(output_path, "config.json"), "w"), indent=2)
 
-    _write_hf_quant_config(output_path, ignore_list, input_path)
+    _write_hf_quant_config(output_path, ignore_list, input_path, use_4over6)
 
     index_dict = {
         "weight_map": result_collector.weight_map,

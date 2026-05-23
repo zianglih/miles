@@ -1,3 +1,4 @@
+import os
 import re
 
 import torch
@@ -24,6 +25,48 @@ def _get_ignore_rules(quantization_config) -> list[str]:
     return list(ignore_rules) + [rule for rule in exclude_rules if rule not in ignore_rules]
 
 
+def _str_to_bool(value) -> bool:
+    if isinstance(value, bool):
+        return value
+    if value is None:
+        return False
+    return str(value).strip().lower() in ("1", "true", "yes", "on")
+
+
+def _nvfp4_4over6_weight_scope_enabled(value) -> bool:
+    if isinstance(value, str):
+        value = value.strip().lower()
+        if value in ("weights", "all"):
+            return True
+        if value in ("none", "activations"):
+            return False
+    return _str_to_bool(value)
+
+
+def _nvfp4_4over6_enabled(quantization_config: dict | None = None) -> bool:
+    env_value = os.getenv("NVTE_NVFP4_4OVER6")
+    if env_value is not None:
+        return _nvfp4_4over6_weight_scope_enabled(env_value)
+    if not isinstance(quantization_config, dict):
+        return False
+    if _nvfp4_4over6_weight_scope_enabled(quantization_config.get("nvfp4_4over6")):
+        return True
+    return any(_str_to_bool(quantization_config.get(key)) for key in ("enable_4over6", "use_4over6"))
+
+
+def _nvfp4_weight_e4m3_max(use_4over6: bool) -> int:
+    if use_4over6 and _nvfp4_4over6_weight_scope_enabled(os.getenv("NVTE_NVFP4_4OVER6_E4M3_USE_256", "all")):
+        return 256
+    return int(FP8_E4M3_MAX)
+
+
+def _nvfp4_4over6_err_mode() -> str:
+    err_mode = os.getenv("NVTE_NVFP4_4OVER6_ERR_MODE", "MAE").strip().upper()
+    if err_mode not in ("MAE", "MSE"):
+        raise ValueError("NVTE_NVFP4_4OVER6_ERR_MODE must be one of: 'MAE', 'MSE'.")
+    return err_mode
+
+
 def _is_ignored(name: str, ignore_rules: list[str]) -> bool:
     for rule in ignore_rules:
         if rule.startswith("re:"):
@@ -45,6 +88,7 @@ def quantize_params_nvfp4(args, megatron_name, converted_named_params, quantizat
                 return converted_named_params
 
     ignore_rules = _get_ignore_rules(quantization_config)
+    use_4over6 = _nvfp4_4over6_enabled(quantization_config)
 
     decoder_layers_pattern = r"decoder\.layers\.(\d+)\.(.+)"
     match = re.search(decoder_layers_pattern, megatron_name)
@@ -79,7 +123,7 @@ def quantize_params_nvfp4(args, megatron_name, converted_named_params, quantizat
             "linear_fc1",
             "linear_fc2",
         ]:
-            return _quantize_moe_params(converted_named_params, ignore_rules)
+            return _quantize_moe_params(converted_named_params, ignore_rules, use_4over6)
 
     # shared expert
     shared_expert_pattern = r"mlp.shared_experts\.(.+)"
@@ -90,13 +134,13 @@ def quantize_params_nvfp4(args, megatron_name, converted_named_params, quantizat
             "linear_fc1.weight",
             "linear_fc2.weight",
         ]:
-            return _quantize_moe_params(converted_named_params, ignore_rules)
+            return _quantize_moe_params(converted_named_params, ignore_rules, use_4over6)
 
     # for other parameters, we just return the original converted_named_params
     return converted_named_params
 
 
-def _quantize_moe_params(converted_named_params, ignore_rules):
+def _quantize_moe_params(converted_named_params, ignore_rules, use_4over6: bool):
     shared_global_amax = {}
     gated_candidates = {}
     for converted_name, param in converted_named_params:
@@ -130,7 +174,7 @@ def _quantize_moe_params(converted_named_params, ignore_rules):
             continue
         base, _role = _split_gated_pair_name(converted_name)
         global_amax = shared_global_amax.get(base) if base else None
-        qweight, block_scale, weight_scale_2 = quantize_nvfp4(param, global_amax=global_amax)
+        qweight, block_scale, weight_scale_2 = quantize_nvfp4(param, global_amax=global_amax, use_4over6=use_4over6)
         quantize_named_params.append((converted_name, qweight))
         quantize_named_params.append((converted_name.replace(".weight", ".weight_scale"), block_scale))
         quantize_named_params.append((converted_name.replace(".weight", ".weight_scale_2"), weight_scale_2))
@@ -162,9 +206,9 @@ def _split_gated_pair_name(name: str):
     return None, None
 
 
-def _nvfp4_global_decode_scale_te(global_amax: torch.Tensor) -> torch.Tensor:
+def _nvfp4_global_decode_scale_te(global_amax: torch.Tensor, nvfp4_e4m3_max: int = 448) -> torch.Tensor:
     fp4_max = torch.tensor(FP4_E2M1_MAX, device=global_amax.device, dtype=torch.float32)
-    fp8_max = torch.tensor(FP8_E4M3_MAX, device=global_amax.device, dtype=torch.float32)
+    fp8_max = torch.tensor(float(nvfp4_e4m3_max), device=global_amax.device, dtype=torch.float32)
     global_encode_scale = torch.div(fp8_max * fp4_max, global_amax.to(torch.float32))
     global_encode_scale = torch.min(
         global_encode_scale,
@@ -189,6 +233,7 @@ def _nvfp4_global_decode_scale_te(global_amax: torch.Tensor) -> torch.Tensor:
 def _quantize_nvfp4_1d(
     weight: torch.Tensor,
     global_amax: torch.Tensor | None = None,
+    use_4over6: bool = False,
 ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
     """
     NVFP4 1D quantization (tile shape = 1x16), adapted from
@@ -208,8 +253,10 @@ def _quantize_nvfp4_1d(
         global_amax = torch.max(torch.abs(weight.to(torch.float32)))
     else:
         global_amax = global_amax.to(device=weight.device, dtype=torch.float32)
+    nvfp4_e4m3_max = _nvfp4_weight_e4m3_max(use_4over6)
+    nvfp4_4over6_err_mode = _nvfp4_4over6_err_mode()
 
-    from transformer_engine.pytorch.custom_recipes.quantization_nvfp4 import NVFP4QuantizerRef
+    from transformer_engine.pytorch.custom_recipes.quantization_ref_nvfp4 import NVFP4QuantizerRef
 
     qweight, block_scale = NVFP4QuantizerRef._quantize_blockwise_reference(
         weight,
@@ -217,17 +264,23 @@ def _quantize_nvfp4_1d(
         NVFP4_GROUP_SIZE,
         1,
         pow_2_scales=False,
+        nvfp4_use_4over6=use_4over6,
+        nvfp4_e4m3_max=nvfp4_e4m3_max,
+        nvfp4_4over6_err_mode=nvfp4_4over6_err_mode,
         eps=0.0,
     )
-    return qweight, block_scale, _nvfp4_global_decode_scale_te(global_amax)
+    return qweight, block_scale, _nvfp4_global_decode_scale_te(global_amax, nvfp4_e4m3_max)
 
 
 def quantize_nvfp4(
     weight: torch.Tensor,
     global_amax: torch.Tensor | None = None,
+    use_4over6: bool | None = None,
 ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+    if use_4over6 is None:
+        use_4over6 = _nvfp4_4over6_enabled()
     if weight.dim() == 2:
-        return _quantize_nvfp4_1d(weight, global_amax=global_amax)
+        return _quantize_nvfp4_1d(weight, global_amax=global_amax, use_4over6=use_4over6)
     if weight.dim() == 3:
         if global_amax is not None:
             raise ValueError("global_amax override is only supported for 2D weights.")
@@ -235,7 +288,7 @@ def quantize_nvfp4(
         block_scales = []
         global_scales = []
         for idx in range(weight.shape[0]):
-            qweight, block_scale, global_scale = _quantize_nvfp4_1d(weight[idx])
+            qweight, block_scale, global_scale = _quantize_nvfp4_1d(weight[idx], use_4over6=use_4over6)
             qweights.append(qweight)
             block_scales.append(block_scale)
             global_scales.append(global_scale)
