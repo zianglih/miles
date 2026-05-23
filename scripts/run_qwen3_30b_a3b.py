@@ -1,3 +1,4 @@
+import os
 from dataclasses import dataclass
 from typing import Literal
 
@@ -78,14 +79,7 @@ def prepare(args: ScriptArgs):
         )
 
     if args.rollout_nvfp4 or args.train_nvfp4:
-        nvfp4_env_prefix = (
-            "NVTE_USE_FAST_MATH=0 "
-            # 4over6
-            # "NVTE_NVFP4_4OVER6=weights "
-            # "NVTE_NVFP4_4OVER6_ERR_MODE=MSE "
-            # "NVTE_NVFP4_4OVER6_ERR_USE_FAST_MATH=0 "
-            # "NVTE_NVFP4_4OVER6_E4M3_USE_256=weights "
-        )
+        nvfp4_env_prefix = "NVTE_USE_FAST_MATH=0 "
         U.exec_command(
             f"{nvfp4_env_prefix}"
             f"python tools/convert_hf_to_nvfp4.py --model-dir {args.model_dir}/{args.model_name} "
@@ -263,11 +257,6 @@ def execute(args: ScriptArgs):
             "NVTE_NVFP4_ROW_SCALED_ACTIVATION": "1",
             "NVTE_BACKWARD_OVERRIDE": "dequantized",
             "NVTE_USE_FAST_MATH": "0",
-            # 4over6
-            # "NVTE_NVFP4_4OVER6": "all",
-            # "NVTE_NVFP4_4OVER6_E4M3_USE_256": "all",
-            # "NVTE_NVFP4_4OVER6_ERR_MODE": "MSE",
-            # "NVTE_NVFP4_4OVER6_ERR_USE_FAST_MATH": "0",
         }
         optimizer_args += (
             "--optimizer-cpu-offload " "--overlap-cpu-optimizer-d2h-h2d " "--use-precision-aware-optimizer "
@@ -379,11 +368,6 @@ matchers:
                 misc_env_vars |= {
                     "SGLANG_FLASHINFER_NVFP4_PER_TOKEN_ACTIVATION": "1",
                     "TRTLLM_DISABLE_FP4_QUANT_FAST_MATH": "1",
-                    # 4over6
-                    # "FLASHINFER_NVFP4_4OVER6": "1",
-                    # "FLASHINFER_NVFP4_4OVER6_ERR_USE_FAST_MATH": "0",
-                    # "FLASHINFER_NVFP4_4OVER6_ERR_MODE": "MSE",
-                    # "FLASHINFER_NVFP4_4OVER6_E4M3_USE_256": "1",
                 }
             else:
                 sglang_args += "--rollout-num-gpus-per-engine 4 " "--sglang-cuda-graph-max-bs 512 "
@@ -424,6 +408,19 @@ tis_batch_normalize: true
         f"{misc_args} "
         f"{args.extra_args} "
     )
+    for env_name in (
+        "MILES_FP4_DIRECT_WEIGHT_UPDATE",
+        "NVTE_NVFP4_4OVER6",
+        "NVTE_NVFP4_4OVER6_E4M3_USE_256",
+        "NVTE_NVFP4_4OVER6_ERR_MODE",
+        "NVTE_NVFP4_4OVER6_ERR_USE_FAST_MATH",
+        "FLASHINFER_NVFP4_4OVER6",
+        "FLASHINFER_NVFP4_4OVER6_E4M3_USE_256",
+        "FLASHINFER_NVFP4_4OVER6_ERR_MODE",
+        "FLASHINFER_NVFP4_4OVER6_ERR_USE_FAST_MATH",
+    ):
+        if env_name in os.environ:
+            misc_env_vars[env_name] = os.environ[env_name]
 
     U.execute_train(
         train_args=train_args,

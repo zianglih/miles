@@ -7,7 +7,6 @@ import json
 
 import pytest
 import torch
-from tools.convert_hf_to_nvfp4 import _parse_nvfp4_4over6_arg
 from tools.convert_hf_to_nvfp4 import _update_quantization_config as tool_update_quantization_config
 from tools.convert_hf_to_nvfp4 import _write_hf_quant_config as tool_write_hf_quant_config
 from tools.convert_hf_to_nvfp4 import quantize_nvfp4 as tool_quantize_nvfp4
@@ -67,6 +66,15 @@ def _te_nvfp4_reference(
 ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
     weight = weight.contiguous()
     global_amax = torch.max(torch.abs(weight.to(torch.float32)))
+    return _te_nvfp4_reference_with_global_amax(weight, global_amax, use_4over6=use_4over6)
+
+
+def _te_nvfp4_reference_with_global_amax(
+    weight: torch.Tensor,
+    global_amax: torch.Tensor,
+    use_4over6: bool = False,
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+    weight = weight.contiguous()
     nvfp4_e4m3_max = _nvfp4_weight_e4m3_max(use_4over6)
     qweight, block_scale = NVFP4QuantizerRef._quantize_blockwise_reference(
         weight,
@@ -180,24 +188,20 @@ def test_nvfp4_hf_should_quantize_respects_extra_high_precision_layers_hf():
     )
 
 
-def test_nvfp4_converter_records_4over6_mode(tmp_path):
+def test_nvfp4_converter_records_4over6_mode(tmp_path, monkeypatch):
+    monkeypatch.setenv("NVTE_NVFP4_4OVER6", "weights")
     cfg = {}
-    tool_update_quantization_config(cfg, ignore_list=["model.layers.0"], use_4over6=True)
+    tool_update_quantization_config(cfg, ignore_list=["model.layers.0"])
     assert cfg["quantization_config"]["nvfp4_4over6"] == "weights"
 
     input_dir = tmp_path / "input"
     output_dir = tmp_path / "output"
     input_dir.mkdir()
     output_dir.mkdir()
-    tool_write_hf_quant_config(
-        str(output_dir), ignore_list=["model.layers.0"], input_path=str(input_dir), use_4over6=True
-    )
+    tool_write_hf_quant_config(str(output_dir), ignore_list=["model.layers.0"], input_path=str(input_dir))
 
     hf_quant_config = json.loads((output_dir / "hf_quant_config.json").read_text())
     assert hf_quant_config["quantization"]["nvfp4_4over6"] == "weights"
-    assert _parse_nvfp4_4over6_arg("auto") is None
-    assert _parse_nvfp4_4over6_arg("weights") is True
-    assert _parse_nvfp4_4over6_arg("none") is False
 
 
 @pytest.mark.parametrize("use_4over6", [False, True], ids=lambda value: _nvfp4_4over6_weight_scope(value))
@@ -206,9 +210,13 @@ def test_nvfp4_quantize_matches_te_reference_with_4over6_modes(monkeypatch, use_
     device = "cuda"
     torch.manual_seed(42)
     monkeypatch.setenv("NVTE_NVFP4_4OVER6_ERR_MODE", err_mode)
+    if use_4over6:
+        monkeypatch.setenv("NVTE_NVFP4_4OVER6", "weights")
+    else:
+        monkeypatch.delenv("NVTE_NVFP4_4OVER6", raising=False)
 
     weight = _make_weight("random", torch.bfloat16, (128, 1024), device)
-    qweight, block_scale, global_scale = processor_quantize_nvfp4(weight, use_4over6=use_4over6)
+    qweight, block_scale, global_scale = processor_quantize_nvfp4(weight)
     qweight_ref, block_scale_ref, global_scale_ref = _te_nvfp4_reference(weight, use_4over6=use_4over6)
 
     torch.testing.assert_close(qweight, qweight_ref, rtol=0, atol=0)
@@ -216,10 +224,10 @@ def test_nvfp4_quantize_matches_te_reference_with_4over6_modes(monkeypatch, use_
     torch.testing.assert_close(global_scale, global_scale_ref, rtol=0, atol=0)
 
 
-def test_nvfp4_quantize_params_reads_4over6_from_quantization_config(monkeypatch):
+def test_nvfp4_quantize_params_reads_4over6_from_env(monkeypatch):
     device = "cuda"
     torch.manual_seed(42)
-    monkeypatch.delenv("NVTE_NVFP4_4OVER6", raising=False)
+    monkeypatch.setenv("NVTE_NVFP4_4OVER6", "weights")
 
     gate = _make_weight("random", torch.bfloat16, (4, NVFP4_GROUP_SIZE), device)
     up = _make_weight("random", torch.bfloat16, (4, NVFP4_GROUP_SIZE), device)
@@ -234,11 +242,11 @@ def test_nvfp4_quantize_params_reads_4over6_from_quantization_config(monkeypatch
             args=None,
             megatron_name="decoder.layers.0.mlp.experts.linear_fc1.weight0",
             converted_named_params=converted_named_params,
-            quantization_config={"quant_method": "nvfp4", "nvfp4_4over6": "weights"},
+            quantization_config={"quant_method": "nvfp4"},
         )
     )
-    qweight_ref, block_scale_ref, global_scale_ref = processor_quantize_nvfp4(
-        gate, global_amax=shared_amax, use_4over6=True
+    qweight_ref, block_scale_ref, global_scale_ref = _te_nvfp4_reference_with_global_amax(
+        gate, shared_amax, use_4over6=True
     )
 
     torch.testing.assert_close(out["model.layers.0.mlp.experts.0.gate_proj.weight"], qweight_ref, rtol=0, atol=0)
@@ -258,6 +266,7 @@ def test_nvfp4_quantize_params_reads_4over6_from_quantization_config(monkeypatch
 
 def test_nvfp4_direct_weight_update_extracts_te_rowwise_buffers(monkeypatch):
     monkeypatch.setenv("MILES_FP4_DIRECT_WEIGHT_UPDATE", "1")
+    monkeypatch.delenv("NVTE_NVFP4_4OVER6", raising=False)
     rowwise_data = torch.arange(32, dtype=torch.uint8, device="cuda").reshape(4, 8)
     rowwise_scale_inv = torch.arange(512, dtype=torch.float32, device="cuda").reshape(128, 4)
     amax_rowwise = torch.tensor(12.0, dtype=torch.float32, device="cuda")
@@ -269,7 +278,7 @@ def test_nvfp4_direct_weight_update_extracts_te_rowwise_buffers(monkeypatch):
         e4m3_max=448,
     )
 
-    qweight, block_scale, global_scale = processor_quantize_nvfp4(weight, use_4over6=False)
+    qweight, block_scale, global_scale = processor_quantize_nvfp4(weight)
 
     torch.testing.assert_close(qweight, rowwise_data, rtol=0, atol=0)
     torch.testing.assert_close(block_scale, rowwise_scale_inv[:4, :1], rtol=0, atol=0)
@@ -278,6 +287,7 @@ def test_nvfp4_direct_weight_update_extracts_te_rowwise_buffers(monkeypatch):
 
 def test_nvfp4_direct_weight_update_rejects_4over6_mismatch(monkeypatch):
     monkeypatch.setenv("MILES_FP4_DIRECT_WEIGHT_UPDATE", "1")
+    monkeypatch.setenv("NVTE_NVFP4_4OVER6", "weights")
     weight = FakeTENvfp4Tensor(
         rowwise_data=torch.zeros((4, 8), dtype=torch.uint8),
         rowwise_scale_inv=torch.zeros((128, 4), dtype=torch.float32),
@@ -287,7 +297,7 @@ def test_nvfp4_direct_weight_update_rejects_4over6_mismatch(monkeypatch):
     )
 
     with pytest.raises(ValueError, match="4over6 mode does not match"):
-        processor_quantize_nvfp4(weight, use_4over6=True)
+        processor_quantize_nvfp4(weight)
 
 
 @pytest.mark.parametrize(

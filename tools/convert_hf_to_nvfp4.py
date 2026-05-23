@@ -3,7 +3,6 @@ python tools/convert_hf_to_nvfp4.py [-h] [--model-dir MODEL_DIR] [--save-dir SAV
                                    [--device DEVICE]
                                    [--num-layers-at-start-in-bf16 NUM_LAYERS_AT_START_IN_BF16]
                                    [--num-layers-at-end-in-bf16 NUM_LAYERS_AT_END_IN_BF16]
-                                   [--nvfp4-4over6 {auto,none,weights,all}]
                                    [--extra-high-precision-layers-hf ...]
 
 Convert a BF16/FP16/FP32 HF safetensors checkpoint to NVFP4 (E2M1) for MoE
@@ -12,9 +11,8 @@ Use --extra-high-precision-layers-hf to keep additional HF weight-name
 substrings unquantized.
 
 This follows the NVFP4 reference quantization in Transformer Engine and uses
-1D block scaling (NVTE_NVFP4_1D_SCALING, group size = 16). Use
---nvfp4-4over6=weights or set NVTE_NVFP4_4OVER6=weights/all to use TE's
-4over6 reference quantization for weights. Set
+1D block scaling (NVTE_NVFP4_1D_SCALING, group size = 16). Set
+NVTE_NVFP4_4OVER6=weights/all to use TE's 4over6 reference quantization for weights. Set
 NVTE_NVFP4_4OVER6_E4M3_USE_256=none to use the standard 448 E4M3 global
 scale bound for 4over6 weights. By default, 4over6 weight conversion uses
 the 256 bound, matching TE's NVFP4BlockScaling recipe. Set
@@ -84,26 +82,15 @@ def _nvfp4_4over6_weight_scope_enabled(value) -> bool:
     return _str_to_bool(value)
 
 
-def _nvfp4_4over6_enabled(quantization_config: dict | None = None) -> bool:
+def _nvfp4_4over6_enabled() -> bool:
     env_value = os.getenv("NVTE_NVFP4_4OVER6")
     if env_value is not None:
         return _nvfp4_4over6_weight_scope_enabled(env_value)
-    if not isinstance(quantization_config, dict):
-        return False
-    if _nvfp4_4over6_weight_scope_enabled(quantization_config.get("nvfp4_4over6")):
-        return True
-    return any(_str_to_bool(quantization_config.get(key)) for key in ("enable_4over6", "use_4over6"))
+    return False
 
 
 def _nvfp4_4over6_weight_scope(use_4over6: bool) -> str:
     return "weights" if use_4over6 else "none"
-
-
-def _parse_nvfp4_4over6_arg(value: str) -> bool | None:
-    value = value.strip().lower()
-    if value == "auto":
-        return None
-    return _nvfp4_4over6_weight_scope_enabled(value)
 
 
 def _nvfp4_weight_e4m3_max(use_4over6: bool) -> int:
@@ -228,13 +215,11 @@ def _quantize_nvfp4_1d(
     return qweight, block_scale, _nvfp4_global_decode_scale_te(global_amax, nvfp4_e4m3_max)
 
 
-def quantize_nvfp4(
+def _quantize_nvfp4(
     weight: torch.Tensor,
     global_amax: torch.Tensor | None = None,
-    use_4over6: bool | None = None,
+    use_4over6: bool = False,
 ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
-    if use_4over6 is None:
-        use_4over6 = _nvfp4_4over6_enabled()
     if weight.dim() == 2:
         return _quantize_nvfp4_1d(weight, global_amax=global_amax, use_4over6=use_4over6)
     if weight.dim() == 3:
@@ -256,6 +241,13 @@ def quantize_nvfp4(
     raise ValueError(f"Unsupported weight rank {weight.dim()} for NVFP4 quantization.")
 
 
+def quantize_nvfp4(
+    weight: torch.Tensor,
+    global_amax: torch.Tensor | None = None,
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+    return _quantize_nvfp4(weight, global_amax=global_amax, use_4over6=_nvfp4_4over6_enabled())
+
+
 class ConversionResult:
     def __init__(self) -> None:
         self.weight_map: dict[str, str] = {}
@@ -269,7 +261,8 @@ class ConversionResult:
         self.modules_to_not_convert.extend(module_names)
 
 
-def _update_quantization_config(cfg: dict, ignore_list: list[str], use_4over6: bool) -> None:
+def _update_quantization_config(cfg: dict, ignore_list: list[str]) -> None:
+    use_4over6 = _nvfp4_4over6_enabled()
     quant_cfg = cfg.get("quantization_config")
     if not isinstance(quant_cfg, dict):
         quant_cfg = {}
@@ -299,7 +292,8 @@ def _update_quantization_config(cfg: dict, ignore_list: list[str], use_4over6: b
     cfg["quantization_config"] = quant_cfg
 
 
-def _write_hf_quant_config(output_path: str, ignore_list: list[str], input_path: str, use_4over6: bool) -> None:
+def _write_hf_quant_config(output_path: str, ignore_list: list[str], input_path: str) -> None:
+    use_4over6 = _nvfp4_4over6_enabled()
     hf_quant_path = os.path.join(input_path, "hf_quant_config.json")
     if os.path.exists(hf_quant_path):
         with open(hf_quant_path) as f:
@@ -418,7 +412,7 @@ def process_file(
             if should_quantize(key, tensor, skip_weight_substrings=dynamic_skip_substrings):
                 base, _role = _split_gated_pair_name(key)
                 global_amax = shared_global_amax.get(base) if base else None
-                qweight, block_scale, weight_scale_2 = quantize_nvfp4(
+                qweight, block_scale, weight_scale_2 = _quantize_nvfp4(
                     tensor, global_amax=global_amax, use_4over6=use_4over6
                 )
                 q_weights[key] = qweight
@@ -443,11 +437,8 @@ def convert_nvfp4(
     num_layers_at_start_in_bf16: int = 0,
     num_layers_at_end_in_bf16: int = 0,
     extra_high_precision_layers_hf: tuple[str, ...] = (),
-    use_4over6: bool | None = None,
 ) -> None:
-    if use_4over6 is None:
-        use_4over6 = _nvfp4_4over6_enabled()
-
+    use_4over6 = _nvfp4_4over6_enabled()
     input_path = os.path.abspath(model_dir)
     output_path = os.path.abspath(save_dir)
     os.makedirs(output_path, exist_ok=True)
@@ -499,10 +490,10 @@ def convert_nvfp4(
     config_path = os.path.join(input_path, "config.json")
     if os.path.exists(config_path):
         cfg = json.load(open(config_path))
-        _update_quantization_config(cfg, ignore_list, use_4over6)
+        _update_quantization_config(cfg, ignore_list)
         json.dump(cfg, open(os.path.join(output_path, "config.json"), "w"), indent=2)
 
-    _write_hf_quant_config(output_path, ignore_list, input_path, use_4over6)
+    _write_hf_quant_config(output_path, ignore_list, input_path)
 
     index_dict = {
         "weight_map": result_collector.weight_map,
@@ -544,16 +535,6 @@ def main() -> None:
         default=[],
         help="Additional HF weight-name substrings to keep unquantized.",
     )
-    parser.add_argument(
-        "--nvfp4-4over6",
-        type=str,
-        choices=("auto", "none", "weights", "all"),
-        default="auto",
-        help=(
-            "4over6 mode for converted NVFP4 weights. 'auto' reads NVTE_NVFP4_4OVER6/env config; "
-            "'weights' and 'all' enable 4over6 for weights; 'none' disables it."
-        ),
-    )
     args, _ = parser.parse_known_args()
 
     if isinstance(args.device, str) and args.device.isdigit():
@@ -583,7 +564,6 @@ def main() -> None:
         extra_high_precision_layers_hf=tuple(
             s.strip() for s in args.extra_high_precision_layers_hf if isinstance(s, str) and s.strip()
         ),
-        use_4over6=_parse_nvfp4_4over6_arg(args.nvfp4_4over6),
     )
 
 
