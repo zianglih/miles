@@ -13,6 +13,7 @@ from tools.convert_hf_to_nvfp4 import quantize_nvfp4 as tool_quantize_nvfp4
 from tools.convert_hf_to_nvfp4 import should_quantize as tool_should_quantize_nvfp4
 from transformer_engine.pytorch.custom_recipes.quantization_ref_nvfp4 import NVFP4QuantizerRef
 
+from miles.backends.megatron_utils.megatron_to_hf.processors import quantize_params
 from miles.backends.megatron_utils.megatron_to_hf.processors.quantizer_nvfp4 import (
     NVFP4_GROUP_SIZE,
     _nvfp4_4over6_err_mode,
@@ -112,6 +113,19 @@ class FakeTENvfp4Tensor:
 
     def dim(self):
         return len(self.shape)
+
+
+def test_nvfp4_dispatch_accepts_quant_algo_without_quant_method():
+    converted_named_params = [("model.embed_tokens.weight", torch.zeros((1, 1), dtype=torch.bfloat16))]
+
+    out = quantize_params(
+        args=None,
+        megatron_name="embedding.word_embeddings.weight",
+        converted_named_params=converted_named_params,
+        quantization_config={"quant_algo": "NVFP4"},
+    )
+
+    assert out is converted_named_params
 
 
 def test_nvfp4_quantize_params_requires_complete_gated_pair():

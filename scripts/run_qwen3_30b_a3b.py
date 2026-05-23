@@ -13,9 +13,10 @@ class ScriptArgs(U.ExecuteTrainConfig):
     run_id: str = U.create_run_id()
     model_name: str = "Qwen3-30B-A3B"
     megatron_model_type: str = "qwen3-30B-A3B"
-    num_gpus_per_node: int | None = 8
-    actor_num_gpus_per_node: int | None = 4
-    rollout_num_gpus: int | None = 4
+    num_gpus_per_node: int | None = None
+    actor_num_gpus_per_node: int | None = None
+    rollout_num_gpus: int | None = None
+    no_colocate: bool = False
     hardware: Literal["H100", "B200", "B300", "GB200", "GB300"] = "H100"
     enable_eval: bool = True
     extra_args: str = ""
@@ -37,9 +38,13 @@ class ScriptArgs(U.ExecuteTrainConfig):
 
     def __post_init__(self):
         self.num_gpus_per_node = self.num_gpus_per_node or U.NUM_GPUS_OF_HARDWARE[self.hardware]
-        self.actor_num_gpus_per_node = self.actor_num_gpus_per_node or self.num_gpus_per_node
-        self.rollout_num_gpus = self.rollout_num_gpus or self.num_gpus_per_node
-        self.no_colocate = self.rollout_nvfp4
+        self.no_colocate = self.no_colocate or self.rollout_nvfp4
+        if self.no_colocate:
+            self.actor_num_gpus_per_node = self.actor_num_gpus_per_node or self.num_gpus_per_node // 2
+            self.rollout_num_gpus = self.rollout_num_gpus or self.num_gpus_per_node - self.actor_num_gpus_per_node
+        else:
+            self.actor_num_gpus_per_node = self.actor_num_gpus_per_node or self.num_gpus_per_node
+            self.rollout_num_gpus = self.rollout_num_gpus or self.num_gpus_per_node
         if self.rollout_int4:
             assert not self.rollout_fp8, "rollout_int4 and rollout_fp8 cannot be enabled at the same time"
             assert not self.rollout_mxfp8, "rollout_int4 and rollout_mxfp8 cannot be enabled at the same time"
