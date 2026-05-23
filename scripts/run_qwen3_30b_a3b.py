@@ -1,10 +1,23 @@
 import os
+import shlex
 from dataclasses import dataclass
 from typing import Literal
 
 import typer
 
 import miles.utils.external_utils.command_utils as U
+
+
+def fp4_env_vars() -> dict[str, str]:
+    fp4_env_markers = ["NVTE", "FLASHINFER", "MILES_FP4_DIRECT_WEIGHT_UPDATE"]
+    return {key: value for key, value in os.environ.items() if any(marker in key for marker in fp4_env_markers)}
+
+
+def env_prefix(env_vars: dict[str, str]) -> str:
+    if not env_vars:
+        return ""
+    assignments = (f"{key}={shlex.quote(value)}" for key, value in sorted(env_vars.items()))
+    return " ".join(assignments) + " "
 
 
 @dataclass
@@ -84,7 +97,7 @@ def prepare(args: ScriptArgs):
         )
 
     if args.rollout_nvfp4 or args.train_nvfp4:
-        nvfp4_env_prefix = "NVTE_USE_FAST_MATH=0 "
+        nvfp4_env_prefix = env_prefix({"NVTE_USE_FAST_MATH": "0", **fp4_env_vars()})
         U.exec_command(
             f"{nvfp4_env_prefix}"
             f"python tools/convert_hf_to_nvfp4.py --model-dir {args.model_dir}/{args.model_name} "
@@ -362,7 +375,6 @@ matchers:
                 sglang_decode_max_bs = 256
                 sglang_args += (
                     f"--rollout-num-gpus-per-engine {sglang_world_size} "
-                    "--sglang-fp8-gemm-backend flashinfer_trtllm "
                     "--sglang-moe-runner-backend flashinfer_trtllm_routed "
                     f"--sglang-tp-size {sglang_world_size} "
                     f"--sglang-ep-size {sglang_world_size} "
@@ -413,19 +425,7 @@ tis_batch_normalize: true
         f"{misc_args} "
         f"{args.extra_args} "
     )
-    for env_name in (
-        "MILES_FP4_DIRECT_WEIGHT_UPDATE",
-        "NVTE_NVFP4_4OVER6",
-        "NVTE_NVFP4_4OVER6_E4M3_USE_256",
-        "NVTE_NVFP4_4OVER6_ERR_MODE",
-        "NVTE_NVFP4_4OVER6_ERR_USE_FAST_MATH",
-        "FLASHINFER_NVFP4_4OVER6",
-        "FLASHINFER_NVFP4_4OVER6_E4M3_USE_256",
-        "FLASHINFER_NVFP4_4OVER6_ERR_MODE",
-        "FLASHINFER_NVFP4_4OVER6_ERR_USE_FAST_MATH",
-    ):
-        if env_name in os.environ:
-            misc_env_vars[env_name] = os.environ[env_name]
+    misc_env_vars |= fp4_env_vars()
 
     U.execute_train(
         train_args=train_args,
