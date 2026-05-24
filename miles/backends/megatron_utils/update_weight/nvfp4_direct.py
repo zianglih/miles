@@ -98,6 +98,17 @@ def _te_quantization_context(module: torch.nn.Module):
         recipe.override_nonquantized_autocast = original_override
 
 
+def _get_weight_tensors_and_quantizers(module: torch.nn.Module):
+    with _te_quantization_context(module):
+        weights = module._get_weight_tensors()
+        quantizers = module._get_weight_quantizers()
+    if len(weights) != len(quantizers):
+        raise RuntimeError(
+            f"TE module {type(module).__name__} exposed {len(weights)} weights but {len(quantizers)} quantizers."
+        )
+    return weights, quantizers
+
+
 def _extract_te_nvfp4_weight(
     weight,
     use_4over6: bool,
@@ -142,9 +153,7 @@ class _WorkspaceRef:
     cache_name: str
 
     def refresh(self) -> Any:
-        with _te_quantization_context(self.module):
-            weights = self.module._get_weight_tensors()
-            quantizers = self.module._get_weight_quantizers()
+        weights, quantizers = _get_weight_tensors_and_quantizers(self.module)
         weight = weights[self.index]
         quantizer = quantizers[self.index]
         if quantizer is None:
@@ -193,17 +202,19 @@ class TENvfp4DirectWeightUpdate:
                 if not hasattr(module, "_get_weight_tensors") or not hasattr(module, "_get_weight_quantizers"):
                     continue
                 try:
-                    with _te_quantization_context(module):
-                        weights = module._get_weight_tensors()
-                        quantizers = module._get_weight_quantizers()
-                except Exception:
+                    weights, quantizers = _get_weight_tensors_and_quantizers(module)
+                except Exception as exc:
+                    logger.debug(
+                        "Skipping TE module %s while building NVFP4 direct refs: %s",
+                        type(module).__name__,
+                        exc,
+                    )
                     continue
-                if len(weights) != len(quantizers):
-                    continue
-                for weight, cache_name, index in zip(
-                    weights, _cache_names_for_module(module, len(weights)), range(len(weights)), strict=True
+                cache_names = _cache_names_for_module(module, len(weights))
+                for index, (weight, quantizer, cache_name) in enumerate(
+                    zip(weights, quantizers, cache_names, strict=True)
                 ):
-                    if quantizers[index] is not None:
+                    if quantizer is not None:
                         self._weight_refs[id(weight)] = _WorkspaceRef(
                             module=module, index=index, cache_name=cache_name
                         )
@@ -315,4 +326,4 @@ def all_gather_direct_named_tensors(
     for handle in handles:
         handle.wait()
 
-    return sum(all_gathered, [])
+    return [item for rank_tensors in all_gathered for item in rank_tensors]

@@ -104,11 +104,12 @@ class FakeTENvfp4Tensor:
         amax_rowwise: torch.Tensor,
         use_4over6: bool,
         e4m3_max: int,
+        with_gemm_swizzled_scales: bool = False,
     ):
         self._rowwise_data = rowwise_data
         self._rowwise_scale_inv = rowwise_scale_inv
         self._amax_rowwise = amax_rowwise
-        self._with_gemm_swizzled_scales = False
+        self._with_gemm_swizzled_scales = with_gemm_swizzled_scales
         self._row_scaled_nvfp4 = False
         self._nvfp4_use_4over6 = use_4over6
         self._nvfp4_e4m3_max = e4m3_max
@@ -418,6 +419,27 @@ def test_nvfp4_te_workspace_to_hf_rejects_4over6_mismatch(monkeypatch):
     with pytest.raises(ValueError, match="4over6 mode does not match"):
         te_nvfp4_workspace_to_hf(
             args,
+            "qwen3moe",
+            "module.module.decoder.layers.2.mlp.experts.linear_fc2.weight7",
+            workspace,
+            {"quant_method": "nvfp4"},
+        )
+
+
+def test_nvfp4_te_workspace_to_hf_rejects_swizzled_scales(monkeypatch):
+    monkeypatch.delenv("NVTE_NVFP4_4OVER6", raising=False)
+    workspace = FakeTENvfp4Tensor(
+        rowwise_data=torch.zeros((4, 8), dtype=torch.uint8),
+        rowwise_scale_inv=torch.zeros((128, 4), dtype=torch.uint8),
+        amax_rowwise=torch.tensor(12.0, dtype=torch.float32),
+        use_4over6=False,
+        e4m3_max=448,
+        with_gemm_swizzled_scales=True,
+    )
+
+    with pytest.raises(ValueError, match="requires unswizzled scales"):
+        te_nvfp4_workspace_to_hf(
+            _qwen3moe_args(),
             "qwen3moe",
             "module.module.decoder.layers.2.mlp.experts.linear_fc2.weight7",
             workspace,
