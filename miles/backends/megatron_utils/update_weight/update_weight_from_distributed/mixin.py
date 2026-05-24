@@ -11,12 +11,12 @@ from miles.utils.timer import timer
 
 from ...megatron_to_hf import convert_to_hf
 from ..common import all_gather_param, collect_named_tensors_for_weight_transfer, post_process_weights
-from ..nvfp4_te_workspace import (
-    TENvfp4WorkspaceWeightUpdate,
-    all_gather_nvfp4_named_tensors,
-    assert_supported_nvfp4_te_workspace_update,
+from ..nvfp4_direct import (
+    TENvfp4DirectWeightUpdate,
+    all_gather_direct_named_tensors,
+    assert_supported_nvfp4_te_direct_update,
     named_tensors_nbytes,
-    nvfp4_te_workspace_update_enabled,
+    nvfp4_te_direct_update_enabled,
 )
 
 
@@ -80,9 +80,9 @@ class DistBucketedWeightUpdateMixin:
         """
         buffer_size = 0
         named_tensors: list[tuple[str, torch.Tensor]] = []
-        nvfp4_buffer_size = 0
-        nvfp4_named_tensors: list[tuple[str, torch.Tensor]] = []
-        nvfp4_update = self._get_nvfp4_te_workspace_weight_update()
+        direct_buffer_size = 0
+        direct_named_tensors: list[tuple[str, torch.Tensor]] = []
+        direct_update = self._get_nvfp4_direct_weight_update()
 
         def flush_fallback_bucket() -> None:
             nonlocal buffer_size, named_tensors
@@ -92,30 +92,30 @@ class DistBucketedWeightUpdateMixin:
             named_tensors = []
             buffer_size = 0
 
-        def flush_nvfp4_bucket() -> None:
-            nonlocal nvfp4_buffer_size, nvfp4_named_tensors
-            if not nvfp4_named_tensors:
+        def flush_direct_bucket() -> None:
+            nonlocal direct_buffer_size, direct_named_tensors
+            if not direct_named_tensors:
                 return
-            gathered = all_gather_nvfp4_named_tensors(nvfp4_named_tensors)
-            nvfp4_named_tensors.clear()
-            nvfp4_buffer_size = 0
+            gathered = all_gather_direct_named_tensors(direct_named_tensors)
+            direct_named_tensors.clear()
+            direct_buffer_size = 0
             if self._is_source:
                 update_bucket_weight_func(gathered, pbar)
 
         for name, param in collect_named_tensors_for_weight_transfer(self.args, self.model, is_expert=True):
-            nvfp4_hf_tensors = nvfp4_update.convert(name, param) if nvfp4_update is not None else None
-            if nvfp4_hf_tensors is not None:
+            direct_hf_tensors = direct_update.convert(name, param) if direct_update is not None else None
+            if direct_hf_tensors is not None:
                 flush_fallback_bucket()
-                param_size = named_tensors_nbytes(nvfp4_hf_tensors)
+                param_size = named_tensors_nbytes(direct_hf_tensors)
                 if (
-                    nvfp4_buffer_size + param_size
-                ) * get_parallel_state().ep.size > self.args.update_weight_buffer_size and nvfp4_named_tensors:
-                    flush_nvfp4_bucket()
-                nvfp4_named_tensors.extend(nvfp4_hf_tensors)
-                nvfp4_buffer_size += param_size
+                    direct_buffer_size + param_size
+                ) * get_parallel_state().ep.size > self.args.update_weight_buffer_size and direct_named_tensors:
+                    flush_direct_bucket()
+                direct_named_tensors.extend(direct_hf_tensors)
+                direct_buffer_size += param_size
                 continue
 
-            flush_nvfp4_bucket()
+            flush_direct_bucket()
             param = all_gather_param(self.args, name, param)
             param_size = param.numel() * param.element_size()
             if (
@@ -127,16 +127,16 @@ class DistBucketedWeightUpdateMixin:
             buffer_size += param_size
 
         flush_fallback_bucket()
-        flush_nvfp4_bucket()
+        flush_direct_bucket()
 
-    def _get_nvfp4_te_workspace_weight_update(self) -> TENvfp4WorkspaceWeightUpdate | None:
-        if not nvfp4_te_workspace_update_enabled(self.quantization_config):
+    def _get_nvfp4_direct_weight_update(self) -> TENvfp4DirectWeightUpdate | None:
+        if not nvfp4_te_direct_update_enabled(self.args, self.quantization_config):
             return None
-        assert_supported_nvfp4_te_workspace_update(self.args)
-        updater = getattr(self, "_nvfp4_te_workspace_weight_update", None)
+        assert_supported_nvfp4_te_direct_update(self.args)
+        updater = getattr(self, "_nvfp4_direct_weight_update", None)
         if updater is None:
-            updater = TENvfp4WorkspaceWeightUpdate(self.args, self.model_name, self.model, self.quantization_config)
-            self._nvfp4_te_workspace_weight_update = updater
+            updater = TENvfp4DirectWeightUpdate(self.args, self.model_name, self.model, self.quantization_config)
+            self._nvfp4_direct_weight_update = updater
         return updater
 
     def _update_expert_bucket_weights(

@@ -25,7 +25,7 @@ from miles.backends.megatron_utils.megatron_to_hf.processors.quantizer_nvfp4 imp
     quantize_nvfp4 as processor_quantize_nvfp4,
 )
 from miles.backends.megatron_utils.megatron_to_hf.processors.quantizer_nvfp4 import quantize_params_nvfp4
-from miles.backends.megatron_utils.update_weight.nvfp4_te_workspace import te_nvfp4_workspace_to_hf
+from miles.backends.megatron_utils.update_weight.nvfp4_direct import te_nvfp4_workspace_to_hf
 
 NVFP4_SHAPES = [
     (1, 64),
@@ -295,7 +295,8 @@ def test_nvfp4_quantize_params_reads_4over6_from_env(monkeypatch):
     )
 
 
-def test_nvfp4_reference_quantizer_requires_dequantizable_te_buffers(monkeypatch):
+def test_nvfp4_reference_quantizer_does_not_extract_direct_te_buffers(monkeypatch):
+    monkeypatch.setenv("MILES_FP4_DIRECT_WEIGHT_UPDATE", "1")
     monkeypatch.delenv("NVTE_NVFP4_4OVER6", raising=False)
     rowwise_data = torch.arange(32, dtype=torch.uint8, device="cuda").reshape(4, 8)
     rowwise_scale_inv = torch.arange(512, dtype=torch.float32, device="cuda").reshape(128, 4)
@@ -312,7 +313,7 @@ def test_nvfp4_reference_quantizer_requires_dequantizable_te_buffers(monkeypatch
         processor_quantize_nvfp4(weight)
 
 
-def test_nvfp4_te_workspace_to_hf_extracts_rowwise_buffers(monkeypatch):
+def test_nvfp4_te_workspace_to_hf_extracts_direct_buffers(monkeypatch):
     monkeypatch.delenv("NVTE_NVFP4_4OVER6", raising=False)
     rowwise_data = torch.arange(64, dtype=torch.uint8).reshape(4, 16)
     rowwise_scale_inv = torch.arange(256, dtype=torch.float32).reshape(128, 2)
