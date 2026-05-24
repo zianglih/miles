@@ -8,9 +8,6 @@ import torch.distributed as dist
 
 from miles.backends.megatron_utils.megatron_to_hf import _convert_to_hf_core
 from miles.backends.megatron_utils.megatron_to_hf.processors.quantizer_nvfp4 import (
-    _extract_te_nvfp4_weight,
-    _is_te_nvfp4_tensor,
-    _nvfp4_4over6_enabled,
     assert_no_fp4_param_gather,
     is_nvfp4_quantization_config,
     should_quantize_hf_weight_nvfp4,
@@ -19,6 +16,9 @@ from miles.backends.megatron_utils.megatron_to_hf.processors.quantizer_nvfp4 imp
 from miles.backends.training_utils.parallel import get_parallel_state
 
 logger = logging.getLogger(__name__)
+
+FP4_E2M1_MAX = 6.0
+NVFP4_GROUP_SIZE = 16
 
 
 def nvfp4_te_workspace_update_enabled(quantization_config) -> bool:
@@ -39,6 +39,66 @@ def _weight_scale_names(weight_name: str) -> tuple[str, str, str]:
         weight_name.replace(".weight", ".weight_scale_2"),
         weight_name.replace(".weight", ".input_scale"),
     )
+
+
+def _is_te_nvfp4_tensor(weight: Any) -> bool:
+    return all(
+        hasattr(weight, attr)
+        for attr in (
+            "_rowwise_data",
+            "_rowwise_scale_inv",
+            "_amax_rowwise",
+            "_with_gemm_swizzled_scales",
+            "_row_scaled_nvfp4",
+            "_nvfp4_e4m3_max",
+            "shape",
+            "dim",
+        )
+    )
+
+
+def _nvfp4_global_decode_scale_te(global_amax: torch.Tensor, nvfp4_e4m3_max: int) -> torch.Tensor:
+    fp4_max = torch.tensor(FP4_E2M1_MAX, device=global_amax.device, dtype=torch.float32)
+    fp8_max = torch.tensor(float(nvfp4_e4m3_max), device=global_amax.device, dtype=torch.float32)
+    global_encode_scale = torch.div(fp8_max * fp4_max, global_amax.to(torch.float32))
+    global_encode_scale = torch.min(
+        global_encode_scale,
+        torch.tensor(
+            torch.finfo(torch.float32).max,
+            device=global_encode_scale.device,
+            dtype=torch.float32,
+        ),
+    )
+    if global_encode_scale.numel() == 1:
+        if global_encode_scale == torch.tensor(0.0, device=global_amax.device, dtype=torch.float32):
+            global_encode_scale = torch.tensor(1.0, device=global_amax.device, dtype=torch.float32)
+    else:
+        global_encode_scale = torch.where(
+            global_encode_scale == 0.0,
+            torch.ones_like(global_encode_scale),
+            global_encode_scale,
+        )
+    return torch.div(1.0, global_encode_scale)
+
+
+def _extract_te_nvfp4_weight(weight) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+    if weight.dim() != 2:
+        raise ValueError(f"NVFP4 TE workspace extraction expects a 2D tensor, got rank {weight.dim()}.")
+    if weight._rowwise_data is None or weight._rowwise_scale_inv is None or weight._amax_rowwise is None:
+        raise ValueError("TE NVFP4 workspace requires rowwise data, scale, and amax metadata.")
+    if getattr(weight, "_with_gemm_swizzled_scales", False):
+        raise ValueError("NVFP4 TE workspace already has GEMM-swizzled scales; rowwise scales are required.")
+    if getattr(weight, "_row_scaled_nvfp4", False):
+        raise ValueError("NVFP4 TE workspace uses row-scaled NVFP4; rowwise block scaling is required.")
+
+    rows, cols = weight.shape
+    if cols % NVFP4_GROUP_SIZE != 0:
+        raise ValueError(f"NVFP4 TE workspace K dimension must be divisible by {NVFP4_GROUP_SIZE}, got {cols}.")
+
+    qweight = weight._rowwise_data[:rows, : cols // 2].contiguous()
+    block_scale = weight._rowwise_scale_inv[:rows, : cols // NVFP4_GROUP_SIZE].contiguous()
+    global_scale = _nvfp4_global_decode_scale_te(weight._amax_rowwise.to(torch.float32), int(weight._nvfp4_e4m3_max))
+    return qweight, block_scale, global_scale
 
 
 @dataclass(frozen=True)
@@ -157,10 +217,7 @@ def te_nvfp4_workspace_to_hf(
             f"but got {type(workspace).__name__}."
         )
 
-    qweight, block_scale, global_scale = _extract_te_nvfp4_weight(
-        workspace,
-        use_4over6=_nvfp4_4over6_enabled(),
-    )
+    qweight, block_scale, global_scale = _extract_te_nvfp4_weight(workspace)
     hf_weights = _convert_to_hf_core(args, model_name, megatron_name, qweight)
     hf_block_scales = _convert_to_hf_core(args, model_name, megatron_name, block_scale)
 
