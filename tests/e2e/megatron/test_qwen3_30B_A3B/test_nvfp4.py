@@ -13,7 +13,6 @@ register_cuda_ci(
 
 
 COMMAND = (
-    "MILES_FP4_DIRECT_WEIGHT_UPDATE=1 "
     "python scripts/run_qwen3_30b_a3b.py "
     "--mode debug_minimal "
     "--no-enable-eval "

@@ -15,17 +15,20 @@ from transformer_engine.pytorch.custom_recipes.quantization_ref_nvfp4 import NVF
 
 from miles.backends.megatron_utils.megatron_to_hf.processors import quantize_params
 from miles.backends.megatron_utils.megatron_to_hf.processors.quantizer_nvfp4 import (
-    NVFP4_GROUP_SIZE,
-    _nvfp4_4over6_err_mode,
-    _nvfp4_4over6_weight_scope,
-    _nvfp4_global_decode_scale_te,
-    _nvfp4_weight_e4m3_max,
-)
-from miles.backends.megatron_utils.megatron_to_hf.processors.quantizer_nvfp4 import (
     quantize_nvfp4 as processor_quantize_nvfp4,
 )
 from miles.backends.megatron_utils.megatron_to_hf.processors.quantizer_nvfp4 import quantize_params_nvfp4
-from miles.backends.megatron_utils.update_weight.nvfp4_direct import te_nvfp4_workspace_to_hf
+from miles.backends.megatron_utils.update_weight.nvfp4_direct import (
+    nvfp4_te_direct_update_enabled,
+    te_nvfp4_workspace_to_hf,
+)
+from miles.utils.nvfp4 import (
+    NVFP4_GROUP_SIZE,
+    nvfp4_4over6_err_mode,
+    nvfp4_4over6_weight_scope,
+    nvfp4_global_decode_scale_te,
+    nvfp4_weight_e4m3_max,
+)
 
 NVFP4_SHAPES = [
     (1, 64),
@@ -77,7 +80,7 @@ def _te_nvfp4_reference_with_global_amax(
     use_4over6: bool = False,
 ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
     weight = weight.contiguous()
-    nvfp4_e4m3_max = _nvfp4_weight_e4m3_max(use_4over6)
+    nvfp4_e4m3_max = nvfp4_weight_e4m3_max(use_4over6)
     qweight, block_scale = NVFP4QuantizerRef._quantize_blockwise_reference(
         weight,
         global_amax,
@@ -86,10 +89,10 @@ def _te_nvfp4_reference_with_global_amax(
         pow_2_scales=False,
         nvfp4_use_4over6=use_4over6,
         nvfp4_e4m3_max=nvfp4_e4m3_max,
-        nvfp4_4over6_err_mode=_nvfp4_4over6_err_mode(),
+        nvfp4_4over6_err_mode=nvfp4_4over6_err_mode(),
         eps=0.0,
     )
-    return qweight, block_scale, _nvfp4_global_decode_scale_te(global_amax, nvfp4_e4m3_max)
+    return qweight, block_scale, nvfp4_global_decode_scale_te(global_amax, nvfp4_e4m3_max)
 
 
 class FakeTENvfp4Tensor:
@@ -127,6 +130,15 @@ def test_nvfp4_dispatch_accepts_quant_algo_without_quant_method():
     )
 
     assert out is converted_named_params
+
+
+def test_nvfp4_direct_update_is_env_gated(monkeypatch):
+    quantization_config = {"quant_method": "nvfp4"}
+    monkeypatch.delenv("MILES_FP4_DIRECT_WEIGHT_UPDATE", raising=False)
+    assert not nvfp4_te_direct_update_enabled(args=None, quantization_config=quantization_config)
+
+    monkeypatch.setenv("MILES_FP4_DIRECT_WEIGHT_UPDATE", "1")
+    assert nvfp4_te_direct_update_enabled(args=None, quantization_config=quantization_config)
 
 
 def test_nvfp4_quantize_params_requires_complete_gated_pair():
@@ -235,7 +247,7 @@ def test_nvfp4_converter_records_4over6_mode(tmp_path, monkeypatch):
     assert hf_quant_config["quantization"]["nvfp4_4over6"] == "weights"
 
 
-@pytest.mark.parametrize("use_4over6", [False, True], ids=lambda value: _nvfp4_4over6_weight_scope(value))
+@pytest.mark.parametrize("use_4over6", [False, True], ids=lambda value: nvfp4_4over6_weight_scope(value))
 @pytest.mark.parametrize("err_mode", ["MAE", "MSE"])
 def test_nvfp4_quantize_matches_te_reference_with_4over6_modes(monkeypatch, use_4over6, err_mode):
     device = "cuda"
@@ -363,13 +375,13 @@ def test_nvfp4_te_workspace_to_hf_extracts_direct_buffers(monkeypatch):
     )
     torch.testing.assert_close(
         out["model.layers.2.mlp.experts.7.gate_proj.weight_scale_2"],
-        _nvfp4_global_decode_scale_te(amax_rowwise),
+        nvfp4_global_decode_scale_te(amax_rowwise),
         rtol=0,
         atol=0,
     )
     torch.testing.assert_close(
         out["model.layers.2.mlp.experts.7.up_proj.input_scale"],
-        torch.ones_like(_nvfp4_global_decode_scale_te(amax_rowwise)),
+        torch.ones_like(nvfp4_global_decode_scale_te(amax_rowwise)),
         rtol=0,
         atol=0,
     )

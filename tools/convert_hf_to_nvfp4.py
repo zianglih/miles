@@ -32,9 +32,15 @@ import safetensors.torch
 import torch
 from tqdm import tqdm
 
-FP4_E2M1_MAX = 6.0
-FP8_E4M3_MAX = 448.0
-NVFP4_GROUP_SIZE = 16
+from miles.utils.nvfp4 import (
+    NVFP4_GROUP_SIZE,
+    nvfp4_4over6_enabled,
+    nvfp4_4over6_err_mode,
+    nvfp4_4over6_weight_scope,
+    nvfp4_global_decode_scale_te,
+    nvfp4_weight_e4m3_max,
+)
+
 DEFAULT_KV_CACHE_SCHEME = {"dynamic": False, "num_bits": 8, "type": "float"}
 DEFAULT_KV_CACHE_QUANT_ALGO = "FP8"
 
@@ -62,48 +68,6 @@ GATED_PAIR_SUFFIXES = {
     ".w1.weight": "gate",
     ".w3.weight": "up",
 }
-
-
-def _str_to_bool(value) -> bool:
-    if isinstance(value, bool):
-        return value
-    if value is None:
-        return False
-    return str(value).strip().lower() in ("1", "true", "yes", "on")
-
-
-def _nvfp4_4over6_weight_scope_enabled(value) -> bool:
-    if isinstance(value, str):
-        value = value.strip().lower()
-        if value in ("weights", "all"):
-            return True
-        if value in ("none", "activations"):
-            return False
-    return _str_to_bool(value)
-
-
-def _nvfp4_4over6_enabled() -> bool:
-    env_value = os.getenv("NVTE_NVFP4_4OVER6")
-    if env_value is not None:
-        return _nvfp4_4over6_weight_scope_enabled(env_value)
-    return False
-
-
-def _nvfp4_4over6_weight_scope(use_4over6: bool) -> str:
-    return "weights" if use_4over6 else "none"
-
-
-def _nvfp4_weight_e4m3_max(use_4over6: bool) -> int:
-    if use_4over6 and _nvfp4_4over6_weight_scope_enabled(os.getenv("NVTE_NVFP4_4OVER6_E4M3_USE_256", "all")):
-        return 256
-    return int(FP8_E4M3_MAX)
-
-
-def _nvfp4_4over6_err_mode() -> str:
-    err_mode = os.getenv("NVTE_NVFP4_4OVER6_ERR_MODE", "MAE").strip().upper()
-    if err_mode not in ("MAE", "MSE"):
-        raise ValueError("NVTE_NVFP4_4OVER6_ERR_MODE must be one of: 'MAE', 'MSE'.")
-    return err_mode
 
 
 def _is_moe_expert_weight_name(name: str) -> bool:
@@ -149,30 +113,6 @@ def should_quantize(
     return True
 
 
-def _nvfp4_global_decode_scale_te(global_amax: torch.Tensor, nvfp4_e4m3_max: int = 448) -> torch.Tensor:
-    fp4_max = torch.tensor(FP4_E2M1_MAX, device=global_amax.device, dtype=torch.float32)
-    fp8_max = torch.tensor(float(nvfp4_e4m3_max), device=global_amax.device, dtype=torch.float32)
-    global_encode_scale = torch.div(fp8_max * fp4_max, global_amax.to(torch.float32))
-    global_encode_scale = torch.min(
-        global_encode_scale,
-        torch.tensor(
-            torch.finfo(torch.float32).max,
-            device=global_encode_scale.device,
-            dtype=torch.float32,
-        ),
-    )
-    if global_encode_scale.numel() == 1:
-        if global_encode_scale == torch.tensor(0.0, device=global_amax.device, dtype=torch.float32):
-            global_encode_scale = torch.tensor(1.0, device=global_amax.device, dtype=torch.float32)
-    else:
-        global_encode_scale = torch.where(
-            global_encode_scale == 0.0,
-            torch.ones_like(global_encode_scale),
-            global_encode_scale,
-        )
-    return torch.div(1.0, global_encode_scale)
-
-
 def _quantize_nvfp4_1d(
     weight: torch.Tensor,
     global_amax: torch.Tensor | None = None,
@@ -196,8 +136,8 @@ def _quantize_nvfp4_1d(
         global_amax = torch.max(torch.abs(weight.to(torch.float32)))
     else:
         global_amax = global_amax.to(device=weight.device, dtype=torch.float32)
-    nvfp4_e4m3_max = _nvfp4_weight_e4m3_max(use_4over6)
-    nvfp4_4over6_err_mode = _nvfp4_4over6_err_mode()
+    nvfp4_e4m3_max = nvfp4_weight_e4m3_max(use_4over6)
+    err_mode = nvfp4_4over6_err_mode()
 
     from transformer_engine.pytorch.custom_recipes.quantization_ref_nvfp4 import NVFP4QuantizerRef
 
@@ -209,10 +149,10 @@ def _quantize_nvfp4_1d(
         pow_2_scales=False,
         nvfp4_use_4over6=use_4over6,
         nvfp4_e4m3_max=nvfp4_e4m3_max,
-        nvfp4_4over6_err_mode=nvfp4_4over6_err_mode,
+        nvfp4_4over6_err_mode=err_mode,
         eps=0.0,
     )
-    return qweight, block_scale, _nvfp4_global_decode_scale_te(global_amax, nvfp4_e4m3_max)
+    return qweight, block_scale, nvfp4_global_decode_scale_te(global_amax, nvfp4_e4m3_max)
 
 
 def _quantize_nvfp4(
@@ -245,7 +185,7 @@ def quantize_nvfp4(
     weight: torch.Tensor,
     global_amax: torch.Tensor | None = None,
 ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
-    return _quantize_nvfp4(weight, global_amax=global_amax, use_4over6=_nvfp4_4over6_enabled())
+    return _quantize_nvfp4(weight, global_amax=global_amax, use_4over6=nvfp4_4over6_enabled())
 
 
 class ConversionResult:
@@ -262,7 +202,7 @@ class ConversionResult:
 
 
 def _update_quantization_config(cfg: dict, ignore_list: list[str]) -> None:
-    use_4over6 = _nvfp4_4over6_enabled()
+    use_4over6 = nvfp4_4over6_enabled()
     quant_cfg = cfg.get("quantization_config")
     if not isinstance(quant_cfg, dict):
         quant_cfg = {}
@@ -270,7 +210,7 @@ def _update_quantization_config(cfg: dict, ignore_list: list[str]) -> None:
     quant_cfg["quant_algo"] = "NVFP4"
     quant_cfg["quant_method"] = "modelopt"
     quant_cfg["group_size"] = NVFP4_GROUP_SIZE
-    quant_cfg["nvfp4_4over6"] = _nvfp4_4over6_weight_scope(use_4over6)
+    quant_cfg["nvfp4_4over6"] = nvfp4_4over6_weight_scope(use_4over6)
     quant_cfg["ignore"] = ignore_list
     quant_cfg.setdefault("kv_cache_scheme", DEFAULT_KV_CACHE_SCHEME)
 
@@ -293,7 +233,7 @@ def _update_quantization_config(cfg: dict, ignore_list: list[str]) -> None:
 
 
 def _write_hf_quant_config(output_path: str, ignore_list: list[str], input_path: str) -> None:
-    use_4over6 = _nvfp4_4over6_enabled()
+    use_4over6 = nvfp4_4over6_enabled()
     hf_quant_path = os.path.join(input_path, "hf_quant_config.json")
     if os.path.exists(hf_quant_path):
         with open(hf_quant_path) as f:
@@ -308,7 +248,7 @@ def _write_hf_quant_config(output_path: str, ignore_list: list[str], input_path:
     quant_section["quant_algo"] = "NVFP4"
     quant_section["kv_cache_quant_algo"] = DEFAULT_KV_CACHE_QUANT_ALGO
     quant_section["group_size"] = NVFP4_GROUP_SIZE
-    quant_section["nvfp4_4over6"] = _nvfp4_4over6_weight_scope(use_4over6)
+    quant_section["nvfp4_4over6"] = nvfp4_4over6_weight_scope(use_4over6)
     quant_section["exclude_modules"] = ignore_list
     hf_quant_cfg["quantization"] = quant_section
 
@@ -438,7 +378,7 @@ def convert_nvfp4(
     num_layers_at_end_in_bf16: int = 0,
     extra_high_precision_layers_hf: tuple[str, ...] = (),
 ) -> None:
-    use_4over6 = _nvfp4_4over6_enabled()
+    use_4over6 = nvfp4_4over6_enabled()
     input_path = os.path.abspath(model_dir)
     output_path = os.path.abspath(save_dir)
     os.makedirs(output_path, exist_ok=True)

@@ -1,4 +1,5 @@
 import logging
+import os
 from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import Any
@@ -8,18 +9,27 @@ import torch.distributed as dist
 
 from miles.backends.megatron_utils.megatron_to_hf import _convert_to_hf_core
 from miles.backends.megatron_utils.megatron_to_hf.processors.quantizer_nvfp4 import (
-    _extract_te_nvfp4_weight,
-    _is_te_nvfp4_tensor,
-    _nvfp4_4over6_enabled,
     assert_no_fp4_param_gather,
-    fp4_direct_weight_update_enabled,
     is_nvfp4_quantization_config,
     should_quantize_hf_weight_nvfp4,
     should_quantize_megatron_param_nvfp4,
 )
 from miles.backends.training_utils.parallel import get_parallel_state
+from miles.utils.nvfp4 import (
+    NVFP4_GROUP_SIZE,
+    is_te_nvfp4_tensor,
+    nvfp4_4over6_enabled,
+    nvfp4_4over6_weight_scope,
+    nvfp4_global_decode_scale_te,
+    nvfp4_weight_e4m3_max,
+    str_to_bool,
+)
 
 logger = logging.getLogger(__name__)
+
+
+def fp4_direct_weight_update_enabled() -> bool:
+    return str_to_bool(os.getenv("MILES_FP4_DIRECT_WEIGHT_UPDATE"))
 
 
 def nvfp4_te_direct_update_enabled(args, quantization_config) -> bool:
@@ -42,6 +52,40 @@ def _weight_scale_names(weight_name: str) -> tuple[str, str, str]:
         weight_name.replace(".weight", ".weight_scale_2"),
         weight_name.replace(".weight", ".input_scale"),
     )
+
+
+def _extract_te_nvfp4_weight(
+    weight,
+    use_4over6: bool,
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+    if weight._rowwise_data is None or weight._rowwise_scale_inv is None or weight._amax_rowwise is None:
+        raise ValueError("TE NVFP4 weight requires rowwise data, scale, and amax metadata.")
+    if weight._with_gemm_swizzled_scales:
+        raise ValueError("TE NVFP4 weight transfer requires unswizzled scales.")
+    if weight._row_scaled_nvfp4:
+        raise ValueError("TE NVFP4 weight transfer does not support row-scaled amax metadata.")
+
+    tensor_use_4over6 = bool(weight._nvfp4_use_4over6)
+    if tensor_use_4over6 != use_4over6:
+        raise ValueError(
+            f"TE NVFP4 tensor 4over6 mode does not match the requested Miles conversion mode: tensor={nvfp4_4over6_weight_scope(tensor_use_4over6)}, requested={nvfp4_4over6_weight_scope(use_4over6)}."
+        )
+
+    tensor_e4m3_max = int(weight._nvfp4_e4m3_max)
+    expected_e4m3_max = nvfp4_weight_e4m3_max(use_4over6)
+    if tensor_e4m3_max != expected_e4m3_max:
+        raise ValueError(
+            f"TE NVFP4 tensor E4M3 scale bound does not match the requested Miles conversion mode: tensor={tensor_e4m3_max}, requested={expected_e4m3_max}."
+        )
+
+    rows, cols = weight.shape
+    if cols % NVFP4_GROUP_SIZE != 0:
+        raise ValueError(f"NVFP4 requires K divisible by {NVFP4_GROUP_SIZE}, got {cols}.")
+
+    qweight = weight._rowwise_data[:rows, : cols // 2].contiguous()
+    block_scale = weight._rowwise_scale_inv[:rows, : cols // NVFP4_GROUP_SIZE].contiguous()
+    global_scale = nvfp4_global_decode_scale_te(weight._amax_rowwise.to(torch.float32), tensor_e4m3_max)
+    return qweight, block_scale, global_scale
 
 
 @dataclass(frozen=True)
@@ -153,14 +197,14 @@ def te_nvfp4_workspace_to_hf(
     workspace,
     quantization_config,
 ) -> list[tuple[str, torch.Tensor]]:
-    if not _is_te_nvfp4_tensor(workspace):
+    if not is_te_nvfp4_tensor(workspace):
         raise RuntimeError(
             f"MILES_FP4_DIRECT_WEIGHT_UPDATE expected TE to emit an NVFP4 weight workspace for {megatron_name}, but got {type(workspace).__name__}."
         )
 
     qweight, block_scale, global_scale = _extract_te_nvfp4_weight(
         workspace,
-        use_4over6=_nvfp4_4over6_enabled(),
+        use_4over6=nvfp4_4over6_enabled(),
     )
     hf_weights = _convert_to_hf_core(args, model_name, megatron_name, qweight)
     hf_block_scales = _convert_to_hf_core(args, model_name, megatron_name, block_scale)
