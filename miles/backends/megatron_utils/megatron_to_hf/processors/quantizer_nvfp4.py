@@ -72,6 +72,17 @@ def fp4_direct_weight_update_enabled() -> bool:
     return _str_to_bool(os.getenv("MILES_FP4_DIRECT_WEIGHT_UPDATE"))
 
 
+def fp4_param_gather_enabled(args) -> bool:
+    return bool(getattr(args, "fp4_param", False) or getattr(args, "fp4_param_gather", False))
+
+
+def assert_no_fp4_param_gather(args) -> None:
+    if fp4_param_gather_enabled(args):
+        raise NotImplementedError(
+            "Miles NVFP4 weight update requires BF16 primary parameters and TE-generated FP4 workspaces; --fp4-param-gather is unsupported."
+        )
+
+
 def _is_te_nvfp4_tensor(weight: Any) -> bool:
     return all(
         hasattr(weight, attr)
@@ -98,17 +109,19 @@ def _is_ignored(name: str, ignore_rules: list[str]) -> bool:
     return False
 
 
-def quantize_params_nvfp4(args, megatron_name, converted_named_params, quantization_config):
-    assert quantization_config is not None
-    assert quantization_config.get("quant_algo") == "NVFP4" or quantization_config.get("quant_method") == "nvfp4"
+def is_nvfp4_quantization_config(quantization_config) -> bool:
+    if quantization_config is None:
+        return False
+    return quantization_config.get("quant_algo") == "NVFP4" or quantization_config.get("quant_method") == "nvfp4"
 
+
+def should_quantize_megatron_param_nvfp4(args, megatron_name: str, quantization_config) -> bool:
+    if not is_nvfp4_quantization_config(quantization_config):
+        return False
     if getattr(args, "extra_high_precision_layers_megatron", False):
         for layer_name in getattr(args, "extra_high_precision_layers_megatron", ()):
             if layer_name in megatron_name:
-                return converted_named_params
-
-    ignore_rules = _get_ignore_rules(quantization_config)
-    use_4over6 = _nvfp4_4over6_enabled()
+                return False
 
     decoder_layers_pattern = r"decoder\.layers\.(\d+)\.(.+)"
     match = re.search(decoder_layers_pattern, megatron_name)
@@ -118,7 +131,7 @@ def quantize_params_nvfp4(args, megatron_name, converted_named_params, quantizat
         mtp_layer_pattern = r"mtp\.layers\.(\d+)\.(.+)"
         match = re.search(mtp_layer_pattern, megatron_name)
         if not match:
-            return converted_named_params
+            return False
         layer_idx, rest = match.groups()
         rest = rest.replace("transformer_layer.", "")
     else:
@@ -132,7 +145,7 @@ def quantize_params_nvfp4(args, megatron_name, converted_named_params, quantizat
         head_end_idx = num_layers_at_start_in_bf16
         tail_start_idx = num_layers - num_layers_at_end_in_bf16
         if int(layer_idx) < head_end_idx or int(layer_idx) >= tail_start_idx:
-            return converted_named_params
+            return False
 
     # experts
     expert_pattern = r"mlp.experts\.(.+)\.weight(\d+)"
@@ -143,7 +156,7 @@ def quantize_params_nvfp4(args, megatron_name, converted_named_params, quantizat
             "linear_fc1",
             "linear_fc2",
         ]:
-            return _quantize_moe_params(converted_named_params, ignore_rules, use_4over6)
+            return True
 
     # shared expert
     shared_expert_pattern = r"mlp.shared_experts\.(.+)"
@@ -154,10 +167,65 @@ def quantize_params_nvfp4(args, megatron_name, converted_named_params, quantizat
             "linear_fc1.weight",
             "linear_fc2.weight",
         ]:
-            return _quantize_moe_params(converted_named_params, ignore_rules, use_4over6)
+            return True
 
     # for other parameters, we just return the original converted_named_params
-    return converted_named_params
+    return False
+
+
+def quantize_params_nvfp4(args, megatron_name, converted_named_params, quantization_config):
+    assert quantization_config is not None
+    assert is_nvfp4_quantization_config(quantization_config)
+    assert_no_fp4_param_gather(args)
+
+    if not should_quantize_megatron_param_nvfp4(args, megatron_name, quantization_config):
+        return converted_named_params
+
+    ignore_rules = _get_ignore_rules(quantization_config)
+    use_4over6 = _nvfp4_4over6_enabled()
+    return _quantize_moe_params(converted_named_params, ignore_rules, use_4over6)
+
+
+def should_quantize_hf_weight_nvfp4(name: str, quantization_config) -> bool:
+    if not is_nvfp4_quantization_config(quantization_config):
+        return False
+    if not name.endswith(".weight"):
+        return False
+    return not _is_ignored(name, _get_ignore_rules(quantization_config))
+
+
+def _extract_te_nvfp4_weight(
+    weight,
+    use_4over6: bool,
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+    if weight._rowwise_data is None or weight._rowwise_scale_inv is None or weight._amax_rowwise is None:
+        raise ValueError("TE NVFP4 weight requires rowwise data, scale, and amax metadata.")
+    if weight._with_gemm_swizzled_scales:
+        raise ValueError("TE NVFP4 weight transfer requires unswizzled scales.")
+    if weight._row_scaled_nvfp4:
+        raise ValueError("TE NVFP4 weight transfer does not support row-scaled amax metadata.")
+
+    tensor_use_4over6 = bool(weight._nvfp4_use_4over6)
+    if tensor_use_4over6 != use_4over6:
+        raise ValueError(
+            f"TE NVFP4 tensor 4over6 mode does not match the requested Miles conversion mode: tensor={_nvfp4_4over6_weight_scope(tensor_use_4over6)}, requested={_nvfp4_4over6_weight_scope(use_4over6)}."
+        )
+
+    tensor_e4m3_max = int(weight._nvfp4_e4m3_max)
+    expected_e4m3_max = _nvfp4_weight_e4m3_max(use_4over6)
+    if tensor_e4m3_max != expected_e4m3_max:
+        raise ValueError(
+            f"TE NVFP4 tensor E4M3 scale bound does not match the requested Miles conversion mode: tensor={tensor_e4m3_max}, requested={expected_e4m3_max}."
+        )
+
+    rows, cols = weight.shape
+    if cols % NVFP4_GROUP_SIZE != 0:
+        raise ValueError(f"NVFP4 requires K divisible by {NVFP4_GROUP_SIZE}, got {cols}.")
+
+    qweight = weight._rowwise_data[:rows, : cols // 2].contiguous()
+    block_scale = weight._rowwise_scale_inv[:rows, : cols // NVFP4_GROUP_SIZE].contiguous()
+    global_scale = _nvfp4_global_decode_scale_te(weight._amax_rowwise.to(torch.float32), tensor_e4m3_max)
+    return qweight, block_scale, global_scale
 
 
 def _quantize_moe_params(converted_named_params, ignore_rules, use_4over6: bool):
@@ -167,14 +235,11 @@ def _quantize_moe_params(converted_named_params, ignore_rules, use_4over6: bool)
         base, role = _split_gated_pair_name(converted_name)
         if base is None or role is None:
             continue
-        if fp4_direct_weight_update_enabled() and _is_te_nvfp4_tensor(param):
-            continue
         if _should_quantize_param(converted_name, param, ignore_rules):
             roles = gated_candidates.setdefault(base, {})
             if role in roles:
                 raise ValueError(
-                    f"NVFP4 requires a single complete gate/up pair per conversion batch; "
-                    f"found duplicate {role} tensor for {base}."
+                    f"NVFP4 requires a single complete gate/up pair per conversion batch; found duplicate {role} tensor for {base}."
                 )
             roles[role] = param
 
@@ -182,8 +247,7 @@ def _quantize_moe_params(converted_named_params, ignore_rules, use_4over6: bool)
         if set(roles) != {"gate", "up"}:
             present = ", ".join(sorted(roles))
             raise ValueError(
-                f"NVFP4 requires gate/up tensors to be quantized together so they can share "
-                f"one global amax; found only {{{present}}} for {base}."
+                f"NVFP4 requires gate/up tensors to be quantized together so they can share one global amax; found only {{{present}}} for {base}."
             )
         gate_amax = roles["gate"].abs().max().to(torch.float32)
         up_amax = roles["up"].abs().max().to(torch.float32)
@@ -258,43 +322,6 @@ def _nvfp4_global_decode_scale_te(global_amax: torch.Tensor, nvfp4_e4m3_max: int
     return torch.div(1.0, global_encode_scale)
 
 
-def _extract_te_nvfp4_direct(
-    weight,
-    use_4over6: bool,
-) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
-    if weight._rowwise_data is None or weight._rowwise_scale_inv is None or weight._amax_rowwise is None:
-        raise ValueError("MILES_FP4_DIRECT_WEIGHT_UPDATE requires TE NVFP4 rowwise data, scale, and amax metadata.")
-    if weight._with_gemm_swizzled_scales:
-        raise ValueError("MILES_FP4_DIRECT_WEIGHT_UPDATE requires unswizzled TE NVFP4 scales.")
-    if weight._row_scaled_nvfp4:
-        raise ValueError("MILES_FP4_DIRECT_WEIGHT_UPDATE does not support row-scaled NVFP4 weight amax metadata.")
-
-    tensor_use_4over6 = bool(weight._nvfp4_use_4over6)
-    if tensor_use_4over6 != use_4over6:
-        raise ValueError(
-            "TE NVFP4 tensor 4over6 mode does not match the requested Miles conversion mode: "
-            f"tensor={_nvfp4_4over6_weight_scope(tensor_use_4over6)}, "
-            f"requested={_nvfp4_4over6_weight_scope(use_4over6)}."
-        )
-
-    tensor_e4m3_max = int(weight._nvfp4_e4m3_max)
-    expected_e4m3_max = _nvfp4_weight_e4m3_max(use_4over6)
-    if tensor_e4m3_max != expected_e4m3_max:
-        raise ValueError(
-            "TE NVFP4 tensor E4M3 scale bound does not match the requested Miles conversion mode: "
-            f"tensor={tensor_e4m3_max}, requested={expected_e4m3_max}."
-        )
-
-    rows, cols = weight.shape
-    if cols % NVFP4_GROUP_SIZE != 0:
-        raise ValueError(f"NVFP4 requires K divisible by {NVFP4_GROUP_SIZE}, got {cols}.")
-
-    qweight = weight._rowwise_data[:rows, : cols // 2].contiguous()
-    block_scale = weight._rowwise_scale_inv[:rows, : cols // NVFP4_GROUP_SIZE].contiguous()
-    global_scale = _nvfp4_global_decode_scale_te(weight._amax_rowwise.to(torch.float32), tensor_e4m3_max)
-    return qweight, block_scale, global_scale
-
-
 def _quantize_nvfp4_1d(
     weight: torch.Tensor,
     global_amax: torch.Tensor | None = None,
@@ -343,12 +370,8 @@ def _quantize_nvfp4(
     use_4over6: bool = False,
 ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
     if _is_te_nvfp4_tensor(weight):
-        if fp4_direct_weight_update_enabled():
-            if global_amax is not None:
-                raise ValueError("global_amax override is not supported for direct TE NVFP4 weight updates.")
-            return _extract_te_nvfp4_direct(weight, use_4over6=use_4over6)
         if not hasattr(weight, "dequantize"):
-            raise ValueError("TE NVFP4 storage must be dequantizable when MILES_FP4_DIRECT_WEIGHT_UPDATE is disabled.")
+            raise ValueError("TE NVFP4 storage must be dequantizable in the NVFP4 reference quantizer path.")
         weight = weight.dequantize()
     if weight.dim() == 2:
         return _quantize_nvfp4_1d(weight, global_amax=global_amax, use_4over6=use_4over6)

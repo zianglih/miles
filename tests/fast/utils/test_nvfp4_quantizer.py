@@ -25,6 +25,7 @@ from miles.backends.megatron_utils.megatron_to_hf.processors.quantizer_nvfp4 imp
     quantize_nvfp4 as processor_quantize_nvfp4,
 )
 from miles.backends.megatron_utils.megatron_to_hf.processors.quantizer_nvfp4 import quantize_params_nvfp4
+from miles.backends.megatron_utils.update_weight.nvfp4_direct import te_nvfp4_workspace_to_hf
 
 NVFP4_SHAPES = [
     (1, 64),
@@ -159,6 +160,22 @@ def test_nvfp4_quantize_params_respects_extra_high_precision_layers_megatron():
     assert out is converted_named_params
 
 
+def test_nvfp4_quantize_params_rejects_fp4_param_gather():
+    weight = torch.randn((4, NVFP4_GROUP_SIZE), dtype=torch.bfloat16)
+    args = type("Args", (), {"fp4_param": True})()
+
+    with pytest.raises(NotImplementedError, match="fp4-param-gather is unsupported"):
+        quantize_params_nvfp4(
+            args=args,
+            megatron_name="decoder.layers.0.mlp.experts.linear_fc1.weight0",
+            converted_named_params=[
+                ("model.layers.0.mlp.experts.0.gate_proj.weight", weight),
+                ("model.layers.0.mlp.experts.0.up_proj.weight", weight),
+            ],
+            quantization_config={"quant_method": "nvfp4"},
+        )
+
+
 @pytest.mark.parametrize("layer_idx", [0, 3])
 def test_nvfp4_quantize_params_respects_first_last_layers_bf16(layer_idx):
     weight = torch.randn((4, NVFP4_GROUP_SIZE), dtype=torch.bfloat16)
@@ -278,7 +295,7 @@ def test_nvfp4_quantize_params_reads_4over6_from_env(monkeypatch):
     )
 
 
-def test_nvfp4_direct_weight_update_extracts_te_rowwise_buffers(monkeypatch):
+def test_nvfp4_reference_quantizer_does_not_extract_direct_te_buffers(monkeypatch):
     monkeypatch.setenv("MILES_FP4_DIRECT_WEIGHT_UPDATE", "1")
     monkeypatch.delenv("NVTE_NVFP4_4OVER6", raising=False)
     rowwise_data = torch.arange(32, dtype=torch.uint8, device="cuda").reshape(4, 8)
@@ -292,26 +309,91 @@ def test_nvfp4_direct_weight_update_extracts_te_rowwise_buffers(monkeypatch):
         e4m3_max=448,
     )
 
-    qweight, block_scale, global_scale = processor_quantize_nvfp4(weight)
-
-    torch.testing.assert_close(qweight, rowwise_data, rtol=0, atol=0)
-    torch.testing.assert_close(block_scale, rowwise_scale_inv[:4, :1], rtol=0, atol=0)
-    torch.testing.assert_close(global_scale, _nvfp4_global_decode_scale_te(amax_rowwise), rtol=0, atol=0)
+    with pytest.raises(ValueError, match="dequantizable"):
+        processor_quantize_nvfp4(weight)
 
 
-def test_nvfp4_direct_weight_update_rejects_4over6_mismatch(monkeypatch):
-    monkeypatch.setenv("MILES_FP4_DIRECT_WEIGHT_UPDATE", "1")
+def test_nvfp4_te_workspace_to_hf_extracts_direct_buffers(monkeypatch):
+    monkeypatch.delenv("NVTE_NVFP4_4OVER6", raising=False)
+    rowwise_data = torch.arange(64, dtype=torch.uint8).reshape(4, 16)
+    rowwise_scale_inv = torch.arange(256, dtype=torch.float32).reshape(128, 2)
+    amax_rowwise = torch.tensor(12.0, dtype=torch.float32)
+    workspace = FakeTENvfp4Tensor(
+        rowwise_data=rowwise_data,
+        rowwise_scale_inv=rowwise_scale_inv,
+        amax_rowwise=amax_rowwise,
+        use_4over6=False,
+        e4m3_max=448,
+    )
+    args = type("Args", (), {"q_lora_rank": None})()
+
+    out = dict(
+        te_nvfp4_workspace_to_hf(
+            args,
+            "qwen3moe",
+            "module.module.decoder.layers.2.mlp.experts.linear_fc1.weight7",
+            workspace,
+            {"quant_method": "nvfp4"},
+        )
+    )
+
+    torch.testing.assert_close(
+        out["model.layers.2.mlp.experts.7.gate_proj.weight"],
+        rowwise_data[:2],
+        rtol=0,
+        atol=0,
+    )
+    torch.testing.assert_close(
+        out["model.layers.2.mlp.experts.7.up_proj.weight"],
+        rowwise_data[2:],
+        rtol=0,
+        atol=0,
+    )
+    torch.testing.assert_close(
+        out["model.layers.2.mlp.experts.7.gate_proj.weight_scale"],
+        rowwise_scale_inv[:2],
+        rtol=0,
+        atol=0,
+    )
+    torch.testing.assert_close(
+        out["model.layers.2.mlp.experts.7.up_proj.weight_scale"],
+        rowwise_scale_inv[2:4],
+        rtol=0,
+        atol=0,
+    )
+    torch.testing.assert_close(
+        out["model.layers.2.mlp.experts.7.gate_proj.weight_scale_2"],
+        _nvfp4_global_decode_scale_te(amax_rowwise),
+        rtol=0,
+        atol=0,
+    )
+    torch.testing.assert_close(
+        out["model.layers.2.mlp.experts.7.up_proj.input_scale"],
+        torch.ones_like(_nvfp4_global_decode_scale_te(amax_rowwise)),
+        rtol=0,
+        atol=0,
+    )
+
+
+def test_nvfp4_te_workspace_to_hf_rejects_4over6_mismatch(monkeypatch):
     monkeypatch.setenv("NVTE_NVFP4_4OVER6", "weights")
-    weight = FakeTENvfp4Tensor(
+    workspace = FakeTENvfp4Tensor(
         rowwise_data=torch.zeros((4, 8), dtype=torch.uint8),
         rowwise_scale_inv=torch.zeros((128, 4), dtype=torch.float32),
         amax_rowwise=torch.tensor(12.0, dtype=torch.float32),
         use_4over6=False,
         e4m3_max=448,
     )
+    args = type("Args", (), {"q_lora_rank": None})()
 
     with pytest.raises(ValueError, match="4over6 mode does not match"):
-        processor_quantize_nvfp4(weight)
+        te_nvfp4_workspace_to_hf(
+            args,
+            "qwen3moe",
+            "module.module.decoder.layers.2.mlp.experts.linear_fc2.weight7",
+            workspace,
+            {"quant_method": "nvfp4"},
+        )
 
 
 @pytest.mark.parametrize(
