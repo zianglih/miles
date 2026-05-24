@@ -119,6 +119,20 @@ class FakeTENvfp4Tensor:
         return len(self.shape)
 
 
+def _qwen3moe_args():
+    return type(
+        "Args",
+        (),
+        {
+            "hidden_size": 128,
+            "kv_channels": None,
+            "num_attention_heads": 4,
+            "num_query_groups": 1,
+            "q_lora_rank": None,
+        },
+    )()
+
+
 def test_nvfp4_dispatch_accepts_quant_algo_without_quant_method():
     converted_named_params = [("model.embed_tokens.weight", torch.zeros((1, 1), dtype=torch.bfloat16))]
 
@@ -328,8 +342,8 @@ def test_nvfp4_reference_quantizer_does_not_extract_direct_te_buffers(monkeypatc
 def test_nvfp4_te_workspace_to_hf_extracts_direct_buffers(monkeypatch):
     monkeypatch.delenv("NVTE_NVFP4_4OVER6", raising=False)
     rowwise_data = torch.arange(64, dtype=torch.uint8).reshape(4, 16)
-    rowwise_scale_inv = torch.arange(256, dtype=torch.float32).reshape(128, 2)
-    amax_rowwise = torch.tensor(12.0, dtype=torch.float32)
+    rowwise_scale_inv = torch.arange(256, dtype=torch.uint8).reshape(128, 2)
+    amax_rowwise = torch.tensor([12.0], dtype=torch.float32)
     workspace = FakeTENvfp4Tensor(
         rowwise_data=rowwise_data,
         rowwise_scale_inv=rowwise_scale_inv,
@@ -337,7 +351,7 @@ def test_nvfp4_te_workspace_to_hf_extracts_direct_buffers(monkeypatch):
         use_4over6=False,
         e4m3_max=448,
     )
-    args = type("Args", (), {"q_lora_rank": None})()
+    args = _qwen3moe_args()
 
     out = dict(
         te_nvfp4_workspace_to_hf(
@@ -362,26 +376,29 @@ def test_nvfp4_te_workspace_to_hf_extracts_direct_buffers(monkeypatch):
         atol=0,
     )
     torch.testing.assert_close(
-        out["model.layers.2.mlp.experts.7.gate_proj.weight_scale"],
+        out["model.layers.2.mlp.experts.7.gate_proj.weight_scale"].view(torch.uint8),
         rowwise_scale_inv[:2],
         rtol=0,
         atol=0,
     )
+    assert out["model.layers.2.mlp.experts.7.gate_proj.weight_scale"].dtype == torch.float8_e4m3fn
     torch.testing.assert_close(
-        out["model.layers.2.mlp.experts.7.up_proj.weight_scale"],
+        out["model.layers.2.mlp.experts.7.up_proj.weight_scale"].view(torch.uint8),
         rowwise_scale_inv[2:4],
         rtol=0,
         atol=0,
     )
+    assert out["model.layers.2.mlp.experts.7.up_proj.weight_scale"].dtype == torch.float8_e4m3fn
     torch.testing.assert_close(
         out["model.layers.2.mlp.experts.7.gate_proj.weight_scale_2"],
-        nvfp4_global_decode_scale_te(amax_rowwise),
+        nvfp4_global_decode_scale_te(amax_rowwise).reshape(()),
         rtol=0,
         atol=0,
     )
+    assert out["model.layers.2.mlp.experts.7.gate_proj.weight_scale_2"].shape == torch.Size([])
     torch.testing.assert_close(
         out["model.layers.2.mlp.experts.7.up_proj.input_scale"],
-        torch.ones_like(nvfp4_global_decode_scale_te(amax_rowwise)),
+        torch.ones_like(nvfp4_global_decode_scale_te(amax_rowwise).reshape(())),
         rtol=0,
         atol=0,
     )
@@ -396,7 +413,7 @@ def test_nvfp4_te_workspace_to_hf_rejects_4over6_mismatch(monkeypatch):
         use_4over6=False,
         e4m3_max=448,
     )
-    args = type("Args", (), {"q_lora_rank": None})()
+    args = _qwen3moe_args()
 
     with pytest.raises(ValueError, match="4over6 mode does not match"):
         te_nvfp4_workspace_to_hf(

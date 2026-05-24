@@ -1,6 +1,7 @@
 import logging
 import os
 from collections.abc import Sequence
+from contextlib import contextmanager
 from dataclasses import dataclass
 from typing import Any
 
@@ -54,6 +55,49 @@ def _weight_scale_names(weight_name: str) -> tuple[str, str, str]:
     )
 
 
+def _as_e4m3_scale(scale: torch.Tensor) -> torch.Tensor:
+    if scale.dtype == torch.float8_e4m3fn:
+        return scale
+    if scale.dtype == torch.uint8:
+        return scale.view(torch.float8_e4m3fn)
+    raise ValueError(f"TE NVFP4 weight scales must be E4M3 bits stored as uint8 or float8_e4m3fn, got {scale.dtype}.")
+
+
+def _active_te_recipe(module: torch.nn.Module) -> Any | None:
+    qparams = getattr(module, "te_quant_params", None)
+    if qparams is None:
+        return None
+    if not module.training and qparams.evaluation_recipe is not None:
+        return qparams.evaluation_recipe
+    return qparams.training_recipe
+
+
+def _recipe_uses_quantized_compute(recipe: Any | None) -> bool:
+    return recipe is not None and (
+        getattr(recipe, "fp8_quantization_recipe", None) is not None
+        or getattr(recipe, "fp4_quantization_recipe", None) is not None
+    )
+
+
+@contextmanager
+def _te_quantization_context(module: torch.nn.Module):
+    recipe = _active_te_recipe(module)
+    if not _recipe_uses_quantized_compute(recipe):
+        yield
+        return
+
+    from megatron.core.extensions.transformer_engine import _get_fp8_autocast_for_quant_params
+
+    original_override = recipe.override_nonquantized_autocast
+    recipe.override_nonquantized_autocast = True
+    try:
+        with _get_fp8_autocast_for_quant_params(module.te_quant_params, module.training):
+            module.init_fp8_metadata(num_gemms=getattr(module, "num_gemms", 1))
+            yield
+    finally:
+        recipe.override_nonquantized_autocast = original_override
+
+
 def _extract_te_nvfp4_weight(
     weight,
     use_4over6: bool,
@@ -83,8 +127,11 @@ def _extract_te_nvfp4_weight(
         raise ValueError(f"NVFP4 requires K divisible by {NVFP4_GROUP_SIZE}, got {cols}.")
 
     qweight = weight._rowwise_data[:rows, : cols // 2].contiguous()
-    block_scale = weight._rowwise_scale_inv[:rows, : cols // NVFP4_GROUP_SIZE].contiguous()
+    block_scale = _as_e4m3_scale(weight._rowwise_scale_inv[:rows, : cols // NVFP4_GROUP_SIZE].contiguous())
     global_scale = nvfp4_global_decode_scale_te(weight._amax_rowwise.to(torch.float32), tensor_e4m3_max)
+    if global_scale.numel() != 1:
+        raise ValueError(f"TE NVFP4 weight requires scalar global scale metadata, got {tuple(global_scale.shape)}.")
+    global_scale = global_scale.reshape(())
     return qweight, block_scale, global_scale
 
 
@@ -95,8 +142,9 @@ class _WorkspaceRef:
     cache_name: str
 
     def refresh(self) -> Any:
-        weights = self.module._get_weight_tensors()
-        quantizers = self.module._get_weight_quantizers()
+        with _te_quantization_context(self.module):
+            weights = self.module._get_weight_tensors()
+            quantizers = self.module._get_weight_quantizers()
         weight = weights[self.index]
         quantizer = quantizers[self.index]
         if quantizer is None:
@@ -145,8 +193,9 @@ class TENvfp4DirectWeightUpdate:
                 if not hasattr(module, "_get_weight_tensors") or not hasattr(module, "_get_weight_quantizers"):
                     continue
                 try:
-                    weights = module._get_weight_tensors()
-                    quantizers = module._get_weight_quantizers()
+                    with _te_quantization_context(module):
+                        weights = module._get_weight_tensors()
+                        quantizers = module._get_weight_quantizers()
                 except Exception:
                     continue
                 if len(weights) != len(quantizers):
