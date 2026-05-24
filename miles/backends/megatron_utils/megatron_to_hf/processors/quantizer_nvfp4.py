@@ -68,10 +68,6 @@ def _nvfp4_4over6_err_mode() -> str:
     return err_mode
 
 
-def fp4_direct_weight_update_enabled() -> bool:
-    return _str_to_bool(os.getenv("MILES_FP4_DIRECT_WEIGHT_UPDATE"))
-
-
 def fp4_param_gather_enabled(args) -> bool:
     return bool(getattr(args, "fp4_param", False) or getattr(args, "fp4_param_gather", False))
 

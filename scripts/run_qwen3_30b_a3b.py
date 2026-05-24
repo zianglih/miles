@@ -11,7 +11,7 @@ BLACKWELL_HARDWARE = ("B200", "B300", "GB200", "GB300")
 
 
 def fp4_env_vars() -> dict[str, str]:
-    fp4_env_markers = ["NVTE", "FLASHINFER", "MILES_FP4_DIRECT_WEIGHT_UPDATE"]
+    fp4_env_markers = ["NVTE", "FLASHINFER"]
     return {key: value for key, value in os.environ.items() if any(marker in key for marker in fp4_env_markers)}
 
 
@@ -76,6 +76,7 @@ class ScriptArgs(U.ExecuteTrainConfig):
         if self.rollout_nvfp4:
             assert not self.rollout_fp8, "rollout_nvfp4 and rollout_fp8 cannot be enabled at the same time"
             assert self.hardware in BLACKWELL_HARDWARE, "rollout_nvfp4 only supports Blackwell GPUs"
+            assert self.train_nvfp4, "rollout_nvfp4 requires train_nvfp4 for TE workspace weight updates"
         if self.train_mxfp8:
             assert not self.train_fp8, "train_mxfp8 and train_fp8 cannot be enabled at the same time"
             assert not self.train_nvfp4, "train_mxfp8 and train_nvfp4 cannot be enabled at the same time"
