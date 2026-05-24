@@ -36,6 +36,14 @@ def assert_supported_nvfp4_te_direct_update(args) -> None:
         )
 
 
+def _weight_scale_names(weight_name: str) -> tuple[str, str, str]:
+    return (
+        weight_name.replace(".weight", ".weight_scale"),
+        weight_name.replace(".weight", ".weight_scale_2"),
+        weight_name.replace(".weight", ".input_scale"),
+    )
+
+
 @dataclass(frozen=True)
 class _WorkspaceRef:
     module: torch.nn.Module
@@ -173,12 +181,15 @@ def te_nvfp4_workspace_to_hf(
                 f"Direct NVFP4 weight update reached an ignored HF weight ({weight_name}). Ignored weights must use the BF16 fallback conversion path."
             )
 
+        block_scale_name, global_scale_name, input_scale_name = _weight_scale_names(weight_name)
         weight_scale_2 = global_scale.contiguous()
-        converted.append((weight_name, weight.contiguous()))
-        converted.append((weight_name.replace(".weight", ".weight_scale"), block_scale.contiguous()))
-        converted.append((weight_name.replace(".weight", ".weight_scale_2"), weight_scale_2))
-        converted.append(
-            (weight_name.replace(".weight", ".input_scale"), torch.ones_like(weight_scale_2, dtype=torch.float32))
+        converted.extend(
+            [
+                (weight_name, weight.contiguous()),
+                (block_scale_name, block_scale.contiguous()),
+                (global_scale_name, weight_scale_2),
+                (input_scale_name, torch.ones_like(weight_scale_2, dtype=torch.float32)),
+            ]
         )
 
     return converted

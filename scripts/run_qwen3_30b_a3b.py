@@ -7,6 +7,8 @@ import typer
 
 import miles.utils.external_utils.command_utils as U
 
+BLACKWELL_HARDWARE = ("B200", "B300", "GB200", "GB300")
+
 
 def fp4_env_vars() -> dict[str, str]:
     fp4_env_markers = ["NVTE", "FLASHINFER", "MILES_FP4_DIRECT_WEIGHT_UPDATE"]
@@ -55,6 +57,11 @@ class ScriptArgs(U.ExecuteTrainConfig):
         if self.no_colocate:
             self.actor_num_gpus_per_node = self.actor_num_gpus_per_node or self.num_gpus_per_node // 2
             self.rollout_num_gpus = self.rollout_num_gpus or self.num_gpus_per_node - self.actor_num_gpus_per_node
+            assert self.actor_num_gpus_per_node > 0, "actor_num_gpus_per_node must be positive"
+            assert self.rollout_num_gpus > 0, "rollout_num_gpus must be positive"
+            assert (
+                self.actor_num_gpus_per_node + self.rollout_num_gpus <= self.num_gpus_per_node
+            ), "actor and rollout GPU allocations cannot exceed num_gpus_per_node"
         else:
             self.actor_num_gpus_per_node = self.actor_num_gpus_per_node or self.num_gpus_per_node
             self.rollout_num_gpus = self.rollout_num_gpus or self.num_gpus_per_node
@@ -65,18 +72,18 @@ class ScriptArgs(U.ExecuteTrainConfig):
         if self.rollout_mxfp8:
             assert not self.rollout_fp8, "rollout_mxfp8 and rollout_fp8 cannot be enabled at the same time"
             assert not self.rollout_nvfp4, "rollout_mxfp8 and rollout_nvfp4 cannot be enabled at the same time"
-            assert self.hardware in ("B200", "B300", "GB200", "GB300"), "rollout_mxfp8 only supports Blackwell GPUs"
+            assert self.hardware in BLACKWELL_HARDWARE, "rollout_mxfp8 only supports Blackwell GPUs"
         if self.rollout_nvfp4:
             assert not self.rollout_fp8, "rollout_nvfp4 and rollout_fp8 cannot be enabled at the same time"
-            assert self.hardware in ("B200", "B300", "GB200", "GB300"), "rollout_nvfp4 only supports Blackwell GPUs"
+            assert self.hardware in BLACKWELL_HARDWARE, "rollout_nvfp4 only supports Blackwell GPUs"
         if self.train_mxfp8:
             assert not self.train_fp8, "train_mxfp8 and train_fp8 cannot be enabled at the same time"
             assert not self.train_nvfp4, "train_mxfp8 and train_nvfp4 cannot be enabled at the same time"
-            assert self.hardware in ("B200", "B300", "GB200", "GB300"), "train_mxfp8 only supports Blackwell GPUs"
+            assert self.hardware in BLACKWELL_HARDWARE, "train_mxfp8 only supports Blackwell GPUs"
             assert self.rollout_mxfp8, "train_mxfp8 requires rollout_mxfp8 to be enabled"
         if self.train_nvfp4:
             assert not self.train_fp8, "train_nvfp4 and train_fp8 cannot be enabled at the same time"
-            assert self.hardware in ("B200", "B300", "GB200", "GB300"), "train_nvfp4 only supports Blackwell GPUs"
+            assert self.hardware in BLACKWELL_HARDWARE, "train_nvfp4 only supports Blackwell GPUs"
             assert self.rollout_nvfp4, "train_nvfp4 requires rollout_nvfp4 to be enabled"
 
 
@@ -220,7 +227,7 @@ def execute(args: ScriptArgs):
     )
     if args.no_colocate:
         misc_args += (
-            # nvfp4 rollout does not support colocate
+            # Run actor and rollout workers on disjoint GPU sets.
             f"--actor-num-gpus-per-node {args.actor_num_gpus_per_node} "
             f"--rollout-num-gpus {args.rollout_num_gpus} "
         )
@@ -276,9 +283,7 @@ def execute(args: ScriptArgs):
             "NVTE_BACKWARD_OVERRIDE": "dequantized",
             "NVTE_USE_FAST_MATH": "0",
         }
-        optimizer_args += (
-            "--optimizer-cpu-offload " "--overlap-cpu-optimizer-d2h-h2d " "--use-precision-aware-optimizer "
-        )
+        optimizer_args += "--optimizer-cpu-offload --overlap-cpu-optimizer-d2h-h2d --use-precision-aware-optimizer "
         te_precision_config_text = """
 configs:
     nvfp4:
