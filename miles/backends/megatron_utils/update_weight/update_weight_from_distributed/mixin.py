@@ -10,6 +10,12 @@ from miles.utils.distributed_utils import get_gloo_group
 from miles.utils.timer import timer
 
 from ...megatron_to_hf import convert_to_hf
+from ...quantized_weight_transfer import (
+    WeightTransferValue,
+    all_gather_transfer_value,
+    empty_like_transfer_value,
+    transfer_value_nbytes,
+)
 from ..common import all_gather_param, collect_named_tensors_for_weight_transfer, post_process_weights
 
 
@@ -46,11 +52,11 @@ class DistBucketedWeightUpdateMixin:
         converted_named_tensors: list[tuple[str, torch.Tensor]] = []
 
         for name, param in collect_named_tensors_for_weight_transfer(self.args, self.model, is_expert=False):
-            param = all_gather_param(self.args, name, param)
+            param = all_gather_param(self.args, name, param, self.quantization_config)
             if not self._is_source:
                 continue
 
-            param_size = param.numel() * param.element_size()
+            param_size = transfer_value_nbytes(param)
             if buffer_size + param_size > self.args.update_weight_buffer_size:
                 update_bucket_weight_func(converted_named_tensors, pbar)
                 converted_named_tensors = []
@@ -72,11 +78,11 @@ class DistBucketedWeightUpdateMixin:
         Expert: gather TP → rm pad → buffer. EP gather + HF deferred. Threshold × EP size.
         """
         buffer_size = 0
-        named_tensors: list[tuple[str, torch.Tensor]] = []
+        named_tensors: list[tuple[str, WeightTransferValue]] = []
 
         for name, param in collect_named_tensors_for_weight_transfer(self.args, self.model, is_expert=True):
-            param = all_gather_param(self.args, name, param)
-            param_size = param.numel() * param.element_size()
+            param = all_gather_param(self.args, name, param, self.quantization_config)
+            param_size = transfer_value_nbytes(param)
             if (
                 buffer_size + param_size
             ) * get_parallel_state().ep.size > self.args.update_weight_buffer_size and named_tensors:
@@ -92,7 +98,7 @@ class DistBucketedWeightUpdateMixin:
 
     def _update_expert_bucket_weights(
         self,
-        named_tensors: list[tuple[str, torch.Tensor]],
+        named_tensors: list[tuple[str, WeightTransferValue]],
         update_bucket_weight_func: Callable[[list[tuple[str, torch.Tensor]], tqdm | None], None],
         pbar: tqdm | None,
     ) -> None:
@@ -108,15 +114,23 @@ class DistBucketedWeightUpdateMixin:
                 ep_names
             ), f"mismatch names length: {len(named_tensors)} != {len(ep_names)}"
 
-        all_gathered_params: list[list[tuple[str, torch.Tensor]]] = [[] for _ in range(get_parallel_state().ep.size)]
+        all_gathered_params: list[list[tuple[str, WeightTransferValue]]] = [
+            [] for _ in range(get_parallel_state().ep.size)
+        ]
         handles = []
         for i, (_name, param) in enumerate(named_tensors):
             params = [
-                torch.empty_like(param.data, device=torch.cuda.current_device())
+                empty_like_transfer_value(param, device=torch.cuda.current_device())
                 for _ in range(get_parallel_state().ep.size)
             ]
-            handle = dist.all_gather(params, param.data, group=get_parallel_state().ep.group, async_op=True)
-            handles.append(handle)
+            handles.extend(
+                all_gather_transfer_value(
+                    params,
+                    param,
+                    group=get_parallel_state().ep.group,
+                    async_op=True,
+                )
+            )
             for ep_rank, ep_names in enumerate(all_names):
                 all_gathered_params[ep_rank].append((ep_names[i], params[ep_rank]))
         for handle in handles:

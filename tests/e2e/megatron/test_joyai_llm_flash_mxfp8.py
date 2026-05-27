@@ -10,11 +10,18 @@ MODEL_ORG = "jdopensource"
 MODEL_NAME = "JoyAI-LLM-Flash"
 MODEL_TYPE = "joyai-llm-flash"
 NUM_GPUS = 8
-ACTOR_NUM_GPUS = 4
-ROLLOUT_NUM_GPUS = 4
-ROLLOUT_GPUS_PER_ENGINE = 2
+ACTOR_NUM_GPUS = 7
+ROLLOUT_NUM_GPUS = 1
+ROLLOUT_GPUS_PER_ENGINE = 1
+TRAIN_TP_SIZE = 1
+TRAIN_PP_SIZE = 7
+TRAIN_EP_SIZE = 1
+ROLLOUT_MAX_RESPONSE_LEN = 4096
+MAX_TOKENS_PER_GPU = 1024
+DATA_PAD_SIZE_MULTIPLIER = 1024
 NUM_LAYERS_AT_START_IN_BF16 = 1
-NUM_LAYERS_AT_END_IN_BF16 = 6
+NUM_LAYERS_AT_END_IN_BF16 = 5
+DECODER_LAST_PIPELINE_NUM_LAYERS = 4
 RUN_ID = U.create_run_id()
 
 MODEL_DIR = "/root/models"
@@ -96,27 +103,28 @@ def execute():
         "--rollout-shuffle "
         "--rm-type math "
         "--num-rollout 2 "
-        "--rollout-batch-size 32 "
+        "--rollout-batch-size 8 "
         "--n-samples-per-prompt 8 "
-        "--rollout-max-response-len 8192 "
+        f"--rollout-max-response-len {ROLLOUT_MAX_RESPONSE_LEN} "
         "--rollout-temperature 1 "
         "--global-batch-size 32 "
         "--balance-data "
     )
 
     perf_args = (
-        f"--tensor-model-parallel-size {ACTOR_NUM_GPUS} "
+        f"--tensor-model-parallel-size {TRAIN_TP_SIZE} "
         "--sequence-parallel "
-        "--pipeline-model-parallel-size 1 "
+        f"--pipeline-model-parallel-size {TRAIN_PP_SIZE} "
+        f"--decoder-last-pipeline-num-layers {DECODER_LAST_PIPELINE_NUM_LAYERS} "
         "--context-parallel-size 1 "
-        f"--expert-model-parallel-size {ACTOR_NUM_GPUS} "
+        f"--expert-model-parallel-size {TRAIN_EP_SIZE} "
         "--expert-tensor-parallel-size 1 "
         "--recompute-granularity full "
         "--recompute-method uniform "
         "--recompute-num-layers 1 "
         "--use-dynamic-batch-size "
-        "--max-tokens-per-gpu 32768 "
-        "--data-pad-size-multiplier 4096 "
+        f"--max-tokens-per-gpu {MAX_TOKENS_PER_GPU} "
+        f"--data-pad-size-multiplier {DATA_PAD_SIZE_MULTIPLIER} "
         "--log-probs-chunk-size 1024 "
     )
 
@@ -137,9 +145,10 @@ def execute():
         "--weight-decay 0.1 "
         "--adam-beta1 0.9 "
         "--adam-beta2 0.98 "
-        "--optimizer-cpu-offload "
-        "--overlap-cpu-optimizer-d2h-h2d "
+        "--offload-optimizer-states "
         "--use-precision-aware-optimizer "
+        "--exp-avg-dtype bf16 "
+        "--exp-avg-sq-dtype bf16 "
     )
 
     sglang_args = (
@@ -161,6 +170,10 @@ def execute():
         "--bf16 "
         "--fp8-format e4m3 "
         "--fp8-recipe mxfp8 "
+        "--fp8-param-gather "
+        "--reuse-grad-buf-for-mxfp8-param-ag "
+        "--overlap-param-gather "
+        "--overlap-grad-reduce "
         "--first-last-layers-bf16 "
         f"--num-layers-at-start-in-bf16 {NUM_LAYERS_AT_START_IN_BF16} "
         f"--num-layers-at-end-in-bf16 {NUM_LAYERS_AT_END_IN_BF16} "
@@ -210,6 +223,7 @@ def execute():
         num_gpus_per_node=NUM_GPUS,
         megatron_model_type=MODEL_TYPE,
         megatron_path=MEGATRON_PATH,
+        extra_env_vars={"PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True"},
     )
 
 

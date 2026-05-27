@@ -14,6 +14,7 @@ from megatron.core.distributed import finalize_model_grads
 from megatron.core.enums import ModelType
 from megatron.core.models.gpt import GPTModel
 from megatron.core.optimizer import OptimizerConfig, get_megatron_optimizer
+from megatron.core.optimizer.distrib_optimizer import DistributedOptimizer
 from megatron.core.optimizer.optimizer import MegatronOptimizer
 from megatron.core.optimizer_param_scheduler import OptimizerParamScheduler
 from megatron.core.pipeline_parallel import get_forward_backward_func
@@ -157,32 +158,92 @@ def setup_model_and_optimizer(
 # ---------------------------------------------------------------------------
 
 
-def enable_forward_pre_hook(model_chunks: Sequence[DDP]) -> None:
+def is_forward_pre_hook_enabled(model_chunks: Sequence[DDP]) -> bool:
+    return any(bool(getattr(model_chunk, "remove_forward_pre_hook_handles", {})) for model_chunk in model_chunks)
+
+
+def enable_forward_pre_hook(model_chunks: Sequence[DDP]) -> bool:
     """Enable forward pre-hooks for provided DDP-wrapped model chunks.
 
     Args:
         model_chunks (Sequence[DDP]): Sequence of DDP modules to enable hooks on.
     """
+    enabled = False
     for model_chunk in model_chunks:
         assert isinstance(model_chunk, DDP)
+        if getattr(model_chunk, "remove_forward_pre_hook_handles", {}):
+            continue
         model_chunk.enable_forward_pre_hook()
+        enabled = True
+    return enabled
 
 
-def disable_forward_pre_hook(model_chunks: Sequence[DDP], param_sync: bool = True) -> None:
+def disable_forward_pre_hook(model_chunks: Sequence[DDP], param_sync: bool = True) -> bool:
     """Disable forward pre-hooks for provided DDP-wrapped model chunks.
 
     Args:
         model_chunks (Sequence[DDP]): Sequence of DDP modules to disable hooks on.
         param_sync (bool): Whether to synchronize parameters when disabling.
     """
+    disabled = False
     for model_chunk in model_chunks:
         assert isinstance(model_chunk, DDP)
+        if not getattr(model_chunk, "remove_forward_pre_hook_handles", {}):
+            continue
         model_chunk.disable_forward_pre_hook(param_sync=param_sync)
+        disabled = True
+    return disabled
 
 
 def should_disable_forward_pre_hook(args: Namespace) -> bool:
     """Block forward pre-hook for certain configurations."""
     return args.use_distributed_optimizer and args.overlap_param_gather
+
+
+def _iter_distributed_optimizers(optimizer: MegatronOptimizer | None):
+    """Yield distributed optimizer shards from a Megatron chained optimizer."""
+    if optimizer is None:
+        return
+
+    for optim_instance in getattr(optimizer, "chained_optimizers", ()):
+        if isinstance(optim_instance, DistributedOptimizer):
+            yield optim_instance
+
+
+def _offload_optimizer_states_if_needed(args: Namespace, optimizer: MegatronOptimizer | None) -> None:
+    if getattr(args, "offload_optimizer_states", False):
+        for optim_instance in _iter_distributed_optimizers(optimizer):
+            optim_instance.offload_states()
+
+
+def _reload_offloaded_optimizer_states(args: Namespace, optimizer: MegatronOptimizer | None) -> None:
+    if getattr(args, "offload_optimizer_states", False):
+        for optim_instance in _iter_distributed_optimizers(optimizer):
+            optim_instance.reload_offloaded_states()
+
+
+def _release_offloaded_optimizer_state_memory(args: Namespace, optimizer: MegatronOptimizer | None) -> None:
+    if getattr(args, "offload_optimizer_states", False):
+        for optim_instance in _iter_distributed_optimizers(optimizer):
+            optim_instance.release_offloaded_gpu_states()
+
+
+def _copy_main_params_to_param_buffer_if_needed(
+    args: Namespace,
+    model: Sequence[DDP],
+    optimizer: MegatronOptimizer | None,
+) -> None:
+    if not (args.reuse_grad_buf_for_mxfp8_param_ag and args.overlap_param_gather):
+        return
+
+    # When the MXFP8 param all-gather shares the grad buffer, the refreshed main
+    # params must be copied after zero_grad_buffer() clears that shared storage.
+    forward_pre_hook_enabled = is_forward_pre_hook_enabled(model)
+    if not forward_pre_hook_enabled:
+        return
+
+    for optim_instance in _iter_distributed_optimizers(optimizer):
+        optim_instance._copy_main_params_to_param_buffer()
 
 
 # ---------------------------------------------------------------------------
@@ -357,6 +418,9 @@ def train_one_step(
     dumper_phase_util = DumperMegatronUtil(args, model, DumperPhase.FWD_BWD)
     disable_optimizer = args.debug_disable_optimizer or optimizer is None
 
+    if not disable_optimizer:
+        _offload_optimizer_states_if_needed(args, optimizer)
+
     # Set grad to zero.
     for model_chunk in model:
         model_chunk.zero_grad_buffer()
@@ -368,6 +432,10 @@ def train_one_step(
 
         custom_before_train_step_hook = load_function(args.custom_megatron_before_train_step_hook_path)
         custom_before_train_step_hook(args, rollout_id, step_id, model, optimizer, opt_param_scheduler)
+
+    if not disable_optimizer:
+        _copy_main_params_to_param_buffer_if_needed(args, model, optimizer)
+        _release_offloaded_optimizer_state_memory(args, optimizer)
 
     @dumper_phase_util.wrap_forward_step
     def forward_step(data_iterator: DataIterator, model: GPTModel, return_schedule_plan: bool = False) -> tuple[
@@ -487,6 +555,12 @@ def train_one_step(
     dumper_phase_util.finalize(model)
 
     if not disable_optimizer and valid_step:
+        if args.fp8_param_gather and getattr(args, "offload_optimizer_states", False):
+            # TE's precision-aware Adam temporarily materializes fp32 state
+            # views during step. Drop allocator cache first to avoid small
+            # fragmentation OOMs after long rollout batches.
+            clear_memory()
+
         # Update parameters.
         update_successful, grad_norm, num_zeros_in_grad = optimizer.step()
 
@@ -567,7 +641,15 @@ def train(
         config.param_sync_func = [model_chunk.start_param_sync for model_chunk in model]
         if len(model) == 1:
             config.param_sync_func = config.param_sync_func[0]
-    config.finalize_model_grads_func = finalize_model_grads_with_empty_cache
+    if not disable_optimizer and getattr(args, "offload_optimizer_states", False):
+
+        def finalize_model_grads_with_state_reload(*fmg_args, **fmg_kwargs):
+            _reload_offloaded_optimizer_states(args, optimizer)
+            return finalize_model_grads_with_empty_cache(*fmg_args, **fmg_kwargs)
+
+        config.finalize_model_grads_func = finalize_model_grads_with_state_reload
+    else:
+        config.finalize_model_grads_func = finalize_model_grads_with_empty_cache
 
     pre_hook_enabled = False
 
@@ -693,6 +775,15 @@ def train(
     # Close out pre-hooks if using distributed optimizer and overlapped param gather.
     if pre_hook_enabled:
         disable_forward_pre_hook(model)
+    if isinstance(model[0], DDP) and args.overlap_grad_reduce:
+        # ``train`` is called once per rollout; clear callbacks that are rebuilt
+        # at the next call so repeated rollouts do not look like a custom
+        # no_sync configuration.
+        config.no_sync_func = None
+        if args.align_grad_reduce:
+            config.grad_sync_func = None
+    if args.overlap_param_gather and args.align_param_gather:
+        config.param_sync_func = None
 
 
 def save(
@@ -713,8 +804,9 @@ def save(
     hashes = None
     if args.ci_test and args.ci_save_model_hash:
         hashes = compute_model_hashes_by_layer(model)
+    hooks_disabled = False
     if should_disable_forward_pre_hook(args):
-        disable_forward_pre_hook(model)
+        hooks_disabled = disable_forward_pre_hook(model)
 
     if is_lora_model(model):
         save_checkpoint_with_lora(iteration, model, optimizer, opt_param_scheduler)
@@ -732,7 +824,7 @@ def save(
 
     if hashes is not None:
         save_model_hashes(args, model, iteration, hashes)
-    if should_disable_forward_pre_hook(args):
+    if hooks_disabled:
         enable_forward_pre_hook(model)
 
 

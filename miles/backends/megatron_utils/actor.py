@@ -34,7 +34,16 @@ from ..training_utils.parallel import get_parallel_state
 from .checkpoint import load_checkpoint
 from .initialize import init, is_megatron_main_rank
 from .lora_utils import is_lora_enabled
-from .model import forward_only, initialize_model_and_optimizer, save, train
+from .model import (
+    disable_forward_pre_hook,
+    enable_forward_pre_hook,
+    forward_only,
+    initialize_model_and_optimizer,
+    is_forward_pre_hook_enabled,
+    save,
+    should_disable_forward_pre_hook,
+    train,
+)
 from .parallel import verify_megatron_parallel_state
 from .replay_utils import get_register_replay_list_func
 from .update_weight.common import named_params_and_buffers
@@ -317,15 +326,29 @@ class MegatronTrainRayActor(TrainRayActor):
         store_prefix: str = "",
     ) -> dict[str, list[torch.Tensor]]:
 
-        with timer(f"{store_prefix}log_probs"):
-            return forward_only(
-                get_log_probs_and_entropy,
-                self.args,
-                self.model,
-                data_iterator,
-                num_microbatches,
-                store_prefix=store_prefix,
-            )
+        suspend_forward_pre_hook = (
+            getattr(self.args, "fp8_param_gather", False)
+            and getattr(self.args, "reuse_grad_buf_for_mxfp8_param_ag", False)
+            and should_disable_forward_pre_hook(self.args)
+            and is_forward_pre_hook_enabled(self.model)
+        )
+        if suspend_forward_pre_hook:
+            # Ref/old-actor weights are restored from TensorBackuper, not optimizer-owned
+            # main params, so eval must not force param sync from DDP's staging buffer.
+            disable_forward_pre_hook(self.model, param_sync=False)
+        try:
+            with timer(f"{store_prefix}log_probs"):
+                return forward_only(
+                    get_log_probs_and_entropy,
+                    self.args,
+                    self.model,
+                    data_iterator,
+                    num_microbatches,
+                    store_prefix=store_prefix,
+                )
+        finally:
+            if suspend_forward_pre_hook:
+                enable_forward_pre_hook(self.model)
 
     def train(self, rollout_id: int, rollout_data_ref: Box) -> None:
         self._last_rollout_id = rollout_id

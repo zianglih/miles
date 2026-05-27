@@ -1,5 +1,6 @@
 import inspect
 import logging
+import math
 import re
 from argparse import Namespace
 from collections.abc import Iterator, Sequence
@@ -11,10 +12,91 @@ from megatron.core.transformer.transformer_layer import get_transformer_layer_of
 from ray.actor import ActorHandle
 
 from miles.backends.megatron_utils.misc_utils import strip_param_name_prefix
+from miles.backends.megatron_utils.quantized_weight_transfer import QuantizedWeightTransfer, WeightTransferValue
 from miles.backends.training_utils.parallel import get_parallel_state
 from miles.utils.types import ParamInfo
 
 logger = logging.getLogger(__name__)
+
+try:
+    from megatron.core.fp8_utils import dequantize_fp8_tensor, is_float8tensor
+except ImportError:
+    dequantize_fp8_tensor = None
+
+    def is_float8tensor(_tensor: torch.Tensor) -> bool:
+        return False
+
+
+def _dequantize_for_export(name: str, param: torch.Tensor) -> torch.Tensor:
+    """Return a dense tensor suitable for Miles weight export."""
+    tensor = param.data if hasattr(param, "data") else param
+    if not (is_float8tensor(param) or is_float8tensor(tensor)):
+        return tensor
+    if dequantize_fp8_tensor is None:
+        raise RuntimeError(f"Failed to dequantize fp8 parameter before export: {name}")
+    fp8_tensor = param if is_float8tensor(param) else tensor
+    try:
+        return dequantize_fp8_tensor(fp8_tensor)
+    except Exception as e:
+        raise RuntimeError(f"Failed to dequantize fp8 parameter before export: {name}") from e
+
+
+def _use_direct_mxfp8_transfer(args: Namespace, name: str, quantization_config: dict | None) -> bool:
+    if not getattr(args, "fp8_param_gather", False):
+        return False
+    if not quantization_config or quantization_config.get("quant_method") != "mxfp8":
+        return False
+    if getattr(args, "extra_high_precision_layers_megatron", False):
+        for layer_name in getattr(args, "extra_high_precision_layers_megatron", ()):
+            if layer_name in name:
+                return False
+
+    if getattr(args, "first_last_layers_bf16", False):
+        match = re.search(r"(?:decoder|mtp)\.layers\.(\d+)\.", name)
+        if match:
+            layer_idx = int(match.group(1))
+            num_layers = int(args.num_layers)
+            head_layers = int(getattr(args, "num_layers_at_start_in_bf16", 0))
+            tail_start = num_layers - int(getattr(args, "num_layers_at_end_in_bf16", 0))
+            if layer_idx < head_layers or layer_idx >= tail_start:
+                return False
+
+    return True
+
+
+def _extract_mxfp8_transfer(
+    args: Namespace, name: str, param: torch.nn.Parameter, quantization_config: dict | None
+) -> QuantizedWeightTransfer | None:
+    if not _use_direct_mxfp8_transfer(args, name, quantization_config):
+        return None
+
+    tensor = param if is_float8tensor(param) else getattr(param, "data", param)
+    if not is_float8tensor(tensor):
+        return None
+
+    rowwise_data = getattr(tensor, "_rowwise_data", None)
+    rowwise_scale_inv = getattr(tensor, "_rowwise_scale_inv", None)
+    if rowwise_data is None or rowwise_scale_inv is None:
+        return None
+    if rowwise_data.dtype != torch.uint8:
+        return None
+    if not hasattr(torch, "float8_e4m3fn"):
+        return None
+
+    weight_shape = tuple(tensor.shape)
+    if weight_shape[-1] % 32 != 0:
+        raise ValueError(f"Last dim {weight_shape[-1]} must be divisible by 32 for MXFP8 transfer: {name}")
+
+    scale_rows = math.prod(weight_shape[:-1])
+    scale_cols = weight_shape[-1] // 32
+    scale = rowwise_scale_inv[:scale_rows, :scale_cols].contiguous()
+    scale = scale.view(*weight_shape[:-1], scale_cols)
+    return QuantizedWeightTransfer(
+        format="mxfp8",
+        weight=rowwise_data.contiguous(),
+        weight_dtype=torch.float8_e4m3fn,
+        aux_tensors={"weight_scale_inv": scale},
+    )
 
 
 def _gather_with_stride(
@@ -27,6 +109,28 @@ def _gather_with_stride(
     chunks_per_rank = [p.chunk(partition_stride, dim=partition_dim) for p in param_partitions]
     interleaved = [chunks_per_rank[r][s] for s in range(partition_stride) for r in range(len(param_partitions))]
     return torch.cat(interleaved, dim=partition_dim)
+
+
+def _gather_transfer_with_stride(
+    partitions: list[WeightTransferValue], partition_dim: int, partition_stride: int
+) -> WeightTransferValue:
+    first = partitions[0]
+    if isinstance(first, QuantizedWeightTransfer):
+        weight = _gather_with_stride(
+            [partition.weight for partition in partitions],
+            partition_dim,
+            partition_stride,
+        )
+        aux_tensors = {}
+        for aux_name in first.aux_tensors:
+            aux_tensors[aux_name] = _gather_with_stride(
+                [partition.aux_tensors[aux_name] for partition in partitions],
+                partition_dim,
+                partition_stride,
+            )
+        return first.with_tensors(weight=weight, aux_tensors=aux_tensors)
+
+    return _gather_with_stride(partitions, partition_dim, partition_stride)
 
 
 def _check_and_fix_partition(args: Namespace, name: str, partition_stride: int, partition_dim: int) -> tuple[int, int]:
@@ -47,7 +151,12 @@ def _check_and_fix_partition(args: Namespace, name: str, partition_stride: int, 
     return partition_stride, partition_dim
 
 
-def all_gather_param(args: Namespace, name: str, param: torch.nn.Parameter) -> torch.Tensor:
+def all_gather_param(
+    args: Namespace,
+    name: str,
+    param: torch.nn.Parameter,
+    quantization_config: dict | None = None,
+) -> WeightTransferValue:
     """
     All-gather TP-sharded param to full tensor. expert_bias→param, non-TP/duplicated→param.data.
     Uses expert-TP for ".experts.", else regular-TP. Handles strided partitioning via partition_stride.
@@ -55,9 +164,12 @@ def all_gather_param(args: Namespace, name: str, param: torch.nn.Parameter) -> t
     if "expert_bias" in name:
         return param
 
+    export_param = _extract_mxfp8_transfer(args, name, param, quantization_config)
+    if export_param is None:
+        export_param = _dequantize_for_export(name, param)
     assert hasattr(param, "tensor_model_parallel"), f"{name} does not have tensor_model_parallel attribute"
     if not param.tensor_model_parallel or getattr(param, "parallel_mode", None) == "duplicated":
-        return param.data
+        return export_param
 
     if ".experts." in name:
         tp_size = get_parallel_state().etp.size
@@ -66,13 +178,31 @@ def all_gather_param(args: Namespace, name: str, param: torch.nn.Parameter) -> t
         tp_size = get_parallel_state().tp.size
         tp_group = get_parallel_state().tp.group
 
-    param_partitions = [torch.empty_like(param.data) for _ in range(tp_size)]
-    dist.all_gather(param_partitions, param.data, group=tp_group)
     partition_dim = param.partition_dim
     partition_stride = param.partition_stride
 
     partition_stride, partition_dim = _check_and_fix_partition(args, name, partition_stride, partition_dim)
-    param = _gather_with_stride(param_partitions, partition_dim, partition_stride)
+    if isinstance(export_param, QuantizedWeightTransfer):
+        param_partitions = [
+            export_param.with_tensors(
+                weight=torch.empty_like(export_param.weight),
+                aux_tensors={
+                    aux_name: torch.empty_like(aux_tensor) for aux_name, aux_tensor in export_param.aux_tensors.items()
+                },
+            )
+            for _ in range(tp_size)
+        ]
+        dist.all_gather([partition.weight for partition in param_partitions], export_param.weight, group=tp_group)
+        for aux_name, aux_tensor in export_param.aux_tensors.items():
+            dist.all_gather(
+                [partition.aux_tensors[aux_name] for partition in param_partitions],
+                aux_tensor,
+                group=tp_group,
+            )
+    else:
+        param_partitions = [torch.empty_like(export_param) for _ in range(tp_size)]
+        dist.all_gather(param_partitions, export_param, group=tp_group)
+    param = _gather_transfer_with_stride(param_partitions, partition_dim, partition_stride)
     return param
 
 
@@ -90,12 +220,13 @@ def all_gather_params_async(
     handles = []
 
     for info, param in param_infos_and_params:
+        export_param = _dequantize_for_export(info.name, param)
         # Prepare async all_gather
         if "expert_bias" in info.name:
-            gather_tasks.append((info, param, None, None, None, None))
+            gather_tasks.append((info, export_param, None, None, None, None))
             handles.append(None)
         elif not param.tensor_model_parallel or getattr(param, "parallel_mode", None) == "duplicated":
-            gather_tasks.append((info, param.data, None, None, None, None))
+            gather_tasks.append((info, export_param, None, None, None, None))
             handles.append(None)
         else:
             # Start async all_gather
@@ -106,8 +237,8 @@ def all_gather_params_async(
                 tp_size = get_parallel_state().tp.size
                 tp_group = get_parallel_state().tp.group
 
-            param_partitions = [torch.empty_like(param.data) for _ in range(tp_size)]
-            handle = dist.all_gather(param_partitions, param.data, group=tp_group, async_op=True)
+            param_partitions = [torch.empty_like(export_param) for _ in range(tp_size)]
+            handle = dist.all_gather(param_partitions, export_param, group=tp_group, async_op=True)
             gather_tasks.append((info, None, handle, param_partitions, param.partition_dim, param.partition_stride))
             handles.append(handle)
 

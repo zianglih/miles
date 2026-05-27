@@ -1,3 +1,4 @@
+from ..quantized_weight_transfer import QuantizedWeightTransfer
 from .deepseekv3 import convert_deepseekv3_to_hf
 from .glm4 import convert_glm4_to_hf
 from .glm4moe import convert_glm4moe_to_hf
@@ -19,11 +20,74 @@ def postprocess_hf_param(args, megatron_param_name, hf_param_name, param):
 
 # TODO optimize code details
 def convert_to_hf(args, model_name, name, param, quantization_config=None):
+    if isinstance(param, QuantizedWeightTransfer):
+        return _convert_quantized_to_hf(args, model_name, name, param, quantization_config)
+
     param = remove_padding(name, param, args.vocab_size)
 
-    converted_named_tensors = _convert_to_hf_core(args, model_name, name, param)
+    converted_named_tensors = _convert_to_hf_core(args, model_name, name, param, pair_q_lora=False)
+    converted_named_tensors = _pair_q_lora_tensors(args, converted_named_tensors)
 
     return quantize_params(args, name, converted_named_tensors, quantization_config)
+
+
+def _convert_quantized_to_hf(args, model_name, name, param, quantization_config=None):
+    if quantization_config is None or quantization_config.get("quant_method") != param.format:
+        raise ValueError(f"Quantized transfer format {param.format} does not match rollout quantization config.")
+
+    converted_weights = _convert_to_hf_core(args, model_name, name, param.weight, pair_q_lora=False)
+    converted_aux = {
+        aux_name: _convert_to_hf_core(args, model_name, name, aux_tensor, pair_q_lora=False)
+        for aux_name, aux_tensor in param.aux_tensors.items()
+    }
+
+    converted_named_tensors = []
+    for i, (weight_name, weight) in enumerate(converted_weights):
+        weight = weight.contiguous().view(param.weight_dtype)
+        converted_named_tensors.append((weight_name, weight))
+
+        for aux_name, aux_values in converted_aux.items():
+            aux_weight_name, aux_tensor = aux_values[i]
+            if aux_weight_name != weight_name:
+                raise ValueError(
+                    f"Quantized transfer auxiliary tensor {aux_name} converted to {aux_weight_name}, "
+                    f"expected {weight_name}."
+                )
+            converted_named_tensors.append((weight_name.replace(".weight", f".{aux_name}"), aux_tensor.contiguous()))
+
+    return _pair_q_lora_tensors(args, converted_named_tensors)
+
+
+def _pair_q_lora_tensors(args, converted_named_tensors):
+    if args.q_lora_rank is None:
+        return converted_named_tensors
+
+    old_converted_named_tensors = converted_named_tensors
+    converted_named_tensors = []
+    for converted_name, converted_param in old_converted_named_tensors:
+        if "q_a_proj" in converted_name:
+            pair_name = converted_name.replace("q_a_proj", "kv_a_proj_with_mqa")
+            if pair_name in _cached_tensors:
+                converted_named_tensors += [
+                    (converted_name, converted_param),
+                    (pair_name, _cached_tensors[pair_name]),
+                ]
+                del _cached_tensors[pair_name]
+            else:
+                _cached_tensors[converted_name] = converted_param
+        elif "kv_a_proj_with_mqa" in converted_name:
+            pair_name = converted_name.replace("kv_a_proj_with_mqa", "q_a_proj")
+            if pair_name in _cached_tensors:
+                converted_named_tensors += [
+                    (converted_name, converted_param),
+                    (pair_name, _cached_tensors[pair_name]),
+                ]
+                del _cached_tensors[pair_name]
+            else:
+                _cached_tensors[converted_name] = converted_param
+        else:
+            converted_named_tensors.append((converted_name, converted_param))
+    return converted_named_tensors
 
 
 # TODO optimize
@@ -31,7 +95,7 @@ _cached_tensors = {}
 
 
 # TODO optimize code details
-def _convert_to_hf_core(args, model_name, name, param):
+def _convert_to_hf_core(args, model_name, name, param, pair_q_lora: bool = True):
     model_name = model_name.lower()
     if (
         "glm4moelite" in model_name
@@ -59,33 +123,8 @@ def _convert_to_hf_core(args, model_name, name, param):
     else:
         raise ValueError(f"Unsupported model: {model_name}")
 
-    # to compatible with sglang implementation
-    if args.q_lora_rank is not None:
-        old_converted_named_tensors = converted_named_tensors
-        converted_named_tensors = []
-        for converted_name, converted_param in old_converted_named_tensors:
-            if "q_a_proj" in converted_name:
-                pair_name = converted_name.replace("q_a_proj", "kv_a_proj_with_mqa")
-                if pair_name in _cached_tensors:
-                    converted_named_tensors += [
-                        (converted_name, converted_param),
-                        (pair_name, _cached_tensors[pair_name]),
-                    ]
-                    del _cached_tensors[pair_name]
-                else:
-                    _cached_tensors[converted_name] = converted_param
-            elif "kv_a_proj_with_mqa" in converted_name:
-                pair_name = converted_name.replace("kv_a_proj_with_mqa", "q_a_proj")
-                if pair_name in _cached_tensors:
-                    converted_named_tensors += [
-                        (converted_name, converted_param),
-                        (pair_name, _cached_tensors[pair_name]),
-                    ]
-                    del _cached_tensors[pair_name]
-                else:
-                    _cached_tensors[converted_name] = converted_param
-            else:
-                converted_named_tensors.append((converted_name, converted_param))
+    if pair_q_lora:
+        converted_named_tensors = _pair_q_lora_tensors(args, converted_named_tensors)
     return converted_named_tensors
 
 
