@@ -196,8 +196,26 @@ def disable_forward_pre_hook(model_chunks: Sequence[DDP], param_sync: bool = Tru
 
 
 def should_disable_forward_pre_hook(args: Namespace) -> bool:
-    """Block forward pre-hook for certain configurations."""
+    """Return whether overlapped param gather manages DDP forward pre-hooks."""
     return args.use_distributed_optimizer and args.overlap_param_gather
+
+
+def should_suspend_param_gather_forward_pre_hook_for_eval(args: Namespace) -> bool:
+    """Compatibility shim for MXFP8 param gather eval-time parameter sync bugs.
+
+    NVIDIA-NeMo/Megatron-Bridge#3801 tracks known issues when
+    ``--fp8-param-gather`` and ``--reuse-grad-buf-for-mxfp8-param-ag`` switch
+    between training and eval. Miles restores ref/old-actor eval weights from
+    ``TensorBackuper``, so eval must not force a param all-gather from the DDP
+    staging buffer. Remove this shim once the Miles Megatron fork has the
+    upstream eval fixes from Megatron-LM #4562/#4563 and the generalized
+    follow-up #4994.
+    """
+    return (
+        getattr(args, "fp8_param_gather", False)
+        and getattr(args, "reuse_grad_buf_for_mxfp8_param_ag", False)
+        and should_disable_forward_pre_hook(args)
+    )
 
 
 def _iter_distributed_optimizers(optimizer: MegatronOptimizer | None):
@@ -555,12 +573,6 @@ def train_one_step(
     dumper_phase_util.finalize(model)
 
     if not disable_optimizer and valid_step:
-        if args.fp8_param_gather and getattr(args, "offload_optimizer_states", False):
-            # TE's precision-aware Adam temporarily materializes fp32 state
-            # views during step. Drop allocator cache first to avoid small
-            # fragmentation OOMs after long rollout batches.
-            clear_memory()
-
         # Update parameters.
         update_successful, grad_norm, num_zeros_in_grad = optimizer.step()
 

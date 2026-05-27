@@ -41,7 +41,7 @@ from .model import (
     initialize_model_and_optimizer,
     is_forward_pre_hook_enabled,
     save,
-    should_disable_forward_pre_hook,
+    should_suspend_param_gather_forward_pre_hook_for_eval,
     train,
 )
 from .parallel import verify_megatron_parallel_state
@@ -326,15 +326,10 @@ class MegatronTrainRayActor(TrainRayActor):
         store_prefix: str = "",
     ) -> dict[str, list[torch.Tensor]]:
 
-        suspend_forward_pre_hook = (
-            getattr(self.args, "fp8_param_gather", False)
-            and getattr(self.args, "reuse_grad_buf_for_mxfp8_param_ag", False)
-            and should_disable_forward_pre_hook(self.args)
-            and is_forward_pre_hook_enabled(self.model)
-        )
+        suspend_forward_pre_hook = should_suspend_param_gather_forward_pre_hook_for_eval(
+            self.args
+        ) and is_forward_pre_hook_enabled(self.model)
         if suspend_forward_pre_hook:
-            # Ref/old-actor weights are restored from TensorBackuper, not optimizer-owned
-            # main params, so eval must not force param sync from DDP's staging buffer.
             disable_forward_pre_hook(self.model, param_sync=False)
         try:
             with timer(f"{store_prefix}log_probs"):

@@ -18,6 +18,9 @@ from miles.utils.types import ParamInfo
 
 logger = logging.getLogger(__name__)
 
+MXFP8_SCALE_BLOCK_SIZE = 32
+MXFP8_WEIGHT_SCALE_INV_NAME = "weight_scale_inv"
+
 try:
     from megatron.core.fp8_utils import dequantize_fp8_tensor, is_float8tensor
 except ImportError:
@@ -41,27 +44,31 @@ def _dequantize_for_export(name: str, param: torch.Tensor) -> torch.Tensor:
         raise RuntimeError(f"Failed to dequantize fp8 parameter before export: {name}") from e
 
 
+def _uses_high_precision_override(args: Namespace, name: str) -> bool:
+    return any(layer_name in name for layer_name in getattr(args, "extra_high_precision_layers_megatron", ()) or ())
+
+
+def _is_first_or_last_bf16_layer(args: Namespace, name: str) -> bool:
+    if not getattr(args, "first_last_layers_bf16", False):
+        return False
+
+    match = re.search(r"(?:decoder|mtp)\.layers\.(\d+)\.", name)
+    if match is None:
+        return False
+
+    layer_idx = int(match.group(1))
+    num_layers = int(args.num_layers)
+    head_layers = int(getattr(args, "num_layers_at_start_in_bf16", 0))
+    tail_start = num_layers - int(getattr(args, "num_layers_at_end_in_bf16", 0))
+    return layer_idx < head_layers or layer_idx >= tail_start
+
+
 def _use_direct_mxfp8_transfer(args: Namespace, name: str, quantization_config: dict | None) -> bool:
     if not getattr(args, "fp8_param_gather", False):
         return False
     if not quantization_config or quantization_config.get("quant_method") != "mxfp8":
         return False
-    if getattr(args, "extra_high_precision_layers_megatron", False):
-        for layer_name in getattr(args, "extra_high_precision_layers_megatron", ()):
-            if layer_name in name:
-                return False
-
-    if getattr(args, "first_last_layers_bf16", False):
-        match = re.search(r"(?:decoder|mtp)\.layers\.(\d+)\.", name)
-        if match:
-            layer_idx = int(match.group(1))
-            num_layers = int(args.num_layers)
-            head_layers = int(getattr(args, "num_layers_at_start_in_bf16", 0))
-            tail_start = num_layers - int(getattr(args, "num_layers_at_end_in_bf16", 0))
-            if layer_idx < head_layers or layer_idx >= tail_start:
-                return False
-
-    return True
+    return not _uses_high_precision_override(args, name) and not _is_first_or_last_bf16_layer(args, name)
 
 
 def _extract_mxfp8_transfer(
@@ -84,19 +91,37 @@ def _extract_mxfp8_transfer(
         return None
 
     weight_shape = tuple(tensor.shape)
-    if weight_shape[-1] % 32 != 0:
-        raise ValueError(f"Last dim {weight_shape[-1]} must be divisible by 32 for MXFP8 transfer: {name}")
+    if weight_shape[-1] % MXFP8_SCALE_BLOCK_SIZE != 0:
+        raise ValueError(
+            f"Last dim {weight_shape[-1]} must be divisible by {MXFP8_SCALE_BLOCK_SIZE} " f"for MXFP8 transfer: {name}"
+        )
 
     scale_rows = math.prod(weight_shape[:-1])
-    scale_cols = weight_shape[-1] // 32
+    scale_cols = weight_shape[-1] // MXFP8_SCALE_BLOCK_SIZE
     scale = rowwise_scale_inv[:scale_rows, :scale_cols].contiguous()
     scale = scale.view(*weight_shape[:-1], scale_cols)
     return QuantizedWeightTransfer(
-        format="mxfp8",
+        quant_format="mxfp8",
         weight=rowwise_data.contiguous(),
         weight_dtype=torch.float8_e4m3fn,
-        aux_tensors={"weight_scale_inv": scale},
+        aux_tensors={MXFP8_WEIGHT_SCALE_INV_NAME: scale},
     )
+
+
+def _extract_direct_quantized_transfer(
+    args: Namespace, name: str, param: torch.nn.Parameter, quantization_config: dict | None
+) -> QuantizedWeightTransfer | None:
+    """Extract a storage-format payload for rollout weight sync when available."""
+    if not getattr(args, "fp8_param_gather", False):
+        return None
+
+    if quantization_config is None:
+        return None
+
+    quant_method = quantization_config.get("quant_method")
+    if quant_method == "mxfp8":
+        return _extract_mxfp8_transfer(args, name, param, quantization_config)
+    return None
 
 
 def _gather_with_stride(
@@ -128,7 +153,7 @@ def _gather_transfer_with_stride(
                 partition_dim,
                 partition_stride,
             )
-        return first.with_tensors(weight=weight, aux_tensors=aux_tensors)
+        return first.replace_tensors(weight=weight, aux_tensors=aux_tensors)
 
     return _gather_with_stride(partitions, partition_dim, partition_stride)
 
@@ -164,7 +189,7 @@ def all_gather_param(
     if "expert_bias" in name:
         return param
 
-    export_param = _extract_mxfp8_transfer(args, name, param, quantization_config)
+    export_param = _extract_direct_quantized_transfer(args, name, param, quantization_config)
     if export_param is None:
         export_param = _dequantize_for_export(name, param)
     assert hasattr(param, "tensor_model_parallel"), f"{name} does not have tensor_model_parallel attribute"
@@ -184,7 +209,7 @@ def all_gather_param(
     partition_stride, partition_dim = _check_and_fix_partition(args, name, partition_stride, partition_dim)
     if isinstance(export_param, QuantizedWeightTransfer):
         param_partitions = [
-            export_param.with_tensors(
+            export_param.replace_tensors(
                 weight=torch.empty_like(export_param.weight),
                 aux_tensors={
                     aux_name: torch.empty_like(aux_tensor) for aux_name, aux_tensor in export_param.aux_tensors.items()

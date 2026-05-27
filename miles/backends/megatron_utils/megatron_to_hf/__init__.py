@@ -26,14 +26,14 @@ def convert_to_hf(args, model_name, name, param, quantization_config=None):
     param = remove_padding(name, param, args.vocab_size)
 
     converted_named_tensors = _convert_to_hf_core(args, model_name, name, param, pair_q_lora=False)
-    converted_named_tensors = _pair_q_lora_tensors(args, converted_named_tensors)
+    converted_named_tensors = _pair_mla_low_rank_tensors(args, converted_named_tensors)
 
     return quantize_params(args, name, converted_named_tensors, quantization_config)
 
 
 def _convert_quantized_to_hf(args, model_name, name, param, quantization_config=None):
-    if quantization_config is None or quantization_config.get("quant_method") != param.format:
-        raise ValueError(f"Quantized transfer format {param.format} does not match rollout quantization config.")
+    if quantization_config is None or quantization_config.get("quant_method") != param.quant_format:
+        raise ValueError(f"Quantized transfer format {param.quant_format} does not match rollout quantization config.")
 
     converted_weights = _convert_to_hf_core(args, model_name, name, param.weight, pair_q_lora=False)
     converted_aux = {
@@ -55,10 +55,15 @@ def _convert_quantized_to_hf(args, model_name, name, param, quantization_config=
                 )
             converted_named_tensors.append((weight_name.replace(".weight", f".{aux_name}"), aux_tensor.contiguous()))
 
-    return _pair_q_lora_tensors(args, converted_named_tensors)
+    return _pair_mla_low_rank_tensors(args, converted_named_tensors)
 
 
-def _pair_q_lora_tensors(args, converted_named_tensors):
+def _pair_mla_low_rank_tensors(args, converted_named_tensors):
+    """Keep DeepSeek MLA q_a/kv_a tensors adjacent for rollout weight sync.
+
+    ``q_lora_rank`` is a model architecture field, separate from PEFT adapter
+    LoRA controlled by ``--lora-rank``/``--lora-adapter-path``.
+    """
     if args.q_lora_rank is None:
         return converted_named_tensors
 
@@ -124,7 +129,7 @@ def _convert_to_hf_core(args, model_name, name, param, pair_q_lora: bool = True)
         raise ValueError(f"Unsupported model: {model_name}")
 
     if pair_q_lora:
-        converted_named_tensors = _pair_q_lora_tensors(args, converted_named_tensors)
+        converted_named_tensors = _pair_mla_low_rank_tensors(args, converted_named_tensors)
     return converted_named_tensors
 
 

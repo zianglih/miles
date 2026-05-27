@@ -1,21 +1,32 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, replace
-from typing import Literal
 
 import torch
 
 
 @dataclass(frozen=True)
 class QuantizedWeightTransfer:
-    """Quantized weight payload used by direct rollout weight sync."""
+    """Quantized weight payload used by direct rollout weight sync.
 
-    format: Literal["mxfp8"]
+    ``quant_format`` describes the storage contract for ``weight`` and
+    ``aux_tensors``. Keeping the primary quantized storage and format-specific
+    auxiliary tensors together lets future formats such as NVFP4 reuse the
+    same transfer plumbing without going through dense dequantize/quantize
+    round trips.
+    """
+
+    quant_format: str
     weight: torch.Tensor
     weight_dtype: torch.dtype
     aux_tensors: dict[str, torch.Tensor]
 
-    def with_tensors(self, *, weight: torch.Tensor | None = None, aux_tensors: dict[str, torch.Tensor] | None = None):
+    def replace_tensors(
+        self,
+        *,
+        weight: torch.Tensor | None = None,
+        aux_tensors: dict[str, torch.Tensor] | None = None,
+    ) -> QuantizedWeightTransfer:
         return replace(
             self,
             weight=self.weight if weight is None else weight,
@@ -42,7 +53,7 @@ def empty_like_transfer_value(
     value: WeightTransferValue, *, device: torch.device | int | None = None
 ) -> WeightTransferValue:
     if isinstance(value, QuantizedWeightTransfer):
-        return value.with_tensors(
+        return value.replace_tensors(
             weight=torch.empty_like(value.weight, device=device),
             aux_tensors={name: torch.empty_like(tensor, device=device) for name, tensor in value.aux_tensors.items()},
         )

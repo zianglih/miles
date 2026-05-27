@@ -223,7 +223,6 @@ def execute():
         num_gpus_per_node=NUM_GPUS,
         megatron_model_type=MODEL_TYPE,
         megatron_path=MEGATRON_PATH,
-        extra_env_vars={"PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True"},
     )
 
 
