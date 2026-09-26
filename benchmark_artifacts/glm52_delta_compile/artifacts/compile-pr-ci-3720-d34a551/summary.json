@@ -1,0 +1,182 @@
+{
+  "captured_at_utc": "20260926T024505.999120Z",
+  "pr_url": "https://github.com/radixark/miles/pull/3720",
+  "head": "d34a55113647315cc5b5eb5a3532dc563c72fa6c",
+  "all_runs_completed": true,
+  "runs": [
+    {
+      "databaseId": 36212182532,
+      "name": "Approve Trusted CI",
+      "status": "completed",
+      "conclusion": "skipped",
+      "url": "https://github.com/radixark/miles/actions/runs/36212182532",
+      "jobs": [
+        {
+          "name": "approve-held-runs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "url": "https://github.com/radixark/miles/actions/runs/36212182532/job/108320884404"
+        }
+      ]
+    },
+    {
+      "databaseId": 36212183629,
+      "name": "pre-commit",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/radixark/miles/actions/runs/36212183629",
+      "jobs": [
+        {
+          "name": "Run pre-commit",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/radixark/miles/actions/runs/36212183629/job/108320886687"
+        }
+      ]
+    },
+    {
+      "databaseId": 36212183697,
+      "name": "PR Test",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/radixark/miles/actions/runs/36212183697",
+      "jobs": [
+        {
+          "name": "resolve-ci-policy",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108320887188"
+        },
+        {
+          "name": "stage-b-cpu / run-cpu",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108320935860"
+        },
+        {
+          "name": "stage-a-cpu (1) / run-cpu",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108320935894"
+        },
+        {
+          "name": "stage-a-cpu (2) / run-cpu",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108320935931"
+        },
+        {
+          "name": "stage-a-cpu (3) / run-cpu",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108320935996"
+        },
+        {
+          "name": "stage-a-cpu (0) / run-cpu",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108320936311"
+        },
+        {
+          "name": "docker-build",
+          "status": "completed",
+          "conclusion": "skipped",
+          "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108322209146"
+        },
+        {
+          "name": "resolve-ci-image",
+          "status": "completed",
+          "conclusion": "skipped",
+          "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108322209301"
+        },
+        {
+          "name": "stage-b-2-gpu-h200",
+          "status": "completed",
+          "conclusion": "skipped",
+          "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108322209307"
+        },
+        {
+          "name": "stage-c-2-gpu-h200",
+          "status": "completed",
+          "conclusion": "skipped",
+          "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108322209310"
+        },
+        {
+          "name": "stage-c-8-gpu-h200",
+          "status": "completed",
+          "conclusion": "skipped",
+          "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108322209311"
+        },
+        {
+          "name": "stage-c-4-gpu-h200",
+          "status": "completed",
+          "conclusion": "skipped",
+          "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108322209324"
+        },
+        {
+          "name": "stage-c-8-gpu-h100",
+          "status": "completed",
+          "conclusion": "skipped",
+          "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108322209432"
+        },
+        {
+          "name": "stage-c-8-gpu-b200",
+          "status": "completed",
+          "conclusion": "skipped",
+          "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108322209603"
+        }
+      ]
+    },
+    {
+      "databaseId": 36212183808,
+      "name": "PR Test (ROCm)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/radixark/miles/actions/runs/36212183808",
+      "jobs": [
+        {
+          "name": "resolve-ci-policy",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/radixark/miles/actions/runs/36212183808/job/108320887588"
+        },
+        {
+          "name": "resolve-ci-deps",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/radixark/miles/actions/runs/36212183808/job/108320887802"
+        },
+        {
+          "name": "stage-c-4-gpu-mi350",
+          "status": "completed",
+          "conclusion": "skipped",
+          "url": "https://github.com/radixark/miles/actions/runs/36212183808/job/108320934327"
+        },
+        {
+          "name": "resolve-ci-image",
+          "status": "completed",
+          "conclusion": "skipped",
+          "url": "https://github.com/radixark/miles/actions/runs/36212183808/job/108320934369"
+        }
+      ]
+    }
+  ],
+  "files": {
+    "run-36212182532.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "run-36212183629.log": {
+      "bytes": 441639,
+      "sha256": "427884df1baa3c2f0651ea17d4492001d15e074fc2d7ffa784f9fc0ecca4b9fb"
+    },
+    "run-36212183697.log": {
+      "bytes": 10407741,
+      "sha256": "83b288a245e4e3f91a2ff3f01a64143ddae68d74264aab1bd90cc724d5bee563"
+    },
+    "run-36212183808.log": {
+      "bytes": 132659,
+      "sha256": "9521df67da7193ac91b01b8b874c598d6b6445e20af5749b6d41b2c975a7eeb8"
+    }
+  }
+}

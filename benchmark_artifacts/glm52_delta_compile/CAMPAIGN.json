@@ -1,0 +1,233 @@
+{
+  "objective": "Bring up native GLM5.2 five-layer NVFP4 W4A16 disk-delta on C2 4+4 and compare against broadcast; maintain two upstream draft PRs",
+  "devbox": "glm52-delta-0925",
+  "cluster": "c2",
+  "namespace": "ziangli",
+  "host": "hu-pdx-90",
+  "remote_root": "/hai-workspace/glm52-delta",
+  "image": "radixark/miles:dev-202609251434",
+  "image_index_digest": "sha256:abfd1b58539bef057717928a7ce115970fe6854bea82c958c2fe8e18e3014ced",
+  "image_amd64_digest": "sha256:7c4c6c8cc9e76be893941e064f0e43924ef9258b04da365c8009709592ff0984",
+  "miles_pr": "https://github.com/radixark/miles/pull/3711",
+  "miles_head": "81d43908021deaf916808675d7ac78e4fbccfa2f",
+  "sglang_pr": "https://github.com/sgl-project/sglang/pull/41274",
+  "sglang_head": "e3ec949a06323adf4032d35df288c5658c3984bb",
+  "sglang_base_branch": "sglang-miles",
+  "megatron_head": "f148a32b4385b758b66a77c9c3ad1641f1295d4b",
+  "hf_source": "Pinaster/GLM-5.2_5layer",
+  "hf_revision": "1c749139f70e158e4420ba67f342bef1de2e650d",
+  "topology": {
+    "training_gpus": 4,
+    "rollout_gpus": 4,
+    "rollout_engines": 2,
+    "gpus_per_engine": 2
+  },
+  "preparation": "complete with exit 0; initial hostname rendezvous attempt retained as failed; static localhost retry succeeded",
+  "c2_cpu_tests": {
+    "sender": "20 passed, 24 warnings in 0.35s",
+    "receiver": "12 passed in 0.30s",
+    "gloo": "two ranks completed all four collectives, shared validation error, no publication"
+  },
+  "active_run": null,
+  "active_run_log": "artifacts/synthetic-balanced-disk-delta-01.log",
+  "active_run_exit": "artifacts/synthetic-balanced-disk-delta-01.exit",
+  "active_run_status": "All four baseline arms passed; CPU optimization validation follows",
+  "planned_native_measurement": {
+    "num_rollout": 7,
+    "post_training_updates": 6,
+    "steady_updates": 5
+  },
+  "pending": [
+    "Complete final paired native and synthetic-reward GPU campaign",
+    "Collect final raw logs, numerics, source and timing comparisons",
+    "After validation passes, trim unnecessary PR code/test changes and descriptions; revalidate any cleanup",
+    "Refresh both drafts with final self-contained evidence and limitations"
+  ],
+  "smoke": {
+    "name": "smoke-delta-01",
+    "exit": 0,
+    "ray": "succeeded",
+    "startup_driver_s": 12.885385429,
+    "posttraining_driver_s": 25.309423965,
+    "changed_bytes": 0,
+    "training": "zero rewards, advantages and grad_norm",
+    "miles_head": "35dbc9abb23850647f786639f9139a516cc72f8b",
+    "sglang_head": "ee5d7e4ad17f485bfd468d9e44e863edad9eae65"
+  },
+  "campaign_order": [
+    "native-broadcast-01",
+    "native-disk-delta-01",
+    "synthetic-balanced-broadcast-01",
+    "synthetic-balanced-disk-delta-01"
+  ],
+  "native_broadcast": {
+    "exit": 0,
+    "driver_steady_median_s": 1.279045859,
+    "steady_count": 5,
+    "summary_complete": true
+  },
+  "cleanup_instruction": "After validation passes, tighten both draft PRs and remove unnecessary changes; then rerun relevant checks. No active benchmark source changes.",
+  "dataset": {
+    "revisions": {
+      "2e65612930298bde4c5d58fd97b3f23a483aaff9": 2
+    },
+    "file": "/hai-workspace/glm52-delta/datasets/dapo-math-17k/dapo-math-17k.jsonl",
+    "bytes": 10490834,
+    "sha256": "cc9c39c2aa19177abe9464741e121cf4cac90fd25484ef3cdf86535101e3a5b6"
+  },
+  "native_delta": {
+    "exit": 0,
+    "driver_steady_median_s": 6.615738117,
+    "steady_count": 5,
+    "changed_bytes": 0
+  },
+  "host_cpu_instruction": "Reduce host CPU overhead; baseline preserved; candidate batches scalar transfers, avoids unchanged snapshot copies and normal-path object diagnostics, skips empty-delta header work and DEBUG-only allocator probes.",
+  "synthetic_broadcast": {
+    "exit": 0,
+    "steady": {
+      "driver_wall_s": {
+        "count": 5,
+        "median": 1.271644968,
+        "min": 1.260217968,
+        "max": 1.737577933,
+        "mean": 1.369460488,
+        "raw": [
+          1.271644968,
+          1.31585837,
+          1.737577933,
+          1.260217968,
+          1.262003201
+        ]
+      },
+      "builtin_actor_s": {
+        "count": 5,
+        "median": 1.2649214267730713,
+        "min": 1.2517056465148926,
+        "max": 1.7282910346984863,
+        "mean": 1.3612337589263916,
+        "raw": [
+          1.2649214267730713,
+          1.308382511138916,
+          1.7282910346984863,
+          1.2517056465148926,
+          1.2528681755065918
+        ]
+      },
+      "trainer_max_wall_s": {
+        "count": 5,
+        "median": 1.261573798,
+        "min": 1.248620204,
+        "max": 1.725515947,
+        "mean": 1.3576399098,
+        "raw": [
+          1.261573798,
+          1.302805633,
+          1.725515947,
+          1.248620204,
+          1.249683967
+        ]
+      },
+      "generation_pause_upper_bound_s": {
+        "count": 5,
+        "median": 1.260436728,
+        "min": 1.247560357,
+        "max": 1.724485113,
+        "mean": 1.3565804444,
+        "raw": [
+          1.260436728,
+          1.301777017,
+          1.724485113,
+          1.247560357,
+          1.248643007
+        ]
+      },
+      "pull_weights_max_rpc_s": {
+        "count": 0,
+        "median": null,
+        "min": null,
+        "max": null,
+        "mean": null,
+        "raw": []
+      },
+      "update_weights_from_disk_max_rpc_s": {
+        "count": 0,
+        "median": null,
+        "min": null,
+        "max": null,
+        "mean": null,
+        "raw": []
+      },
+      "begin_weight_update_max_rpc_s": {
+        "count": 5,
+        "median": 0.003616575,
+        "min": 0.003287793,
+        "max": 0.003983547,
+        "mean": 0.0036350006,
+        "raw": [
+          0.00382231,
+          0.003983547,
+          0.003616575,
+          0.003464778,
+          0.003287793
+        ]
+      },
+      "end_weight_update_max_rpc_s": {
+        "count": 5,
+        "median": 0.016857649,
+        "min": 0.016509074,
+        "max": 0.016995992,
+        "mean": 0.0168267366,
+        "raw": [
+          0.016857649,
+          0.016790939,
+          0.016980029,
+          0.016509074,
+          0.016995992
+        ]
+      },
+      "delta_capture_baseline_max_s": {
+        "count": 0,
+        "median": null,
+        "min": null,
+        "max": null,
+        "mean": null,
+        "raw": []
+      },
+      "delta_begin_encode_max_s": {
+        "count": 0,
+        "median": null,
+        "min": null,
+        "max": null,
+        "mean": null,
+        "raw": []
+      },
+      "deltaafter_base_weights_max_s": {
+        "count": 0,
+        "median": null,
+        "min": null,
+        "max": null,
+        "mean": null,
+        "raw": []
+      },
+      "delta_write_delta_files_max_s": {
+        "count": 0,
+        "median": null,
+        "min": null,
+        "max": null,
+        "mean": null,
+        "raw": []
+      },
+      "delta_reload_engines_max_s": {
+        "count": 0,
+        "median": null,
+        "min": null,
+        "max": null,
+        "mean": null,
+        "raw": []
+      }
+    },
+    "nonzero_training_signal": true
+  },
+  "baseline_campaign_complete": true,
+  "user_multi_node_context": "Single-node slowdown accepted; intended use is large multi-node distributed jobs with amortized overhead. No cross-node performance claim."
+}

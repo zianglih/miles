@@ -1,0 +1,23 @@
+{"capability": "AVX512", "event": "provenance", "host": "hu-pdx-90", "intra_threads": 1, "options": {"cpp.dynamic_threads": false, "cpp.threads": 1, "cpp_wrapper": true}, "torch": "2.13.0+cu130", "torch_git": "cf30153c4c131c8164ee7798e5022d810682e2cb"}
+{"event": "cold", "variant": "fused_word_prepare", "wall_s": 18.796283446252346}
+{"bytes": 4194304, "cpu_s": 0.006400464000000383, "event": "sample", "iteration": 0, "variant": "fused_word_prepare", "wall_s": 0.0063703968189656734, "warmup": true}
+{"bytes": 4194304, "cpu_s": 0.013805138000000383, "event": "sample", "iteration": 1, "variant": "fused_word_prepare", "wall_s": 0.013788019772619009, "warmup": true}
+{"bytes": 4194304, "cpu_s": 0.0021371260000000447, "event": "sample", "iteration": 2, "variant": "fused_word_prepare", "wall_s": 0.002122960053384304, "warmup": false}
+{"bytes": 4194304, "cpu_s": 0.001531216999999252, "event": "sample", "iteration": 3, "variant": "fused_word_prepare", "wall_s": 0.001520277000963688, "warmup": false}
+{"bytes": 4194304, "cpu_s": 0.0014706030000004588, "event": "sample", "iteration": 4, "variant": "fused_word_prepare", "wall_s": 0.0014582029543817043, "warmup": false}
+{"bytes": 4194304, "cpu_s": 0.0004718019999998546, "event": "sample", "iteration": 5, "variant": "fused_word_prepare", "wall_s": 0.0014243731275200844, "warmup": false}
+{"bytes": 4194304, "cpu_s": 0.001423332999999971, "event": "sample", "iteration": 6, "variant": "fused_word_prepare", "wall_s": 0.0014140750281512737, "warmup": false}
+{"bytes": 4194304, "cpu_s": 0.0014487040000004114, "event": "sample", "iteration": 7, "variant": "fused_word_prepare", "wall_s": 0.0014396598562598228, "warmup": false}
+{"bytes": 4194304, "cpu_s": 0.0010452279999997316, "event": "sample", "iteration": 8, "variant": "fused_word_prepare", "wall_s": 0.0014271186664700508, "warmup": false}
+{"bytes": 4194304, "event": "summary", "medians": {"fused_word_prepare": {"cpu_s": 0.0014487040000004114, "wall_s": 0.0014396598562598228}}}
+{"bytes": 134217728, "cpu_s": 0.19551357100000022, "event": "sample", "iteration": 0, "variant": "fused_word_prepare", "wall_s": 0.19649020908400416, "warmup": true}
+{"bytes": 134217728, "cpu_s": 0.18026454300000072, "event": "sample", "iteration": 1, "variant": "fused_word_prepare", "wall_s": 0.1802602019160986, "warmup": true}
+{"bytes": 134217728, "cpu_s": 0.18043223900000083, "event": "sample", "iteration": 2, "variant": "fused_word_prepare", "wall_s": 0.18042215472087264, "warmup": false}
+{"bytes": 134217728, "cpu_s": 0.18018176500000038, "event": "sample", "iteration": 3, "variant": "fused_word_prepare", "wall_s": 0.18017944507300854, "warmup": false}
+{"bytes": 134217728, "cpu_s": 0.18018593999999943, "event": "sample", "iteration": 4, "variant": "fused_word_prepare", "wall_s": 0.18017232697457075, "warmup": false}
+{"bytes": 134217728, "cpu_s": 0.17964465300000043, "event": "sample", "iteration": 5, "variant": "fused_word_prepare", "wall_s": 0.17962986882776022, "warmup": false}
+{"bytes": 134217728, "cpu_s": 0.17875214700000086, "event": "sample", "iteration": 6, "variant": "fused_word_prepare", "wall_s": 0.17873550299555063, "warmup": false}
+{"bytes": 134217728, "cpu_s": 0.18232322799999956, "event": "sample", "iteration": 7, "variant": "fused_word_prepare", "wall_s": 0.182307964656502, "warmup": false}
+{"bytes": 134217728, "cpu_s": 0.24468030600000112, "event": "sample", "iteration": 8, "variant": "fused_word_prepare", "wall_s": 0.24466332606971264, "warmup": false}
+{"bytes": 134217728, "event": "summary", "medians": {"fused_word_prepare": {"cpu_s": 0.18018593999999943, "wall_s": 0.18017944507300854}}}
+{"event": "complete"}

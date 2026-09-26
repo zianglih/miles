@@ -1,0 +1,17 @@
+{
+  "plan_sha256": "d7483ae580a0e73b4f2f5f0d355a96d5adc7d05b834006acfe7d388b7332be9d",
+  "metadata_selection": {
+    "campaign_metadata": {
+      "path": "CAMPAIGN_COMPILE_V2.json",
+      "sha256": "66b650a5bc1ebb4c74327f0fca1a2fc055c98d3a512944b9afd9a91bd1363b53"
+    },
+    "environment_metadata": {
+      "path": "environment-image-compile-v2.json",
+      "sha256": "ee2e29f7ccdc3bbbb9a0f0c20e432ab25211a40b282551778b134d584ad8c96d"
+    },
+    "cpu_calibration_metadata": {
+      "path": "artifacts/cpu-observer-fast-final-calibration.json",
+      "sha256": "ce8386c75e01125a7e3754844389a82f2e889200df0ce233cd030aff87216707"
+    }
+  }
+}

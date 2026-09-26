@@ -1,0 +1,25 @@
+{
+  "base": "6fb0e2a9d81fc343863ba6015512fe93992892e4",
+  "hosted_merge": "5093563d01e81e6a71a1425470f32e359338f37f",
+  "state": "uncommitted test-only compatibility fixture",
+  "files": [
+    {
+      "path": "miles/utils/delta_preparation.py",
+      "sha256": "281534dfa6b8fef9840f17af2522c3d8100097a68baf0b30bf0c2e1af69a7788",
+      "base_6fb_sha256": "281534dfa6b8fef9840f17af2522c3d8100097a68baf0b30bf0c2e1af69a7788",
+      "same_as_base": true
+    },
+    {
+      "path": "miles/backends/training_utils/weight_update/packed_delta.py",
+      "sha256": "c71414f2997b2b824b65054bbd3f76a77b7b5ac89f5a2165c09b4d8ba46909bb",
+      "base_6fb_sha256": "c71414f2997b2b824b65054bbd3f76a77b7b5ac89f5a2165c09b4d8ba46909bb",
+      "same_as_base": true
+    },
+    {
+      "path": "tests/fast/utils/test_delta_preparation.py",
+      "sha256": "62622e15c9d61a7aa319eff2a8c7502a695bd36b1241bcb686aae5625933b631",
+      "base_6fb_sha256": "53a1bb69f1efc29922a2ac12438ae9996b51e322c723f5bff6aa8cede14d83e4",
+      "same_as_base": false
+    }
+  ]
+}

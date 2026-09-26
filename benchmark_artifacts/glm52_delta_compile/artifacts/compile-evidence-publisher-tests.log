@@ -1,0 +1,10 @@
+test_complete_bundle_preserves_bytes_and_audit_is_read_only (test_publish_compile_evidence.BundleTests.test_complete_bundle_preserves_bytes_and_audit_is_read_only) ... ok
+test_missing_raw_file_rejects_before_any_stage (test_publish_compile_evidence.BundleTests.test_missing_raw_file_rejects_before_any_stage) ... ok
+test_real_historical_replay_and_failed_sample (test_publish_compile_evidence.BundleTests.test_real_historical_replay_and_failed_sample) ... ok
+test_stage_is_dedicated_idempotent_and_refuses_overwrite (test_publish_compile_evidence.BundleTests.test_stage_is_dedicated_idempotent_and_refuses_overwrite) ... ok
+test_text_boundary_and_non_disclosing_secret_scan (test_publish_compile_evidence.BundleTests.test_text_boundary_and_non_disclosing_secret_scan) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.257s
+
+OK

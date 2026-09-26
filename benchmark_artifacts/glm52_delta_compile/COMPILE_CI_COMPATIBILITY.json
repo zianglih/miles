@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "state": "linux-focused-and-full-shard-passed",
+  "historical_head": "6fb0e2a9d81fc343863ba6015512fe93992892e4",
+  "test_path": "tests/fast/utils/test_delta_preparation.py",
+  "tested_test_sha256": "62622e15c9d61a7aa319eff2a8c7502a695bd36b1241bcb686aae5625933b631",
+  "source_state": "uncommitted test-only compatibility fixture during Linux diagnostics",
+  "upstream_pr": "https://github.com/pytorch/pytorch/pull/178950",
+  "upstream_commit": "https://github.com/pytorch/pytorch/commit/d7b75b8250f43949bb2609f406ac942f935cab46",
+  "focused": {
+    "log": "artifacts/compile-pr-ci-3720-6fb0e2a/linux-compatibility-focused.log",
+    "summary": "18 passed, 18 warnings in 45.59s",
+    "phases": "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-results/phases.jsonl",
+    "phase": "focused"
+  },
+  "full_shard": {
+    "state": "passed",
+    "log": "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-full-16-logical-gpus-results/full-shard-1.log",
+    "summary": "3172 passed, 27 skipped, 44 warnings in 288.97s",
+    "phases": "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-full-16-logical-gpus-results/phases.jsonl",
+    "phase": "full-shard-1",
+    "scope": "Hosted shard file list on diagnostic merge5093563 plus byte-identical compatibility test; C2 Linux runtime, not GitHub hardware/memory limits. Sixteen invalid physical CUDA IDs preserve logical placement indices while Torch reports zero available GPUs."
+  },
+  "files": {
+    "artifacts/compile-pr-ci-3720-6fb0e2a/linux-compatibility-focused.log": {
+      "sha256": "19f83e215a78e5e2eac5bab99f6a3a08cd9080f8a58889b977dbb8c2e7c14b9b",
+      "bytes": 72582
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/linux-compatibility-full-shard-1-first.log": {
+      "sha256": "cf2edc9f4ded35d70dc63ae496e12b8a2071220879c5fa5635f9a23302149818",
+      "bytes": 50998
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/linux-installed-packages.txt": {
+      "sha256": "1d410fc150571c04de3f9e296b46faae702a48573084629614c96a76ba15ecb5",
+      "bytes": 4112
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/test-compatibility-source-manifest.json": {
+      "sha256": "231e0e22effd1a583e1eadc3f9cd7d8e66d679f980960836d5314589cd98c51f",
+      "bytes": 1033
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/linux-first-failure/results/focused.log": {
+      "sha256": "7cf20e57150634120072f3bb4d95d61830c752f53c19889d46bf0ac38972b08e",
+      "bytes": 35019
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/linux-first-failure/results/phases.jsonl": {
+      "sha256": "65dcdade95efbc0a922363019db737c97c23faac7335f778c41dd8a1e00a0e8a",
+      "bytes": 1092
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/linux-first-failure/run_reproduction.py": {
+      "sha256": "07c09b4943cd84fa718cdfa410b9e3e8d3b3f6b5ee49dcb851e01adbbd3989f7",
+      "bytes": 3473
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/linux-first-failure/setup-logs/runtime.json": {
+      "sha256": "9cc12363ce041ca43d6c714f5bb5c268ba5980b45e9b01fa27ec7dbbe908e95b",
+      "bytes": 2391
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/linux-first-failure/setup-logs/compiler.txt": {
+      "sha256": "88b7c4b67564a146863224148116065fee418539f0a408f3636a68f3bde51805",
+      "bytes": 246
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/linux-first-failure/setup-logs/lscpu.txt": {
+      "sha256": "b6b0a9c18b52b7f8ac6582e2951eb02e1a5bd58030e16c3979dda97e8739c557",
+      "bytes": 4098
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/compatibility-head-update/verified-heads.json": {
+      "sha256": "d7684d1975e3f73c47af17d57db4b8b2b9172694a4f4782058a44f9d568e287a",
+      "bytes": 1326
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/ci_resource_probe.py": {
+      "sha256": "2e12b4a90ce9c433008a914e078c4d301665833f4952ed38d988386ab7872918",
+      "bytes": 2060
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-full-16-logical-gpus-results/full-shard-1-fatal.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-full-16-logical-gpus-results/full-shard-1.log": {
+      "sha256": "3b67862120d36f5bfeebe9f1161aacffd42cbefdcd52b491cf71fd916dae6bc8",
+      "bytes": 2707212
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-full-16-logical-gpus-results/phases.jsonl": {
+      "sha256": "f189d098622a41774cfb082baac7bf6a795822424a80db6b6a9f05abace9a802",
+      "bytes": 7993
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-full-logical-gpus-results/full-shard-1-fatal.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-full-logical-gpus-results/full-shard-1.log": {
+      "sha256": "96e4c5f410a6801b9c85ab5c3839983c65d8ce6aa23110711cb138135164254f",
+      "bytes": 2729072
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-full-logical-gpus-results/phases.jsonl": {
+      "sha256": "387e6c79973df72873e3f9f5b4416fb3b13f86fa71b91ecb936ff98b128eadf6",
+      "bytes": 7990
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-full-results/full-shard-1-fatal.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-full-results/full-shard-1.log": {
+      "sha256": "0bc0d5f2d23522340afa2092bddd865452c77ba62fcde417c9c36535208e103e",
+      "bytes": 1271696
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-full-results/phases.jsonl": {
+      "sha256": "94241ea92b5e58614df8927069fa5ae0ed9c309090e0ce1b71390f2d02b71d35",
+      "bytes": 7976
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-results/focused-fatal.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-results/focused.log": {
+      "sha256": "19f83e215a78e5e2eac5bab99f6a3a08cd9080f8a58889b977dbb8c2e7c14b9b",
+      "bytes": 72582
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-results/full-shard-1-fatal.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-results/full-shard-1.log": {
+      "sha256": "cf2edc9f4ded35d70dc63ae496e12b8a2071220879c5fa5635f9a23302149818",
+      "bytes": 50998
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-results/phases.jsonl": {
+      "sha256": "9e69bfd6338c9712a0bfcb7c5f8c04814de62a51d380ada802f979967f9af4b3",
+      "bytes": 8678
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/diagnostic-cleanup.json": {
+      "sha256": "3b6cafe6fd685f19867b5087da255281b00bc4e820f7e20c959325f1e40b3f29",
+      "bytes": 119445
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/finalize_setup.sh": {
+      "sha256": "eda06e67827f1103026bf1c27deba92ab34bef7f3b2501bdfd54181c478373ba",
+      "bytes": 2060
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/hosted-installed-constraints.txt": {
+      "sha256": "eb1b6675bba7a6656ee1dfda3a343318642e187e28157fbb8b2cc420c623b63c",
+      "bytes": 4093
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/hosted-shard-1-pytest-argv.json": {
+      "sha256": "4d3c52e08e481681008938cd9e9a943710c908e31f030d9304620b3f14f8e1f2",
+      "bytes": 7196
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/miles/tests/fast/utils/test_delta_preparation.py": {
+      "sha256": "62622e15c9d61a7aa319eff2a8c7502a695bd36b1241bcb686aae5625933b631",
+      "bytes": 13475
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/results/focused-fatal.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/results/focused.log": {
+      "sha256": "7cf20e57150634120072f3bb4d95d61830c752f53c19889d46bf0ac38972b08e",
+      "bytes": 35019
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/results/phases.jsonl": {
+      "sha256": "65dcdade95efbc0a922363019db737c97c23faac7335f778c41dd8a1e00a0e8a",
+      "bytes": 1092
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/resume_setup.sh": {
+      "sha256": "dfa6efb146dc2076a31712b759d074005dff3e94bbac103b53e1b7855ec72022",
+      "bytes": 3158
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/run_compatibility.py": {
+      "sha256": "6aa600a5c5409485f23b789fc6b5d8556c78f3a360dccaf905bd2c0d6d1203a0",
+      "bytes": 3501
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/run_compatibility_full.py": {
+      "sha256": "782241af2c3f8efd7806939e62833053eaa87b3899baa7840ec9ed79b7af5857",
+      "bytes": 3395
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/run_compatibility_full_16_logical_gpus.py": {
+      "sha256": "ebddeea8334299c12846e2e8924673c2ac36c8a2f2fd79b5692f3e4fb197dd29",
+      "bytes": 3472
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/run_compatibility_full_logical_gpus.py": {
+      "sha256": "5114ac1781fd199fdae0584fc5d4f994c94a82a9e11b1f03eecedca1efc307c1",
+      "bytes": 3442
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/run_reproduction.py": {
+      "sha256": "07c09b4943cd84fa718cdfa410b9e3e8d3b3f6b5ee49dcb851e01adbbd3989f7",
+      "bytes": 3473
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/setup-logs/compiler.txt": {
+      "sha256": "88b7c4b67564a146863224148116065fee418539f0a408f3636a68f3bde51805",
+      "bytes": 246
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/setup-logs/installed-packages.txt": {
+      "sha256": "1d410fc150571c04de3f9e296b46faae702a48573084629614c96a76ba15ecb5",
+      "bytes": 4112
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/setup-logs/lscpu.txt": {
+      "sha256": "b6b0a9c18b52b7f8ac6582e2951eb02e1a5bd58030e16c3979dda97e8739c557",
+      "bytes": 4098
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/setup-logs/runtime.json": {
+      "sha256": "9cc12363ce041ca43d6c714f5bb5c268ba5980b45e9b01fa27ec7dbbe908e95b",
+      "bytes": 2391
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/setup-logs/setup-finalize.log": {
+      "sha256": "2a9c53e4169f0eaf06598364e5b64d67d081346bc3fa54e9fed6ac9ebc68022f",
+      "bytes": 3561
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/setup-logs/setup-resume.log": {
+      "sha256": "dadee5577a13be5c5281a3d82aead37ac41765e9b43056e9d6c34a780e2f6506",
+      "bytes": 9394
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/setup-logs/setup.log": {
+      "sha256": "3185fe3d46c32bff9c11c3b11778ba63156ce0b8e018152dbe4bed568ea7f283",
+      "bytes": 1480
+    },
+    "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/setup_after_gpu.sh": {
+      "sha256": "68317ae91209d7cbbcc9720c5c4130f6f46fa8a7409899fcb88525ea9c53eb48",
+      "bytes": 4226
+    }
+  },
+  "selected_sources": {
+    "standalone": "d34a55113647315cc5b5eb5a3532dc563c72fa6c",
+    "combined": "767439e95bca5203211ba374b4e04b702c2b7ed2"
+  }
+}

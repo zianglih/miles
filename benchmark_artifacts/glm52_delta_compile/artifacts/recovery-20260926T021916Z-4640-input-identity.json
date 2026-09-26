@@ -1,0 +1,105 @@
+{
+  "model_revision": "1c749139f70e158e4420ba67f342bef1de2e650d",
+  "dataset_revision": "2e65612930298bde4c5d58fd97b3f23a483aaff9",
+  "dataset_sha256": "cc9c39c2aa19177abe9464741e121cf4cac90fd25484ef3cdf86535101e3a5b6",
+  "miles": "f17ba4bce13bf7d357e7560182dc859c41a7cb37",
+  "nvfp4_env": {
+    "OPEN_TRAINING_NVFP4_FAKE_QAT_FLAG": "1",
+    "SGLANG_FLASHINFER_CUTEDSL_NVFP4_W4A16": "1",
+    "SGLANG_FLASHINFER_MOE_FUSED_FINALIZE": "0",
+    "NVTE_NVFP4_DISABLE_2D_QUANTIZATION": "1",
+    "NVTE_NVFP4_DISABLE_RHT": "1",
+    "NVTE_NVFP4_DISABLE_STOCHASTIC_ROUNDING": "1",
+    "NVTE_USE_FAST_MATH": "0",
+    "NVTE_NVFP4_4OVER6": "all",
+    "NVTE_NVFP4_4OVER6_E4M3_USE_256": "none",
+    "NVTE_NVFP4_4OVER6_ERR_MODE": "MSE",
+    "NVTE_NVFP4_4OVER6_ERR_USE_FAST_MATH": "1"
+  },
+  "source_files": {
+    ".gitattributes": {
+      "bytes": 1570,
+      "sha256": "34448b82c17d60fec9b65b1f093c115ddbaadc04beb1b0140b6bfed2e012a930"
+    },
+    "chat_template.jinja": {
+      "bytes": 5076,
+      "sha256": "172dc74a35e1752df75ecfb2b2cf9326d2852bb1379868ebeec9571654489679"
+    },
+    "config.json": {
+      "bytes": 1690,
+      "sha256": "f426922f0ad4efaaa6cae6dd24a6f0c59b0df1a6a1265857c4e9a949a5fdb020"
+    },
+    "generation_config.json": {
+      "bytes": 194,
+      "sha256": "ac76b43d8683d3b930126870fc8be73d8679308fe752fa1f381096d8354f6a55"
+    },
+    "model-00001-of-00282.safetensors": {
+      "bytes": 5342821416,
+      "sha256": "004bf9404964da8ea71ea2d3ebf02148fa766b956bd4fca3f54b093e58a6a74c"
+    },
+    "model-00002-of-00282.safetensors": {
+      "bytes": 67108984,
+      "sha256": "6e51c7c2c22ae3e5d2d4f4706ad917b04cf140c3f1743fd42d47fcb177cb31d3"
+    },
+    "model-00038-of-00282.safetensors": {
+      "bytes": 801799616,
+      "sha256": "82595223f733f465fb923409703735f85da5ca28a0a7045a5439054d922af974"
+    },
+    "model-00075-of-00282.safetensors": {
+      "bytes": 931152424,
+      "sha256": "0cf4a6ac886004adaf5e6b33b689ec29c33eebc1660a59b4900bcb21422ce2c4"
+    },
+    "model-00076-of-00282.safetensors": {
+      "bytes": 5360347104,
+      "sha256": "1c65131e725c858d2e458da91b443ba95488b0f1343129fc629cbc3d35350d6c"
+    },
+    "model-00077-of-00282.safetensors": {
+      "bytes": 5360347104,
+      "sha256": "68aceb515ad523d9794318ec8578b68fbe9e42648bf222ccd337e1fdac02b23d"
+    },
+    "model-00078-of-00282.safetensors": {
+      "bytes": 5360346952,
+      "sha256": "8720873631cb258ece1f196e7f389e39b219901a4c49db2328f783fc78e4ee15"
+    },
+    "model-00079-of-00282.safetensors": {
+      "bytes": 2723969648,
+      "sha256": "c59b42b5a95bdc9b5b922c26ff50cfbc97878489db17570663bf9421fe543919"
+    },
+    "model-00116-of-00282.safetensors": {
+      "bytes": 3598743040,
+      "sha256": "447b01c0958cb1b35c675256dff1f1d13b84e782d332a204237eaf93de043bee"
+    },
+    "model-00117-of-00282.safetensors": {
+      "bytes": 5360347104,
+      "sha256": "703e4dfbea787c84c26fbb6b0200378262cf2e2c5e48d563a7fcc9b10a75ee19"
+    },
+    "model-00118-of-00282.safetensors": {
+      "bytes": 5360347064,
+      "sha256": "fec6264b97ff493fea3d61a44b999da9e1af4202ded96a9929478ae4c2610b88"
+    },
+    "model-00119-of-00282.safetensors": {
+      "bytes": 5349617128,
+      "sha256": "95a69af73c4d8bd4d5858defdc5c82294c1e01d67fe34b23adf48a4ee6c69242"
+    },
+    "model-00120-of-00282.safetensors": {
+      "bytes": 67108984,
+      "sha256": "89a22435ddf819088c6b102f81dc673c41be5f12bb868874ee4aa444de80585b"
+    },
+    "model-00282-of-00282.safetensors": {
+      "bytes": 12376,
+      "sha256": "7e26cafa850631ede0839584e4b396a7058466998bdf8e7bae2775f77d1a4b44"
+    },
+    "model.safetensors.index.json": {
+      "bytes": 145189,
+      "sha256": "d898bb64c9258ed870a83d23fde8142cb71c0db5eba8dcacd9d2884b4c995ec9"
+    },
+    "tokenizer.json": {
+      "bytes": 20217442,
+      "sha256": "19e773648cb4e65de8660ea6365e10acca112d42a854923df93db4a6f333a82d"
+    },
+    "tokenizer_config.json": {
+      "bytes": 761,
+      "sha256": "98b1271574f41abf89427ae2dda030d94dc9478f0edc5a8bd240db213c6fd5fc"
+    }
+  }
+}

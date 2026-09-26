@@ -1,0 +1,22 @@
+Filesystem                  Size  Used Avail Use% Mounted on
+/dev/mapper/vg_k8s-kubelet  4.2T  162M  4.0T   1% /hai-workspace
+Collecting uv==0.12.19
+  Downloading uv-0.12.19-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (11 kB)
+Downloading uv-0.12.19-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (20.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 20.5/20.5 MB 47.6 MB/s  0:00:00
+Installing collected packages: uv
+Successfully installed uv-0.12.19
+uv 0.12.16 (x86_64-unknown-linux-gnu)
+Downloading cpython-3.11.16-linux-x86_64-gnu (download) (29.4MiB)
+ Downloaded cpython-3.11.16-linux-x86_64-gnu (download)
+Installed Python 3.11.16 in 1.08s
+ + cpython-3.11.16-linux-x86_64-gnu (python3.11)
+warning: `/root/.local/bin` is not on your PATH. To use installed Python executables, run `export PATH="/root/.local/bin:$PATH"` or `uv python update-shell`.
+Using CPython 3.11.16
+Creating virtual environment at: /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv
+Activate with: source /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/activate
+Python 3.11.16
+fatal: detected dubious ownership in repository at '/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/miles-source.git'
+To add an exception for this directory, call:
+
+	git config --global --add safe.directory /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/miles-source.git

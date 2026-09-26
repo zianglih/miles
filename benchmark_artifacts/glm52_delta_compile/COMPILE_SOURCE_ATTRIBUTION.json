@@ -1,0 +1,33 @@
+{
+  "standalone_cpu_replay": {
+    "measured_source": "6fb0e2a9d81fc343863ba6015512fe93992892e4",
+    "selected_source": "d34a55113647315cc5b5eb5a3532dc563c72fa6c",
+    "changed_paths": [
+      "tests/fast/utils/test_delta_preparation.py"
+    ],
+    "all_other_tracked_paths_identical": true,
+    "production_sha256": {
+      "miles/utils/delta_preparation.py": "281534dfa6b8fef9840f17af2522c3d8100097a68baf0b30bf0c2e1af69a7788",
+      "miles/utils/arguments.py": "a145e3e7cf7468e31ef0cbe5cdc9808c6ea7521347fff16498f0820a0fa65b31",
+      "miles/backends/training_utils/weight_update/packed_delta.py": "c71414f2997b2b824b65054bbd3f76a77b7b5ac89f5a2165c09b4d8ba46909bb",
+      "miles/backends/training_utils/weight_update/protocols/delta.py": "6cb093b157964854960177d9e30a3d61e6b8426bc99d5f6a5868625fcd61da0d"
+    },
+    "selected_compatibility_test_sha256": "62622e15c9d61a7aa319eff2a8c7502a695bd36b1241bcb686aae5625933b631"
+  },
+  "combined_historical_preflight": {
+    "measured_source": "283a1cb4e6ed4a3712a39bc5dbd26060465bdcca",
+    "selected_source": "767439e95bca5203211ba374b4e04b702c2b7ed2",
+    "changed_paths": [
+      "tests/fast/utils/test_delta_preparation.py"
+    ],
+    "all_other_tracked_paths_identical": true,
+    "production_sha256": {
+      "miles/utils/delta_preparation.py": "281534dfa6b8fef9840f17af2522c3d8100097a68baf0b30bf0c2e1af69a7788",
+      "miles/utils/arguments.py": "a145e3e7cf7468e31ef0cbe5cdc9808c6ea7521347fff16498f0820a0fa65b31",
+      "miles/backends/training_utils/weight_update/packed_delta.py": "c71414f2997b2b824b65054bbd3f76a77b7b5ac89f5a2165c09b4d8ba46909bb",
+      "miles/backends/training_utils/weight_update/protocols/delta.py": "fee40128bec0c0301e582a02f79588ef70997de68fd0a55f2936a451f31731ba"
+    },
+    "selected_compatibility_test_sha256": "62622e15c9d61a7aa319eff2a8c7502a695bd36b1241bcb686aae5625933b631"
+  },
+  "scope": "Earlier CPU timings/tests retain their measured commits; production identity does not make them new-head tests."
+}

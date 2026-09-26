@@ -1,0 +1,57 @@
+{
+  "pr": "https://github.com/radixark/miles/pull/3720",
+  "head": "6fb0e2a9d81fc343863ba6015512fe93992892e4",
+  "terminal": true,
+  "hosted_ci_passed": false,
+  "failed_job": {
+    "name": "stage-a-cpu (1) / run-cpu",
+    "url": "https://github.com/radixark/miles/actions/runs/36209271034/job/108312293487",
+    "exit_code": 250,
+    "last_test": "tests/fast/utils/test_delta_preparation.py::test_actor_inference_allocations_match_warmed_worker_dispatch[entries1-4]",
+    "time_utc": "2026-09-26T01:47:20Z",
+    "log_line_1based": 42814,
+    "traceback_or_pytest_failure_summary": false,
+    "signal_inference": "run_suite.py returns subprocess.call directly through sys.exit; -6/SIGABRT would produce shell status 250. No raw signal/core/stderr artifact establishes SIGABRT or its cause."
+  },
+  "successful_test_jobs": {
+    "stage-a-cpu (0)": "2859 passed, 10 skipped, 35 warnings in 252.57s",
+    "stage-a-cpu (2)": "2854 passed, 3 skipped, 7 xfailed, 69 warnings in 300.31s",
+    "stage-a-cpu (3)": "1823 passed, 18 skipped, 61 warnings in 267.24s",
+    "stage-b-cpu": "92 passed, 18 skipped, 23 warnings in 227.10s",
+    "pre-commit": "success"
+  },
+  "skips": {
+    "policy": "regular cadence, labels=[], bypass_fastfail=false, all seven GPU stages explicitly skipped by resolved policy",
+    "cuda_jobs": [
+      "docker-build",
+      "resolve-ci-image",
+      "stage-b-2-gpu-h200",
+      "stage-c-2-gpu-h200",
+      "stage-c-4-gpu-h200",
+      "stage-c-8-gpu-h100",
+      "stage-c-8-gpu-h200",
+      "stage-c-8-gpu-b200"
+    ],
+    "rocm_jobs": [
+      "resolve-ci-image",
+      "stage-c-4-gpu-mi350"
+    ],
+    "other": [
+      "approve-held-runs"
+    ]
+  },
+  "failed_job_environment": {
+    "runner": "ubuntu-latest",
+    "os": "Ubuntu 24.04",
+    "image": "20260920.314.1",
+    "python": "3.11.16",
+    "torch": "2.11.0",
+    "numpy": "2.4.6",
+    "uv": "0.12.19",
+    "explicit_OMP_or_MKL_limit_in_workflow": false
+  },
+  "workflow_uploaded_artifacts": 0,
+  "actions_taken": "Read-only gh via verified zianglih identity. No rerun, comments, source edits or C2 calls.",
+  "evidence_caution": "Workflow logs include PR_BODY environment output with historical C2 logs. Only timestamped hosted test lines are treated as hosted results.",
+  "source_recommendation": "No change recommended from this log alone. Source agent is investigating runtime/version/context interactions; preserve source pins during the GPU campaign."
+}

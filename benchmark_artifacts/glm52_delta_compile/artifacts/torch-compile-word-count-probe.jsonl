@@ -1,0 +1,42 @@
+{"capability": "AVX512", "event": "provenance", "host": "hu-pdx-90", "intra_threads": 1, "options": {"cpp.dynamic_threads": false, "cpp.threads": 1, "cpp_wrapper": true}, "torch": "2.13.0+cu130", "torch_git": "cf30153c4c131c8164ee7798e5022d810682e2cb"}
+{"event": "cold", "variant": "count32", "wall_s": 14.11792655987665}
+{"event": "cold", "variant": "count_words", "wall_s": 2.6014837017282844}
+{"bytes": 4194304, "cpu_s": 0.00441400500000011, "event": "sample", "iteration": 0, "variant": "count32", "wall_s": 0.004382753279060125, "warmup": true}
+{"bytes": 4194304, "cpu_s": 0.0011379119999999077, "event": "sample", "iteration": 0, "variant": "count_words", "wall_s": 0.0011227736249566078, "warmup": true}
+{"bytes": 4194304, "cpu_s": 0.0008839910000002504, "event": "sample", "iteration": 1, "variant": "count_words", "wall_s": 0.0008694129064679146, "warmup": true}
+{"bytes": 4194304, "cpu_s": 0.004156837000000024, "event": "sample", "iteration": 1, "variant": "count32", "wall_s": 0.004144784063100815, "warmup": true}
+{"bytes": 4194304, "cpu_s": 0.00411878500000018, "event": "sample", "iteration": 2, "variant": "count32", "wall_s": 0.004104787018150091, "warmup": false}
+{"bytes": 4194304, "cpu_s": 0.0008299810000007568, "event": "sample", "iteration": 2, "variant": "count_words", "wall_s": 0.0008172648958861828, "warmup": false}
+{"bytes": 4194304, "cpu_s": 0.0008207250000005217, "event": "sample", "iteration": 3, "variant": "count_words", "wall_s": 0.0008086478337645531, "warmup": false}
+{"bytes": 4194304, "cpu_s": 0.004106240999999677, "event": "sample", "iteration": 3, "variant": "count32", "wall_s": 0.004094510804861784, "warmup": false}
+{"bytes": 4194304, "cpu_s": 0.0040938430000005965, "event": "sample", "iteration": 4, "variant": "count32", "wall_s": 0.00407988578081131, "warmup": false}
+{"bytes": 4194304, "cpu_s": 0.0008258740000002263, "event": "sample", "iteration": 4, "variant": "count_words", "wall_s": 0.0008142278529703617, "warmup": false}
+{"bytes": 4194304, "cpu_s": 0.0008200939999998269, "event": "sample", "iteration": 5, "variant": "count_words", "wall_s": 0.0008082929998636246, "warmup": false}
+{"bytes": 4194304, "cpu_s": 0.004091354999999908, "event": "sample", "iteration": 5, "variant": "count32", "wall_s": 0.0040799351409077644, "warmup": false}
+{"bytes": 4194304, "cpu_s": 0.004086921000000743, "event": "sample", "iteration": 6, "variant": "count32", "wall_s": 0.004076059907674789, "warmup": false}
+{"bytes": 4194304, "cpu_s": 0.0008083240000003045, "event": "sample", "iteration": 6, "variant": "count_words", "wall_s": 0.0007971259765326977, "warmup": false}
+{"bytes": 4194304, "cpu_s": 0.0008078359999998952, "event": "sample", "iteration": 7, "variant": "count_words", "wall_s": 0.0007971287705004215, "warmup": false}
+{"bytes": 4194304, "cpu_s": 0.004097563000000193, "event": "sample", "iteration": 7, "variant": "count32", "wall_s": 0.004083571955561638, "warmup": false}
+{"bytes": 4194304, "cpu_s": 0.004114129999999605, "event": "sample", "iteration": 8, "variant": "count32", "wall_s": 0.004103426821529865, "warmup": false}
+{"bytes": 4194304, "cpu_s": 0.0008042589999996963, "event": "sample", "iteration": 8, "variant": "count_words", "wall_s": 0.0007907752878963947, "warmup": false}
+{"bytes": 4194304, "event": "summary", "medians": {"count32": {"cpu_s": 0.004097563000000193, "wall_s": 0.004083571955561638}, "count_words": {"cpu_s": 0.0008200939999998269, "wall_s": 0.0008082929998636246}}}
+{"bytes": 134217728, "cpu_s": 0.1231988150000003, "event": "sample", "iteration": 0, "variant": "count32", "wall_s": 0.12318755500018597, "warmup": true}
+{"bytes": 134217728, "cpu_s": 0.026816861999999553, "event": "sample", "iteration": 0, "variant": "count_words", "wall_s": 0.0268030883744359, "warmup": true}
+{"bytes": 134217728, "cpu_s": 0.026598661000000412, "event": "sample", "iteration": 1, "variant": "count_words", "wall_s": 0.02681131474673748, "warmup": true}
+{"bytes": 134217728, "cpu_s": 0.12325272100000007, "event": "sample", "iteration": 1, "variant": "count32", "wall_s": 0.12323712278157473, "warmup": true}
+{"bytes": 134217728, "cpu_s": 0.13204889699999978, "event": "sample", "iteration": 2, "variant": "count32", "wall_s": 0.1320325806736946, "warmup": false}
+{"bytes": 134217728, "cpu_s": 0.046483773000000284, "event": "sample", "iteration": 2, "variant": "count_words", "wall_s": 0.046468477230519056, "warmup": false}
+{"bytes": 134217728, "cpu_s": 0.025660441999999506, "event": "sample", "iteration": 3, "variant": "count_words", "wall_s": 0.025646565947681665, "warmup": false}
+{"bytes": 134217728, "cpu_s": 0.1232557820000002, "event": "sample", "iteration": 3, "variant": "count32", "wall_s": 0.12324312282726169, "warmup": false}
+{"bytes": 134217728, "cpu_s": 0.12331242399999987, "event": "sample", "iteration": 4, "variant": "count32", "wall_s": 0.12329991022124887, "warmup": false}
+{"bytes": 134217728, "cpu_s": 0.025902811999999997, "event": "sample", "iteration": 4, "variant": "count_words", "wall_s": 0.025886754970997572, "warmup": false}
+{"bytes": 134217728, "cpu_s": 0.025553921999999396, "event": "sample", "iteration": 5, "variant": "count_words", "wall_s": 0.025541028007864952, "warmup": false}
+{"bytes": 134217728, "cpu_s": 0.12329273799999996, "event": "sample", "iteration": 5, "variant": "count32", "wall_s": 0.12328094290569425, "warmup": false}
+{"bytes": 134217728, "cpu_s": 0.12336480099999925, "event": "sample", "iteration": 6, "variant": "count32", "wall_s": 0.12336100684478879, "warmup": false}
+{"bytes": 134217728, "cpu_s": 0.02563048900000009, "event": "sample", "iteration": 6, "variant": "count_words", "wall_s": 0.025617404375225306, "warmup": false}
+{"bytes": 134217728, "cpu_s": 0.02544533799999993, "event": "sample", "iteration": 7, "variant": "count_words", "wall_s": 0.025431793183088303, "warmup": false}
+{"bytes": 134217728, "cpu_s": 0.12339238999999935, "event": "sample", "iteration": 7, "variant": "count32", "wall_s": 0.12338929297402501, "warmup": false}
+{"bytes": 134217728, "cpu_s": 0.12333732000000008, "event": "sample", "iteration": 8, "variant": "count32", "wall_s": 0.1233242810703814, "warmup": false}
+{"bytes": 134217728, "cpu_s": 0.025812764999999516, "event": "sample", "iteration": 8, "variant": "count_words", "wall_s": 0.025803876109421253, "warmup": false}
+{"bytes": 134217728, "event": "summary", "medians": {"count32": {"cpu_s": 0.12333732000000008, "wall_s": 0.1233242810703814}, "count_words": {"cpu_s": 0.025660441999999506, "wall_s": 0.025646565947681665}}}
+{"event": "complete"}

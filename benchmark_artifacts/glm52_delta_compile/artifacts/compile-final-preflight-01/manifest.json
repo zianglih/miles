@@ -1,0 +1,50 @@
+{
+  "sources": {
+    "miles": "283a1cb4e6ed4a3712a39bc5dbd26060465bdcca",
+    "sglang": "2f5fb2a09f08eb9a44c0fed5a28be0bda2942b0f"
+  },
+  "standalone_source": "6fb0e2a9d81fc343863ba6015512fe93992892e4",
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "99",
+    "OMP_NUM_THREADS": "1",
+    "TORCHINDUCTOR_CACHE_DIR": "/hai-workspace/glm52-delta/compile-final-preflight-01-cache",
+    "PYTHONPATH": "/hai-workspace/glm52-delta/sglang/python:/hai-workspace/glm52-delta/miles-torch-compile-validation:/root/Megatron-LM"
+  },
+  "script_sha256": "a099a1f281f358c83b5e9af23875d68cf077115f58ef1c792b820c7d26ea4c15",
+  "gloo_script_sha256": "3a1c6b2436fdfd4cd1b793a2692f1d7e624500e0071291b34a11af1166b54490",
+  "checks": {
+    "focused-tests": {
+      "argv": [
+        "timeout",
+        "--kill-after=10",
+        "360",
+        "/opt/sglang/bin/python",
+        "-m",
+        "pytest",
+        "tests/fast/utils/test_delta_preparation.py",
+        "tests/fast/backends/training_utils/weight_update/test_delta_compiled_cpu.py",
+        "tests/fast/backends/training_utils/weight_update/test_delta.py",
+        "tests/fast/backends/training_utils/weight_update/test_disk_delta_weight_version.py",
+        "tests/fast/backends/training_utils/weight_update/test_disk_delta_engine_calls.py",
+        "-q"
+      ],
+      "started_unix_s": 1790386328.7514272,
+      "elapsed_s": 59.60914754867554,
+      "exit": 0
+    },
+    "gloo-failures": {
+      "argv": [
+        "timeout",
+        "--kill-after=10",
+        "360",
+        "/opt/sglang/bin/python",
+        "/hai-workspace/glm52-delta/validate_compiled_sender_gloo.py",
+        "--miles-path",
+        "/hai-workspace/glm52-delta/miles-torch-compile-validation"
+      ],
+      "started_unix_s": 1790386388.361292,
+      "elapsed_s": 56.32551288604736,
+      "exit": 0
+    }
+  }
+}

@@ -1,0 +1,17 @@
+test_backup_directory_requires_owned_data_subtree (test_compile_campaign_metadata.MetadataTests.test_backup_directory_requires_owned_data_subtree) ... ok
+test_legacy_defaults_and_explicit_override (test_compile_campaign_metadata.MetadataTests.test_legacy_defaults_and_explicit_override) ... ok
+test_malformed_and_escaping_metadata_rejected (test_compile_campaign_metadata.MetadataTests.test_malformed_and_escaping_metadata_rejected) ... ok
+test_pinned_selection_bytes_and_override (test_compile_campaign_metadata.MetadataTests.test_pinned_selection_bytes_and_override) ... ok
+test_backup_errors_stop_and_absence_preserves_legacy_behavior (test_run_compile_campaign.CampaignRunnerTests.test_backup_errors_stop_and_absence_preserves_legacy_behavior) ... {"event": "durable_backup", "run": "fixture", "complete_arm": true, "time": 1790388959.2001438, "errors": ["incomplete"]}
+ok
+test_completed_arm_is_summarized_before_backup (test_run_compile_campaign.CampaignRunnerTests.test_completed_arm_is_summarized_before_backup) ... {"event": "durable_backup", "run": "fixture", "complete_arm": true, "time": 1790388959.200935, "errors": [], "archive": "fixture.tar", "sha256": "fixture", "files": 3, "delta_shards": 6}
+ok
+test_failed_arm_archives_partial_without_summarizers (test_run_compile_campaign.CampaignRunnerTests.test_failed_arm_archives_partial_without_summarizers) ... {"event": "durable_backup", "run": "fixture", "complete_arm": false, "time": 1790388959.20123, "errors": []}
+ok
+test_summary_failure_archives_partial_and_stops (test_run_compile_campaign.CampaignRunnerTests.test_summary_failure_archives_partial_and_stops) ... {"event": "durable_backup", "run": "fixture", "complete_arm": false, "time": 1790388959.202802, "errors": []}
+ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.008s
+
+OK

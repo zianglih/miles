@@ -1,0 +1,897 @@
+{
+  "schema_version": 1,
+  "complete": true,
+  "gpu_updates": 14,
+  "gpu_rank_observations": 56,
+  "source_pins": {
+    "miles": "767439e95bca5203211ba374b4e04b702c2b7ed2",
+    "sglang": "2f5fb2a09f08eb9a44c0fed5a28be0bda2942b0f"
+  },
+  "source_snapshots": {
+    "standalone": {
+      "commit": "d34a55113647315cc5b5eb5a3532dc563c72fa6c",
+      "files": {
+        "miles/utils/delta_preparation.py": "281534dfa6b8fef9840f17af2522c3d8100097a68baf0b30bf0c2e1af69a7788",
+        "miles/utils/arguments.py": "a145e3e7cf7468e31ef0cbe5cdc9808c6ea7521347fff16498f0820a0fa65b31",
+        "miles/backends/training_utils/weight_update/packed_delta.py": "c71414f2997b2b824b65054bbd3f76a77b7b5ac89f5a2165c09b4d8ba46909bb",
+        "miles/backends/training_utils/weight_update/protocols/delta.py": "6cb093b157964854960177d9e30a3d61e6b8426bc99d5f6a5868625fcd61da0d",
+        "tests/fast/utils/test_delta_preparation.py": "62622e15c9d61a7aa319eff2a8c7502a695bd36b1241bcb686aae5625933b631",
+        "tests/fast/backends/training_utils/weight_update/test_delta_compiled_cpu.py": "ada8ffc70b55d4e85625bff7f48b444c6720c5d810f1ef36572016241f4ddcf7"
+      }
+    },
+    "combined-validation": {
+      "commit": "767439e95bca5203211ba374b4e04b702c2b7ed2",
+      "files": {
+        "miles/utils/delta_preparation.py": "281534dfa6b8fef9840f17af2522c3d8100097a68baf0b30bf0c2e1af69a7788",
+        "miles/utils/arguments.py": "a145e3e7cf7468e31ef0cbe5cdc9808c6ea7521347fff16498f0820a0fa65b31",
+        "miles/backends/training_utils/weight_update/packed_delta.py": "c71414f2997b2b824b65054bbd3f76a77b7b5ac89f5a2165c09b4d8ba46909bb",
+        "miles/backends/training_utils/weight_update/protocols/delta.py": "fee40128bec0c0301e582a02f79588ef70997de68fd0a55f2936a451f31731ba",
+        "tests/fast/utils/test_delta_preparation.py": "62622e15c9d61a7aa319eff2a8c7502a695bd36b1241bcb686aae5625933b631",
+        "tests/fast/backends/training_utils/weight_update/test_delta_compiled_cpu.py": "049c4424114cbfba310b3c7c3733973da4a036663af91c6588ce51be74419b5b"
+      }
+    },
+    "cpu-replay-measured": {
+      "commit": "6fb0e2a9d81fc343863ba6015512fe93992892e4",
+      "files": {
+        "miles/utils/delta_preparation.py": "281534dfa6b8fef9840f17af2522c3d8100097a68baf0b30bf0c2e1af69a7788",
+        "miles/utils/arguments.py": "a145e3e7cf7468e31ef0cbe5cdc9808c6ea7521347fff16498f0820a0fa65b31",
+        "miles/backends/training_utils/weight_update/packed_delta.py": "c71414f2997b2b824b65054bbd3f76a77b7b5ac89f5a2165c09b4d8ba46909bb",
+        "miles/backends/training_utils/weight_update/protocols/delta.py": "6cb093b157964854960177d9e30a3d61e6b8426bc99d5f6a5868625fcd61da0d",
+        "tests/fast/utils/test_delta_preparation.py": "53a1bb69f1efc29922a2ac12438ae9996b51e322c723f5bff6aa8cede14d83e4",
+        "tests/fast/backends/training_utils/weight_update/test_delta_compiled_cpu.py": "ada8ffc70b55d4e85625bff7f48b444c6720c5d810f1ef36572016241f4ddcf7"
+      }
+    },
+    "historical-preflight-measured": {
+      "commit": "283a1cb4e6ed4a3712a39bc5dbd26060465bdcca",
+      "files": {
+        "miles/utils/delta_preparation.py": "281534dfa6b8fef9840f17af2522c3d8100097a68baf0b30bf0c2e1af69a7788",
+        "miles/utils/arguments.py": "a145e3e7cf7468e31ef0cbe5cdc9808c6ea7521347fff16498f0820a0fa65b31",
+        "miles/backends/training_utils/weight_update/packed_delta.py": "c71414f2997b2b824b65054bbd3f76a77b7b5ac89f5a2165c09b4d8ba46909bb",
+        "miles/backends/training_utils/weight_update/protocols/delta.py": "fee40128bec0c0301e582a02f79588ef70997de68fd0a55f2936a451f31731ba",
+        "tests/fast/utils/test_delta_preparation.py": "53a1bb69f1efc29922a2ac12438ae9996b51e322c723f5bff6aa8cede14d83e4",
+        "tests/fast/backends/training_utils/weight_update/test_delta_compiled_cpu.py": "049c4424114cbfba310b3c7c3733973da4a036663af91c6588ce51be74419b5b"
+      }
+    }
+  },
+  "cpu_replays": {
+    "artifacts/torch-compile-stage-replay-v1.jsonl": {
+      "source_commit": "6eca79a001e2e2c9b62385b1397f1ad0fc800e81",
+      "source_kind": "committed source",
+      "source_reference": "6eca79a001e2e2c9b62385b1397f1ad0fc800e81",
+      "raw_sha256": "bc44ce8b9a878e914086a2caabab9279c889da9db19e1ac7ae820fea2c00479d",
+      "samples": 28,
+      "module_sha256": "fd87a4a382909add1d9053233d92ed2cd4ab66a15332851ed84c7bd96158be8a",
+      "summaries": [
+        {
+          "case": "native-unchanged",
+          "event": "summary",
+          "stage_cpu_reduction_fraction": 0.013687082552449437,
+          "stage_wall_reduction_fraction": -0.5809559222874376,
+          "variants": {
+            "exact_f17": {
+              "median_process_cpu_s": 16.075276682,
+              "median_wall_s": 1.125101647,
+              "raw_process_cpu_s": [
+                16.314899115,
+                16.214130711,
+                16.075276682,
+                15.898084304,
+                16.011328341
+              ],
+              "raw_wall_s": [
+                1.125101647,
+                1.066849843,
+                1.606760446,
+                1.622636632,
+                1.120254939
+              ],
+              "steady_state_clean": true
+            },
+            "packed_stage": {
+              "median_process_cpu_s": 15.855253043,
+              "median_wall_s": 1.778736112,
+              "raw_process_cpu_s": [
+                16.10703008,
+                15.709281407,
+                15.267684626,
+                15.855253043,
+                16.003224925
+              ],
+              "raw_wall_s": [
+                1.866264602,
+                1.770045894,
+                1.778736112,
+                1.772907419,
+                1.780867644
+              ],
+              "steady_state_clean": true
+            }
+          }
+        },
+        {
+          "case": "synthetic-v1-v2",
+          "event": "summary",
+          "stage_cpu_reduction_fraction": -0.5301770523422997,
+          "stage_wall_reduction_fraction": -0.7096147543509983,
+          "variants": {
+            "exact_f17": {
+              "median_process_cpu_s": 36.298767904,
+              "median_wall_s": 3.529938037,
+              "raw_process_cpu_s": [
+                39.062372466,
+                37.727198153,
+                36.125778705,
+                34.611736899,
+                36.298767904
+              ],
+              "raw_wall_s": [
+                3.794779886,
+                2.996733481,
+                3.569558824,
+                3.529938037,
+                2.998813627
+              ],
+              "steady_state_clean": true
+            },
+            "packed_stage": {
+              "median_process_cpu_s": 55.543541675,
+              "median_wall_s": 6.03483415,
+              "raw_process_cpu_s": [
+                61.434463655,
+                60.461662628,
+                54.512039273,
+                55.543541675,
+                54.718316252
+              ],
+              "raw_wall_s": [
+                6.79441072,
+                6.03483415,
+                4.605608953,
+                6.064806106,
+                5.938902053
+              ],
+              "steady_state_clean": true
+            }
+          }
+        }
+      ]
+    },
+    "artifacts/torch-compile-materialize-first-8x4-replay.jsonl": {
+      "source_commit": null,
+      "source_kind": "uncommitted historical experiment",
+      "source_reference": "sha256:09fc7f41579c5e517a63263bb6a5763c08ad769a16e34dd658f3255ec900dc5d",
+      "raw_sha256": "738580f077e3cf2fd812599e1a06e7e83b830bfbd4e9bd9654fa13dc12830b01",
+      "samples": 28,
+      "module_sha256": "09fc7f41579c5e517a63263bb6a5763c08ad769a16e34dd658f3255ec900dc5d",
+      "summaries": [
+        {
+          "case": "native-unchanged",
+          "event": "summary",
+          "stage_cpu_reduction_fraction": -1.844645071287259,
+          "stage_wall_reduction_fraction": -2.6504201512487082,
+          "variants": {
+            "exact_f17": {
+              "median_process_cpu_s": 16.407209183,
+              "median_wall_s": 1.15319067,
+              "raw_process_cpu_s": [
+                17.10443451,
+                16.407209183,
+                16.097449749,
+                16.443235294,
+                16.058917747
+              ],
+              "raw_wall_s": [
+                1.090380819,
+                1.15319067,
+                1.620442025,
+                1.726885599,
+                1.118493165
+              ],
+              "steady_state_clean": true
+            },
+            "packed_stage": {
+              "median_process_cpu_s": 46.672686736,
+              "median_wall_s": 4.20963046,
+              "raw_process_cpu_s": [
+                50.046197366,
+                47.631452992,
+                45.550653279,
+                46.672686736,
+                44.940521497
+              ],
+              "raw_wall_s": [
+                4.41492584,
+                4.535154984,
+                4.158176309,
+                4.20963046,
+                4.009350852
+              ],
+              "steady_state_clean": true
+            }
+          }
+        },
+        {
+          "case": "synthetic-v1-v2",
+          "event": "summary",
+          "stage_cpu_reduction_fraction": -0.30695625612688815,
+          "stage_wall_reduction_fraction": -0.11629912811549414,
+          "variants": {
+            "exact_f17": {
+              "median_process_cpu_s": 36.209462476,
+              "median_wall_s": 3.348511277,
+              "raw_process_cpu_s": [
+                36.583928973,
+                38.229441894,
+                36.209462476,
+                34.860766168,
+                33.874551642
+              ],
+              "raw_wall_s": [
+                3.348511277,
+                3.771694406,
+                2.873773966,
+                4.176866774,
+                2.894729759
+              ],
+              "steady_state_clean": true
+            },
+            "packed_stage": {
+              "median_process_cpu_s": 47.324183514,
+              "median_wall_s": 3.737940219,
+              "raw_process_cpu_s": [
+                46.775607558,
+                46.607146266,
+                51.210018372,
+                47.533083226,
+                47.324183514
+              ],
+              "raw_wall_s": [
+                3.583165166,
+                3.600636177,
+                3.830219448,
+                3.782262895,
+                3.737940219
+              ],
+              "steady_state_clean": true
+            }
+          }
+        }
+      ]
+    },
+    "artifacts/torch-compile-word-two-phase-32x1-replay.jsonl": {
+      "source_commit": "6fb0e2a9d81fc343863ba6015512fe93992892e4",
+      "source_kind": "committed source",
+      "source_reference": "6fb0e2a9d81fc343863ba6015512fe93992892e4",
+      "raw_sha256": "61c6dd06df9be03609b64c2c1bab3c3937e48a4e7f8e4f1041b64e516bb5feec",
+      "samples": 28,
+      "module_sha256": "281534dfa6b8fef9840f17af2522c3d8100097a68baf0b30bf0c2e1af69a7788",
+      "summaries": [
+        {
+          "case": "native-unchanged",
+          "event": "summary",
+          "stage_cpu_reduction_fraction": 0.4854260566289864,
+          "stage_wall_reduction_fraction": 0.5039279352457,
+          "variants": {
+            "exact_f17": {
+              "median_process_cpu_s": 15.653191363,
+              "median_wall_s": 1.119358066,
+              "raw_process_cpu_s": [
+                15.855158649,
+                15.653191363,
+                15.734905227,
+                15.589114154,
+                15.467863072
+              ],
+              "raw_wall_s": [
+                1.119358066,
+                1.100333746,
+                1.124822663,
+                1.098065036,
+                1.594989287
+              ],
+              "steady_state_clean": true
+            },
+            "packed_stage": {
+              "median_process_cpu_s": 8.054724406,
+              "median_wall_s": 0.555282267,
+              "raw_process_cpu_s": [
+                8.096353478,
+                8.031209716,
+                8.429512676,
+                8.054724406,
+                7.996540909
+              ],
+              "raw_wall_s": [
+                0.555282267,
+                0.79984153,
+                0.879706997,
+                0.553948698,
+                0.554174144
+              ],
+              "steady_state_clean": true
+            }
+          }
+        },
+        {
+          "case": "synthetic-v1-v2",
+          "event": "summary",
+          "stage_cpu_reduction_fraction": -0.2770335301501634,
+          "stage_wall_reduction_fraction": -0.4644250085907937,
+          "variants": {
+            "exact_f17": {
+              "median_process_cpu_s": 36.574509748,
+              "median_wall_s": 3.724775137,
+              "raw_process_cpu_s": [
+                36.574509748,
+                37.534630554,
+                36.04487457,
+                37.878641596,
+                33.498578357
+              ],
+              "raw_wall_s": [
+                3.724775137,
+                3.788397153,
+                3.825567818,
+                3.716017536,
+                2.72706198
+              ],
+              "steady_state_clean": true
+            },
+            "packed_stage": {
+              "median_process_cpu_s": 46.706875297,
+              "median_wall_s": 5.454653862,
+              "raw_process_cpu_s": [
+                48.592996747,
+                46.706875297,
+                46.688594173,
+                46.535586093,
+                46.805521089
+              ],
+              "raw_wall_s": [
+                5.508079992,
+                3.779247727,
+                5.516496644,
+                5.454653862,
+                5.052016316
+              ],
+              "steady_state_clean": true
+            }
+          }
+        }
+      ]
+    }
+  },
+  "source_attribution": {
+    "standalone_cpu_replay": {
+      "measured_source": "6fb0e2a9d81fc343863ba6015512fe93992892e4",
+      "selected_source": "d34a55113647315cc5b5eb5a3532dc563c72fa6c",
+      "changed_paths": [
+        "tests/fast/utils/test_delta_preparation.py"
+      ],
+      "all_other_tracked_paths_identical": true,
+      "production_sha256": {
+        "miles/utils/delta_preparation.py": "281534dfa6b8fef9840f17af2522c3d8100097a68baf0b30bf0c2e1af69a7788",
+        "miles/utils/arguments.py": "a145e3e7cf7468e31ef0cbe5cdc9808c6ea7521347fff16498f0820a0fa65b31",
+        "miles/backends/training_utils/weight_update/packed_delta.py": "c71414f2997b2b824b65054bbd3f76a77b7b5ac89f5a2165c09b4d8ba46909bb",
+        "miles/backends/training_utils/weight_update/protocols/delta.py": "6cb093b157964854960177d9e30a3d61e6b8426bc99d5f6a5868625fcd61da0d"
+      },
+      "selected_compatibility_test_sha256": "62622e15c9d61a7aa319eff2a8c7502a695bd36b1241bcb686aae5625933b631"
+    },
+    "combined_historical_preflight": {
+      "measured_source": "283a1cb4e6ed4a3712a39bc5dbd26060465bdcca",
+      "selected_source": "767439e95bca5203211ba374b4e04b702c2b7ed2",
+      "changed_paths": [
+        "tests/fast/utils/test_delta_preparation.py"
+      ],
+      "all_other_tracked_paths_identical": true,
+      "production_sha256": {
+        "miles/utils/delta_preparation.py": "281534dfa6b8fef9840f17af2522c3d8100097a68baf0b30bf0c2e1af69a7788",
+        "miles/utils/arguments.py": "a145e3e7cf7468e31ef0cbe5cdc9808c6ea7521347fff16498f0820a0fa65b31",
+        "miles/backends/training_utils/weight_update/packed_delta.py": "c71414f2997b2b824b65054bbd3f76a77b7b5ac89f5a2165c09b4d8ba46909bb",
+        "miles/backends/training_utils/weight_update/protocols/delta.py": "fee40128bec0c0301e582a02f79588ef70997de68fd0a55f2936a451f31731ba"
+      },
+      "selected_compatibility_test_sha256": "62622e15c9d61a7aa319eff2a8c7502a695bd36b1241bcb686aae5625933b631"
+    },
+    "scope": "Earlier CPU timings/tests retain their measured commits; production identity does not make them new-head tests."
+  },
+  "selected_preflight": {
+    "directory": "artifacts/compile-v2-preflight-01",
+    "manifest": {
+      "sources": {
+        "miles": "767439e95bca5203211ba374b4e04b702c2b7ed2",
+        "sglang": "2f5fb2a09f08eb9a44c0fed5a28be0bda2942b0f"
+      },
+      "standalone_source": "d34a55113647315cc5b5eb5a3532dc563c72fa6c",
+      "environment": {
+        "CUDA_VISIBLE_DEVICES": "99",
+        "OMP_NUM_THREADS": "1",
+        "TORCHINDUCTOR_CACHE_DIR": "/hai-workspace/glm52-delta/compile-v2-preflight-01-cache",
+        "PYTHONPATH": "/hai-workspace/glm52-delta/sglang/python:/hai-workspace/glm52-delta/miles-torch-compile-validation:/root/Megatron-LM"
+      },
+      "script_sha256": "a099a1f281f358c83b5e9af23875d68cf077115f58ef1c792b820c7d26ea4c15",
+      "gloo_script_sha256": "3a1c6b2436fdfd4cd1b793a2692f1d7e624500e0071291b34a11af1166b54490",
+      "checks": {
+        "focused-tests": {
+          "argv": [
+            "timeout",
+            "--kill-after=10",
+            "360",
+            "/opt/sglang/bin/python",
+            "-m",
+            "pytest",
+            "tests/fast/utils/test_delta_preparation.py",
+            "tests/fast/backends/training_utils/weight_update/test_delta_compiled_cpu.py",
+            "tests/fast/backends/training_utils/weight_update/test_delta.py",
+            "tests/fast/backends/training_utils/weight_update/test_disk_delta_weight_version.py",
+            "tests/fast/backends/training_utils/weight_update/test_disk_delta_engine_calls.py",
+            "-q"
+          ],
+          "started_unix_s": 1790390230.0084503,
+          "elapsed_s": 68.19983673095703,
+          "exit": 0
+        },
+        "gloo-failures": {
+          "argv": [
+            "timeout",
+            "--kill-after=10",
+            "360",
+            "/opt/sglang/bin/python",
+            "/hai-workspace/glm52-delta/validate_compiled_sender_gloo.py",
+            "--miles-path",
+            "/hai-workspace/glm52-delta/miles-torch-compile-validation"
+          ],
+          "started_unix_s": 1790390298.2087822,
+          "elapsed_s": 67.4074854850769,
+          "exit": 0
+        }
+      }
+    },
+    "log_sha256": {
+      "focused-tests.log": "02b98426b4beb4737982eff6a0a4db6ddcbf01a59db9d5b7ef547fd9eb938c18",
+      "gloo-failures.log": "477cc51b7882075c7cf45b2c00e1589e8f8c34504475244b342d375522df9d52"
+    }
+  },
+  "ci_compatibility": {
+    "schema_version": 1,
+    "state": "linux-focused-and-full-shard-passed",
+    "historical_head": "6fb0e2a9d81fc343863ba6015512fe93992892e4",
+    "test_path": "tests/fast/utils/test_delta_preparation.py",
+    "tested_test_sha256": "62622e15c9d61a7aa319eff2a8c7502a695bd36b1241bcb686aae5625933b631",
+    "source_state": "uncommitted test-only compatibility fixture during Linux diagnostics",
+    "upstream_pr": "https://github.com/pytorch/pytorch/pull/178950",
+    "upstream_commit": "https://github.com/pytorch/pytorch/commit/d7b75b8250f43949bb2609f406ac942f935cab46",
+    "focused": {
+      "log": "artifacts/compile-pr-ci-3720-6fb0e2a/linux-compatibility-focused.log",
+      "summary": "18 passed, 18 warnings in 45.59s",
+      "phases": "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-results/phases.jsonl",
+      "phase": "focused"
+    },
+    "full_shard": {
+      "state": "passed",
+      "log": "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-full-16-logical-gpus-results/full-shard-1.log",
+      "summary": "3172 passed, 27 skipped, 44 warnings in 288.97s",
+      "phases": "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-full-16-logical-gpus-results/phases.jsonl",
+      "phase": "full-shard-1",
+      "scope": "Hosted shard file list on diagnostic merge5093563 plus byte-identical compatibility test; C2 Linux runtime, not GitHub hardware/memory limits. Sixteen invalid physical CUDA IDs preserve logical placement indices while Torch reports zero available GPUs."
+    },
+    "files": {
+      "artifacts/compile-pr-ci-3720-6fb0e2a/linux-compatibility-focused.log": {
+        "sha256": "19f83e215a78e5e2eac5bab99f6a3a08cd9080f8a58889b977dbb8c2e7c14b9b",
+        "bytes": 72582
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/linux-compatibility-full-shard-1-first.log": {
+        "sha256": "cf2edc9f4ded35d70dc63ae496e12b8a2071220879c5fa5635f9a23302149818",
+        "bytes": 50998
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/linux-installed-packages.txt": {
+        "sha256": "1d410fc150571c04de3f9e296b46faae702a48573084629614c96a76ba15ecb5",
+        "bytes": 4112
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/test-compatibility-source-manifest.json": {
+        "sha256": "231e0e22effd1a583e1eadc3f9cd7d8e66d679f980960836d5314589cd98c51f",
+        "bytes": 1033
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/linux-first-failure/results/focused.log": {
+        "sha256": "7cf20e57150634120072f3bb4d95d61830c752f53c19889d46bf0ac38972b08e",
+        "bytes": 35019
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/linux-first-failure/results/phases.jsonl": {
+        "sha256": "65dcdade95efbc0a922363019db737c97c23faac7335f778c41dd8a1e00a0e8a",
+        "bytes": 1092
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/linux-first-failure/run_reproduction.py": {
+        "sha256": "07c09b4943cd84fa718cdfa410b9e3e8d3b3f6b5ee49dcb851e01adbbd3989f7",
+        "bytes": 3473
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/linux-first-failure/setup-logs/runtime.json": {
+        "sha256": "9cc12363ce041ca43d6c714f5bb5c268ba5980b45e9b01fa27ec7dbbe908e95b",
+        "bytes": 2391
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/linux-first-failure/setup-logs/compiler.txt": {
+        "sha256": "88b7c4b67564a146863224148116065fee418539f0a408f3636a68f3bde51805",
+        "bytes": 246
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/linux-first-failure/setup-logs/lscpu.txt": {
+        "sha256": "b6b0a9c18b52b7f8ac6582e2951eb02e1a5bd58030e16c3979dda97e8739c557",
+        "bytes": 4098
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/compatibility-head-update/verified-heads.json": {
+        "sha256": "d7684d1975e3f73c47af17d57db4b8b2b9172694a4f4782058a44f9d568e287a",
+        "bytes": 1326
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/ci_resource_probe.py": {
+        "sha256": "2e12b4a90ce9c433008a914e078c4d301665833f4952ed38d988386ab7872918",
+        "bytes": 2060
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-full-16-logical-gpus-results/full-shard-1-fatal.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-full-16-logical-gpus-results/full-shard-1.log": {
+        "sha256": "3b67862120d36f5bfeebe9f1161aacffd42cbefdcd52b491cf71fd916dae6bc8",
+        "bytes": 2707212
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-full-16-logical-gpus-results/phases.jsonl": {
+        "sha256": "f189d098622a41774cfb082baac7bf6a795822424a80db6b6a9f05abace9a802",
+        "bytes": 7993
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-full-logical-gpus-results/full-shard-1-fatal.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-full-logical-gpus-results/full-shard-1.log": {
+        "sha256": "96e4c5f410a6801b9c85ab5c3839983c65d8ce6aa23110711cb138135164254f",
+        "bytes": 2729072
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-full-logical-gpus-results/phases.jsonl": {
+        "sha256": "387e6c79973df72873e3f9f5b4416fb3b13f86fa71b91ecb936ff98b128eadf6",
+        "bytes": 7990
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-full-results/full-shard-1-fatal.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-full-results/full-shard-1.log": {
+        "sha256": "0bc0d5f2d23522340afa2092bddd865452c77ba62fcde417c9c36535208e103e",
+        "bytes": 1271696
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-full-results/phases.jsonl": {
+        "sha256": "94241ea92b5e58614df8927069fa5ae0ed9c309090e0ce1b71390f2d02b71d35",
+        "bytes": 7976
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-results/focused-fatal.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-results/focused.log": {
+        "sha256": "19f83e215a78e5e2eac5bab99f6a3a08cd9080f8a58889b977dbb8c2e7c14b9b",
+        "bytes": 72582
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-results/full-shard-1-fatal.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-results/full-shard-1.log": {
+        "sha256": "cf2edc9f4ded35d70dc63ae496e12b8a2071220879c5fa5635f9a23302149818",
+        "bytes": 50998
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/compatibility-results/phases.jsonl": {
+        "sha256": "9e69bfd6338c9712a0bfcb7c5f8c04814de62a51d380ada802f979967f9af4b3",
+        "bytes": 8678
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/diagnostic-cleanup.json": {
+        "sha256": "3b6cafe6fd685f19867b5087da255281b00bc4e820f7e20c959325f1e40b3f29",
+        "bytes": 119445
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/finalize_setup.sh": {
+        "sha256": "eda06e67827f1103026bf1c27deba92ab34bef7f3b2501bdfd54181c478373ba",
+        "bytes": 2060
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/hosted-installed-constraints.txt": {
+        "sha256": "eb1b6675bba7a6656ee1dfda3a343318642e187e28157fbb8b2cc420c623b63c",
+        "bytes": 4093
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/hosted-shard-1-pytest-argv.json": {
+        "sha256": "4d3c52e08e481681008938cd9e9a943710c908e31f030d9304620b3f14f8e1f2",
+        "bytes": 7196
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/miles/tests/fast/utils/test_delta_preparation.py": {
+        "sha256": "62622e15c9d61a7aa319eff2a8c7502a695bd36b1241bcb686aae5625933b631",
+        "bytes": 13475
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/results/focused-fatal.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/results/focused.log": {
+        "sha256": "7cf20e57150634120072f3bb4d95d61830c752f53c19889d46bf0ac38972b08e",
+        "bytes": 35019
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/results/phases.jsonl": {
+        "sha256": "65dcdade95efbc0a922363019db737c97c23faac7335f778c41dd8a1e00a0e8a",
+        "bytes": 1092
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/resume_setup.sh": {
+        "sha256": "dfa6efb146dc2076a31712b759d074005dff3e94bbac103b53e1b7855ec72022",
+        "bytes": 3158
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/run_compatibility.py": {
+        "sha256": "6aa600a5c5409485f23b789fc6b5d8556c78f3a360dccaf905bd2c0d6d1203a0",
+        "bytes": 3501
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/run_compatibility_full.py": {
+        "sha256": "782241af2c3f8efd7806939e62833053eaa87b3899baa7840ec9ed79b7af5857",
+        "bytes": 3395
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/run_compatibility_full_16_logical_gpus.py": {
+        "sha256": "ebddeea8334299c12846e2e8924673c2ac36c8a2f2fd79b5692f3e4fb197dd29",
+        "bytes": 3472
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/run_compatibility_full_logical_gpus.py": {
+        "sha256": "5114ac1781fd199fdae0584fc5d4f994c94a82a9e11b1f03eecedca1efc307c1",
+        "bytes": 3442
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/run_reproduction.py": {
+        "sha256": "07c09b4943cd84fa718cdfa410b9e3e8d3b3f6b5ee49dcb851e01adbbd3989f7",
+        "bytes": 3473
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/setup-logs/compiler.txt": {
+        "sha256": "88b7c4b67564a146863224148116065fee418539f0a408f3636a68f3bde51805",
+        "bytes": 246
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/setup-logs/installed-packages.txt": {
+        "sha256": "1d410fc150571c04de3f9e296b46faae702a48573084629614c96a76ba15ecb5",
+        "bytes": 4112
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/setup-logs/lscpu.txt": {
+        "sha256": "b6b0a9c18b52b7f8ac6582e2951eb02e1a5bd58030e16c3979dda97e8739c557",
+        "bytes": 4098
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/setup-logs/runtime.json": {
+        "sha256": "9cc12363ce041ca43d6c714f5bb5c268ba5980b45e9b01fa27ec7dbbe908e95b",
+        "bytes": 2391
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/setup-logs/setup-finalize.log": {
+        "sha256": "2a9c53e4169f0eaf06598364e5b64d67d081346bc3fa54e9fed6ac9ebc68022f",
+        "bytes": 3561
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/setup-logs/setup-resume.log": {
+        "sha256": "dadee5577a13be5c5281a3d82aead37ac41765e9b43056e9d6c34a780e2f6506",
+        "bytes": 9394
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/setup-logs/setup.log": {
+        "sha256": "3185fe3d46c32bff9c11c3b11778ba63156ce0b8e018152dbe4bed568ea7f283",
+        "bytes": 1480
+      },
+      "artifacts/compile-pr-ci-3720-6fb0e2a/ci-compatibility-complete/setup_after_gpu.sh": {
+        "sha256": "68317ae91209d7cbbcc9720c5c4130f6f46fa8a7409899fcb88525ea9c53eb48",
+        "bytes": 4226
+      }
+    },
+    "selected_sources": {
+      "standalone": "d34a55113647315cc5b5eb5a3532dc563c72fa6c",
+      "combined": "767439e95bca5203211ba374b4e04b702c2b7ed2"
+    }
+  },
+  "selected_head_hosted_ci": {
+    "directory": "artifacts/compile-pr-ci-3720-d34a551",
+    "summary": {
+      "captured_at_utc": "20260926T024505.999120Z",
+      "pr_url": "https://github.com/radixark/miles/pull/3720",
+      "head": "d34a55113647315cc5b5eb5a3532dc563c72fa6c",
+      "all_runs_completed": true,
+      "runs": [
+        {
+          "databaseId": 36212182532,
+          "name": "Approve Trusted CI",
+          "status": "completed",
+          "conclusion": "skipped",
+          "url": "https://github.com/radixark/miles/actions/runs/36212182532",
+          "jobs": [
+            {
+              "name": "approve-held-runs",
+              "status": "completed",
+              "conclusion": "skipped",
+              "url": "https://github.com/radixark/miles/actions/runs/36212182532/job/108320884404"
+            }
+          ]
+        },
+        {
+          "databaseId": 36212183629,
+          "name": "pre-commit",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/radixark/miles/actions/runs/36212183629",
+          "jobs": [
+            {
+              "name": "Run pre-commit",
+              "status": "completed",
+              "conclusion": "success",
+              "url": "https://github.com/radixark/miles/actions/runs/36212183629/job/108320886687"
+            }
+          ]
+        },
+        {
+          "databaseId": 36212183697,
+          "name": "PR Test",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/radixark/miles/actions/runs/36212183697",
+          "jobs": [
+            {
+              "name": "resolve-ci-policy",
+              "status": "completed",
+              "conclusion": "success",
+              "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108320887188"
+            },
+            {
+              "name": "stage-b-cpu / run-cpu",
+              "status": "completed",
+              "conclusion": "success",
+              "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108320935860"
+            },
+            {
+              "name": "stage-a-cpu (1) / run-cpu",
+              "status": "completed",
+              "conclusion": "success",
+              "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108320935894"
+            },
+            {
+              "name": "stage-a-cpu (2) / run-cpu",
+              "status": "completed",
+              "conclusion": "success",
+              "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108320935931"
+            },
+            {
+              "name": "stage-a-cpu (3) / run-cpu",
+              "status": "completed",
+              "conclusion": "success",
+              "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108320935996"
+            },
+            {
+              "name": "stage-a-cpu (0) / run-cpu",
+              "status": "completed",
+              "conclusion": "success",
+              "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108320936311"
+            },
+            {
+              "name": "docker-build",
+              "status": "completed",
+              "conclusion": "skipped",
+              "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108322209146"
+            },
+            {
+              "name": "resolve-ci-image",
+              "status": "completed",
+              "conclusion": "skipped",
+              "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108322209301"
+            },
+            {
+              "name": "stage-b-2-gpu-h200",
+              "status": "completed",
+              "conclusion": "skipped",
+              "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108322209307"
+            },
+            {
+              "name": "stage-c-2-gpu-h200",
+              "status": "completed",
+              "conclusion": "skipped",
+              "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108322209310"
+            },
+            {
+              "name": "stage-c-8-gpu-h200",
+              "status": "completed",
+              "conclusion": "skipped",
+              "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108322209311"
+            },
+            {
+              "name": "stage-c-4-gpu-h200",
+              "status": "completed",
+              "conclusion": "skipped",
+              "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108322209324"
+            },
+            {
+              "name": "stage-c-8-gpu-h100",
+              "status": "completed",
+              "conclusion": "skipped",
+              "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108322209432"
+            },
+            {
+              "name": "stage-c-8-gpu-b200",
+              "status": "completed",
+              "conclusion": "skipped",
+              "url": "https://github.com/radixark/miles/actions/runs/36212183697/job/108322209603"
+            }
+          ]
+        },
+        {
+          "databaseId": 36212183808,
+          "name": "PR Test (ROCm)",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/radixark/miles/actions/runs/36212183808",
+          "jobs": [
+            {
+              "name": "resolve-ci-policy",
+              "status": "completed",
+              "conclusion": "success",
+              "url": "https://github.com/radixark/miles/actions/runs/36212183808/job/108320887588"
+            },
+            {
+              "name": "resolve-ci-deps",
+              "status": "completed",
+              "conclusion": "success",
+              "url": "https://github.com/radixark/miles/actions/runs/36212183808/job/108320887802"
+            },
+            {
+              "name": "stage-c-4-gpu-mi350",
+              "status": "completed",
+              "conclusion": "skipped",
+              "url": "https://github.com/radixark/miles/actions/runs/36212183808/job/108320934327"
+            },
+            {
+              "name": "resolve-ci-image",
+              "status": "completed",
+              "conclusion": "skipped",
+              "url": "https://github.com/radixark/miles/actions/runs/36212183808/job/108320934369"
+            }
+          ]
+        }
+      ],
+      "files": {
+        "run-36212182532.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run-36212183629.log": {
+          "bytes": 441639,
+          "sha256": "427884df1baa3c2f0651ea17d4492001d15e074fc2d7ffa784f9fc0ecca4b9fb"
+        },
+        "run-36212183697.log": {
+          "bytes": 10407741,
+          "sha256": "83b288a245e4e3f91a2ff3f01a64143ddae68d74264aab1bd90cc724d5bee563"
+        },
+        "run-36212183808.log": {
+          "bytes": 132659,
+          "sha256": "9521df67da7193ac91b01b8b874c598d6b6445e20af5749b6d41b2c975a7eeb8"
+        }
+      }
+    },
+    "files": [
+      "artifacts/compile-pr-ci-3720-d34a551/summary.json",
+      "artifacts/compile-pr-ci-3720-d34a551/latest.json"
+    ]
+  },
+  "campaign_metadata_selection": {
+    "campaign_metadata": {
+      "path": "CAMPAIGN_COMPILE_V2.json",
+      "sha256": "66b650a5bc1ebb4c74327f0fca1a2fc055c98d3a512944b9afd9a91bd1363b53"
+    },
+    "environment_metadata": {
+      "path": "environment-image-compile-v2.json",
+      "sha256": "ee2e29f7ccdc3bbbb9a0f0c20e432ab25211a40b282551778b134d584ad8c96d"
+    },
+    "cpu_calibration_metadata": {
+      "path": "artifacts/cpu-observer-fast-final-calibration.json",
+      "sha256": "ce8386c75e01125a7e3754844389a82f2e889200df0ce233cd030aff87216707"
+    }
+  },
+  "explicit_codegen_files": [
+    "artifacts/torch-compile-final-codegen-complete/CODEGEN.md",
+    "artifacts/torch-compile-final-codegen-complete/proof.json"
+  ],
+  "explicit_validation_logs": [
+    "artifacts/compile-v2-preflight-01/focused-tests.log",
+    "artifacts/compile-v2-preflight-01/gloo-failures.log"
+  ],
+  "explicit_file_limit": "Codegen/test files are preserved and hashed; final-source attribution and pass status require reviewer verification.",
+  "source_policy": "Raw files copied byte for byte; source snapshots are exact git show bytes.",
+  "exclusions": [
+    "Weight tensors and compressed delta payloads",
+    "Binary training debug dumps",
+    "Compiled libraries, object files, compiler binary caches, and source archives",
+    "Large complete hosted workflow logs; compact review, failed shard, metadata and targeted local diagnostics are retained"
+  ],
+  "strict_admission": "GPU reporter rerun against local shard and binary debug evidence; stored JSON/Markdown required to match.",
+  "secret_scan": "All UTF-8 files scanned; no unapproved matches or redaction. Exact public malformed-URL test-fixture matches are recorded in COMPILE_SECRET_SCAN_FIXTURE_ALLOWLIST.json, bound to raw file/value hashes and test-node context."
+}

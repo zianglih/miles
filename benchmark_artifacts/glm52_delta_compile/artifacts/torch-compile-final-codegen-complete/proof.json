@@ -1,0 +1,207 @@
+{
+  "cache": "/hai-workspace/glm52-delta/artifacts/torch-compile-word-two-phase-32x1-replay-inductor-cache",
+  "module": "/hai-workspace/glm52-delta/delta_preparation_word_two_phase_variant.py",
+  "module_sha256": "281534dfa6b8fef9840f17af2522c3d8100097a68baf0b30bf0c2e1af69a7788",
+  "scope": "Read-only generated code and disassembly; no kernel execution",
+  "sources": [
+    {
+      "original_path": "artifacts/torch-compile-word-two-phase-32x1-replay-inductor-cache/2w/c2wawido3dtafcfncl27mn6bwebanaump7ohuzk3i7yggo7sw5je.main.cpp",
+      "saved_path": "c2wawido3dtafcfncl27mn6bwebanaump7ohuzk3i7yggo7sw5je.main.cpp",
+      "sha256": "0361349b95b6b2f6de8b4319a655ab47c6eaa6557756a4b17e147ff7a06b04cb",
+      "gil_release": [
+        {
+          "line": 21,
+          "text": "py::gil_scoped_release_simple release;"
+        }
+      ],
+      "omp_pragmas": [],
+      "kernel_definitions": [
+        {
+          "line": 3,
+          "text": "extern \"C\"  void  cpp_fused_bitwise_xor_clone_view_0(const int32_t* in_ptr0,"
+        },
+        {
+          "line": 70,
+          "text": "extern \"C\"  void  cpp_fused_bitwise_xor_clone_view_0(const int32_t* in_ptr0,"
+        }
+      ],
+      "libraries": [
+        {
+          "original_path": "artifacts/torch-compile-word-two-phase-32x1-replay-inductor-cache/2w/c2wawido3dtafcfncl27mn6bwebanaump7ohuzk3i7yggo7sw5je.main.so",
+          "sha256": "8dbd80f44f3139e23ef29d4c385fd43f6aa2473352b4b0e397302dcc23239769",
+          "disassembly_excerpt": "c2wawido3dtafcfncl27mn6bwebanaump7ohuzk3i7yggo7sw5je.main.so.avx512.txt",
+          "zmm_instruction_lines": 51,
+          "ymm_instruction_lines": 28,
+          "avx512_mnemonics": [
+            "vmovdqu32",
+            "vmovdqu64",
+            "vpbroadcastd",
+            "vpxord"
+          ]
+        }
+      ]
+    },
+    {
+      "original_path": "artifacts/torch-compile-word-two-phase-32x1-replay-inductor-cache/76/c76clulz2qgtjthxdgzq35qxoj4ofhmjfihkgfpldivebo3sm765.main.cpp",
+      "saved_path": "c76clulz2qgtjthxdgzq35qxoj4ofhmjfihkgfpldivebo3sm765.main.cpp",
+      "sha256": "af90f5c6a0404a24c0283797dc4d2ee9d3754f453aa30ee91bc117c54100b153",
+      "gil_release": [
+        {
+          "line": 34,
+          "text": "py::gil_scoped_release_simple release;"
+        }
+      ],
+      "omp_pragmas": [],
+      "kernel_definitions": [
+        {
+          "line": 3,
+          "text": "extern \"C\"  void  cpp_fused__to_copy_add_bitwise_and_bitwise_xor_ne_sum_view_0(const int32_t* in_ptr0,"
+        },
+        {
+          "line": 9,
+          "text": "extern \"C\"  void  cpp_fused_cat_index_new_zeros_slice_sub_1(const int64_t* in_ptr0,"
+        },
+        {
+          "line": 112,
+          "text": "extern \"C\"  void  cpp_fused__to_copy_add_bitwise_and_bitwise_xor_ne_sum_view_0(const int32_t* in_ptr0,"
+        },
+        {
+          "line": 226,
+          "text": "extern \"C\"  void  cpp_fused_cat_index_new_zeros_slice_sub_1(const int64_t* in_ptr0,"
+        }
+      ],
+      "libraries": [
+        {
+          "original_path": "artifacts/torch-compile-word-two-phase-32x1-replay-inductor-cache/76/c76clulz2qgtjthxdgzq35qxoj4ofhmjfihkgfpldivebo3sm765.main.so",
+          "sha256": "6340ca5cfc5fe8b273cfb25cc2f07be827b9bb9c25fcb3cf33d6d34bf288a76b",
+          "disassembly_excerpt": "c76clulz2qgtjthxdgzq35qxoj4ofhmjfihkgfpldivebo3sm765.main.so.avx512.txt",
+          "zmm_instruction_lines": 580,
+          "ymm_instruction_lines": 192,
+          "avx512_mnemonics": [
+            "vextracti32x8",
+            "vextracti64x4",
+            "vinserti64x4",
+            "vmovdqa32",
+            "vmovdqa64",
+            "vmovdqu32",
+            "vmovdqu64",
+            "vpaddd",
+            "vpaddq",
+            "vpandd",
+            "vpblendmd",
+            "vpbroadcastd",
+            "vpbroadcastq",
+            "vpcmpeqd",
+            "vpcmpeqq",
+            "vpcmpleq",
+            "vpcmpltq",
+            "vpcmpneqd",
+            "vpmovd2m",
+            "vpmovm2d",
+            "vpmovm2q",
+            "vpmovqd",
+            "vpmovsxdq",
+            "vpsubq",
+            "vpternlogd",
+            "vpxord"
+          ]
+        }
+      ]
+    },
+    {
+      "original_path": "artifacts/torch-compile-word-two-phase-32x1-replay-inductor-cache/xw/cxw6jn3k65kmhrieuem3rjnbovnqxluqmhsfjm4y57c2osnl34tm.main.cpp",
+      "saved_path": "cxw6jn3k65kmhrieuem3rjnbovnqxluqmhsfjm4y57c2osnl34tm.main.cpp",
+      "sha256": "bde36c7b175528b269dad6dc5942bb63cf32a81437244b2733d9ba73fa625d21",
+      "gil_release": [
+        {
+          "line": 30,
+          "text": "py::gil_scoped_release_simple release;"
+        }
+      ],
+      "omp_pragmas": [],
+      "kernel_definitions": [
+        {
+          "line": 3,
+          "text": "extern \"C\"  void  cpp_fused__to_copy_add_bitwise_and_bitwise_xor_ne_sum_view_0(const int32_t* in_ptr0,"
+        },
+        {
+          "line": 9,
+          "text": "extern \"C\"  void  cpp_fused_cat_new_zeros_sub_1(const int64_t* in_ptr0,"
+        },
+        {
+          "line": 95,
+          "text": "extern \"C\"  void  cpp_fused__to_copy_add_bitwise_and_bitwise_xor_ne_sum_view_0(const int32_t* in_ptr0,"
+        },
+        {
+          "line": 209,
+          "text": "extern \"C\"  void  cpp_fused_cat_new_zeros_sub_1(const int64_t* in_ptr0,"
+        }
+      ],
+      "libraries": [
+        {
+          "original_path": "artifacts/torch-compile-word-two-phase-32x1-replay-inductor-cache/xw/cxw6jn3k65kmhrieuem3rjnbovnqxluqmhsfjm4y57c2osnl34tm.main.so",
+          "sha256": "9775da3640753a4eee28d8540db34bdd42e6ce69facd50ea03d64b9889a99a91",
+          "disassembly_excerpt": "cxw6jn3k65kmhrieuem3rjnbovnqxluqmhsfjm4y57c2osnl34tm.main.so.avx512.txt",
+          "zmm_instruction_lines": 287,
+          "ymm_instruction_lines": 118,
+          "avx512_mnemonics": [
+            "vextracti32x8",
+            "vmovdqa32",
+            "vmovdqa64",
+            "vmovdqu32",
+            "vmovdqu64",
+            "vpaddd",
+            "vpandd",
+            "vpblendmd",
+            "vpbroadcastd",
+            "vpbroadcastq",
+            "vpcmpeqd",
+            "vpcmpneqd",
+            "vpmovm2d",
+            "vpmovsxdq",
+            "vpternlogd",
+            "vpxord"
+          ]
+        }
+      ]
+    }
+  ],
+  "build_metadata": [],
+  "supporting_generated_sources": [
+    {
+      "original_path": "artifacts/torch-compile-word-two-phase-32x1-replay-inductor-cache/2w/c2wawido3dtafcfncl27mn6bwebanaump7ohuzk3i7yggo7sw5je.main.cpp",
+      "saved_path": "c2wawido3dtafcfncl27mn6bwebanaump7ohuzk3i7yggo7sw5je.main.cpp",
+      "sha256": "0361349b95b6b2f6de8b4319a655ab47c6eaa6557756a4b17e147ff7a06b04cb"
+    },
+    {
+      "original_path": "artifacts/torch-compile-word-two-phase-32x1-replay-inductor-cache/76/c76clulz2qgtjthxdgzq35qxoj4ofhmjfihkgfpldivebo3sm765.main.cpp",
+      "saved_path": "c76clulz2qgtjthxdgzq35qxoj4ofhmjfihkgfpldivebo3sm765.main.cpp",
+      "sha256": "af90f5c6a0404a24c0283797dc4d2ee9d3754f453aa30ee91bc117c54100b153"
+    },
+    {
+      "original_path": "artifacts/torch-compile-word-two-phase-32x1-replay-inductor-cache/7v/c7v7ksfyhytxghbbkzs7tow7v3avlzxx5vivi64567xtiziqgtf4.py",
+      "saved_path": "c7v7ksfyhytxghbbkzs7tow7v3avlzxx5vivi64567xtiziqgtf4.py",
+      "sha256": "722b876eb5ece183144f66f470e57b24c3252b403497c66f26b33ec4b74b13f9"
+    },
+    {
+      "original_path": "artifacts/torch-compile-word-two-phase-32x1-replay-inductor-cache/bc/cbcajiukrcdieopikltodknnw4sf2rnqiib5hlrythekremhmwup.py",
+      "saved_path": "cbcajiukrcdieopikltodknnw4sf2rnqiib5hlrythekremhmwup.py",
+      "sha256": "d73c0bd1c7ef518326fe5266037025151bb08de26321e97b745ee1dfa56f7ee4"
+    },
+    {
+      "original_path": "artifacts/torch-compile-word-two-phase-32x1-replay-inductor-cache/lh/clhouobsam6grgzhamodqyd2hpue362sjkjaouif6lgb3xoh43a3.py",
+      "saved_path": "clhouobsam6grgzhamodqyd2hpue362sjkjaouif6lgb3xoh43a3.py",
+      "sha256": "3f262048ebb3e9e79999bb12aef42ceff1fa45be98d10999751aa139380cb712"
+    },
+    {
+      "original_path": "artifacts/torch-compile-word-two-phase-32x1-replay-inductor-cache/mg/cmg7b37g2xilek63ny7jq3dkpg3wiy52e5jciv4wfxfbja3mzqkw.py",
+      "saved_path": "cmg7b37g2xilek63ny7jq3dkpg3wiy52e5jciv4wfxfbja3mzqkw.py",
+      "sha256": "4f4397960d8593e9c79ed2ddae604e807d17e87a8a029d0ef22819b9b3916423"
+    },
+    {
+      "original_path": "artifacts/torch-compile-word-two-phase-32x1-replay-inductor-cache/xw/cxw6jn3k65kmhrieuem3rjnbovnqxluqmhsfjm4y57c2osnl34tm.main.cpp",
+      "saved_path": "cxw6jn3k65kmhrieuem3rjnbovnqxluqmhsfjm4y57c2osnl34tm.main.cpp",
+      "sha256": "bde36c7b175528b269dad6dc5942bb63cf32a81437244b2733d9ba73fa625d21"
+    }
+  ]
+}

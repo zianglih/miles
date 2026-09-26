@@ -1,0 +1,488 @@
+WARNING:root:deep_ep is not installed, some functionalities may be limited.
+WARNING:miles_plugins.megatron_bridge:miles bridge shim _install_bridge_pp_group_unwrap not applied: No module named 'megatron.bridge'
+WARNING:miles_plugins.megatron_bridge.nemotron_h:miles nemotron_h shim _build_bridge_subclass not applied: No module named 'megatron.bridge'
+W0926 02:23:30.414000 7741 venv/lib/python3.11/site-packages/torch/utils/cpp_extension.py:140] No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+CI_REPRO_RESOURCE {"where": "session_start", "time_ns": 1790389414182704025, "pid": 7741, "status": {"VmPeak": "14855268 kB", "VmSize": "7131196 kB", "VmHWM": "1012332 kB", "VmRSS": "1012332 kB", "Threads": "69"}, "python_threads": [["MainThread", 128721761871680]], "torch_intra_threads": 128, "torch_inter_threads": 128, "grad_enabled": true, "inference_enabled": false, "affinity": [0, 1, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255], "cgroup": {}}
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-9.1.1, pluggy-1.6.0 -- /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/miles
+configfile: pyproject.toml
+plugins: anyio-4.15.1, hypothesis-6.168.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... LANG_RL Log directory: None
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+collected 3198 items / 1 skipped
+
+tests/fast/backends/megatron_utils/test_hf_weight_iterator_direct.py::test_gather_batches_pack_by_size_only PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_discover_returns_global_layer_index_skipping_dense PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_discover_is_sorted_by_layer_index PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_discover_finds_layers_behind_an_extra_wrapper PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_install_assigns_stream_idx_equal_to_global_layer_index PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_install_calls_the_adapter_once_per_moe_layer PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_install_is_a_noop_when_manager_disabled PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_install_raises_when_no_adapter_matches PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_install_raises_when_adapter_matches_but_finds_no_layers PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_specs_register_adapters_for_every_supported_model_type PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_dense_archs_do_not_resolve_to_a_moe_adapter PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_enable_follows_use_routing_replay PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_enable_defaults_false_when_arg_absent PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_enable_turns_on_the_replay_check_only_under_ci_test PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_log_prob_stage_is_fallthrough_when_disabled PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_log_prob_stage_replays_when_routing_came_from_the_rollout PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_log_prob_stage_records_for_the_non_rollout_variant PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_fill_is_skipped_for_the_non_rollout_variant PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_stage_sets_and_restores PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_stage_restores_on_exception PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_stage_nests PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_ref_model_creation_does_not_install_routing_replay PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_from_flat_config PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_unwraps_text_config PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_prefers_text_config_when_both_present PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_uses_get_text_config_when_available PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_falls_back_when_text_config_lacks_depth PASSED
+tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_returns_none_when_absent PASSED
+tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestWeightUpdatePlacement::test_resolve_without_forced_returns_required PASSED
+tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestWeightUpdatePlacement::test_resolve_joins_gathered_dims PASSED
+tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestIterHfWeightsTemplate::test_adapter_units_join_the_stream_prefixed PASSED
+tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestIterHfWeightsTemplate::test_adapter_argument_reaches_the_hook PASSED
+tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestIterHfWeightsTemplate::test_include_base_false_streams_adapters_only PASSED
+tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestIterHfWeightsTemplate::test_each_adapter_keeps_its_own_prefix PASSED
+tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestIterHfWeightsTemplate::test_no_adapters_matches_base_stream PASSED
+tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_sync_driver_defaults_to_group_granularity Rollout generation:   0%|          | 0/8 [00:00<?, ?it/s]Rollout generation: 100%|██████████| 8/8 [00:00<00:00, 38479.85it/s]
+PASSED
+tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_missing_reward_group_is_refilled_before_default_conversion[None-None] Rollout generation:   0%|          | 0/4 [00:00<?, ?it/s]Rollout generation: 100%|██████████| 4/4 [00:00<00:00, 391.31it/s]
+PASSED
+tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_missing_reward_group_is_refilled_before_default_conversion[score-None] Rollout generation:   0%|          | 0/4 [00:00<?, ?it/s]Rollout generation: 100%|██████████| 4/4 [00:00<00:00, 391.86it/s]
+PASSED
+tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_missing_reward_group_is_refilled_before_default_conversion[score-missing_reward2] Rollout generation:   0%|          | 0/4 [00:00<?, ?it/s]Rollout generation: 100%|██████████| 4/4 [00:00<00:00, 392.36it/s]
+PASSED
+tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_aborted_group_is_classified_before_missing_reward Rollout generation:   0%|          | 0/4 [00:00<?, ?it/s]Rollout generation: 100%|██████████| 4/4 [00:00<00:00, 392.99it/s]
+PASSED
+tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_backfill_submits_replacement_before_the_group_returns Rollout generation:   0%|          | 0/8 [00:00<?, ?it/s]Rollout generation: 100%|██████████| 8/8 [00:00<00:00, 783.20it/s]
+PASSED
+tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_backfill_does_not_oversubmit_below_one_group Rollout generation:   0%|          | 0/8 [00:00<?, ?it/s]Rollout generation: 100%|██████████| 8/8 [00:00<00:00, 784.83it/s]
+PASSED
+tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_failed_sample_cancels_siblings_and_conserves_credits PASSED
+tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_factory_resolves_granularity[None-group-GroupLevelSubmission] PASSED
+tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_factory_resolves_granularity[None-sample-SampleBackfillSubmission] PASSED
+tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_factory_resolves_granularity[group-sample-GroupLevelSubmission] PASSED
+tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_factory_resolves_granularity[sample-group-SampleBackfillSubmission] PASSED
+tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_group_level_counts_groups PASSED
+tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_backfill_counts_samples PASSED
+tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_orphaned_credits_resync_when_nothing_is_pending WARNING:miles.rollout.submission_scheduler:samples_in_flight=8 with no pending groups; resetting to 0
+PASSED
+tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_credits_survive_while_groups_are_pending PASSED
+tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_wait_for_progress_returns_on_group_completion[GroupLevelSubmission] PASSED
+tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_wait_for_progress_returns_on_group_completion[<lambda>] PASSED
+tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_wait_for_progress_returns_on_sample_completion PASSED
+tests/fast/router/test_sglang_anthropic_conversion.py::test_sglang_anthropic_conversion_contract 
+==================================== ERRORS ====================================
+_____ ERROR collecting registered/unit/entrypoints/anthropic/test_utils.py _____
+test/registered/unit/entrypoints/anthropic/test_utils.py:17: in <module>
+    from sglang.test.test_utils import maybe_stub_sgl_kernel
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:690: in _load_unlocked
+    ???
+../venv/lib/python3.11/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+python/sglang/test/test_utils.py:246: in <module>
+    20000 + int(os.environ.get("CUDA_VISIBLE_DEVICES", "0")[0]) * 1000
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   IndexError: string index out of range
+____ ERROR collecting registered/unit/entrypoints/anthropic/test_serving.py ____
+test/registered/unit/entrypoints/anthropic/test_serving.py:6: in <module>
+    from sglang.test.test_utils import maybe_stub_sgl_kernel
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:690: in _load_unlocked
+    ???
+../venv/lib/python3.11/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+python/sglang/test/test_utils.py:246: in <module>
+    20000 + int(os.environ.get("CUDA_VISIBLE_DEVICES", "0")[0]) * 1000
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   IndexError: string index out of range
+=============================== warnings summary ===============================
+<frozen importlib._bootstrap>:241
+  <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+
+<frozen importlib._bootstrap>:241
+  <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+
+../venv/lib/python3.11/site-packages/torch/jit/_script.py:365: 14 warnings
+  /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/lib/python3.11/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+python/sglang/srt/layers/quantization/awq/awq.py:53
+  /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/sglang/python/sglang/srt/layers/quantization/awq/awq.py:53: UserWarning: Only CUDA, HIP and XPU support AWQ currently.
+    warnings.warn(f"Only CUDA, HIP and XPU support AWQ currently.")
+
+python/sglang/srt/layers/quantization/gguf.py:69
+  /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/sglang/python/sglang/srt/layers/quantization/gguf.py:69: UserWarning: Only CUDA, MUSA and NPU support GGUF quantization currently.
+    warnings.warn(f"Only CUDA, MUSA and NPU support GGUF quantization currently.")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+ERROR test/registered/unit/entrypoints/anthropic/test_utils.py - IndexError: ...
+ERROR test/registered/unit/entrypoints/anthropic/test_serving.py - IndexError...
+!!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!!
+18 warnings, 2 errors in 7.31s
+sys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+FAILEDCI_REPRO_RESOURCE {"where": "session_finish:1", "time_ns": 1790389431711312272, "pid": 7741, "status": {"VmPeak": "25778072 kB", "VmSize": "25714600 kB", "VmHWM": "1344268 kB", "VmRSS": "1344268 kB", "Threads": "336"}, "python_threads": [["MainThread", 128721761871680], ["tqdm_monitor", 128714690000576], ["tqdm_monitor", 128697767974592]], "torch_intra_threads": 128, "torch_inter_threads": 128, "grad_enabled": true, "inference_enabled": false, "affinity": [0, 1, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255], "cgroup": {}}
+
+
+=================================== FAILURES ===================================
+__________________ test_sglang_anthropic_conversion_contract ___________________
+
+    def test_sglang_anthropic_conversion_contract():
+        sglang_source_root = Path(os.environ["SGLANG_SOURCE_ROOT"])
+        sglang_repo_root = sglang_source_root.parent
+        missing_tests = [str(path) for path in _SGLANG_TESTS if not (sglang_repo_root / path).is_file()]
+        assert not missing_tests, f"Missing SGLang Anthropic tests: {missing_tests}"
+    
+        env = os.environ.copy()
+        env["PYTHONDONTWRITEBYTECODE"] = "1"
+>       subprocess.run(
+            [
+                sys.executable,
+                "-m",
+                "pytest",
+                "-p",
+                "no:cacheprovider",
+                "-q",
+                *(str(path) for path in _SGLANG_TESTS),
+            ],
+            cwd=sglang_repo_root,
+            env=env,
+            check=True,
+        )
+
+tests/fast/router/test_sglang_anthropic_conversion.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python', '-m', 'pytest', '-p', 'no:cacheprovider', '-q', ...],)
+kwargs = {'cwd': PosixPath('/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/sglang'), 'env': {'PATH': '/hai-workspace/...<576 brand=vcs,driver>=575,driver<576 brand=vws,driver>=575,driver<576 brand=cloudgaming,driver>=575,driver<576', ...}}
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python', '-m', 'pytest', '-p', 'no:cacheprovider', '-q', 'test/registered/unit/entrypoints/anthropic/test_utils.py', 'test/registered/unit/entrypoints/anthropic/test_serving.py']' returned non-zero exit status 2.
+
+../managed-python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/subprocess.py:571: CalledProcessError
+=============================== warnings summary ===============================
+<frozen importlib._bootstrap>:241
+  <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+
+<frozen importlib._bootstrap>:241
+  <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+
+../venv/lib/python3.11/site-packages/torch/jit/_script.py:365: 14 warnings
+  /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/lib/python3.11/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+../sglang/python/sglang/srt/layers/quantization/awq/awq.py:53
+  /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/sglang/python/sglang/srt/layers/quantization/awq/awq.py:53: UserWarning: Only CUDA, HIP and XPU support AWQ currently.
+    warnings.warn(f"Only CUDA, HIP and XPU support AWQ currently.")
+
+../sglang/python/sglang/srt/layers/quantization/gguf.py:69
+  /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/sglang/python/sglang/srt/layers/quantization/gguf.py:69: UserWarning: Only CUDA, MUSA and NPU support GGUF quantization currently.
+    warnings.warn(f"Only CUDA, MUSA and NPU support GGUF quantization currently.")
+
+../Megatron-LM/megatron/core/optimizer/__init__.py:25
+  /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/Megatron-LM/megatron/core/optimizer/__init__.py:25: UserWarning: Transformer Engine and Apex are not installed. Falling back to Torch optimizers.
+    warnings.warn(
+
+../Megatron-LM/megatron/core/inference/contexts/__init__.py:9
+  /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/Megatron-LM/megatron/core/inference/contexts/__init__.py:9: DeprecationWarning: The following imports from `dynamic_context.py` will be removed in this file in `megatron-core` 0.14. The imports here result in a cyclic import issue that causes rotary embeddings to import from Apex rather than Transformer Engine.
+    warnings.warn(
+
+../Megatron-LM/megatron/core/distributed/fsdp/src/megatron_fsdp/mixed_precision.py:114
+  /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/Megatron-LM/megatron/core/distributed/fsdp/src/megatron_fsdp/mixed_precision.py:114: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier and multi_tensor_scale
+    warnings.warn(
+
+../Megatron-LM/megatron/core/optimizer/optimizer.py:28
+  /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/Megatron-LM/megatron/core/optimizer/optimizer.py:28: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier and multi_tensor_scale
+    warnings.warn(
+
+../Megatron-LM/megatron/core/optimizer/clip_grads.py:32
+  /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/Megatron-LM/megatron/core/optimizer/clip_grads.py:32: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier, multi_tensor_l2norm, and multi_tensor_scale
+    warnings.warn(
+
+tests/ci/ci_utils.py:85
+  /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/miles/tests/ci/ci_utils.py:85: PytestCollectionWarning: cannot collect test class 'TestFile' because it has a __init__ constructor (from: tests/ci/test/test_ci_history.py)
+    @dataclass
+
+../Megatron-LM/megatron/training/utils/common_utils.py:27
+  /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/Megatron-LM/megatron/training/utils/common_utils.py:27: UserWarning: Transformer Engine and Apex are not installed. Falling back to local implementations of multi_tensor_applier and multi_tensor_l2norm
+    warnings.warn(
+
+../Megatron-LM/megatron/core/models/backends.py:34
+  /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/Megatron-LM/megatron/core/models/backends.py:34: UserWarning: Apex is not installed. Falling back to Torch Norm
+    warnings.warn("Apex is not installed. Falling back to Torch Norm")
+
+../Megatron-LM/megatron/core/models/gpt/heterogeneous/heterogeneous_layer_specs.py:68
+  /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/Megatron-LM/megatron/core/models/gpt/heterogeneous/heterogeneous_layer_specs.py:68: UserWarning: Apex is not installed. Falling back to Torch Norm
+    warnings.warn("Apex is not installed. Falling back to Torch Norm")
+
+../Megatron-LM/megatron/core/models/gpt/gpt_layer_specs.py:77
+  /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/Megatron-LM/megatron/core/models/gpt/gpt_layer_specs.py:77: UserWarning: Apex is not installed. Falling back to Torch Norm
+    warnings.warn("Apex is not installed. Falling back to Torch Norm")
+
+../Megatron-LM/megatron/core/extensions/transformer_engine_spec_provider.py:95
+  /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/Megatron-LM/megatron/core/extensions/transformer_engine_spec_provider.py:95: UserWarning: Only transformer-engine>=1.7.0 supports MoE experts, but your version is 0.0.0. Use local linear implementation instead.
+    warnings.warn(
+
+../Megatron-LM/megatron/rl/inference/inference_interface.py:15
+  /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/Megatron-LM/megatron/rl/inference/inference_interface.py:15: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class InferenceInterface(BaseModel):
+
+../Megatron-LM/megatron/rl/__init__.py:31
+../Megatron-LM/megatron/rl/__init__.py:31
+  /hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/Megatron-LM/megatron/rl/__init__.py:31: PydanticDeprecatedSince20: The `__fields__` attribute is deprecated, use the `model_fields` class property instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    cls.Library.type_names[register_type.__fields__['type_name'].default] = register_type
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+============================== slowest durations ===============================
+8.61s call     tests/fast/router/test_sglang_anthropic_conversion.py::test_sglang_anthropic_conversion_contract
+0.02s setup    tests/fast/backends/megatron_utils/test_hf_weight_iterator_direct.py::test_gather_batches_pack_by_size_only
+0.01s call     tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_missing_reward_group_is_refilled_before_default_conversion[None-None]
+0.01s call     tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_missing_reward_group_is_refilled_before_default_conversion[score-None]
+0.01s call     tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_missing_reward_group_is_refilled_before_default_conversion[score-missing_reward2]
+0.01s call     tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_backfill_submits_replacement_before_the_group_returns
+0.01s call     tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_aborted_group_is_classified_before_missing_reward
+0.01s call     tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_backfill_does_not_oversubmit_below_one_group
+0.00s call     tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_sync_driver_defaults_to_group_granularity
+0.00s teardown tests/fast/router/test_sglang_anthropic_conversion.py::test_sglang_anthropic_conversion_contract
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_ref_model_creation_does_not_install_routing_replay
+0.00s setup    tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_sync_driver_defaults_to_group_granularity
+0.00s setup    tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_wait_for_progress_returns_on_group_completion[GroupLevelSubmission]
+0.00s setup    tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_missing_reward_group_is_refilled_before_default_conversion[None-None]
+0.00s setup    tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_missing_reward_group_is_refilled_before_default_conversion[score-None]
+0.00s setup    tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_missing_reward_group_is_refilled_before_default_conversion[score-missing_reward2]
+0.00s teardown tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_sync_driver_defaults_to_group_granularity
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_discover_is_sorted_by_layer_index
+0.00s setup    tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_wait_for_progress_returns_on_group_completion[<lambda>]
+0.00s setup    tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_aborted_group_is_classified_before_missing_reward
+0.00s teardown tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_missing_reward_group_is_refilled_before_default_conversion[None-None]
+0.00s setup    tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_backfill_does_not_oversubmit_below_one_group
+0.00s setup    tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_backfill_submits_replacement_before_the_group_returns
+0.00s teardown tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_missing_reward_group_is_refilled_before_default_conversion[score-None]
+0.00s call     tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_failed_sample_cancels_siblings_and_conserves_credits
+0.00s setup    tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_failed_sample_cancels_siblings_and_conserves_credits
+0.00s teardown tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_missing_reward_group_is_refilled_before_default_conversion[score-missing_reward2]
+0.00s setup    tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestWeightUpdatePlacement::test_resolve_without_forced_returns_required
+0.00s setup    tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_factory_resolves_granularity[None-group-GroupLevelSubmission]
+0.00s call     tests/fast/backends/megatron_utils/test_hf_weight_iterator_direct.py::test_gather_batches_pack_by_size_only
+0.00s setup    tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_wait_for_progress_returns_on_sample_completion
+0.00s setup    tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_factory_resolves_granularity[None-sample-SampleBackfillSubmission]
+0.00s setup    tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_factory_resolves_granularity[group-sample-GroupLevelSubmission]
+0.00s setup    tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_factory_resolves_granularity[sample-group-SampleBackfillSubmission]
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_discover_returns_global_layer_index_skipping_dense
+0.00s setup    tests/fast/router/test_sglang_anthropic_conversion.py::test_sglang_anthropic_conversion_contract
+0.00s teardown tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_backfill_submits_replacement_before_the_group_returns
+0.00s teardown tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_aborted_group_is_classified_before_missing_reward
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_discover_returns_global_layer_index_skipping_dense
+0.00s call     tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_wait_for_progress_returns_on_group_completion[GroupLevelSubmission]
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_install_raises_when_no_adapter_matches
+0.00s teardown tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_backfill_does_not_oversubmit_below_one_group
+0.00s call     tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_orphaned_credits_resync_when_nothing_is_pending
+0.00s teardown tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::test_failed_sample_cancels_siblings_and_conserves_credits
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_install_assigns_stream_idx_equal_to_global_layer_index
+0.00s call     tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_wait_for_progress_returns_on_group_completion[<lambda>]
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_install_raises_when_adapter_matches_but_finds_no_layers
+0.00s teardown tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_wait_for_progress_returns_on_group_completion[GroupLevelSubmission]
+0.00s teardown tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_wait_for_progress_returns_on_group_completion[<lambda>]
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_install_calls_the_adapter_once_per_moe_layer
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_discover_is_sorted_by_layer_index
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_discover_finds_layers_behind_an_extra_wrapper
+0.00s call     tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_wait_for_progress_returns_on_sample_completion
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_install_is_a_noop_when_manager_disabled
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_discover_finds_layers_behind_an_extra_wrapper
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_install_raises_when_adapter_matches_but_finds_no_layers
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_install_raises_when_no_adapter_matches
+0.00s teardown tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_wait_for_progress_returns_on_sample_completion
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_install_assigns_stream_idx_equal_to_global_layer_index
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_from_flat_config
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_dense_archs_do_not_resolve_to_a_moe_adapter
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_install_calls_the_adapter_once_per_moe_layer
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_returns_none_when_absent
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_log_prob_stage_replays_when_routing_came_from_the_rollout
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_fill_is_skipped_for_the_non_rollout_variant
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_falls_back_when_text_config_lacks_depth
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_specs_register_adapters_for_every_supported_model_type
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_stage_restores_on_exception
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_enable_turns_on_the_replay_check_only_under_ci_test
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_prefers_text_config_when_both_present
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_enable_follows_use_routing_replay
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_log_prob_stage_records_for_the_non_rollout_variant
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_stage_sets_and_restores
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_uses_get_text_config_when_available
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_unwraps_text_config
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_stage_nests
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_enable_defaults_false_when_arg_absent
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_ref_model_creation_does_not_install_routing_replay
+0.00s setup    tests/fast/backends/test_fsdp_routing_replay.py::test_log_prob_stage_is_fallthrough_when_disabled
+0.00s setup    tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_credits_survive_while_groups_are_pending
+0.00s setup    tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestIterHfWeightsTemplate::test_adapter_units_join_the_stream_prefixed
+0.00s setup    tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_backfill_counts_samples
+0.00s setup    tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_group_level_counts_groups
+0.00s setup    tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestIterHfWeightsTemplate::test_each_adapter_keeps_its_own_prefix
+0.00s setup    tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestWeightUpdatePlacement::test_resolve_joins_gathered_dims
+0.00s teardown tests/fast/backends/megatron_utils/test_hf_weight_iterator_direct.py::test_gather_batches_pack_by_size_only
+0.00s setup    tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestIterHfWeightsTemplate::test_no_adapters_matches_base_stream
+0.00s setup    tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestIterHfWeightsTemplate::test_include_base_false_streams_adapters_only
+0.00s setup    tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestIterHfWeightsTemplate::test_adapter_argument_reaches_the_hook
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_install_is_a_noop_when_manager_disabled
+0.00s setup    tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_orphaned_credits_resync_when_nothing_is_pending
+0.00s teardown tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_factory_resolves_granularity[group-sample-GroupLevelSubmission]
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_ref_model_creation_does_not_install_routing_replay
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_discover_is_sorted_by_layer_index
+0.00s call     tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestIterHfWeightsTemplate::test_adapter_units_join_the_stream_prefixed
+0.00s teardown tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_factory_resolves_granularity[None-group-GroupLevelSubmission]
+0.00s teardown tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_factory_resolves_granularity[sample-group-SampleBackfillSubmission]
+0.00s teardown tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_factory_resolves_granularity[None-sample-SampleBackfillSubmission]
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_discover_returns_global_layer_index_skipping_dense
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_install_assigns_stream_idx_equal_to_global_layer_index
+0.00s call     tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_backfill_counts_samples
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_install_raises_when_no_adapter_matches
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_unwraps_text_config
+0.00s call     tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestIterHfWeightsTemplate::test_include_base_false_streams_adapters_only
+0.00s call     tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_factory_resolves_granularity[None-group-GroupLevelSubmission]
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_install_raises_when_adapter_matches_but_finds_no_layers
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_install_is_a_noop_when_manager_disabled
+0.00s call     tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestIterHfWeightsTemplate::test_adapter_argument_reaches_the_hook
+0.00s call     tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_factory_resolves_granularity[sample-group-SampleBackfillSubmission]
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_install_calls_the_adapter_once_per_moe_layer
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_stage_restores_on_exception
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_specs_register_adapters_for_every_supported_model_type
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_prefers_text_config_when_both_present
+0.00s call     tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_group_level_counts_groups
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_returns_none_when_absent
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_enable_follows_use_routing_replay
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_dense_archs_do_not_resolve_to_a_moe_adapter
+0.00s call     tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestIterHfWeightsTemplate::test_no_adapters_matches_base_stream
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_discover_finds_layers_behind_an_extra_wrapper
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_falls_back_when_text_config_lacks_depth
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_uses_get_text_config_when_available
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_log_prob_stage_replays_when_routing_came_from_the_rollout
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_stage_nests
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_enable_turns_on_the_replay_check_only_under_ci_test
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_log_prob_stage_records_for_the_non_rollout_variant
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_stage_sets_and_restores
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_enable_turns_on_the_replay_check_only_under_ci_test
+0.00s teardown tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestIterHfWeightsTemplate::test_no_adapters_matches_base_stream
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_falls_back_when_text_config_lacks_depth
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_fill_is_skipped_for_the_non_rollout_variant
+0.00s call     tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestIterHfWeightsTemplate::test_each_adapter_keeps_its_own_prefix
+0.00s call     tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_credits_survive_while_groups_are_pending
+0.00s teardown tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestIterHfWeightsTemplate::test_adapter_argument_reaches_the_hook
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_stage_restores_on_exception
+0.00s call     tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_factory_resolves_granularity[None-sample-SampleBackfillSubmission]
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_enable_follows_use_routing_replay
+0.00s call     tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestWeightUpdatePlacement::test_resolve_without_forced_returns_required
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_from_flat_config
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_specs_register_adapters_for_every_supported_model_type
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_enable_defaults_false_when_arg_absent
+0.00s teardown tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_orphaned_credits_resync_when_nothing_is_pending
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_log_prob_stage_is_fallthrough_when_disabled
+0.00s call     tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_factory_resolves_granularity[group-sample-GroupLevelSubmission]
+0.00s teardown tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestIterHfWeightsTemplate::test_adapter_units_join_the_stream_prefixed
+0.00s teardown tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_from_flat_config
+0.00s teardown tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_credits_survive_while_groups_are_pending
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_unwraps_text_config
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_log_prob_stage_records_for_the_non_rollout_variant
+0.00s teardown tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestWeightUpdatePlacement::test_resolve_joins_gathered_dims
+0.00s teardown tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestIterHfWeightsTemplate::test_include_base_false_streams_adapters_only
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_log_prob_stage_is_fallthrough_when_disabled
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_log_prob_stage_replays_when_routing_came_from_the_rollout
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_returns_none_when_absent
+0.00s call     tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestWeightUpdatePlacement::test_resolve_joins_gathered_dims
+0.00s teardown tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestIterHfWeightsTemplate::test_each_adapter_keeps_its_own_prefix
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_stage_nests
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_prefers_text_config_when_both_present
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_enable_defaults_false_when_arg_absent
+0.00s teardown tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_group_level_counts_groups
+0.00s teardown tests/fast/backends/training_utils/weight_update/test_hf_weight_iterator.py::TestWeightUpdatePlacement::test_resolve_without_forced_returns_required
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_dense_archs_do_not_resolve_to_a_moe_adapter
+0.00s teardown tests/fast/rollout/inference_rollout/test_sample_completion_backfill.py::TestSubmissionSchedulers::test_backfill_counts_samples
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_stage_sets_and_restores
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_resolve_num_layers_uses_get_text_config_when_available
+0.00s call     tests/fast/backends/test_fsdp_routing_replay.py::test_fill_is_skipped_for_the_non_rollout_variant
+=========================== short test summary info ============================
+FAILED tests/fast/router/test_sglang_anthropic_conversion.py::test_sglang_anthropic_conversion_contract - subprocess.CalledProcessError: Command '['/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python', '-m', 'pytest', '-p', 'no:cacheprovider', '-q', 'test/registered/unit/entrypoints/anthropic/test_utils.py', 'test/registered/unit/entrypoints/anthropic/test_serving.py']' returned non-zero exit status 2.
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+============ 1 failed, 54 passed, 1 skipped, 32 warnings in 17.53s =============
+sys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute

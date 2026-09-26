@@ -1,0 +1,54 @@
+# objdump -d -C artifacts/torch-compile-word-two-phase-32x1-replay-inductor-cache/2w/c2wawido3dtafcfncl27mn6bwebanaump7ohuzk3i7yggo7sw5je.main.so
+# SHA256 8dbd80f44f3139e23ef29d4c385fd43f6aa2473352b4b0e397302dcc23239769
+# 0000000000004670 <cpp_fused_bitwise_xor_clone_view_0>:
+    4729:	62 f1 fe 48 6f 01    	vmovdqu64 (%rcx),%zmm0
+    472f:	62 f1 7d 48 ef 0e    	vpxord (%rsi),%zmm0,%zmm1
+    4735:	62 f1 fe 48 7f 0a    	vmovdqu64 %zmm1,(%rdx)
+    473b:	62 d1 fe 48 7f 00    	vmovdqu64 %zmm0,(%r8)
+    477a:	62 f1 fe 48 6f 01    	vmovdqu64 (%rcx),%zmm0
+    4783:	62 f1 7d 48 ef 0e    	vpxord (%rsi),%zmm0,%zmm1
+    478d:	62 f1 fe 48 7f 0a    	vmovdqu64 %zmm1,(%rdx)
+    4793:	62 d1 fe 48 7f 00    	vmovdqu64 %zmm0,(%r8)
+    47cf:	62 d2 7d 48 7c ce    	vpbroadcastd %r14d,%zmm1
+    47da:	62 f1 7e 4b 6f 09    	vmovdqu32 (%rcx),%zmm1{%k3}
+    481b:	62 d2 7d 48 7c c5    	vpbroadcastd %r13d,%zmm0
+    4826:	62 f1 7e 4a 6f 06    	vmovdqu32 (%rsi),%zmm0{%k2}
+    482c:	62 f1 7d 48 ef c1    	vpxord %zmm1,%zmm0,%zmm0
+    486e:	62 f1 7e 4d 7f 02    	vmovdqu32 %zmm0,(%rdx){%k5}
+    48ae:	62 d1 7e 4c 7f 08    	vmovdqu32 %zmm1,(%r8){%k4}
+    4915:	62 f1 fe 48 6f 01    	vmovdqu64 (%rcx),%zmm0
+    491b:	62 f1 7d 48 ef 0e    	vpxord (%rsi),%zmm0,%zmm1
+    4921:	62 f1 fe 48 7f 0a    	vmovdqu64 %zmm1,(%rdx)
+    4927:	62 d1 fe 48 7f 00    	vmovdqu64 %zmm0,(%r8)
+    497d:	62 f1 fe 48 6f 09    	vmovdqu64 (%rcx),%zmm1
+    49c5:	62 f1 fe 48 6f 01    	vmovdqu64 (%rcx),%zmm0
+    49cb:	62 f1 7d 48 ef 0e    	vpxord (%rsi),%zmm0,%zmm1
+    49d1:	62 f1 fe 48 7f 0a    	vmovdqu64 %zmm1,(%rdx)
+    49d7:	62 d1 fe 48 7f 45 00 	vmovdqu64 %zmm0,0x0(%r13)
+    4a1a:	62 f1 fe 48 6f 01    	vmovdqu64 (%rcx),%zmm0
+    4a20:	62 f1 7d 48 ef 0e    	vpxord (%rsi),%zmm0,%zmm1
+    4a26:	62 f1 fe 48 7f 0a    	vmovdqu64 %zmm1,(%rdx)
+    4a2c:	62 d1 fe 48 7f 45 00 	vmovdqu64 %zmm0,0x0(%r13)
+    4a84:	62 d2 7d 48 7c ce    	vpbroadcastd %r14d,%zmm1
+    4a95:	62 f1 7e 4f 6f 09    	vmovdqu32 (%rcx),%zmm1{%k7}
+    4ae5:	62 f2 7d 48 7c c7    	vpbroadcastd %edi,%zmm0
+    4aeb:	62 f1 7e 49 6f 06    	vmovdqu32 (%rsi),%zmm0{%k1}
+    4af1:	62 f1 75 48 ef c0    	vpxord %zmm0,%zmm1,%zmm0
+    4b3f:	62 f1 7e 49 7f 02    	vmovdqu32 %zmm0,(%rdx){%k1}
+    4b92:	62 d1 7e 4d 7f 4d 00 	vmovdqu32 %zmm1,0x0(%r13){%k5}
+    4ba5:	62 f1 fe 48 6f 01    	vmovdqu64 (%rcx),%zmm0
+    4bae:	62 f1 7d 48 ef 0e    	vpxord (%rsi),%zmm0,%zmm1
+    4bb8:	62 f1 fe 48 7f 0a    	vmovdqu64 %zmm1,(%rdx)
+    4bbe:	62 d1 fe 48 7f 45 00 	vmovdqu64 %zmm0,0x0(%r13)
+    4c1b:	62 d1 fe 48 7f 08    	vmovdqu64 %zmm1,(%r8)
+    4c26:	62 f1 fe 48 6f 06    	vmovdqu64 (%rsi),%zmm0
+    4c69:	62 f1 7e 4e 7f 02    	vmovdqu32 %zmm0,(%rdx){%k6}
+    4c90:	62 f1 fe 48 7f 02    	vmovdqu64 %zmm0,(%rdx)
+    4cc3:	62 d1 fe 48 7f 4d 00 	vmovdqu64 %zmm1,0x0(%r13)
+    4ccf:	62 f1 fe 48 6f 06    	vmovdqu64 (%rsi),%zmm0
+    4cda:	62 f1 fe 48 6f 09    	vmovdqu64 (%rcx),%zmm1
+    4ce5:	62 f1 fe 48 7f 02    	vmovdqu64 %zmm0,(%rdx)
+    4d6e:	62 f1 fe 48 7f 02    	vmovdqu64 %zmm0,(%rdx)
+    4d79:	62 f1 fe 48 6f 09    	vmovdqu64 (%rcx),%zmm1
+    4d9d:	62 f1 fe 48 7f 02    	vmovdqu64 %zmm0,(%rdx)
+    4db0:	62 f1 fe 48 7f 02    	vmovdqu64 %zmm0,(%rdx)

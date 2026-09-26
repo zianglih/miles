@@ -1,0 +1,139 @@
+{
+  "owned_server_groups": [
+    108565,
+    108568
+  ],
+  "before": [
+    {
+      "pid": 108572,
+      "state": "S",
+      "pgrp": 108565,
+      "starttime": 349035428,
+      "cwd": "/hai-workspace/glm52-delta/miles-torch-compile-validation",
+      "cmdline": "/opt/sglang/bin/python3 -m sglang.launch_server --trust-remote-code --model-path /hai-workspace/glm52-delta/models/GLM-5.2_5layer-NVFP4/ --host 10.102.0.130 --port 20042 --device cuda --random-seed 1234 --nccl-port 20075 --dist-init-addr 10.102.0.130:20043 --base-gpu-id 4 --gated-launch-port 20077 --tp-size 2 --dp-size 2 --ep-size 2 --skip-server-warmup --enable-draft-weights-cpu-backup --enable-metrics --enable-return-routed-experts --engine-info-bootstrap-port 20076 --kv-cache-dtype fp8_e4m3 --enable-fp32-lm-head --mem-fraction-static 0.7 --max-running-requests 512 --chunked-prefill-size 4096 --page-size 64 --enable-dp-attention --enable-dp-lm-head --watchdog-timeout 3600.0 --attention-backend nsa --dsa-prefill-backend flashmla_sparse --dsa-decode-backend flashmla_kv --dsa-topk-backend flashinfer --cuda-graph-max-bs-decode 256 --moe-runner-backend flashinfer_cutedsl --moe-dense-tp-size 1 --disable-shared-experts-fusion --lora-use-virtual-experts "
+    },
+    {
+      "pid": 108573,
+      "state": "S",
+      "pgrp": 108568,
+      "starttime": 349035430,
+      "cwd": "/hai-workspace/glm52-delta/miles-torch-compile-validation",
+      "cmdline": "/opt/sglang/bin/python3 -m sglang.launch_server --trust-remote-code --model-path /hai-workspace/glm52-delta/models/GLM-5.2_5layer-NVFP4/ --host 10.102.0.130 --port 20005 --device cuda --random-seed 1235 --nccl-port 20039 --dist-init-addr 10.102.0.130:20007 --base-gpu-id 6 --gated-launch-port 20041 --tp-size 2 --dp-size 2 --ep-size 2 --skip-server-warmup --enable-draft-weights-cpu-backup --enable-metrics --enable-return-routed-experts --engine-info-bootstrap-port 20040 --kv-cache-dtype fp8_e4m3 --enable-fp32-lm-head --mem-fraction-static 0.7 --max-running-requests 512 --chunked-prefill-size 4096 --page-size 64 --enable-dp-attention --enable-dp-lm-head --watchdog-timeout 3600.0 --attention-backend nsa --dsa-prefill-backend flashmla_sparse --dsa-decode-backend flashmla_kv --dsa-topk-backend flashinfer --cuda-graph-max-bs-decode 256 --moe-runner-backend flashinfer_cutedsl --moe-dense-tp-size 1 --disable-shared-experts-fusion --lora-use-virtual-experts "
+    },
+    {
+      "pid": 109103,
+      "state": "S",
+      "pgrp": 108568,
+      "starttime": 349036768,
+      "cwd": "/hai-workspace/glm52-delta/miles-torch-compile-validation",
+      "cmdline": "/opt/sglang/bin/python3 -c from multiprocessing.resource_tracker import main;main(48) "
+    },
+    {
+      "pid": 109104,
+      "state": "R",
+      "pgrp": 108568,
+      "starttime": 349036768,
+      "cwd": "/hai-workspace/glm52-delta/miles-torch-compile-validation",
+      "cmdline": "sglang::data_parallel_controller                                                                                                          "
+    },
+    {
+      "pid": 109105,
+      "state": "S",
+      "pgrp": 108568,
+      "starttime": 349036768,
+      "cwd": "/hai-workspace/glm52-delta/miles-torch-compile-validation",
+      "cmdline": "sglang::detokenizer                                                                                                                       "
+    },
+    {
+      "pid": 109112,
+      "state": "S",
+      "pgrp": 108565,
+      "starttime": 349036811,
+      "cwd": "/hai-workspace/glm52-delta/miles-torch-compile-validation",
+      "cmdline": "/opt/sglang/bin/python3 -c from multiprocessing.resource_tracker import main;main(48) "
+    },
+    {
+      "pid": 109113,
+      "state": "R",
+      "pgrp": 108565,
+      "starttime": 349036811,
+      "cwd": "/hai-workspace/glm52-delta/miles-torch-compile-validation",
+      "cmdline": "sglang::data_parallel_controller                                                                                                          "
+    },
+    {
+      "pid": 109114,
+      "state": "S",
+      "pgrp": 108565,
+      "starttime": 349036811,
+      "cwd": "/hai-workspace/glm52-delta/miles-torch-compile-validation",
+      "cmdline": "sglang::detokenizer                                                                                                                       "
+    },
+    {
+      "pid": 109448,
+      "state": "R",
+      "pgrp": 108568,
+      "starttime": 349038182,
+      "cwd": "/hai-workspace/glm52-delta/miles-torch-compile-validation",
+      "cmdline": "sglang::scheduler_DP0_TP0_EP0                                                                                                             "
+    },
+    {
+      "pid": 109454,
+      "state": "R",
+      "pgrp": 108568,
+      "starttime": 349038221,
+      "cwd": "/hai-workspace/glm52-delta/miles-torch-compile-validation",
+      "cmdline": "sglang::scheduler_DP1_TP1_EP1                                                                                                             "
+    },
+    {
+      "pid": 109456,
+      "state": "S",
+      "pgrp": 108565,
+      "starttime": 349038244,
+      "cwd": "/hai-workspace/glm52-delta/miles-torch-compile-validation",
+      "cmdline": "sglang::scheduler_DP0_TP0_EP0                                                                                                             "
+    },
+    {
+      "pid": 109461,
+      "state": "R",
+      "pgrp": 108565,
+      "starttime": 349038283,
+      "cwd": "/hai-workspace/glm52-delta/miles-torch-compile-validation",
+      "cmdline": "sglang::scheduler_DP1_TP1_EP1                                                                                                             "
+    },
+    {
+      "pid": 115130,
+      "state": "S",
+      "pgrp": 108565,
+      "starttime": 349055944,
+      "cwd": "/hai-workspace/glm52-delta/miles-torch-compile-validation",
+      "cmdline": "/opt/sglang/bin/python3 /opt/sglang/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=109456 --read-fd=235 --write-fd=238 --torch-key=cTo03RUSqfmcYCgUyy2MUjPCGJXm6IgGWiWGw//uJng= "
+    },
+    {
+      "pid": 115131,
+      "state": "S",
+      "pgrp": 108565,
+      "starttime": 349055944,
+      "cwd": "/hai-workspace/glm52-delta/miles-torch-compile-validation",
+      "cmdline": "/opt/sglang/bin/python3 /opt/sglang/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=109461 --read-fd=214 --write-fd=217 --torch-key=cTo03RUSqfmcYCgUyy2MUjPCGJXm6IgGWiWGw//uJng= "
+    },
+    {
+      "pid": 115134,
+      "state": "S",
+      "pgrp": 108568,
+      "starttime": 349055949,
+      "cwd": "/hai-workspace/glm52-delta/miles-torch-compile-validation",
+      "cmdline": "/opt/sglang/bin/python3 /opt/sglang/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=109454 --read-fd=214 --write-fd=217 --torch-key=cTo03RUSqfmcYCgUyy2MUjPCGJXm6IgGWiWGw//uJng= "
+    },
+    {
+      "pid": 115136,
+      "state": "S",
+      "pgrp": 108568,
+      "starttime": 349055950,
+      "cwd": "/hai-workspace/glm52-delta/miles-torch-compile-validation",
+      "cmdline": "/opt/sglang/bin/python3 /opt/sglang/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=109448 --read-fd=235 --write-fd=238 --torch-key=cTo03RUSqfmcYCgUyy2MUjPCGJXm6IgGWiWGw//uJng= "
+    }
+  ],
+  "after": [],
+  "gpu_processes_after": "",
+  "completed_unix_s": 1790393026.2051637
+}

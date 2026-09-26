@@ -1,0 +1,8 @@
+{
+  "snapshot": "/data/ziangli/glm52-delta-sync-c2/compile-v2-backups/compile-v2-complete-20260926",
+  "archive": "/data/ziangli/glm52-delta-sync-c2/compile-v2-backups/compile-v2-complete-20260926.tar",
+  "sha256": "6cb8c466c8f9b11002ef0f1a99db745d3daff85daed2dcdfe89e64b11b9e03e1",
+  "files": 139,
+  "delta_shards": 12,
+  "errors": []
+}

@@ -1,0 +1,87 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0
+rootdir: /hai-workspace/glm52-delta/miles-torch-compile-validation
+configfile: pyproject.toml
+plugins: anyio-4.15.1, asyncio-1.4.0, hypothesis-6.168.1, ai-dynamo-1.5.0.dev20260917, typeguard-2.13.3, jaxtyping-0.3.11
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 64 items
+
+tests/fast/utils/test_delta_preparation.py ..................            [ 28%]
+tests/fast/backends/training_utils/weight_update/test_delta_compiled_cpu.py . [ 29%]
+............                                                             [ 48%]
+tests/fast/backends/training_utils/weight_update/test_delta.py ......... [ 62%]
+............                                                             [ 81%]
+tests/fast/backends/training_utils/weight_update/test_disk_delta_weight_version.py . [ 82%]
+.....                                                                    [ 90%]
+tests/fast/backends/training_utils/weight_update/test_disk_delta_engine_calls.py . [ 92%]
+.....                                                                    [100%]
+
+=============================== warnings summary ===============================
+../../../opt/sglang/lib/python3.12/site-packages/torch/jit/_script.py:1488
+../../../opt/sglang/lib/python3.12/site-packages/torch/jit/_script.py:1488
+../../../opt/sglang/lib/python3.12/site-packages/torch/jit/_script.py:1488
+  /opt/sglang/lib/python3.12/site-packages/torch/jit/_script.py:1488: DeprecationWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+../../../opt/sglang/lib/python3.12/site-packages/transformer_engine/__init__.py:103
+  /opt/sglang/lib/python3.12/site-packages/transformer_engine/__init__.py:103: RuntimeWarning: Detected a Jax installation but could not find the shared object file for the Transformer Engine Jax extension library. If this is not intentional, please reinstall Transformer Engine with `pip install transformer_engine[jax]` or build from source with `NVTE_FRAMEWORK=jax`.
+    warnings.warn(
+
+../../../opt/sglang/lib/python3.12/site-packages/torch/jit/_script.py:365: 14 warnings
+  /opt/sglang/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+../../../root/Megatron-LM/megatron/core/tensor_parallel/random.py:83
+  /root/Megatron-LM/megatron/core/tensor_parallel/random.py:83: DeprecationWarning: Using deprecated internal API from Transformer Engine. transformer_engine.pytorch.fp8 will be removed in a future release.
+    from transformer_engine.pytorch.fp8 import FP8GlobalStateManager, fp8_autocast
+
+../../../root/Megatron-LM/megatron/core/extensions/transformer_engine.py:3514
+  /root/Megatron-LM/megatron/core/extensions/transformer_engine.py:3514: DeprecationWarning: transformer_engine.pytorch.float8_tensor is deprecated and will be removed in a future release. Float8Tensor should be imported directly through `from transformer_engine.pytorch import Float8Tensor`
+    from transformer_engine.pytorch.float8_tensor import Float8Tensor
+
+../../../root/Megatron-LM/megatron/core/inference/contexts/__init__.py:9
+  /root/Megatron-LM/megatron/core/inference/contexts/__init__.py:9: DeprecationWarning: The following imports from `dynamic_context.py` will be removed in this file in `megatron-core` 0.14. The imports here result in a cyclic import issue that causes rotary embeddings to import from Apex rather than Transformer Engine.
+    warnings.warn(
+
+../../../opt/sglang/lib/python3.12/site-packages/fla/utils/_device.py:100
+  /opt/sglang/lib/python3.12/site-packages/fla/utils/_device.py:100: UserWarning: Triton is not supported on current platform, roll back to CPU.
+    _cpu_device_warning()
+
+../../../root/Megatron-LM/megatron/rl/inference/inference_interface.py:15
+  /root/Megatron-LM/megatron/rl/inference/inference_interface.py:15: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class InferenceInterface(BaseModel):
+
+../../../root/Megatron-LM/megatron/rl/__init__.py:31
+../../../root/Megatron-LM/megatron/rl/__init__.py:31
+  /root/Megatron-LM/megatron/rl/__init__.py:31: PydanticDeprecatedSince20: The `__fields__` attribute is deprecated, use the `model_fields` class property instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    cls.Library.type_names[register_type.__fields__['type_name'].default] = register_type
+
+../sglang/python/sglang/srt/layers/quantization/awq/awq.py:53
+  /hai-workspace/glm52-delta/sglang/python/sglang/srt/layers/quantization/awq/awq.py:53: UserWarning: Only CUDA, HIP and XPU support AWQ currently.
+    warnings.warn(f"Only CUDA, HIP and XPU support AWQ currently.")
+
+../sglang/python/sglang/srt/layers/quantization/gguf.py:69
+  /hai-workspace/glm52-delta/sglang/python/sglang/srt/layers/quantization/gguf.py:69: UserWarning: Only CUDA, MUSA and NPU support GGUF quantization currently.
+    warnings.warn(f"Only CUDA, MUSA and NPU support GGUF quantization currently.")
+
+tests/fast/backends/training_utils/weight_update/test_delta_compiled_cpu.py::test_combined_backend_captures_and_sends_canonical_storage_dtype
+  /hai-workspace/glm52-delta/miles-torch-compile-validation/miles/backends/training_utils/weight_update/packed_delta.py:86: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+    view.copy_(torch.from_numpy(self.snapshots[name]))
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+============================== slowest durations ===============================
+24.15s setup    tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[False]
+5.21s call     tests/fast/utils/test_delta_preparation.py::test_actor_inference_allocations_match_warmed_worker_dispatch[entries1-4]
+3.19s call     tests/fast/utils/test_delta_preparation.py::test_word_lanes_tails_aligned_offsets_and_no_change_ownership[128]
+2.07s call     tests/fast/utils/test_delta_preparation.py::test_default_block_counts_remain_exact_above_float32_integer_range
+0.01s call     tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[True]
+0.01s call     tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[False]
+0.01s call     tests/fast/backends/training_utils/weight_update/test_delta.py::test_nvfp4_bytes_roundtrip_across_syncs[overwrite]
+0.01s call     tests/fast/backends/training_utils/weight_update/test_delta.py::test_scalar_batch_preserves_mixed_bucket_bytes_after_buffer_reuse[overwrite]
+0.01s call     tests/fast/utils/test_delta_preparation.py::test_one_compiled_stage_can_prepare_distinct_concurrent_buckets
+0.01s call     tests/fast/backends/training_utils/weight_update/test_delta.py::test_scalar_batch_preserves_mixed_bucket_bytes_after_buffer_reuse[xor]
+0.01s call     tests/fast/backends/training_utils/weight_update/test_delta.py::test_nvfp4_bytes_roundtrip_across_syncs[xor]
+0.01s call     tests/fast/backends/training_utils/weight_update/test_delta_compiled_cpu.py::test_packed_update_promotes_all_views_and_reuses_no_change_snapshot
+
+(180 durations < 0.005s hidden.  Use -vv to show these durations.)
+======================= 64 passed, 28 warnings in 36.26s =======================

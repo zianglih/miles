@@ -1,0 +1,2746 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.11.14, pytest-9.1.1, pluggy-1.6.0 -- /Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/miles-torch-compile/../.venv-delta-cpu-torch211/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/miles-torch-compile
+configfile: pyproject.toml
+collecting ... collected 18 items
+
+tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[False] ERROR
+tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[True] ERROR
+tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_reuses_no_change_snapshot_after_a_successful_update ERROR
+tests/fast/utils/test_delta_preparation.py::test_one_compiled_stage_can_prepare_distinct_concurrent_buckets ERROR
+tests/fast/utils/test_delta_preparation.py::test_compact_scalar_layout_does_not_pad_scalars_to_large_weight_rows PASSED
+tests/fast/utils/test_delta_preparation.py::test_reassigning_a_staging_lease_resets_only_padding PASSED
+tests/fast/utils/test_delta_preparation.py::test_counts_reject_gross_padding_corruption PASSED
+tests/fast/utils/test_delta_preparation.py::test_actor_inference_allocations_match_warmed_worker_dispatch[entries0-64] FAILED
+tests/fast/utils/test_delta_preparation.py::test_actor_inference_allocations_match_warmed_worker_dispatch[entries1-4] FAILED
+tests/fast/utils/test_delta_preparation.py::test_warmup_uses_actual_layout_with_caller_snapshot_and_shared_scratch FAILED
+tests/fast/utils/test_delta_preparation.py::test_default_block_counts_remain_exact_above_float32_integer_range FAILED
+tests/fast/utils/test_delta_preparation.py::test_empty_bucket_preserves_snapshot_without_materialization[entries0] PASSED
+tests/fast/utils/test_delta_preparation.py::test_empty_bucket_preserves_snapshot_without_materialization[entries1] PASSED
+tests/fast/utils/test_delta_preparation.py::test_failed_preparation_and_native_handoff_leave_active_base_unchanged ERROR
+tests/fast/utils/test_delta_preparation.py::test_layout_guards_exact_accounting_and_staging_contract PASSED
+tests/fast/utils/test_delta_preparation.py::test_word_layout_rejects_unaligned_storage_and_non_word_rows PASSED
+tests/fast/utils/test_delta_preparation.py::test_word_lanes_tails_aligned_offsets_and_no_change_ownership[128] FAILED
+tests/fast/utils/test_delta_preparation.py::test_word_lanes_tails_aligned_offsets_and_no_change_ownership[255] FAILED
+
+==================================== ERRORS ====================================
+_ ERROR at setup of test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[False] _
+
+    @pytest.fixture(scope="module")
+    def compiled_stage():
+        layout = PackedDeltaLayout(
+            (("empty", 0), ("tail", 65), ("unchanged", 128), ("byte_pairs", 65536 * 4)), block_bytes=64
+        )
+        stage = CpuDeltaPreparer(layout)
+        with ThreadPoolExecutor(max_workers=1) as pool:
+>           pool.submit(stage.warmup).result()
+
+tests/fast/utils/test_delta_preparation.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/_base.py:401: in __get_result
+    raise self._exception
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/thread.py:58: in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+miles/utils/delta_preparation.py:175: in warmup
+    self._count(staging, old_snapshot, self.layout._block_ends, self.layout.block_bytes)
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py:1038: in compile_wrapper
+    raise e.remove_dynamo_frames() from None  # see TORCHDYNAMO_VERBOSE=1
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1053: in _compile_fx_inner
+    raise InductorError(e, currentframe()).with_traceback(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1037: in _compile_fx_inner
+    mb_compiled_graph = fx_codegen_and_compile(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1798: in fx_codegen_and_compile
+    return scheme.codegen_and_compile(gm, example_inputs, inputs_to_check, graph_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1570: in codegen_and_compile
+    compiled_module = graph.compile_to_module()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2499: in compile_to_module
+    return self._compile_to_module()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2509: in _compile_to_module
+    mod = self._compile_to_module_lines(wrapper_code)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2584: in _compile_to_module_lines
+    mod = PyCodeCache.load_by_key_path(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3764: in load_by_key_path
+    mod = _reload_python_module(key, path, set_sys_modules=in_toplevel)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/runtime/compile_tasks.py:35: in _reload_python_module
+    exec(code, mod.__dict__, mod.__dict__)
+../artifacts/torch211-ci-investigation-cache/hq/chq3lo5wqieayzzg4iisztpmxeuetsi5gwbzzpauhzswokn5ihof.py:259: in <module>
+    inductor_entry = CppWrapperCodeCache.load_pybinding(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3245: in load_pybinding
+    return cls.load_pybinding_async(*args, **kwargs)()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3237: in future
+    result = get_result()
+             ^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3021: in load_fn
+    result = worker_fn()
+             ^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3050: in _worker_compile_cpp
+    builder.build()
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:2146: in build
+    run_compile_cmd(build_cmd, cwd=_build_tmp_dir)
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:638: in run_compile_cmd
+    _run_compile_cmd(cmd_line, cwd)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd_line = 'clang++ ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D  C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF  -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp  -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include    -o ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.so  -lomp  -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib '
+cwd = '../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main_CxxBuild'
+
+    def _run_compile_cmd(cmd_line: str, cwd: str) -> None:
+        cmd = shlex.split(cmd_line)
+        try:
+            subprocess.run(
+                cmd, cwd=cwd, check=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
+            )
+        except subprocess.CalledProcessError as e:
+            output = e.stdout.decode(*SUBPROCESS_DECODE_ARGS)
+            openmp_problem = "'omp.h' file not found" in output or "libomp" in output
+            if openmp_problem and sys.platform == "darwin":
+                instruction = (
+                    "\n\nOpenMP support not found. Please try one of the following solutions:\n"
+                    "(1) Set the `CXX` environment variable to a compiler other than Apple clang++/g++ "
+                    "that has builtin OpenMP support;\n"
+                    "(2) install OpenMP via conda: `conda install llvm-openmp`;\n"
+                    "(3) install libomp via brew: `brew install libomp`;\n"
+                    "(4) manually setup OpenMP and set the `OMP_PREFIX` environment variable to point to a path"
+                    " with `include/omp.h` under it."
+                )
+                output += instruction
+>           raise exc.CppCompileError(cmd, output) from e
+E           torch._inductor.exc.InductorError: CppCompileError: C++ compile error
+E           
+E           Command:
+E           clang++ ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -o ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.so -lomp -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib
+E           
+E           Output:
+E           clang++: error: no such file or directory: '../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp'
+E           
+E           
+E           Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:633: InductorError
+------------------------------ Captured log setup ------------------------------
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:convert_frame.py:276 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:meta_utils.py:276 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:2107 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:meta_utils.py:276 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:2107 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:meta_utils.py:276 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:2107 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:output_graph.py:2423 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2452 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2483 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2165 
+DEBUG    torch.__trace:autograd_cache.py:892 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:graph_capture.py:337 
+DEBUG    torch.__trace:graph_capture.py:355 
+DEBUG    torch.__trace:graph_compile.py:380 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2314 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2328 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:1279 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:1330 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:1368 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:graph.py:2575 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:convert_frame.py:1858 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:1796 
+DEBUG    torch.__trace:utils.py:2126
+_ ERROR at setup of test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[True] _
+
+    @pytest.fixture(scope="module")
+    def compiled_stage():
+        layout = PackedDeltaLayout(
+            (("empty", 0), ("tail", 65), ("unchanged", 128), ("byte_pairs", 65536 * 4)), block_bytes=64
+        )
+        stage = CpuDeltaPreparer(layout)
+        with ThreadPoolExecutor(max_workers=1) as pool:
+>           pool.submit(stage.warmup).result()
+
+tests/fast/utils/test_delta_preparation.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/_base.py:401: in __get_result
+    raise self._exception
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/thread.py:58: in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+miles/utils/delta_preparation.py:175: in warmup
+    self._count(staging, old_snapshot, self.layout._block_ends, self.layout.block_bytes)
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py:1038: in compile_wrapper
+    raise e.remove_dynamo_frames() from None  # see TORCHDYNAMO_VERBOSE=1
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1053: in _compile_fx_inner
+    raise InductorError(e, currentframe()).with_traceback(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1037: in _compile_fx_inner
+    mb_compiled_graph = fx_codegen_and_compile(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1798: in fx_codegen_and_compile
+    return scheme.codegen_and_compile(gm, example_inputs, inputs_to_check, graph_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1570: in codegen_and_compile
+    compiled_module = graph.compile_to_module()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2499: in compile_to_module
+    return self._compile_to_module()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2509: in _compile_to_module
+    mod = self._compile_to_module_lines(wrapper_code)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2584: in _compile_to_module_lines
+    mod = PyCodeCache.load_by_key_path(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3764: in load_by_key_path
+    mod = _reload_python_module(key, path, set_sys_modules=in_toplevel)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/runtime/compile_tasks.py:35: in _reload_python_module
+    exec(code, mod.__dict__, mod.__dict__)
+../artifacts/torch211-ci-investigation-cache/hq/chq3lo5wqieayzzg4iisztpmxeuetsi5gwbzzpauhzswokn5ihof.py:259: in <module>
+    inductor_entry = CppWrapperCodeCache.load_pybinding(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3245: in load_pybinding
+    return cls.load_pybinding_async(*args, **kwargs)()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3237: in future
+    result = get_result()
+             ^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3021: in load_fn
+    result = worker_fn()
+             ^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3050: in _worker_compile_cpp
+    builder.build()
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:2146: in build
+    run_compile_cmd(build_cmd, cwd=_build_tmp_dir)
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:638: in run_compile_cmd
+    _run_compile_cmd(cmd_line, cwd)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd_line = 'clang++ ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D  C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF  -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp  -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include    -o ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.so  -lomp  -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib '
+cwd = '../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main_CxxBuild'
+
+    def _run_compile_cmd(cmd_line: str, cwd: str) -> None:
+        cmd = shlex.split(cmd_line)
+        try:
+            subprocess.run(
+                cmd, cwd=cwd, check=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
+            )
+        except subprocess.CalledProcessError as e:
+            output = e.stdout.decode(*SUBPROCESS_DECODE_ARGS)
+            openmp_problem = "'omp.h' file not found" in output or "libomp" in output
+            if openmp_problem and sys.platform == "darwin":
+                instruction = (
+                    "\n\nOpenMP support not found. Please try one of the following solutions:\n"
+                    "(1) Set the `CXX` environment variable to a compiler other than Apple clang++/g++ "
+                    "that has builtin OpenMP support;\n"
+                    "(2) install OpenMP via conda: `conda install llvm-openmp`;\n"
+                    "(3) install libomp via brew: `brew install libomp`;\n"
+                    "(4) manually setup OpenMP and set the `OMP_PREFIX` environment variable to point to a path"
+                    " with `include/omp.h` under it."
+                )
+                output += instruction
+>           raise exc.CppCompileError(cmd, output) from e
+E           torch._inductor.exc.InductorError: CppCompileError: C++ compile error
+E           
+E           Command:
+E           clang++ ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -o ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.so -lomp -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib
+E           
+E           Output:
+E           clang++: error: no such file or directory: '../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp'
+E           
+E           
+E           Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:633: InductorError
+_ ERROR at setup of test_compiled_bucket_reuses_no_change_snapshot_after_a_successful_update _
+
+    @pytest.fixture(scope="module")
+    def compiled_stage():
+        layout = PackedDeltaLayout(
+            (("empty", 0), ("tail", 65), ("unchanged", 128), ("byte_pairs", 65536 * 4)), block_bytes=64
+        )
+        stage = CpuDeltaPreparer(layout)
+        with ThreadPoolExecutor(max_workers=1) as pool:
+>           pool.submit(stage.warmup).result()
+
+tests/fast/utils/test_delta_preparation.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/_base.py:401: in __get_result
+    raise self._exception
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/thread.py:58: in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+miles/utils/delta_preparation.py:175: in warmup
+    self._count(staging, old_snapshot, self.layout._block_ends, self.layout.block_bytes)
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py:1038: in compile_wrapper
+    raise e.remove_dynamo_frames() from None  # see TORCHDYNAMO_VERBOSE=1
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1053: in _compile_fx_inner
+    raise InductorError(e, currentframe()).with_traceback(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1037: in _compile_fx_inner
+    mb_compiled_graph = fx_codegen_and_compile(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1798: in fx_codegen_and_compile
+    return scheme.codegen_and_compile(gm, example_inputs, inputs_to_check, graph_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1570: in codegen_and_compile
+    compiled_module = graph.compile_to_module()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2499: in compile_to_module
+    return self._compile_to_module()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2509: in _compile_to_module
+    mod = self._compile_to_module_lines(wrapper_code)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2584: in _compile_to_module_lines
+    mod = PyCodeCache.load_by_key_path(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3764: in load_by_key_path
+    mod = _reload_python_module(key, path, set_sys_modules=in_toplevel)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/runtime/compile_tasks.py:35: in _reload_python_module
+    exec(code, mod.__dict__, mod.__dict__)
+../artifacts/torch211-ci-investigation-cache/hq/chq3lo5wqieayzzg4iisztpmxeuetsi5gwbzzpauhzswokn5ihof.py:259: in <module>
+    inductor_entry = CppWrapperCodeCache.load_pybinding(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3245: in load_pybinding
+    return cls.load_pybinding_async(*args, **kwargs)()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3237: in future
+    result = get_result()
+             ^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3021: in load_fn
+    result = worker_fn()
+             ^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3050: in _worker_compile_cpp
+    builder.build()
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:2146: in build
+    run_compile_cmd(build_cmd, cwd=_build_tmp_dir)
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:638: in run_compile_cmd
+    _run_compile_cmd(cmd_line, cwd)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd_line = 'clang++ ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D  C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF  -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp  -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include    -o ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.so  -lomp  -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib '
+cwd = '../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main_CxxBuild'
+
+    def _run_compile_cmd(cmd_line: str, cwd: str) -> None:
+        cmd = shlex.split(cmd_line)
+        try:
+            subprocess.run(
+                cmd, cwd=cwd, check=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
+            )
+        except subprocess.CalledProcessError as e:
+            output = e.stdout.decode(*SUBPROCESS_DECODE_ARGS)
+            openmp_problem = "'omp.h' file not found" in output or "libomp" in output
+            if openmp_problem and sys.platform == "darwin":
+                instruction = (
+                    "\n\nOpenMP support not found. Please try one of the following solutions:\n"
+                    "(1) Set the `CXX` environment variable to a compiler other than Apple clang++/g++ "
+                    "that has builtin OpenMP support;\n"
+                    "(2) install OpenMP via conda: `conda install llvm-openmp`;\n"
+                    "(3) install libomp via brew: `brew install libomp`;\n"
+                    "(4) manually setup OpenMP and set the `OMP_PREFIX` environment variable to point to a path"
+                    " with `include/omp.h` under it."
+                )
+                output += instruction
+>           raise exc.CppCompileError(cmd, output) from e
+E           torch._inductor.exc.InductorError: CppCompileError: C++ compile error
+E           
+E           Command:
+E           clang++ ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -o ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.so -lomp -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib
+E           
+E           Output:
+E           clang++: error: no such file or directory: '../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp'
+E           
+E           
+E           Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:633: InductorError
+_ ERROR at setup of test_one_compiled_stage_can_prepare_distinct_concurrent_buckets _
+
+    @pytest.fixture(scope="module")
+    def compiled_stage():
+        layout = PackedDeltaLayout(
+            (("empty", 0), ("tail", 65), ("unchanged", 128), ("byte_pairs", 65536 * 4)), block_bytes=64
+        )
+        stage = CpuDeltaPreparer(layout)
+        with ThreadPoolExecutor(max_workers=1) as pool:
+>           pool.submit(stage.warmup).result()
+
+tests/fast/utils/test_delta_preparation.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/_base.py:401: in __get_result
+    raise self._exception
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/thread.py:58: in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+miles/utils/delta_preparation.py:175: in warmup
+    self._count(staging, old_snapshot, self.layout._block_ends, self.layout.block_bytes)
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py:1038: in compile_wrapper
+    raise e.remove_dynamo_frames() from None  # see TORCHDYNAMO_VERBOSE=1
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1053: in _compile_fx_inner
+    raise InductorError(e, currentframe()).with_traceback(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1037: in _compile_fx_inner
+    mb_compiled_graph = fx_codegen_and_compile(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1798: in fx_codegen_and_compile
+    return scheme.codegen_and_compile(gm, example_inputs, inputs_to_check, graph_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1570: in codegen_and_compile
+    compiled_module = graph.compile_to_module()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2499: in compile_to_module
+    return self._compile_to_module()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2509: in _compile_to_module
+    mod = self._compile_to_module_lines(wrapper_code)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2584: in _compile_to_module_lines
+    mod = PyCodeCache.load_by_key_path(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3764: in load_by_key_path
+    mod = _reload_python_module(key, path, set_sys_modules=in_toplevel)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/runtime/compile_tasks.py:35: in _reload_python_module
+    exec(code, mod.__dict__, mod.__dict__)
+../artifacts/torch211-ci-investigation-cache/hq/chq3lo5wqieayzzg4iisztpmxeuetsi5gwbzzpauhzswokn5ihof.py:259: in <module>
+    inductor_entry = CppWrapperCodeCache.load_pybinding(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3245: in load_pybinding
+    return cls.load_pybinding_async(*args, **kwargs)()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3237: in future
+    result = get_result()
+             ^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3021: in load_fn
+    result = worker_fn()
+             ^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3050: in _worker_compile_cpp
+    builder.build()
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:2146: in build
+    run_compile_cmd(build_cmd, cwd=_build_tmp_dir)
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:638: in run_compile_cmd
+    _run_compile_cmd(cmd_line, cwd)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd_line = 'clang++ ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D  C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF  -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp  -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include    -o ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.so  -lomp  -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib '
+cwd = '../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main_CxxBuild'
+
+    def _run_compile_cmd(cmd_line: str, cwd: str) -> None:
+        cmd = shlex.split(cmd_line)
+        try:
+            subprocess.run(
+                cmd, cwd=cwd, check=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
+            )
+        except subprocess.CalledProcessError as e:
+            output = e.stdout.decode(*SUBPROCESS_DECODE_ARGS)
+            openmp_problem = "'omp.h' file not found" in output or "libomp" in output
+            if openmp_problem and sys.platform == "darwin":
+                instruction = (
+                    "\n\nOpenMP support not found. Please try one of the following solutions:\n"
+                    "(1) Set the `CXX` environment variable to a compiler other than Apple clang++/g++ "
+                    "that has builtin OpenMP support;\n"
+                    "(2) install OpenMP via conda: `conda install llvm-openmp`;\n"
+                    "(3) install libomp via brew: `brew install libomp`;\n"
+                    "(4) manually setup OpenMP and set the `OMP_PREFIX` environment variable to point to a path"
+                    " with `include/omp.h` under it."
+                )
+                output += instruction
+>           raise exc.CppCompileError(cmd, output) from e
+E           torch._inductor.exc.InductorError: CppCompileError: C++ compile error
+E           
+E           Command:
+E           clang++ ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -o ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.so -lomp -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib
+E           
+E           Output:
+E           clang++: error: no such file or directory: '../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp'
+E           
+E           
+E           Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:633: InductorError
+_ ERROR at setup of test_failed_preparation_and_native_handoff_leave_active_base_unchanged _
+
+    @pytest.fixture(scope="module")
+    def compiled_stage():
+        layout = PackedDeltaLayout(
+            (("empty", 0), ("tail", 65), ("unchanged", 128), ("byte_pairs", 65536 * 4)), block_bytes=64
+        )
+        stage = CpuDeltaPreparer(layout)
+        with ThreadPoolExecutor(max_workers=1) as pool:
+>           pool.submit(stage.warmup).result()
+
+tests/fast/utils/test_delta_preparation.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/_base.py:401: in __get_result
+    raise self._exception
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/thread.py:58: in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+miles/utils/delta_preparation.py:175: in warmup
+    self._count(staging, old_snapshot, self.layout._block_ends, self.layout.block_bytes)
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py:1038: in compile_wrapper
+    raise e.remove_dynamo_frames() from None  # see TORCHDYNAMO_VERBOSE=1
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1053: in _compile_fx_inner
+    raise InductorError(e, currentframe()).with_traceback(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1037: in _compile_fx_inner
+    mb_compiled_graph = fx_codegen_and_compile(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1798: in fx_codegen_and_compile
+    return scheme.codegen_and_compile(gm, example_inputs, inputs_to_check, graph_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1570: in codegen_and_compile
+    compiled_module = graph.compile_to_module()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2499: in compile_to_module
+    return self._compile_to_module()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2509: in _compile_to_module
+    mod = self._compile_to_module_lines(wrapper_code)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2584: in _compile_to_module_lines
+    mod = PyCodeCache.load_by_key_path(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3764: in load_by_key_path
+    mod = _reload_python_module(key, path, set_sys_modules=in_toplevel)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/runtime/compile_tasks.py:35: in _reload_python_module
+    exec(code, mod.__dict__, mod.__dict__)
+../artifacts/torch211-ci-investigation-cache/hq/chq3lo5wqieayzzg4iisztpmxeuetsi5gwbzzpauhzswokn5ihof.py:259: in <module>
+    inductor_entry = CppWrapperCodeCache.load_pybinding(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3245: in load_pybinding
+    return cls.load_pybinding_async(*args, **kwargs)()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3237: in future
+    result = get_result()
+             ^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3021: in load_fn
+    result = worker_fn()
+             ^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3050: in _worker_compile_cpp
+    builder.build()
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:2146: in build
+    run_compile_cmd(build_cmd, cwd=_build_tmp_dir)
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:638: in run_compile_cmd
+    _run_compile_cmd(cmd_line, cwd)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd_line = 'clang++ ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D  C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF  -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp  -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include    -o ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.so  -lomp  -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib '
+cwd = '../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main_CxxBuild'
+
+    def _run_compile_cmd(cmd_line: str, cwd: str) -> None:
+        cmd = shlex.split(cmd_line)
+        try:
+            subprocess.run(
+                cmd, cwd=cwd, check=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
+            )
+        except subprocess.CalledProcessError as e:
+            output = e.stdout.decode(*SUBPROCESS_DECODE_ARGS)
+            openmp_problem = "'omp.h' file not found" in output or "libomp" in output
+            if openmp_problem and sys.platform == "darwin":
+                instruction = (
+                    "\n\nOpenMP support not found. Please try one of the following solutions:\n"
+                    "(1) Set the `CXX` environment variable to a compiler other than Apple clang++/g++ "
+                    "that has builtin OpenMP support;\n"
+                    "(2) install OpenMP via conda: `conda install llvm-openmp`;\n"
+                    "(3) install libomp via brew: `brew install libomp`;\n"
+                    "(4) manually setup OpenMP and set the `OMP_PREFIX` environment variable to point to a path"
+                    " with `include/omp.h` under it."
+                )
+                output += instruction
+>           raise exc.CppCompileError(cmd, output) from e
+E           torch._inductor.exc.InductorError: CppCompileError: C++ compile error
+E           
+E           Command:
+E           clang++ ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -o ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.so -lomp -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib
+E           
+E           Output:
+E           clang++: error: no such file or directory: '../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp'
+E           
+E           
+E           Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:633: InductorError
+=================================== FAILURES ===================================
+__ test_actor_inference_allocations_match_warmed_worker_dispatch[entries0-64] __
+
+entries = (('a', 67), ('b', 129), ('c', 257), ('d', 513)), block_bytes = 64
+
+    @pytest.mark.parametrize(
+        "entries,block_bytes", [((("a", 67), ("b", 129), ("c", 257), ("d", 513)), 64), ((("a", 4),), 4)]
+    )
+    def test_actor_inference_allocations_match_warmed_worker_dispatch(entries, block_bytes):
+        from torch._dynamo.utils import counters
+    
+        with torch.inference_mode():
+            layout = PackedDeltaLayout(entries, block_bytes=block_bytes)
+            stage = CpuDeltaPreparer(layout)
+            old, staging = layout.allocate(), layout.allocate()
+            dict(layout.views(staging))[entries[-1][0]][0] = 255
+        assert not torch.is_inference(old) and not torch.is_inference(staging)
+        assert not torch.is_inference(layout._block_ends)
+        with ThreadPoolExecutor(max_workers=4) as pool:
+>           pool.submit(stage.warmup).result()
+
+tests/fast/utils/test_delta_preparation.py:141: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/_base.py:401: in __get_result
+    raise self._exception
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/thread.py:58: in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+miles/utils/delta_preparation.py:175: in warmup
+    self._count(staging, old_snapshot, self.layout._block_ends, self.layout.block_bytes)
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py:1038: in compile_wrapper
+    raise e.remove_dynamo_frames() from None  # see TORCHDYNAMO_VERBOSE=1
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1053: in _compile_fx_inner
+    raise InductorError(e, currentframe()).with_traceback(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1037: in _compile_fx_inner
+    mb_compiled_graph = fx_codegen_and_compile(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1798: in fx_codegen_and_compile
+    return scheme.codegen_and_compile(gm, example_inputs, inputs_to_check, graph_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1570: in codegen_and_compile
+    compiled_module = graph.compile_to_module()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2499: in compile_to_module
+    return self._compile_to_module()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2509: in _compile_to_module
+    mod = self._compile_to_module_lines(wrapper_code)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2584: in _compile_to_module_lines
+    mod = PyCodeCache.load_by_key_path(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3764: in load_by_key_path
+    mod = _reload_python_module(key, path, set_sys_modules=in_toplevel)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/runtime/compile_tasks.py:35: in _reload_python_module
+    exec(code, mod.__dict__, mod.__dict__)
+../artifacts/torch211-ci-investigation-cache/3n/c3n35co3hm2cdl647pxlprbwp2mz4bb4vgsgvmuul3phwh6jw2fq.py:262: in <module>
+    inductor_entry = CppWrapperCodeCache.load_pybinding(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3245: in load_pybinding
+    return cls.load_pybinding_async(*args, **kwargs)()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3237: in future
+    result = get_result()
+             ^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3021: in load_fn
+    result = worker_fn()
+             ^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3050: in _worker_compile_cpp
+    builder.build()
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:2146: in build
+    run_compile_cmd(build_cmd, cwd=_build_tmp_dir)
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:638: in run_compile_cmd
+    _run_compile_cmd(cmd_line, cwd)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd_line = 'clang++ ../artifacts/torch211-ci-investigation-cache/uz/cuzevgvdq6yremd3wg2xtxzqowfjdyiv5yq2qc4n2hg4c4p4twii.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D  C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF  -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp  -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include    -o ../artifacts/torch211-ci-investigation-cache/uz/cuzevgvdq6yremd3wg2xtxzqowfjdyiv5yq2qc4n2hg4c4p4twii.main.so  -lomp  -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib '
+cwd = '../artifacts/torch211-ci-investigation-cache/uz/cuzevgvdq6yremd3wg2xtxzqowfjdyiv5yq2qc4n2hg4c4p4twii.main_CxxBuild'
+
+    def _run_compile_cmd(cmd_line: str, cwd: str) -> None:
+        cmd = shlex.split(cmd_line)
+        try:
+            subprocess.run(
+                cmd, cwd=cwd, check=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
+            )
+        except subprocess.CalledProcessError as e:
+            output = e.stdout.decode(*SUBPROCESS_DECODE_ARGS)
+            openmp_problem = "'omp.h' file not found" in output or "libomp" in output
+            if openmp_problem and sys.platform == "darwin":
+                instruction = (
+                    "\n\nOpenMP support not found. Please try one of the following solutions:\n"
+                    "(1) Set the `CXX` environment variable to a compiler other than Apple clang++/g++ "
+                    "that has builtin OpenMP support;\n"
+                    "(2) install OpenMP via conda: `conda install llvm-openmp`;\n"
+                    "(3) install libomp via brew: `brew install libomp`;\n"
+                    "(4) manually setup OpenMP and set the `OMP_PREFIX` environment variable to point to a path"
+                    " with `include/omp.h` under it."
+                )
+                output += instruction
+>           raise exc.CppCompileError(cmd, output) from e
+E           torch._inductor.exc.InductorError: CppCompileError: C++ compile error
+E           
+E           Command:
+E           clang++ ../artifacts/torch211-ci-investigation-cache/uz/cuzevgvdq6yremd3wg2xtxzqowfjdyiv5yq2qc4n2hg4c4p4twii.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -o ../artifacts/torch211-ci-investigation-cache/uz/cuzevgvdq6yremd3wg2xtxzqowfjdyiv5yq2qc4n2hg4c4p4twii.main.so -lomp -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib
+E           
+E           Output:
+E           clang++: error: no such file or directory: '../artifacts/torch211-ci-investigation-cache/uz/cuzevgvdq6yremd3wg2xtxzqowfjdyiv5yq2qc4n2hg4c4p4twii.main.cpp'
+E           
+E           
+E           Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:633: InductorError
+------------------------------ Captured log call -------------------------------
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:convert_frame.py:276 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2165 
+DEBUG    torch.__trace:meta_utils.py:276 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:2107 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:utils.py:2165 
+DEBUG    torch.__trace:meta_utils.py:276 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:2107 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:meta_utils.py:276 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:2107 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:output_graph.py:2423 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2452 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2483 
+DEBUG    torch.__trace:utils.py:2165 
+DEBUG    torch.__trace:autograd_cache.py:892 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:structured.py:28 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:graph_capture.py:337 
+DEBUG    torch.__trace:graph_capture.py:355 
+DEBUG    torch.__trace:graph_compile.py:380 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2314 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2328 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:1279 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:1330 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:1368 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:graph.py:2575 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:convert_frame.py:1858 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:1796 
+DEBUG    torch.__trace:utils.py:2126
+__ test_actor_inference_allocations_match_warmed_worker_dispatch[entries1-4] ___
+
+entries = (('a', 4),), block_bytes = 4
+
+    @pytest.mark.parametrize(
+        "entries,block_bytes", [((("a", 67), ("b", 129), ("c", 257), ("d", 513)), 64), ((("a", 4),), 4)]
+    )
+    def test_actor_inference_allocations_match_warmed_worker_dispatch(entries, block_bytes):
+        from torch._dynamo.utils import counters
+    
+        with torch.inference_mode():
+            layout = PackedDeltaLayout(entries, block_bytes=block_bytes)
+            stage = CpuDeltaPreparer(layout)
+            old, staging = layout.allocate(), layout.allocate()
+            dict(layout.views(staging))[entries[-1][0]][0] = 255
+        assert not torch.is_inference(old) and not torch.is_inference(staging)
+        assert not torch.is_inference(layout._block_ends)
+        with ThreadPoolExecutor(max_workers=4) as pool:
+>           pool.submit(stage.warmup).result()
+
+tests/fast/utils/test_delta_preparation.py:141: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/_base.py:401: in __get_result
+    raise self._exception
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/thread.py:58: in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+miles/utils/delta_preparation.py:175: in warmup
+    self._count(staging, old_snapshot, self.layout._block_ends, self.layout.block_bytes)
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py:1038: in compile_wrapper
+    raise e.remove_dynamo_frames() from None  # see TORCHDYNAMO_VERBOSE=1
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1053: in _compile_fx_inner
+    raise InductorError(e, currentframe()).with_traceback(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1037: in _compile_fx_inner
+    mb_compiled_graph = fx_codegen_and_compile(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1798: in fx_codegen_and_compile
+    return scheme.codegen_and_compile(gm, example_inputs, inputs_to_check, graph_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1570: in codegen_and_compile
+    compiled_module = graph.compile_to_module()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2499: in compile_to_module
+    return self._compile_to_module()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2509: in _compile_to_module
+    mod = self._compile_to_module_lines(wrapper_code)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2584: in _compile_to_module_lines
+    mod = PyCodeCache.load_by_key_path(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3764: in load_by_key_path
+    mod = _reload_python_module(key, path, set_sys_modules=in_toplevel)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/runtime/compile_tasks.py:35: in _reload_python_module
+    exec(code, mod.__dict__, mod.__dict__)
+../artifacts/torch211-ci-investigation-cache/uj/cuj6gbezyzb7erkeor6d3oqqagja63kgzuurpso7veswrpngetnw.py:201: in <module>
+    inductor_entry = CppWrapperCodeCache.load_pybinding(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3245: in load_pybinding
+    return cls.load_pybinding_async(*args, **kwargs)()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3237: in future
+    result = get_result()
+             ^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3021: in load_fn
+    result = worker_fn()
+             ^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3050: in _worker_compile_cpp
+    builder.build()
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:2146: in build
+    run_compile_cmd(build_cmd, cwd=_build_tmp_dir)
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:638: in run_compile_cmd
+    _run_compile_cmd(cmd_line, cwd)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd_line = 'clang++ ../artifacts/torch211-ci-investigation-cache/43/c43nyf4f7s6p6asye6xuttqvv5vga5mw62ab74r7edhkkc4vw3x3.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D  C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF  -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp  -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include    -o ../artifacts/torch211-ci-investigation-cache/43/c43nyf4f7s6p6asye6xuttqvv5vga5mw62ab74r7edhkkc4vw3x3.main.so  -lomp  -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib '
+cwd = '../artifacts/torch211-ci-investigation-cache/43/c43nyf4f7s6p6asye6xuttqvv5vga5mw62ab74r7edhkkc4vw3x3.main_CxxBuild'
+
+    def _run_compile_cmd(cmd_line: str, cwd: str) -> None:
+        cmd = shlex.split(cmd_line)
+        try:
+            subprocess.run(
+                cmd, cwd=cwd, check=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
+            )
+        except subprocess.CalledProcessError as e:
+            output = e.stdout.decode(*SUBPROCESS_DECODE_ARGS)
+            openmp_problem = "'omp.h' file not found" in output or "libomp" in output
+            if openmp_problem and sys.platform == "darwin":
+                instruction = (
+                    "\n\nOpenMP support not found. Please try one of the following solutions:\n"
+                    "(1) Set the `CXX` environment variable to a compiler other than Apple clang++/g++ "
+                    "that has builtin OpenMP support;\n"
+                    "(2) install OpenMP via conda: `conda install llvm-openmp`;\n"
+                    "(3) install libomp via brew: `brew install libomp`;\n"
+                    "(4) manually setup OpenMP and set the `OMP_PREFIX` environment variable to point to a path"
+                    " with `include/omp.h` under it."
+                )
+                output += instruction
+>           raise exc.CppCompileError(cmd, output) from e
+E           torch._inductor.exc.InductorError: CppCompileError: C++ compile error
+E           
+E           Command:
+E           clang++ ../artifacts/torch211-ci-investigation-cache/43/c43nyf4f7s6p6asye6xuttqvv5vga5mw62ab74r7edhkkc4vw3x3.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -o ../artifacts/torch211-ci-investigation-cache/43/c43nyf4f7s6p6asye6xuttqvv5vga5mw62ab74r7edhkkc4vw3x3.main.so -lomp -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib
+E           
+E           Output:
+E           clang++: error: no such file or directory: '../artifacts/torch211-ci-investigation-cache/43/c43nyf4f7s6p6asye6xuttqvv5vga5mw62ab74r7edhkkc4vw3x3.main.cpp'
+E           
+E           
+E           Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:633: InductorError
+------------------------------ Captured log call -------------------------------
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:convert_frame.py:276 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:meta_utils.py:276 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:2107 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:utils.py:2165 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:meta_utils.py:276 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:2107 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:utils.py:2165 
+DEBUG    torch.__trace:meta_utils.py:276 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:2107 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:output_graph.py:2423 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2452 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2483 
+DEBUG    torch.__trace:utils.py:2165 
+DEBUG    torch.__trace:autograd_cache.py:892 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:graph_capture.py:337 
+DEBUG    torch.__trace:graph_capture.py:355 
+DEBUG    torch.__trace:graph_compile.py:380 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2314 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2328 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:1279 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:1330 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:1368 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:graph.py:2575 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:convert_frame.py:1858 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:1796 
+DEBUG    torch.__trace:utils.py:2126
+____ test_warmup_uses_actual_layout_with_caller_snapshot_and_shared_scratch ____
+
+    def test_warmup_uses_actual_layout_with_caller_snapshot_and_shared_scratch():
+        from torch._dynamo.utils import counters
+    
+        layout = PackedDeltaLayout((("a", 67), ("b", 129), ("c", 257), ("d", 513)), block_bytes=64)
+        stage = CpuDeltaPreparer(layout)
+        old = layout.allocate()
+        scratch = torch.full((layout.padded_bytes + 64,), 0x42, dtype=torch.uint8)
+        staging = scratch.narrow(0, 32, layout.padded_bytes)
+        staging.zero_()
+        dict(layout.views(staging))["c"][0] = 1
+        original_old, original_scratch = old.clone(), scratch.clone()
+    
+        with ThreadPoolExecutor(max_workers=4) as pool:
+            with (
+                patch.object(PackedDeltaLayout, "allocate", side_effect=AssertionError("unexpected bucket allocation")),
+                patch.object(stage, "_materialize", wraps=stage._materialize) as materialize,
+            ):
+>               pool.submit(stage.warmup, old_snapshot=old, staging=staging).result()
+
+tests/fast/utils/test_delta_preparation.py:165: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/_base.py:401: in __get_result
+    raise self._exception
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/thread.py:58: in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+miles/utils/delta_preparation.py:175: in warmup
+    self._count(staging, old_snapshot, self.layout._block_ends, self.layout.block_bytes)
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py:1038: in compile_wrapper
+    raise e.remove_dynamo_frames() from None  # see TORCHDYNAMO_VERBOSE=1
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1053: in _compile_fx_inner
+    raise InductorError(e, currentframe()).with_traceback(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1037: in _compile_fx_inner
+    mb_compiled_graph = fx_codegen_and_compile(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1798: in fx_codegen_and_compile
+    return scheme.codegen_and_compile(gm, example_inputs, inputs_to_check, graph_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1570: in codegen_and_compile
+    compiled_module = graph.compile_to_module()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2499: in compile_to_module
+    return self._compile_to_module()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2509: in _compile_to_module
+    mod = self._compile_to_module_lines(wrapper_code)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2584: in _compile_to_module_lines
+    mod = PyCodeCache.load_by_key_path(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3764: in load_by_key_path
+    mod = _reload_python_module(key, path, set_sys_modules=in_toplevel)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/runtime/compile_tasks.py:35: in _reload_python_module
+    exec(code, mod.__dict__, mod.__dict__)
+../artifacts/torch211-ci-investigation-cache/2k/c2kse5zenfweieygevlvpqtslxhuuqgamzit6d34gianakvffsl4.py:263: in <module>
+    inductor_entry = CppWrapperCodeCache.load_pybinding(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3245: in load_pybinding
+    return cls.load_pybinding_async(*args, **kwargs)()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3237: in future
+    result = get_result()
+             ^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3021: in load_fn
+    result = worker_fn()
+             ^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3050: in _worker_compile_cpp
+    builder.build()
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:2146: in build
+    run_compile_cmd(build_cmd, cwd=_build_tmp_dir)
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:638: in run_compile_cmd
+    _run_compile_cmd(cmd_line, cwd)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd_line = 'clang++ ../artifacts/torch211-ci-investigation-cache/42/c42x5cpym6j3dz35bpootxq72yfv5nguzpj44vjkprr42km3mbtw.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D  C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF  -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp  -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include    -o ../artifacts/torch211-ci-investigation-cache/42/c42x5cpym6j3dz35bpootxq72yfv5nguzpj44vjkprr42km3mbtw.main.so  -lomp  -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib '
+cwd = '../artifacts/torch211-ci-investigation-cache/42/c42x5cpym6j3dz35bpootxq72yfv5nguzpj44vjkprr42km3mbtw.main_CxxBuild'
+
+    def _run_compile_cmd(cmd_line: str, cwd: str) -> None:
+        cmd = shlex.split(cmd_line)
+        try:
+            subprocess.run(
+                cmd, cwd=cwd, check=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
+            )
+        except subprocess.CalledProcessError as e:
+            output = e.stdout.decode(*SUBPROCESS_DECODE_ARGS)
+            openmp_problem = "'omp.h' file not found" in output or "libomp" in output
+            if openmp_problem and sys.platform == "darwin":
+                instruction = (
+                    "\n\nOpenMP support not found. Please try one of the following solutions:\n"
+                    "(1) Set the `CXX` environment variable to a compiler other than Apple clang++/g++ "
+                    "that has builtin OpenMP support;\n"
+                    "(2) install OpenMP via conda: `conda install llvm-openmp`;\n"
+                    "(3) install libomp via brew: `brew install libomp`;\n"
+                    "(4) manually setup OpenMP and set the `OMP_PREFIX` environment variable to point to a path"
+                    " with `include/omp.h` under it."
+                )
+                output += instruction
+>           raise exc.CppCompileError(cmd, output) from e
+E           torch._inductor.exc.InductorError: CppCompileError: C++ compile error
+E           
+E           Command:
+E           clang++ ../artifacts/torch211-ci-investigation-cache/42/c42x5cpym6j3dz35bpootxq72yfv5nguzpj44vjkprr42km3mbtw.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -o ../artifacts/torch211-ci-investigation-cache/42/c42x5cpym6j3dz35bpootxq72yfv5nguzpj44vjkprr42km3mbtw.main.so -lomp -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib
+E           
+E           Output:
+E           clang++: error: no such file or directory: '../artifacts/torch211-ci-investigation-cache/42/c42x5cpym6j3dz35bpootxq72yfv5nguzpj44vjkprr42km3mbtw.main.cpp'
+E           
+E           
+E           Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:633: InductorError
+------------------------------ Captured log call -------------------------------
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:convert_frame.py:276 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:meta_utils.py:276 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:2107 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:meta_utils.py:276 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:2107 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:meta_utils.py:276 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:2107 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:output_graph.py:2423 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2452 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2483 
+DEBUG    torch.__trace:utils.py:2165 
+DEBUG    torch.__trace:autograd_cache.py:892 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:graph_capture.py:337 
+DEBUG    torch.__trace:graph_capture.py:355 
+DEBUG    torch.__trace:graph_compile.py:380 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2314 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2328 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:1279 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:1330 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:1368 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:graph.py:2575 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:convert_frame.py:1858 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:1796 
+DEBUG    torch.__trace:utils.py:2126
+______ test_default_block_counts_remain_exact_above_float32_integer_range ______
+
+    def test_default_block_counts_remain_exact_above_float32_integer_range():
+        size = (1 << 24) + 17
+        layout = PackedDeltaLayout((("weight", size),))
+        stage = CpuDeltaPreparer(layout)
+        old, staging = layout.allocate(), layout.allocate()
+        dict(layout.views(staging))["weight"].fill_(1)
+        with ThreadPoolExecutor(max_workers=1) as pool:
+>           pool.submit(stage.warmup).result()
+
+tests/fast/utils/test_delta_preparation.py:183: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/_base.py:401: in __get_result
+    raise self._exception
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/thread.py:58: in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+miles/utils/delta_preparation.py:175: in warmup
+    self._count(staging, old_snapshot, self.layout._block_ends, self.layout.block_bytes)
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py:1038: in compile_wrapper
+    raise e.remove_dynamo_frames() from None  # see TORCHDYNAMO_VERBOSE=1
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1053: in _compile_fx_inner
+    raise InductorError(e, currentframe()).with_traceback(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1037: in _compile_fx_inner
+    mb_compiled_graph = fx_codegen_and_compile(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1798: in fx_codegen_and_compile
+    return scheme.codegen_and_compile(gm, example_inputs, inputs_to_check, graph_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1570: in codegen_and_compile
+    compiled_module = graph.compile_to_module()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2499: in compile_to_module
+    return self._compile_to_module()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2509: in _compile_to_module
+    mod = self._compile_to_module_lines(wrapper_code)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2584: in _compile_to_module_lines
+    mod = PyCodeCache.load_by_key_path(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3764: in load_by_key_path
+    mod = _reload_python_module(key, path, set_sys_modules=in_toplevel)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/runtime/compile_tasks.py:35: in _reload_python_module
+    exec(code, mod.__dict__, mod.__dict__)
+../artifacts/torch211-ci-investigation-cache/kp/ckp6ykskrvvgqajvtrovrt6tllsfxbjk4uk6lush7daro6dn3upi.py:209: in <module>
+    inductor_entry = CppWrapperCodeCache.load_pybinding(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3245: in load_pybinding
+    return cls.load_pybinding_async(*args, **kwargs)()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3237: in future
+    result = get_result()
+             ^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3021: in load_fn
+    result = worker_fn()
+             ^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3050: in _worker_compile_cpp
+    builder.build()
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:2146: in build
+    run_compile_cmd(build_cmd, cwd=_build_tmp_dir)
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:638: in run_compile_cmd
+    _run_compile_cmd(cmd_line, cwd)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd_line = 'clang++ ../artifacts/torch211-ci-investigation-cache/ci/ccibroi5fr7zzhr2fqx6htr64orhvcshozbri44chsiveo2zkc2v.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D  C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF  -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp  -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include    -o ../artifacts/torch211-ci-investigation-cache/ci/ccibroi5fr7zzhr2fqx6htr64orhvcshozbri44chsiveo2zkc2v.main.so  -lomp  -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib '
+cwd = '../artifacts/torch211-ci-investigation-cache/ci/ccibroi5fr7zzhr2fqx6htr64orhvcshozbri44chsiveo2zkc2v.main_CxxBuild'
+
+    def _run_compile_cmd(cmd_line: str, cwd: str) -> None:
+        cmd = shlex.split(cmd_line)
+        try:
+            subprocess.run(
+                cmd, cwd=cwd, check=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
+            )
+        except subprocess.CalledProcessError as e:
+            output = e.stdout.decode(*SUBPROCESS_DECODE_ARGS)
+            openmp_problem = "'omp.h' file not found" in output or "libomp" in output
+            if openmp_problem and sys.platform == "darwin":
+                instruction = (
+                    "\n\nOpenMP support not found. Please try one of the following solutions:\n"
+                    "(1) Set the `CXX` environment variable to a compiler other than Apple clang++/g++ "
+                    "that has builtin OpenMP support;\n"
+                    "(2) install OpenMP via conda: `conda install llvm-openmp`;\n"
+                    "(3) install libomp via brew: `brew install libomp`;\n"
+                    "(4) manually setup OpenMP and set the `OMP_PREFIX` environment variable to point to a path"
+                    " with `include/omp.h` under it."
+                )
+                output += instruction
+>           raise exc.CppCompileError(cmd, output) from e
+E           torch._inductor.exc.InductorError: CppCompileError: C++ compile error
+E           
+E           Command:
+E           clang++ ../artifacts/torch211-ci-investigation-cache/ci/ccibroi5fr7zzhr2fqx6htr64orhvcshozbri44chsiveo2zkc2v.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -o ../artifacts/torch211-ci-investigation-cache/ci/ccibroi5fr7zzhr2fqx6htr64orhvcshozbri44chsiveo2zkc2v.main.so -lomp -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib
+E           
+E           Output:
+E           clang++: error: no such file or directory: '../artifacts/torch211-ci-investigation-cache/ci/ccibroi5fr7zzhr2fqx6htr64orhvcshozbri44chsiveo2zkc2v.main.cpp'
+E           
+E           
+E           Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:633: InductorError
+------------------------------ Captured log call -------------------------------
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:convert_frame.py:276 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:meta_utils.py:276 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:2107 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:meta_utils.py:276 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:2107 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:meta_utils.py:276 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:2107 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:output_graph.py:2423 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2452 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2483 
+DEBUG    torch.__trace:utils.py:2165 
+DEBUG    torch.__trace:autograd_cache.py:892 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:graph_capture.py:337 
+DEBUG    torch.__trace:graph_capture.py:355 
+DEBUG    torch.__trace:graph_compile.py:380 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2314 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2328 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:1279 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:1330 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:1368 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:graph.py:2575 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:convert_frame.py:1858 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:1796 
+DEBUG    torch.__trace:utils.py:2126
+______ test_word_lanes_tails_aligned_offsets_and_no_change_ownership[128] ______
+
+value = 128
+
+    @pytest.mark.parametrize("value", [0x80, 0xFF])
+    def test_word_lanes_tails_aligned_offsets_and_no_change_ownership(value):
+        layout = PackedDeltaLayout(
+            tuple((f"lane{lane}", 4) for lane in range(4)) + tuple((f"tail{size}", size) for size in (1, 2, 3)),
+            block_bytes=4,
+        )
+        old = torch.zeros(layout.padded_bytes + 8, dtype=torch.uint8)[8:]
+        staging = torch.zeros(layout.padded_bytes + 4, dtype=torch.uint8)[4:]
+        for name, view in layout.views(staging):
+            index = int(name[-1]) if name.startswith("lane") else view.numel() - 1
+            view[index] = value
+        expected = staging.clone()
+        stage = CpuDeltaPreparer(layout)
+        with ThreadPoolExecutor(max_workers=1) as pool:
+>           pool.submit(stage.warmup, old, staging).result()
+
+tests/fast/utils/test_delta_preparation.py:257: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/_base.py:401: in __get_result
+    raise self._exception
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/thread.py:58: in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+miles/utils/delta_preparation.py:175: in warmup
+    self._count(staging, old_snapshot, self.layout._block_ends, self.layout.block_bytes)
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py:1038: in compile_wrapper
+    raise e.remove_dynamo_frames() from None  # see TORCHDYNAMO_VERBOSE=1
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1053: in _compile_fx_inner
+    raise InductorError(e, currentframe()).with_traceback(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1037: in _compile_fx_inner
+    mb_compiled_graph = fx_codegen_and_compile(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1798: in fx_codegen_and_compile
+    return scheme.codegen_and_compile(gm, example_inputs, inputs_to_check, graph_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1570: in codegen_and_compile
+    compiled_module = graph.compile_to_module()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2499: in compile_to_module
+    return self._compile_to_module()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2509: in _compile_to_module
+    mod = self._compile_to_module_lines(wrapper_code)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2584: in _compile_to_module_lines
+    mod = PyCodeCache.load_by_key_path(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3764: in load_by_key_path
+    mod = _reload_python_module(key, path, set_sys_modules=in_toplevel)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/runtime/compile_tasks.py:35: in _reload_python_module
+    exec(code, mod.__dict__, mod.__dict__)
+../artifacts/torch211-ci-investigation-cache/3f/c3f4o2tdtxtvci7ylmuiilvib7hx3asdpl7e26ggrbhdcvizxxae.py:268: in <module>
+    inductor_entry = CppWrapperCodeCache.load_pybinding(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3245: in load_pybinding
+    return cls.load_pybinding_async(*args, **kwargs)()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3237: in future
+    result = get_result()
+             ^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3021: in load_fn
+    result = worker_fn()
+             ^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3050: in _worker_compile_cpp
+    builder.build()
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:2146: in build
+    run_compile_cmd(build_cmd, cwd=_build_tmp_dir)
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:638: in run_compile_cmd
+    _run_compile_cmd(cmd_line, cwd)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd_line = 'clang++ ../artifacts/torch211-ci-investigation-cache/33/c33mrmot5o5q42i5ur43houpfsu4jyvhlhepueuzowbppgluqw6u.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D  C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF  -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp  -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include    -o ../artifacts/torch211-ci-investigation-cache/33/c33mrmot5o5q42i5ur43houpfsu4jyvhlhepueuzowbppgluqw6u.main.so  -lomp  -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib '
+cwd = '../artifacts/torch211-ci-investigation-cache/33/c33mrmot5o5q42i5ur43houpfsu4jyvhlhepueuzowbppgluqw6u.main_CxxBuild'
+
+    def _run_compile_cmd(cmd_line: str, cwd: str) -> None:
+        cmd = shlex.split(cmd_line)
+        try:
+            subprocess.run(
+                cmd, cwd=cwd, check=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
+            )
+        except subprocess.CalledProcessError as e:
+            output = e.stdout.decode(*SUBPROCESS_DECODE_ARGS)
+            openmp_problem = "'omp.h' file not found" in output or "libomp" in output
+            if openmp_problem and sys.platform == "darwin":
+                instruction = (
+                    "\n\nOpenMP support not found. Please try one of the following solutions:\n"
+                    "(1) Set the `CXX` environment variable to a compiler other than Apple clang++/g++ "
+                    "that has builtin OpenMP support;\n"
+                    "(2) install OpenMP via conda: `conda install llvm-openmp`;\n"
+                    "(3) install libomp via brew: `brew install libomp`;\n"
+                    "(4) manually setup OpenMP and set the `OMP_PREFIX` environment variable to point to a path"
+                    " with `include/omp.h` under it."
+                )
+                output += instruction
+>           raise exc.CppCompileError(cmd, output) from e
+E           torch._inductor.exc.InductorError: CppCompileError: C++ compile error
+E           
+E           Command:
+E           clang++ ../artifacts/torch211-ci-investigation-cache/33/c33mrmot5o5q42i5ur43houpfsu4jyvhlhepueuzowbppgluqw6u.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -o ../artifacts/torch211-ci-investigation-cache/33/c33mrmot5o5q42i5ur43houpfsu4jyvhlhepueuzowbppgluqw6u.main.so -lomp -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib
+E           
+E           Output:
+E           clang++: error: no such file or directory: '../artifacts/torch211-ci-investigation-cache/33/c33mrmot5o5q42i5ur43houpfsu4jyvhlhepueuzowbppgluqw6u.main.cpp'
+E           
+E           
+E           Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:633: InductorError
+------------------------------ Captured log call -------------------------------
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:convert_frame.py:276 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2165 
+DEBUG    torch.__trace:meta_utils.py:276 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:2107 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:meta_utils.py:276 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:2107 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:meta_utils.py:276 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:2107 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:output_graph.py:2423 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2452 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2483 
+DEBUG    torch.__trace:utils.py:2165 
+DEBUG    torch.__trace:autograd_cache.py:892 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:graph_capture.py:337 
+DEBUG    torch.__trace:graph_capture.py:355 
+DEBUG    torch.__trace:graph_compile.py:380 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2314 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2328 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:1279 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:1330 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:1368 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:graph.py:2575 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:convert_frame.py:1858 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:1796 
+DEBUG    torch.__trace:utils.py:2126
+______ test_word_lanes_tails_aligned_offsets_and_no_change_ownership[255] ______
+
+value = 255
+
+    @pytest.mark.parametrize("value", [0x80, 0xFF])
+    def test_word_lanes_tails_aligned_offsets_and_no_change_ownership(value):
+        layout = PackedDeltaLayout(
+            tuple((f"lane{lane}", 4) for lane in range(4)) + tuple((f"tail{size}", size) for size in (1, 2, 3)),
+            block_bytes=4,
+        )
+        old = torch.zeros(layout.padded_bytes + 8, dtype=torch.uint8)[8:]
+        staging = torch.zeros(layout.padded_bytes + 4, dtype=torch.uint8)[4:]
+        for name, view in layout.views(staging):
+            index = int(name[-1]) if name.startswith("lane") else view.numel() - 1
+            view[index] = value
+        expected = staging.clone()
+        stage = CpuDeltaPreparer(layout)
+        with ThreadPoolExecutor(max_workers=1) as pool:
+>           pool.submit(stage.warmup, old, staging).result()
+
+tests/fast/utils/test_delta_preparation.py:257: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/_base.py:401: in __get_result
+    raise self._exception
+../../../../.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/concurrent/futures/thread.py:58: in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+miles/utils/delta_preparation.py:175: in warmup
+    self._count(staging, old_snapshot, self.layout._block_ends, self.layout.block_bytes)
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py:1038: in compile_wrapper
+    raise e.remove_dynamo_frames() from None  # see TORCHDYNAMO_VERBOSE=1
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1053: in _compile_fx_inner
+    raise InductorError(e, currentframe()).with_traceback(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1037: in _compile_fx_inner
+    mb_compiled_graph = fx_codegen_and_compile(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1798: in fx_codegen_and_compile
+    return scheme.codegen_and_compile(gm, example_inputs, inputs_to_check, graph_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/compile_fx.py:1570: in codegen_and_compile
+    compiled_module = graph.compile_to_module()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2499: in compile_to_module
+    return self._compile_to_module()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2509: in _compile_to_module
+    mod = self._compile_to_module_lines(wrapper_code)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/graph.py:2584: in _compile_to_module_lines
+    mod = PyCodeCache.load_by_key_path(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3764: in load_by_key_path
+    mod = _reload_python_module(key, path, set_sys_modules=in_toplevel)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/runtime/compile_tasks.py:35: in _reload_python_module
+    exec(code, mod.__dict__, mod.__dict__)
+../artifacts/torch211-ci-investigation-cache/3f/c3f4o2tdtxtvci7ylmuiilvib7hx3asdpl7e26ggrbhdcvizxxae.py:268: in <module>
+    inductor_entry = CppWrapperCodeCache.load_pybinding(
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3245: in load_pybinding
+    return cls.load_pybinding_async(*args, **kwargs)()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3237: in future
+    result = get_result()
+             ^^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3021: in load_fn
+    result = worker_fn()
+             ^^^^^^^^^^^
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/codecache.py:3050: in _worker_compile_cpp
+    builder.build()
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:2146: in build
+    run_compile_cmd(build_cmd, cwd=_build_tmp_dir)
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:638: in run_compile_cmd
+    _run_compile_cmd(cmd_line, cwd)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cmd_line = 'clang++ ../artifacts/torch211-ci-investigation-cache/33/c33mrmot5o5q42i5ur43houpfsu4jyvhlhepueuzowbppgluqw6u.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D  C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF  -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp  -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include    -o ../artifacts/torch211-ci-investigation-cache/33/c33mrmot5o5q42i5ur43houpfsu4jyvhlhepueuzowbppgluqw6u.main.so  -lomp  -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib '
+cwd = '../artifacts/torch211-ci-investigation-cache/33/c33mrmot5o5q42i5ur43houpfsu4jyvhlhepueuzowbppgluqw6u.main_CxxBuild'
+
+    def _run_compile_cmd(cmd_line: str, cwd: str) -> None:
+        cmd = shlex.split(cmd_line)
+        try:
+            subprocess.run(
+                cmd, cwd=cwd, check=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
+            )
+        except subprocess.CalledProcessError as e:
+            output = e.stdout.decode(*SUBPROCESS_DECODE_ARGS)
+            openmp_problem = "'omp.h' file not found" in output or "libomp" in output
+            if openmp_problem and sys.platform == "darwin":
+                instruction = (
+                    "\n\nOpenMP support not found. Please try one of the following solutions:\n"
+                    "(1) Set the `CXX` environment variable to a compiler other than Apple clang++/g++ "
+                    "that has builtin OpenMP support;\n"
+                    "(2) install OpenMP via conda: `conda install llvm-openmp`;\n"
+                    "(3) install libomp via brew: `brew install libomp`;\n"
+                    "(4) manually setup OpenMP and set the `OMP_PREFIX` environment variable to point to a path"
+                    " with `include/omp.h` under it."
+                )
+                output += instruction
+>           raise exc.CppCompileError(cmd, output) from e
+E           torch._inductor.exc.InductorError: CppCompileError: C++ compile error
+E           
+E           Command:
+E           clang++ ../artifacts/torch211-ci-investigation-cache/33/c33mrmot5o5q42i5ur43houpfsu4jyvhlhepueuzowbppgluqw6u.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -o ../artifacts/torch211-ci-investigation-cache/33/c33mrmot5o5q42i5ur43houpfsu4jyvhlhepueuzowbppgluqw6u.main.so -lomp -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib
+E           
+E           Output:
+E           clang++: error: no such file or directory: '../artifacts/torch211-ci-investigation-cache/33/c33mrmot5o5q42i5ur43houpfsu4jyvhlhepueuzowbppgluqw6u.main.cpp'
+E           
+E           
+E           Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/_inductor/cpp_builder.py:633: InductorError
+------------------------------ Captured log call -------------------------------
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:convert_frame.py:276 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:meta_utils.py:276 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:2107 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:meta_utils.py:276 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:2107 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:meta_utils.py:276 
+DEBUG    torch.__trace:meta_utils.py:499 
+DEBUG    torch.__trace:meta_utils.py:2107 
+DEBUG    torch.__trace:symbolic_shapes.py:5388 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:output_graph.py:2423 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2452 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2483 
+DEBUG    torch.__trace:utils.py:2165 
+DEBUG    torch.__trace:autograd_cache.py:892 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:graph_capture.py:337 
+DEBUG    torch.__trace:graph_capture.py:355 
+DEBUG    torch.__trace:graph_compile.py:380 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2314 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:2328 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:1279 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:1330 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:compile_fx.py:1368 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:symbolic_shapes.py:7493 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:graph.py:2575 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:convert_frame.py:1858 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:2126 
+DEBUG    torch.__trace:utils.py:1796 
+DEBUG    torch.__trace:utils.py:2126
+=============================== warnings summary ===============================
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/_pytest/config/__init__.py:1464
+  /Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: asyncio_mode
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+tests/fast/utils/test_delta_preparation.py: 14 warnings
+  /Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+============================== slowest durations ===============================
+5.43s setup    tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[False]
+0.28s call     tests/fast/utils/test_delta_preparation.py::test_warmup_uses_actual_layout_with_caller_snapshot_and_shared_scratch
+0.28s call     tests/fast/utils/test_delta_preparation.py::test_word_lanes_tails_aligned_offsets_and_no_change_ownership[128]
+0.28s call     tests/fast/utils/test_delta_preparation.py::test_actor_inference_allocations_match_warmed_worker_dispatch[entries0-64]
+0.20s call     tests/fast/utils/test_delta_preparation.py::test_default_block_counts_remain_exact_above_float32_integer_range
+0.20s call     tests/fast/utils/test_delta_preparation.py::test_word_lanes_tails_aligned_offsets_and_no_change_ownership[255]
+0.18s call     tests/fast/utils/test_delta_preparation.py::test_actor_inference_allocations_match_warmed_worker_dispatch[entries1-4]
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_word_lanes_tails_aligned_offsets_and_no_change_ownership[255]
+0.00s call     tests/fast/utils/test_delta_preparation.py::test_compact_scalar_layout_does_not_pad_scalars_to_large_weight_rows
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_default_block_counts_remain_exact_above_float32_integer_range
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_word_lanes_tails_aligned_offsets_and_no_change_ownership[128]
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_warmup_uses_actual_layout_with_caller_snapshot_and_shared_scratch
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_actor_inference_allocations_match_warmed_worker_dispatch[entries1-4]
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_actor_inference_allocations_match_warmed_worker_dispatch[entries0-64]
+0.00s call     tests/fast/utils/test_delta_preparation.py::test_reassigning_a_staging_lease_resets_only_padding
+0.00s call     tests/fast/utils/test_delta_preparation.py::test_layout_guards_exact_accounting_and_staging_contract
+0.00s call     tests/fast/utils/test_delta_preparation.py::test_empty_bucket_preserves_snapshot_without_materialization[entries0]
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[False]
+0.00s call     tests/fast/utils/test_delta_preparation.py::test_counts_reject_gross_padding_corruption
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_actor_inference_allocations_match_warmed_worker_dispatch[entries1-4]
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_empty_bucket_preserves_snapshot_without_materialization[entries0]
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_one_compiled_stage_can_prepare_distinct_concurrent_buckets
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_word_lanes_tails_aligned_offsets_and_no_change_ownership[255]
+0.00s call     tests/fast/utils/test_delta_preparation.py::test_empty_bucket_preserves_snapshot_without_materialization[entries1]
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_reuses_no_change_snapshot_after_a_successful_update
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_actor_inference_allocations_match_warmed_worker_dispatch[entries0-64]
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_failed_preparation_and_native_handoff_leave_active_base_unchanged
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[True]
+0.00s call     tests/fast/utils/test_delta_preparation.py::test_word_layout_rejects_unaligned_storage_and_non_word_rows
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_one_compiled_stage_can_prepare_distinct_concurrent_buckets
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_word_lanes_tails_aligned_offsets_and_no_change_ownership[128]
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[True]
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_empty_bucket_preserves_snapshot_without_materialization[entries1]
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_reuses_no_change_snapshot_after_a_successful_update
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_failed_preparation_and_native_handoff_leave_active_base_unchanged
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_default_block_counts_remain_exact_above_float32_integer_range
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_warmup_uses_actual_layout_with_caller_snapshot_and_shared_scratch
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_empty_bucket_preserves_snapshot_without_materialization[entries0]
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_compact_scalar_layout_does_not_pad_scalars_to_large_weight_rows
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_layout_guards_exact_accounting_and_staging_contract
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_empty_bucket_preserves_snapshot_without_materialization[entries1]
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_reassigning_a_staging_lease_resets_only_padding
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_compact_scalar_layout_does_not_pad_scalars_to_large_weight_rows
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_layout_guards_exact_accounting_and_staging_contract
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_reassigning_a_staging_lease_resets_only_padding
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_word_layout_rejects_unaligned_storage_and_non_word_rows
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_counts_reject_gross_padding_corruption
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_word_layout_rejects_unaligned_storage_and_non_word_rows
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_counts_reject_gross_padding_corruption
+=========================== short test summary info ============================
+FAILED tests/fast/utils/test_delta_preparation.py::test_actor_inference_allocations_match_warmed_worker_dispatch[entries0-64] - torch._inductor.exc.InductorError: CppCompileError: C++ compile error
+
+Command:
+clang++ ../artifacts/torch211-ci-investigation-cache/uz/cuzevgvdq6yremd3wg2xtxzqowfjdyiv5yq2qc4n2hg4c4p4twii.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -o ../artifacts/torch211-ci-investigation-cache/uz/cuzevgvdq6yremd3wg2xtxzqowfjdyiv5yq2qc4n2hg4c4p4twii.main.so -lomp -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib
+
+Output:
+clang++: error: no such file or directory: '../artifacts/torch211-ci-investigation-cache/uz/cuzevgvdq6yremd3wg2xtxzqowfjdyiv5yq2qc4n2hg4c4p4twii.main.cpp'
+
+
+Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+FAILED tests/fast/utils/test_delta_preparation.py::test_actor_inference_allocations_match_warmed_worker_dispatch[entries1-4] - torch._inductor.exc.InductorError: CppCompileError: C++ compile error
+
+Command:
+clang++ ../artifacts/torch211-ci-investigation-cache/43/c43nyf4f7s6p6asye6xuttqvv5vga5mw62ab74r7edhkkc4vw3x3.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -o ../artifacts/torch211-ci-investigation-cache/43/c43nyf4f7s6p6asye6xuttqvv5vga5mw62ab74r7edhkkc4vw3x3.main.so -lomp -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib
+
+Output:
+clang++: error: no such file or directory: '../artifacts/torch211-ci-investigation-cache/43/c43nyf4f7s6p6asye6xuttqvv5vga5mw62ab74r7edhkkc4vw3x3.main.cpp'
+
+
+Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+FAILED tests/fast/utils/test_delta_preparation.py::test_warmup_uses_actual_layout_with_caller_snapshot_and_shared_scratch - torch._inductor.exc.InductorError: CppCompileError: C++ compile error
+
+Command:
+clang++ ../artifacts/torch211-ci-investigation-cache/42/c42x5cpym6j3dz35bpootxq72yfv5nguzpj44vjkprr42km3mbtw.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -o ../artifacts/torch211-ci-investigation-cache/42/c42x5cpym6j3dz35bpootxq72yfv5nguzpj44vjkprr42km3mbtw.main.so -lomp -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib
+
+Output:
+clang++: error: no such file or directory: '../artifacts/torch211-ci-investigation-cache/42/c42x5cpym6j3dz35bpootxq72yfv5nguzpj44vjkprr42km3mbtw.main.cpp'
+
+
+Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+FAILED tests/fast/utils/test_delta_preparation.py::test_default_block_counts_remain_exact_above_float32_integer_range - torch._inductor.exc.InductorError: CppCompileError: C++ compile error
+
+Command:
+clang++ ../artifacts/torch211-ci-investigation-cache/ci/ccibroi5fr7zzhr2fqx6htr64orhvcshozbri44chsiveo2zkc2v.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -o ../artifacts/torch211-ci-investigation-cache/ci/ccibroi5fr7zzhr2fqx6htr64orhvcshozbri44chsiveo2zkc2v.main.so -lomp -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib
+
+Output:
+clang++: error: no such file or directory: '../artifacts/torch211-ci-investigation-cache/ci/ccibroi5fr7zzhr2fqx6htr64orhvcshozbri44chsiveo2zkc2v.main.cpp'
+
+
+Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+FAILED tests/fast/utils/test_delta_preparation.py::test_word_lanes_tails_aligned_offsets_and_no_change_ownership[128] - torch._inductor.exc.InductorError: CppCompileError: C++ compile error
+
+Command:
+clang++ ../artifacts/torch211-ci-investigation-cache/33/c33mrmot5o5q42i5ur43houpfsu4jyvhlhepueuzowbppgluqw6u.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -o ../artifacts/torch211-ci-investigation-cache/33/c33mrmot5o5q42i5ur43houpfsu4jyvhlhepueuzowbppgluqw6u.main.so -lomp -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib
+
+Output:
+clang++: error: no such file or directory: '../artifacts/torch211-ci-investigation-cache/33/c33mrmot5o5q42i5ur43houpfsu4jyvhlhepueuzowbppgluqw6u.main.cpp'
+
+
+Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+FAILED tests/fast/utils/test_delta_preparation.py::test_word_lanes_tails_aligned_offsets_and_no_change_ownership[255] - torch._inductor.exc.InductorError: CppCompileError: C++ compile error
+
+Command:
+clang++ ../artifacts/torch211-ci-investigation-cache/33/c33mrmot5o5q42i5ur43houpfsu4jyvhlhepueuzowbppgluqw6u.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -o ../artifacts/torch211-ci-investigation-cache/33/c33mrmot5o5q42i5ur43houpfsu4jyvhlhepueuzowbppgluqw6u.main.so -lomp -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib
+
+Output:
+clang++: error: no such file or directory: '../artifacts/torch211-ci-investigation-cache/33/c33mrmot5o5q42i5ur43houpfsu4jyvhlhepueuzowbppgluqw6u.main.cpp'
+
+
+Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+ERROR tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[False] - torch._inductor.exc.InductorError: CppCompileError: C++ compile error
+
+Command:
+clang++ ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -o ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.so -lomp -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib
+
+Output:
+clang++: error: no such file or directory: '../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp'
+
+
+Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+ERROR tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[True] - torch._inductor.exc.InductorError: CppCompileError: C++ compile error
+
+Command:
+clang++ ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -o ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.so -lomp -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib
+
+Output:
+clang++: error: no such file or directory: '../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp'
+
+
+Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+ERROR tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_reuses_no_change_snapshot_after_a_successful_update - torch._inductor.exc.InductorError: CppCompileError: C++ compile error
+
+Command:
+clang++ ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -o ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.so -lomp -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib
+
+Output:
+clang++: error: no such file or directory: '../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp'
+
+
+Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+ERROR tests/fast/utils/test_delta_preparation.py::test_one_compiled_stage_can_prepare_distinct_concurrent_buckets - torch._inductor.exc.InductorError: CppCompileError: C++ compile error
+
+Command:
+clang++ ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -o ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.so -lomp -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib
+
+Output:
+clang++: error: no such file or directory: '../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp'
+
+
+Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+ERROR tests/fast/utils/test_delta_preparation.py::test_failed_preparation_and_native_handoff_leave_active_base_unchanged - torch._inductor.exc.InductorError: CppCompileError: C++ compile error
+
+Command:
+clang++ ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp -D TORCH_INDUCTOR_CPP_WRAPPER -D STANDALONE_TORCH_HEADER -D C10_USING_CUSTOM_GENERATED_MACROS -D CPU_CAPABILITY_NEON -D AT_BUILD_ARM_VEC256_WITH_SLEEF -O3 -DNDEBUG -fno-trapping-math -funsafe-math-optimizations -ffinite-math-only -fno-signed-zeros -fno-math-errno -fno-finite-math-only -fno-unsafe-math-optimizations -ffp-contract=off -shared -fPIC -undefined dynamic_lookup -Wall -std=c++17 -Wno-unused-variable -Wno-unknown-pragmas -Werror=ignored-optimization-argument -Xclang -fopenmp -include /var/folders/3x/4g3wm7yd3s112hb8yxvx8h6m0000gp/T/torchinductor_ziangli/precompiled_headers/coba4na62rrvcr5r6zipmec4ln5sbawt3q7q2fy2cyrkogg5jcba.h -I/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/include/python3.11 -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include -I/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -o ../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.so -lomp -L/Users/ziangli/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib -L/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/lib
+
+Output:
+clang++: error: no such file or directory: '../artifacts/torch211-ci-investigation-cache/zk/czk3klp3wgn66dg3pkhcoovf262a52gn6snjpnu23vtxc4ofwr5a.main.cpp'
+
+
+Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+============= 6 failed, 7 passed, 15 warnings, 5 errors in 13.82s ==============

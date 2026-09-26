@@ -1,0 +1,1124 @@
+{
+  "status": "ready",
+  "completed_utc": "2026-09-26T02:33:15.074501+00:00",
+  "root": "/hai-workspace/glm52-delta",
+  "backup_dir": "/data/ziangli/glm52-delta-sync-c2/prepared-inputs",
+  "durable_evidence_dir": "/data/ziangli/glm52-delta-sync-c2/setup/recovery-20260926-evidence",
+  "verification": "Full source and destination SHA256 checks completed by recover_weight_sync_inputs.py; this seal checks sizes, fsyncs durable files, and records file metadata for lightweight no-change admission.",
+  "original_comparison_boundary": "All 14 canonical NVFP4 file sizes and headers match retained original evidence; original full converted payload hashes were not retained.",
+  "identity": {
+    "model_revision": "1c749139f70e158e4420ba67f342bef1de2e650d",
+    "dataset_revision": "2e65612930298bde4c5d58fd97b3f23a483aaff9",
+    "dataset_sha256": "cc9c39c2aa19177abe9464741e121cf4cac90fd25484ef3cdf86535101e3a5b6",
+    "miles": "f17ba4bce13bf7d357e7560182dc859c41a7cb37",
+    "nvfp4_env": {
+      "OPEN_TRAINING_NVFP4_FAKE_QAT_FLAG": "1",
+      "SGLANG_FLASHINFER_CUTEDSL_NVFP4_W4A16": "1",
+      "SGLANG_FLASHINFER_MOE_FUSED_FINALIZE": "0",
+      "NVTE_NVFP4_DISABLE_2D_QUANTIZATION": "1",
+      "NVTE_NVFP4_DISABLE_RHT": "1",
+      "NVTE_NVFP4_DISABLE_STOCHASTIC_ROUNDING": "1",
+      "NVTE_USE_FAST_MATH": "0",
+      "NVTE_NVFP4_4OVER6": "all",
+      "NVTE_NVFP4_4OVER6_E4M3_USE_256": "none",
+      "NVTE_NVFP4_4OVER6_ERR_MODE": "MSE",
+      "NVTE_NVFP4_4OVER6_ERR_USE_FAST_MATH": "1"
+    },
+    "source_files": {
+      ".gitattributes": {
+        "bytes": 1570,
+        "sha256": "34448b82c17d60fec9b65b1f093c115ddbaadc04beb1b0140b6bfed2e012a930"
+      },
+      "chat_template.jinja": {
+        "bytes": 5076,
+        "sha256": "172dc74a35e1752df75ecfb2b2cf9326d2852bb1379868ebeec9571654489679"
+      },
+      "config.json": {
+        "bytes": 1690,
+        "sha256": "f426922f0ad4efaaa6cae6dd24a6f0c59b0df1a6a1265857c4e9a949a5fdb020"
+      },
+      "generation_config.json": {
+        "bytes": 194,
+        "sha256": "ac76b43d8683d3b930126870fc8be73d8679308fe752fa1f381096d8354f6a55"
+      },
+      "model-00001-of-00282.safetensors": {
+        "bytes": 5342821416,
+        "sha256": "004bf9404964da8ea71ea2d3ebf02148fa766b956bd4fca3f54b093e58a6a74c"
+      },
+      "model-00002-of-00282.safetensors": {
+        "bytes": 67108984,
+        "sha256": "6e51c7c2c22ae3e5d2d4f4706ad917b04cf140c3f1743fd42d47fcb177cb31d3"
+      },
+      "model-00038-of-00282.safetensors": {
+        "bytes": 801799616,
+        "sha256": "82595223f733f465fb923409703735f85da5ca28a0a7045a5439054d922af974"
+      },
+      "model-00075-of-00282.safetensors": {
+        "bytes": 931152424,
+        "sha256": "0cf4a6ac886004adaf5e6b33b689ec29c33eebc1660a59b4900bcb21422ce2c4"
+      },
+      "model-00076-of-00282.safetensors": {
+        "bytes": 5360347104,
+        "sha256": "1c65131e725c858d2e458da91b443ba95488b0f1343129fc629cbc3d35350d6c"
+      },
+      "model-00077-of-00282.safetensors": {
+        "bytes": 5360347104,
+        "sha256": "68aceb515ad523d9794318ec8578b68fbe9e42648bf222ccd337e1fdac02b23d"
+      },
+      "model-00078-of-00282.safetensors": {
+        "bytes": 5360346952,
+        "sha256": "8720873631cb258ece1f196e7f389e39b219901a4c49db2328f783fc78e4ee15"
+      },
+      "model-00079-of-00282.safetensors": {
+        "bytes": 2723969648,
+        "sha256": "c59b42b5a95bdc9b5b922c26ff50cfbc97878489db17570663bf9421fe543919"
+      },
+      "model-00116-of-00282.safetensors": {
+        "bytes": 3598743040,
+        "sha256": "447b01c0958cb1b35c675256dff1f1d13b84e782d332a204237eaf93de043bee"
+      },
+      "model-00117-of-00282.safetensors": {
+        "bytes": 5360347104,
+        "sha256": "703e4dfbea787c84c26fbb6b0200378262cf2e2c5e48d563a7fcc9b10a75ee19"
+      },
+      "model-00118-of-00282.safetensors": {
+        "bytes": 5360347064,
+        "sha256": "fec6264b97ff493fea3d61a44b999da9e1af4202ded96a9929478ae4c2610b88"
+      },
+      "model-00119-of-00282.safetensors": {
+        "bytes": 5349617128,
+        "sha256": "95a69af73c4d8bd4d5858defdc5c82294c1e01d67fe34b23adf48a4ee6c69242"
+      },
+      "model-00120-of-00282.safetensors": {
+        "bytes": 67108984,
+        "sha256": "89a22435ddf819088c6b102f81dc673c41be5f12bb868874ee4aa444de80585b"
+      },
+      "model-00282-of-00282.safetensors": {
+        "bytes": 12376,
+        "sha256": "7e26cafa850631ede0839584e4b396a7058466998bdf8e7bae2775f77d1a4b44"
+      },
+      "model.safetensors.index.json": {
+        "bytes": 145189,
+        "sha256": "d898bb64c9258ed870a83d23fde8142cb71c0db5eba8dcacd9d2884b4c995ec9"
+      },
+      "tokenizer.json": {
+        "bytes": 20217442,
+        "sha256": "19e773648cb4e65de8660ea6365e10acca112d42a854923df93db4a6f333a82d"
+      },
+      "tokenizer_config.json": {
+        "bytes": 761,
+        "sha256": "98b1271574f41abf89427ae2dda030d94dc9478f0edc5a8bd240db213c6fd5fc"
+      }
+    },
+    "megatron": "f148a32b4385b758b66a77c9c3ad1641f1295d4b",
+    "runtime": {
+      "torch": "2.13.0+cu130",
+      "transformer-engine": "2.17.0",
+      "safetensors": "0.8.0"
+    }
+  },
+  "inventory": {
+    "models/GLM-5.2_5layer": {
+      "files": 21,
+      "bytes": 45704440866
+    },
+    "models/GLM-5.2_5layer-NVFP4": {
+      "files": 22,
+      "bytes": 17922361108
+    },
+    "models/GLM-5.2_5layer_torch_dist": {
+      "files": 4,
+      "bytes": 45688868813
+    },
+    "datasets/dapo-math-17k": {
+      "files": 2,
+      "bytes": 10493351
+    }
+  },
+  "inputs": {
+    "models/GLM-5.2_5layer/.gitattributes": {
+      "bytes": 1570,
+      "sha256": "34448b82c17d60fec9b65b1f093c115ddbaadc04beb1b0140b6bfed2e012a930",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34605688,
+        "st_size": 1570,
+        "st_mtime_ns": 1790388947181684068,
+        "st_ctime_ns": 1790388947181684068
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 10594520656619372546,
+        "st_size": 1570,
+        "st_mtime_ns": 1790389627868814433,
+        "st_ctime_ns": 1790389627869870399
+      }
+    },
+    "models/GLM-5.2_5layer/chat_template.jinja": {
+      "bytes": 5076,
+      "sha256": "172dc74a35e1752df75ecfb2b2cf9326d2852bb1379868ebeec9571654489679",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34605684,
+        "st_size": 5076,
+        "st_mtime_ns": 1790388947144683952,
+        "st_ctime_ns": 1790388947144683952
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 9730114669632946178,
+        "st_size": 5076,
+        "st_mtime_ns": 1790389627870814440,
+        "st_ctime_ns": 1790389627871819201
+      }
+    },
+    "models/GLM-5.2_5layer/config.json": {
+      "bytes": 1690,
+      "sha256": "f426922f0ad4efaaa6cae6dd24a6f0c59b0df1a6a1265857c4e9a949a5fdb020",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34605693,
+        "st_size": 1690,
+        "st_mtime_ns": 1790388947214684172,
+        "st_ctime_ns": 1790388947214684172
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 2953790720443809794,
+        "st_size": 1690,
+        "st_mtime_ns": 1790389627872814446,
+        "st_ctime_ns": 1790389627873697186
+      }
+    },
+    "models/GLM-5.2_5layer/generation_config.json": {
+      "bytes": 194,
+      "sha256": "ac76b43d8683d3b930126870fc8be73d8679308fe752fa1f381096d8354f6a55",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34605689,
+        "st_size": 194,
+        "st_mtime_ns": 1790388947207684150,
+        "st_ctime_ns": 1790388947207684150
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 515014831947907074,
+        "st_size": 194,
+        "st_mtime_ns": 1790389627874452776,
+        "st_ctime_ns": 1790389627875273749
+      }
+    },
+    "models/GLM-5.2_5layer/model-00001-of-00282.safetensors": {
+      "bytes": 5342821416,
+      "sha256": "004bf9404964da8ea71ea2d3ebf02148fa766b956bd4fca3f54b093e58a6a74c",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34605671,
+        "st_size": 5342821416,
+        "st_mtime_ns": 1790388968531751350,
+        "st_ctime_ns": 1790388970373757152
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 9388164282489438210,
+        "st_size": 5342821416,
+        "st_mtime_ns": 1790389632837830048,
+        "st_ctime_ns": 1790389636299169888
+      }
+    },
+    "models/GLM-5.2_5layer/model-00002-of-00282.safetensors": {
+      "bytes": 67108984,
+      "sha256": "6e51c7c2c22ae3e5d2d4f4706ad917b04cf140c3f1743fd42d47fcb177cb31d3",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34605679,
+        "st_size": 67108984,
+        "st_mtime_ns": 1790388948979689736,
+        "st_ctime_ns": 1790388949034689910
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 5577438942543085570,
+        "st_size": 67108984,
+        "st_mtime_ns": 1790389636327841072,
+        "st_ctime_ns": 1790389636393161834
+      }
+    },
+    "models/GLM-5.2_5layer/model-00038-of-00282.safetensors": {
+      "bytes": 801799616,
+      "sha256": "82595223f733f465fb923409703735f85da5ca28a0a7045a5439054d922af974",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34605680,
+        "st_size": 801799616,
+        "st_mtime_ns": 1790388954736707882,
+        "st_ctime_ns": 1790388955377709902
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 11423979050601676802,
+        "st_size": 801799616,
+        "st_mtime_ns": 1790389636739842083,
+        "st_ctime_ns": 1790389637449718853
+      }
+    },
+    "models/GLM-5.2_5layer/model-00075-of-00282.safetensors": {
+      "bytes": 931152424,
+      "sha256": "0cf4a6ac886004adaf5e6b33b689ec29c33eebc1660a59b4900bcb21422ce2c4",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34605678,
+        "st_size": 931152424,
+        "st_mtime_ns": 1790388953078702657,
+        "st_ctime_ns": 1790388953693704595
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 3351462439559561218,
+        "st_size": 931152424,
+        "st_mtime_ns": 1790389637839845714,
+        "st_ctime_ns": 1790389638678850960
+      }
+    },
+    "models/GLM-5.2_5layer/model-00076-of-00282.safetensors": {
+      "bytes": 5360347104,
+      "sha256": "1c65131e725c858d2e458da91b443ba95488b0f1343129fc629cbc3d35350d6c",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34605687,
+        "st_size": 5360347104,
+        "st_mtime_ns": 1790388967468748001,
+        "st_ctime_ns": 1790388969495754387
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 11456961003121213442,
+        "st_size": 5360347104,
+        "st_mtime_ns": 1790389643960864830,
+        "st_ctime_ns": 1790389647410818749
+      }
+    },
+    "models/GLM-5.2_5layer/model-00077-of-00282.safetensors": {
+      "bytes": 5360347104,
+      "sha256": "68aceb515ad523d9794318ec8578b68fbe9e42648bf222ccd337e1fdac02b23d",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34605692,
+        "st_size": 5360347104,
+        "st_mtime_ns": 1790388969301753776,
+        "st_ctime_ns": 1790388971354760243
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 7144363799843045378,
+        "st_size": 5360347104,
+        "st_mtime_ns": 1790389652408890888,
+        "st_ctime_ns": 1790389655858154677
+      }
+    },
+    "models/GLM-5.2_5layer/model-00078-of-00282.safetensors": {
+      "bytes": 5360346952,
+      "sha256": "8720873631cb258ece1f196e7f389e39b219901a4c49db2328f783fc78e4ee15",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34605696,
+        "st_size": 5360346952,
+        "st_mtime_ns": 1790388969508754428,
+        "st_ctime_ns": 1790388971480760640
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 12188183371102945282,
+        "st_size": 5360346952,
+        "st_mtime_ns": 1790389660317915842,
+        "st_ctime_ns": 1790389663714067576
+      }
+    },
+    "models/GLM-5.2_5layer/model-00079-of-00282.safetensors": {
+      "bytes": 2723969648,
+      "sha256": "c59b42b5a95bdc9b5b922c26ff50cfbc97878489db17570663bf9421fe543919",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34605699,
+        "st_size": 2723969648,
+        "st_mtime_ns": 1790388962160731277,
+        "st_ctime_ns": 1790388963191734526
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 12522952713329442818,
+        "st_size": 2723969648,
+        "st_mtime_ns": 1790389665516931744,
+        "st_ctime_ns": 1790389668800986535
+      }
+    },
+    "models/GLM-5.2_5layer/model-00116-of-00282.safetensors": {
+      "bytes": 3598743040,
+      "sha256": "447b01c0958cb1b35c675256dff1f1d13b84e782d332a204237eaf93de043bee",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34605702,
+        "st_size": 3598743040,
+        "st_mtime_ns": 1790388966029743467,
+        "st_ctime_ns": 1790388967425747866
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 5478801383944028162,
+        "st_size": 3598743040,
+        "st_mtime_ns": 1790389672407953237,
+        "st_ctime_ns": 1790389676574121506
+      }
+    },
+    "models/GLM-5.2_5layer/model-00117-of-00282.safetensors": {
+      "bytes": 5360347104,
+      "sha256": "703e4dfbea787c84c26fbb6b0200378262cf2e2c5e48d563a7fcc9b10a75ee19",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34605705,
+        "st_size": 5360347104,
+        "st_mtime_ns": 1790388970521757619,
+        "st_ctime_ns": 1790388972530763947
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 17110938469837438978,
+        "st_size": 5360347104,
+        "st_mtime_ns": 1790389681897983145,
+        "st_ctime_ns": 1790389688145594681
+      }
+    },
+    "models/GLM-5.2_5layer/model-00118-of-00282.safetensors": {
+      "bytes": 5360347064,
+      "sha256": "fec6264b97ff493fea3d61a44b999da9e1af4202ded96a9929478ae4c2610b88",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34605708,
+        "st_size": 5360347064,
+        "st_mtime_ns": 1790388971535760813,
+        "st_ctime_ns": 1790388973725767711
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 7271703710595940354,
+        "st_size": 5360347064,
+        "st_mtime_ns": 1790389693384018806,
+        "st_ctime_ns": 1790389699613507339
+      }
+    },
+    "models/GLM-5.2_5layer/model-00119-of-00282.safetensors": {
+      "bytes": 5349617128,
+      "sha256": "95a69af73c4d8bd4d5858defdc5c82294c1e01d67fe34b23adf48a4ee6c69242",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34605715,
+        "st_size": 5349617128,
+        "st_mtime_ns": 1790388972909765141,
+        "st_ctime_ns": 1790388973927768348
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 12377909410898771970,
+        "st_size": 5349617128,
+        "st_mtime_ns": 1790389704476053119,
+        "st_ctime_ns": 1790389710650564809
+      }
+    },
+    "models/GLM-5.2_5layer/model-00120-of-00282.safetensors": {
+      "bytes": 67108984,
+      "sha256": "89a22435ddf819088c6b102f81dc673c41be5f12bb868874ee4aa444de80585b",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34605718,
+        "st_size": 67108984,
+        "st_mtime_ns": 1790388969725755111,
+        "st_ctime_ns": 1790388969841755477
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 12466449036783321090,
+        "st_size": 67108984,
+        "st_mtime_ns": 1790389710695072735,
+        "st_ctime_ns": 1790389710799339716
+      }
+    },
+    "models/GLM-5.2_5layer/model-00282-of-00282.safetensors": {
+      "bytes": 12376,
+      "sha256": "7e26cafa850631ede0839584e4b396a7058466998bdf8e7bae2775f77d1a4b44",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34605721,
+        "st_size": 12376,
+        "st_mtime_ns": 1790388970124756368,
+        "st_ctime_ns": 1790388970125756371
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 800066098254381058,
+        "st_size": 12376,
+        "st_mtime_ns": 1790389710805072703,
+        "st_ctime_ns": 1790389710808637488
+      }
+    },
+    "models/GLM-5.2_5layer/model.safetensors.index.json": {
+      "bytes": 145189,
+      "sha256": "d898bb64c9258ed870a83d23fde8142cb71c0db5eba8dcacd9d2884b4c995ec9",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34605724,
+        "st_size": 145189,
+        "st_mtime_ns": 1790388970107756314,
+        "st_ctime_ns": 1790388970107756314
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 7054261951337791490,
+        "st_size": 145189,
+        "st_mtime_ns": 1790389710816072771,
+        "st_ctime_ns": 1790389710820029469
+      }
+    },
+    "models/GLM-5.2_5layer/tokenizer.json": {
+      "bytes": 20217442,
+      "sha256": "19e773648cb4e65de8660ea6365e10acca112d42a854923df93db4a6f333a82d",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34605727,
+        "st_size": 20217442,
+        "st_mtime_ns": 1790388970837758614,
+        "st_ctime_ns": 1790388970865758702
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 17244559678211817474,
+        "st_size": 20217442,
+        "st_mtime_ns": 1790389710838072806,
+        "st_ctime_ns": 1790389710874600921
+      }
+    },
+    "models/GLM-5.2_5layer/tokenizer_config.json": {
+      "bytes": 761,
+      "sha256": "98b1271574f41abf89427ae2dda030d94dc9478f0edc5a8bd240db213c6fd5fc",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34605730,
+        "st_size": 761,
+        "st_mtime_ns": 1790388970307756945,
+        "st_ctime_ns": 1790388970307756945
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 10599060165881692162,
+        "st_size": 761,
+        "st_mtime_ns": 1790389710883072946,
+        "st_ctime_ns": 1790389710884907295
+      }
+    },
+    "models/GLM-5.2_5layer-NVFP4/.gitattributes": {
+      "bytes": 1570,
+      "sha256": "34448b82c17d60fec9b65b1f093c115ddbaadc04beb1b0140b6bfed2e012a930",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34736765,
+        "st_size": 1570,
+        "st_mtime_ns": 1790389209597508407,
+        "st_ctime_ns": 1790389209597508407
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 10336181997588185090,
+        "st_size": 1570,
+        "st_mtime_ns": 1790389710897072990,
+        "st_ctime_ns": 1790389710898870340
+      }
+    },
+    "models/GLM-5.2_5layer-NVFP4/chat_template.jinja": {
+      "bytes": 5076,
+      "sha256": "172dc74a35e1752df75ecfb2b2cf9326d2852bb1379868ebeec9571654489679",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34736762,
+        "st_size": 5076,
+        "st_mtime_ns": 1790389209583508363,
+        "st_ctime_ns": 1790389209583508363
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 14479358548749123586,
+        "st_size": 5076,
+        "st_mtime_ns": 1790389710905073015,
+        "st_ctime_ns": 1790389710908272078
+      }
+    },
+    "models/GLM-5.2_5layer-NVFP4/config.json": {
+      "bytes": 5341,
+      "sha256": "6f0f07f779e17edfbbe20d38a19437215d55f9b7533261b7d85eb60dbde60e59",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34736766,
+        "st_size": 5341,
+        "st_mtime_ns": 1790389281831734500,
+        "st_ctime_ns": 1790389281831734500
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 5221917633278509058,
+        "st_size": 5341,
+        "st_mtime_ns": 1790389710914073043,
+        "st_ctime_ns": 1790389710916926776
+      }
+    },
+    "models/GLM-5.2_5layer-NVFP4/generation_config.json": {
+      "bytes": 194,
+      "sha256": "ac76b43d8683d3b930126870fc8be73d8679308fe752fa1f381096d8354f6a55",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34736767,
+        "st_size": 194,
+        "st_mtime_ns": 1790389209598508410,
+        "st_ctime_ns": 1790389209598508410
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 14096697435012726786,
+        "st_size": 194,
+        "st_mtime_ns": 1790389710924073074,
+        "st_ctime_ns": 1790389710926750953
+      }
+    },
+    "models/GLM-5.2_5layer-NVFP4/hf_quant_config.json": {
+      "bytes": 3603,
+      "sha256": "a5045f88b248303489dbede756252d0e77de345a7976e0786328f88f69acc43f",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34736890,
+        "st_size": 3603,
+        "st_mtime_ns": 1790389281832734503,
+        "st_ctime_ns": 1790389281832734503
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 2167290267712684034,
+        "st_size": 3603,
+        "st_mtime_ns": 1790389710932073099,
+        "st_ctime_ns": 1790389710933707971
+      }
+    },
+    "models/GLM-5.2_5layer-NVFP4/model-00001-of-00282.safetensors": {
+      "bytes": 5342821448,
+      "sha256": "7bfa1e6ecdedcbe3ea23b5a7c47a33124f77494fff53b4c252f1b2df656bc532",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34736881,
+        "st_size": 5342821448,
+        "st_mtime_ns": 1790389276213716926,
+        "st_ctime_ns": 1790389276229716976
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 16007397202901532674,
+        "st_size": 5342821448,
+        "st_mtime_ns": 1790389715731088174,
+        "st_ctime_ns": 1790389722370599973
+      }
+    },
+    "models/GLM-5.2_5layer-NVFP4/model-00002-of-00282.safetensors": {
+      "bytes": 67109016,
+      "sha256": "b742cc251bdaf073df7a229a839d95477ebcc4826e11b266346d18a1a1a3d25d",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34736873,
+        "st_size": 67109016,
+        "st_mtime_ns": 1790389253141644735,
+        "st_ctime_ns": 1790389253183644866
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 18241059184042442754,
+        "st_size": 67109016,
+        "st_mtime_ns": 1790389722404109202,
+        "st_ctime_ns": 1790389722471280889
+      }
+    },
+    "models/GLM-5.2_5layer-NVFP4/model-00038-of-00282.safetensors": {
+      "bytes": 801799648,
+      "sha256": "bf91373c594ddc930ebcfef98235a5e1189b6cd7838bf92a3b36a708d4bef45c",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34736879,
+        "st_size": 801799648,
+        "st_mtime_ns": 1790389264442680099,
+        "st_ctime_ns": 1790389264484680230
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 3777130191473213442,
+        "st_size": 801799648,
+        "st_mtime_ns": 1790389722800110248,
+        "st_ctime_ns": 1790389723502025178
+      }
+    },
+    "models/GLM-5.2_5layer-NVFP4/model-00075-of-00282.safetensors": {
+      "bytes": 261911672,
+      "sha256": "a81e8b8816cc4c5f19a6b8b917ae66d60f2ec99cfeca1315cebc2a8e2927da20",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34736871,
+        "st_size": 261911672,
+        "st_mtime_ns": 1790389252998644287,
+        "st_ctime_ns": 1790389253002644300
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 817290835380338690,
+        "st_size": 261911672,
+        "st_mtime_ns": 1790389723617113199,
+        "st_ctime_ns": 1790389723847569742
+      }
+    },
+    "models/GLM-5.2_5layer-NVFP4/model-00076-of-00282.safetensors": {
+      "bytes": 1507691736,
+      "sha256": "c22790a78fcd43179ea1463e003233a774ff5249cbc4f51be8f40b8a276b58d7",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34736894,
+        "st_size": 1507691736,
+        "st_mtime_ns": 1790389280066728979,
+        "st_ctime_ns": 1790389280070728992
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 6360723103735283714,
+        "st_size": 1507691736,
+        "st_mtime_ns": 1790389724903116726,
+        "st_ctime_ns": 1790389726125552771
+      }
+    },
+    "models/GLM-5.2_5layer-NVFP4/model-00077-of-00282.safetensors": {
+      "bytes": 1507691728,
+      "sha256": "a1cc28669a6f114156c8835d82e4bd142ea218e35ca8e08ae0ac63068c561a39",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34736869,
+        "st_size": 1507691728,
+        "st_mtime_ns": 1790389248667630732,
+        "st_ctime_ns": 1790389248671630745
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 4050624912906846210,
+        "st_size": 1507691728,
+        "st_mtime_ns": 1790389727224123815,
+        "st_ctime_ns": 1790389728403174333
+      }
+    },
+    "models/GLM-5.2_5layer-NVFP4/model-00078-of-00282.safetensors": {
+      "bytes": 1507691136,
+      "sha256": "f6d73aa9ee4bd8dc18caac112e0416401a5e515a33a0d91aa96e6e139fdcfb5e",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34736878,
+        "st_size": 1507691136,
+        "st_mtime_ns": 1790389263055675759,
+        "st_ctime_ns": 1790389263059675771
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 12653361207361929218,
+        "st_size": 1507691136,
+        "st_mtime_ns": 1790389729385130796,
+        "st_ctime_ns": 1790389730582166301
+      }
+    },
+    "models/GLM-5.2_5layer-NVFP4/model-00079-of-00282.safetensors": {
+      "bytes": 1059911576,
+      "sha256": "ca13107647757ce30f8e0d5255bd49da9b01e702fdfb3e712ab4292cbf5a366b",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34736885,
+        "st_size": 1059911576,
+        "st_mtime_ns": 1790389281694734072,
+        "st_ctime_ns": 1790389281699734087
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 7884490682303184898,
+        "st_size": 1059911576,
+        "st_mtime_ns": 1790389731036135918,
+        "st_ctime_ns": 1790389731961357212
+      }
+    },
+    "models/GLM-5.2_5layer-NVFP4/model-00116-of-00282.safetensors": {
+      "bytes": 1012218168,
+      "sha256": "8d961499aeb39eb1151b037d7185297a84510568f53f5415cc82e43a8136779e",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34736874,
+        "st_size": 1012218168,
+        "st_mtime_ns": 1790389259407664344,
+        "st_ctime_ns": 1790389259411664356
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 14770745356103712770,
+        "st_size": 1012218168,
+        "st_mtime_ns": 1790389732398140107,
+        "st_ctime_ns": 1790389733270140283
+      }
+    },
+    "models/GLM-5.2_5layer-NVFP4/model-00117-of-00282.safetensors": {
+      "bytes": 1507691728,
+      "sha256": "ab140b6c9d4fafded26a39fe0ea3d9bd97e6d03a7592a61d440bb76538e989ad",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34736876,
+        "st_size": 1507691728,
+        "st_mtime_ns": 1790389256782656129,
+        "st_ctime_ns": 1790389256786656142
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 12253664394243080194,
+        "st_size": 1507691728,
+        "st_mtime_ns": 1790389734126145298,
+        "st_ctime_ns": 1790389736065449983
+      }
+    },
+    "models/GLM-5.2_5layer-NVFP4/model-00118-of-00282.safetensors": {
+      "bytes": 1507691576,
+      "sha256": "7cb9a5317f9440c935ea5f9f5c68eda77845f5cc21d597b2d2541b8c08c28db0",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34736785,
+        "st_size": 1507691576,
+        "st_mtime_ns": 1790389252426642497,
+        "st_ctime_ns": 1790389252429642506
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 3946734178692235266,
+        "st_size": 1507691576,
+        "st_mtime_ns": 1790389737162154816,
+        "st_ctime_ns": 1790389738932991696
+      }
+    },
+    "models/GLM-5.2_5layer-NVFP4/model-00119-of-00282.safetensors": {
+      "bytes": 1750187616,
+      "sha256": "acf0c73afcb3673a80503d7c78fa412ba2945154fa80b8971dd4c1cab4dd3df8",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34736880,
+        "st_size": 1750187616,
+        "st_mtime_ns": 1790389268396692470,
+        "st_ctime_ns": 1790389268400692483
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 6200517067738578946,
+        "st_size": 1750187616,
+        "st_mtime_ns": 1790389740639164592,
+        "st_ctime_ns": 1790389742662619718
+      }
+    },
+    "models/GLM-5.2_5layer-NVFP4/model-00120-of-00282.safetensors": {
+      "bytes": 67109016,
+      "sha256": "472dde8ae17c81bf9eeffc6e9357db66cdc38d3cb9073c32b1c96583b87291f5",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34736768,
+        "st_size": 67109016,
+        "st_mtime_ns": 1790389220895543789,
+        "st_ctime_ns": 1790389220939543927
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 1015931256712134658,
+        "st_size": 67109016,
+        "st_mtime_ns": 1790389742707170550,
+        "st_ctime_ns": 1790389742806161284
+      }
+    },
+    "models/GLM-5.2_5layer-NVFP4/model-00282-of-00282.safetensors": {
+      "bytes": 12408,
+      "sha256": "f669f30ba44422923296263aebb5800c837fafd13d6e09fc0c05b55c2357212e",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34736877,
+        "st_size": 12408,
+        "st_mtime_ns": 1790389256948656649,
+        "st_ctime_ns": 1790389256949656652
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 3994349390928740354,
+        "st_size": 12408,
+        "st_mtime_ns": 1790389742812170503,
+        "st_ctime_ns": 1790389742815826840
+      }
+    },
+    "models/GLM-5.2_5layer-NVFP4/model.safetensors.index.json": {
+      "bytes": 588649,
+      "sha256": "19058f11e2630095e4a35d0a98a700160f08ee5121311830a1e7e42328b8753c",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34736764,
+        "st_size": 588649,
+        "st_mtime_ns": 1790389281838734522,
+        "st_ctime_ns": 1790389281838734522
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 17667055216626761730,
+        "st_size": 588649,
+        "st_mtime_ns": 1790389742824170673,
+        "st_ctime_ns": 1790389742831147117
+      }
+    },
+    "models/GLM-5.2_5layer-NVFP4/tokenizer.json": {
+      "bytes": 20217442,
+      "sha256": "19e773648cb4e65de8660ea6365e10acca112d42a854923df93db4a6f333a82d",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34736763,
+        "st_size": 20217442,
+        "st_mtime_ns": 1790389209597508407,
+        "st_ctime_ns": 1790389209597508407
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 9887665232209707010,
+        "st_size": 20217442,
+        "st_mtime_ns": 1790389742848170978,
+        "st_ctime_ns": 1790389742884921357
+      }
+    },
+    "models/GLM-5.2_5layer-NVFP4/tokenizer_config.json": {
+      "bytes": 761,
+      "sha256": "98b1271574f41abf89427ae2dda030d94dc9478f0edc5a8bd240db213c6fd5fc",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34736761,
+        "st_size": 761,
+        "st_mtime_ns": 1790389209582508360,
+        "st_ctime_ns": 1790389209582508360
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 12994070642787155970,
+        "st_size": 761,
+        "st_mtime_ns": 1790389742893170730,
+        "st_ctime_ns": 1790389742896920847
+      }
+    },
+    "models/GLM-5.2_5layer_torch_dist/latest_checkpointed_iteration.txt": {
+      "bytes": 7,
+      "sha256": "a4d451ec23463726f72c43d64c710968f6b602cd653b4de8adee1b556240a829",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34739591,
+        "st_size": 7,
+        "st_mtime_ns": 1790389507387438915,
+        "st_ctime_ns": 1790389507387438915
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 3864152247092314114,
+        "st_size": 7,
+        "st_mtime_ns": 1790389742907170769,
+        "st_ctime_ns": 1790389742909550208
+      }
+    },
+    "models/GLM-5.2_5layer_torch_dist/release/.metadata": {
+      "bytes": 768848,
+      "sha256": "9a504da6103d5f2472337cd24e5ced63d0e0795b8fbf64650fe5d70d63fb7e37",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34739589,
+        "st_size": 768848,
+        "st_mtime_ns": 1790389507361438834,
+        "st_ctime_ns": 1790389507364438843
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 15451042551376510978,
+        "st_size": 768848,
+        "st_mtime_ns": 1790389742921170809,
+        "st_ctime_ns": 1790389742927852046
+      }
+    },
+    "models/GLM-5.2_5layer_torch_dist/release/__0_0.distcp": {
+      "bytes": 45688099895,
+      "sha256": "165aedb15023a1da30bb2152ea4d122cc7c865796f7dc005390636935061aa1c",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34739588,
+        "st_size": 45688099895,
+        "st_mtime_ns": 1790389505292432381,
+        "st_ctime_ns": 1790389505292432381
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 983432786071453698,
+        "st_size": 45688099895,
+        "st_mtime_ns": 1790389788188298058,
+        "st_ctime_ns": 1790389838310297595
+      }
+    },
+    "models/GLM-5.2_5layer_torch_dist/release/metadata.json": {
+      "bytes": 63,
+      "sha256": "56b32e2dfbc0255db319bddf6880c9dfd3475135ca8d5ace23b8a6a384ed63c6",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34739590,
+        "st_size": 63,
+        "st_mtime_ns": 1790389507378438887,
+        "st_ctime_ns": 1790389507378438887
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 3685977230260240386,
+        "st_size": 63,
+        "st_mtime_ns": 1790389838315440080,
+        "st_ctime_ns": 1790389838318567287
+      }
+    },
+    "datasets/dapo-math-17k/.gitattributes": {
+      "bytes": 2517,
+      "sha256": "f9dbca9d734c21c39036c522232acd03cc6a505445482225abf9359a7e2fac58",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34160727,
+        "st_size": 2517,
+        "st_mtime_ns": 1790388947133683917,
+        "st_ctime_ns": 1790388947133683917
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 3574578168401100802,
+        "st_size": 2517,
+        "st_mtime_ns": 1790389838335440137,
+        "st_ctime_ns": 1790389838338649652
+      }
+    },
+    "datasets/dapo-math-17k/dapo-math-17k.jsonl": {
+      "bytes": 10490834,
+      "sha256": "cc9c39c2aa19177abe9464741e121cf4cac90fd25484ef3cdf86535101e3a5b6",
+      "local_stat": {
+        "st_dev": 64513,
+        "st_ino": 34160721,
+        "st_size": 10490834,
+        "st_mtime_ns": 1790388947759685890,
+        "st_ctime_ns": 1790388947766685913
+      },
+      "durable_stat": {
+        "st_dev": 258082761,
+        "st_ino": 12621213802313678850,
+        "st_size": 10490834,
+        "st_mtime_ns": 1790389838351440268,
+        "st_ctime_ns": 1790389838375840824
+      }
+    }
+  },
+  "backup_manifest": {
+    "path": "/data/ziangli/glm52-delta-sync-c2/prepared-inputs/input-backup-20260926T021916Z-4640.json",
+    "sha256": "d29f8979acfeff41b09856d17a57e6b665f294ddb5c317e2e5605ee7653a2c8a"
+  },
+  "evidence": {
+    "artifacts/input-backup-20260926T021916Z-4640.json": {
+      "bytes": 12364,
+      "sha256": "d29f8979acfeff41b09856d17a57e6b665f294ddb5c317e2e5605ee7653a2c8a"
+    },
+    "artifacts/recovery-20260926T021546Z-download-dataset.log": {
+      "bytes": 652,
+      "sha256": "77779b3c4943e9cacd141b6ed1c9d8cfd73f75dd8553d8bfb66b9d6c1c175f54"
+    },
+    "artifacts/recovery-20260926T021546Z-download-model.log": {
+      "bytes": 1753,
+      "sha256": "38a53babb74a7a213cec097c8999a9dd129b95f73af002038be8776dc70e9d7d"
+    },
+    "artifacts/recovery-20260926T021546Z-download-processes.json": {
+      "bytes": 827,
+      "sha256": "d1fd2c1d5d4198b09d734cdb059a801a51f963325bb4800414d1271a02b7be52"
+    },
+    "artifacts/recovery-20260926T021828Z-prepare-all.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "artifacts/recovery-20260926T021828Z-prepare-all.log": {
+      "bytes": 1220,
+      "sha256": "4f22eb875e13852a0d302ed288c7030b371b5b4ef602baa05fdf8be26634899d"
+    },
+    "artifacts/recovery-20260926T021916Z-4640-download-data.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "artifacts/recovery-20260926T021916Z-4640-download-data.log": {
+      "bytes": 224,
+      "sha256": "e378a106a7105f6f87246e6d8c277aff54c4a6e5c9a6f3c33c9372c39d8852ff"
+    },
+    "artifacts/recovery-20260926T021916Z-4640-download-model.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "artifacts/recovery-20260926T021916Z-4640-download-model.log": {
+      "bytes": 228,
+      "sha256": "f34f22e5be9eb08303907770c9c609840193bd8ef967dd4c6b16ac3d89df2663"
+    },
+    "artifacts/recovery-20260926T021916Z-4640-input-identity.json": {
+      "bytes": 3992,
+      "sha256": "fa5a32b2fa7f3fd83450ea65acda8870cd2a0f60d25d9cf99dcf501ef0e3bf50"
+    },
+    "artifacts/recovery-20260926T021916Z-4640-nvfp4.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "artifacts/recovery-20260926T021916Z-4640-nvfp4.log": {
+      "bytes": 1605,
+      "sha256": "058882f4d8a750759e0f13051f86ec7acaccd44dc124fedc8252b3c063fe2098"
+    },
+    "artifacts/recovery-20260926T021916Z-4640-torch-dist.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "artifacts/recovery-20260926T021916Z-4640-torch-dist.log": {
+      "bytes": 55351,
+      "sha256": "56c732ae2c81fa7c22b33578c2e3a3400286b5b033470ba610e50629604c6dee"
+    },
+    "artifacts/recovery-active-preparation.json": {
+      "bytes": 437,
+      "sha256": "2b88f7b9d72d09505e157d3d2c1d87ad0144f5543b0db19268ff35a401addd6d"
+    },
+    "artifacts/recovery-nvfp4-header-verification.json": {
+      "bytes": 3038,
+      "sha256": "951d6601b73196167b7eb2ad2119184566d902e537909efa69586df471e2386e"
+    },
+    "artifacts/recovery-original-canonical-headers.json": {
+      "bytes": 2986,
+      "sha256": "cbc739f1a8e5efd34a91111969fc0e01d4ffb3a69b07638d4799805f11a886ec"
+    },
+    "artifacts/recovery-source-durable-backup.json": {
+      "bytes": 204,
+      "sha256": "fec938ae7bed4549e3e6fbb66f5e0366be8468f8c23aa305e6c162810b7e4d00"
+    },
+    "artifacts/recovery-source-restore.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "artifacts/recovery-source-restore.log": {
+      "bytes": 574,
+      "sha256": "05ff213101c4d92afc270e50c5c6ce434ad39ae1ac23f3282132a9ac8ecee9b2"
+    },
+    "models/recovery-nvfp4-verified.json": {
+      "bytes": 7753,
+      "sha256": "36d1fad1feec47965050eaf21d20654711a0c6c4acb6b094bdb26ca1c0f54223"
+    },
+    "models/recovery-torch-dist-verified.json": {
+      "bytes": 4996,
+      "sha256": "c5d013c61db514dd4c5c755cb0383b1e811609055dea96b80e8987cbcb2343b1"
+    },
+    "recover_weight_sync_inputs.py": {
+      "bytes": 10282,
+      "sha256": "b3a473f918b134a7dd6afef51627e677644830e42310083b0e205da8f21ce51c"
+    }
+  }
+}

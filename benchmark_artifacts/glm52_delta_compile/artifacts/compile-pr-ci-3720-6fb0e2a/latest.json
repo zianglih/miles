@@ -1,0 +1,1449 @@
+{
+  "captured_at_utc": "20260926T014943Z",
+  "identity": "zianglih",
+  "pr": {
+    "baseRefName": "main",
+    "headRefName": "glm52-delta-torch-compile-cpu",
+    "headRefOid": "6fb0e2a9d81fc343863ba6015512fe93992892e4",
+    "isDraft": true,
+    "number": 3720,
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-26T01:41:28Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/radixark/miles/actions/runs/36209270801/job/108312249688",
+        "name": "approve-held-runs",
+        "startedAt": "2026-09-26T01:41:28Z",
+        "status": "COMPLETED",
+        "workflowName": "Approve Trusted CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-26T01:41:47Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/radixark/miles/actions/runs/36209271072/job/108312249416",
+        "name": "resolve-ci-policy",
+        "startedAt": "2026-09-26T01:41:40Z",
+        "status": "COMPLETED",
+        "workflowName": "PR Test (ROCm)"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-26T01:41:45Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/radixark/miles/actions/runs/36209271034/job/108312249498",
+        "name": "resolve-ci-policy",
+        "startedAt": "2026-09-26T01:41:39Z",
+        "status": "COMPLETED",
+        "workflowName": "PR Test"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-26T01:42:52Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/radixark/miles/actions/runs/36209270943/job/108312248752",
+        "name": "Run pre-commit",
+        "startedAt": "2026-09-26T01:41:39Z",
+        "status": "COMPLETED",
+        "workflowName": "pre-commit"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-26T01:41:41Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/radixark/miles/actions/runs/36209271072/job/108312249653",
+        "name": "resolve-ci-deps",
+        "startedAt": "2026-09-26T01:41:39Z",
+        "status": "COMPLETED",
+        "workflowName": "PR Test (ROCm)"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-26T01:49:10Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/radixark/miles/actions/runs/36209271034/job/108312293450",
+        "name": "stage-a-cpu (0) / run-cpu",
+        "startedAt": "2026-09-26T01:41:48Z",
+        "status": "COMPLETED",
+        "workflowName": "PR Test"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-26T01:47:24Z",
+        "conclusion": "FAILURE",
+        "detailsUrl": "https://github.com/radixark/miles/actions/runs/36209271034/job/108312293487",
+        "name": "stage-a-cpu (1) / run-cpu",
+        "startedAt": "2026-09-26T01:42:09Z",
+        "status": "COMPLETED",
+        "workflowName": "PR Test"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-26T01:49:22Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/radixark/miles/actions/runs/36209271034/job/108312293470",
+        "name": "stage-a-cpu (2) / run-cpu",
+        "startedAt": "2026-09-26T01:41:48Z",
+        "status": "COMPLETED",
+        "workflowName": "PR Test"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-26T01:49:05Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/radixark/miles/actions/runs/36209271034/job/108312293477",
+        "name": "stage-a-cpu (3) / run-cpu",
+        "startedAt": "2026-09-26T01:41:48Z",
+        "status": "COMPLETED",
+        "workflowName": "PR Test"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-26T01:41:47Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/radixark/miles/actions/runs/36209271072/job/108312297716",
+        "name": "resolve-ci-image",
+        "startedAt": "2026-09-26T01:41:47Z",
+        "status": "COMPLETED",
+        "workflowName": "PR Test (ROCm)"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-26T01:47:49Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/radixark/miles/actions/runs/36209271034/job/108312293401",
+        "name": "stage-b-cpu / run-cpu",
+        "startedAt": "2026-09-26T01:41:49Z",
+        "status": "COMPLETED",
+        "workflowName": "PR Test"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-26T01:41:47Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/radixark/miles/actions/runs/36209271072/job/108312298365",
+        "name": "stage-c-4-gpu-mi350",
+        "startedAt": "2026-09-26T01:41:47Z",
+        "status": "COMPLETED",
+        "workflowName": "PR Test (ROCm)"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-26T01:49:22Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/radixark/miles/actions/runs/36209271034/job/108313483816",
+        "name": "docker-build",
+        "startedAt": "2026-09-26T01:49:23Z",
+        "status": "COMPLETED",
+        "workflowName": "PR Test"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-26T01:49:23Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/radixark/miles/actions/runs/36209271034/job/108313484309",
+        "name": "resolve-ci-image",
+        "startedAt": "2026-09-26T01:49:23Z",
+        "status": "COMPLETED",
+        "workflowName": "PR Test"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-26T01:49:23Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/radixark/miles/actions/runs/36209271034/job/108313486095",
+        "name": "stage-b-2-gpu-h200",
+        "startedAt": "2026-09-26T01:49:24Z",
+        "status": "COMPLETED",
+        "workflowName": "PR Test"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-26T01:49:23Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/radixark/miles/actions/runs/36209271034/job/108313486145",
+        "name": "stage-c-8-gpu-h100",
+        "startedAt": "2026-09-26T01:49:24Z",
+        "status": "COMPLETED",
+        "workflowName": "PR Test"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-26T01:49:23Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/radixark/miles/actions/runs/36209271034/job/108313485711",
+        "name": "stage-c-8-gpu-h200",
+        "startedAt": "2026-09-26T01:49:24Z",
+        "status": "COMPLETED",
+        "workflowName": "PR Test"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-26T01:49:23Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/radixark/miles/actions/runs/36209271034/job/108313486006",
+        "name": "stage-c-4-gpu-h200",
+        "startedAt": "2026-09-26T01:49:24Z",
+        "status": "COMPLETED",
+        "workflowName": "PR Test"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-26T01:49:23Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/radixark/miles/actions/runs/36209271034/job/108313485791",
+        "name": "stage-c-2-gpu-h200",
+        "startedAt": "2026-09-26T01:49:24Z",
+        "status": "COMPLETED",
+        "workflowName": "PR Test"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-26T01:49:23Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/radixark/miles/actions/runs/36209271034/job/108313486166",
+        "name": "stage-c-8-gpu-b200",
+        "startedAt": "2026-09-26T01:49:24Z",
+        "status": "COMPLETED",
+        "workflowName": "PR Test"
+      }
+    ],
+    "url": "https://github.com/radixark/miles/pull/3720"
+  },
+  "runs": [
+    {
+      "conclusion": "skipped",
+      "createdAt": "2026-09-26T01:41:27Z",
+      "databaseId": 36209270801,
+      "event": "pull_request_target",
+      "headBranch": "glm52-delta-torch-compile-cpu",
+      "headSha": "6fb0e2a9d81fc343863ba6015512fe93992892e4",
+      "jobs": [
+        {
+          "completedAt": "2026-09-26T01:41:28Z",
+          "conclusion": "skipped",
+          "databaseId": 108312249688,
+          "name": "approve-held-runs",
+          "startedAt": "2026-09-26T01:41:28Z",
+          "status": "completed",
+          "steps": [],
+          "url": "https://github.com/radixark/miles/actions/runs/36209270801/job/108312249688"
+        }
+      ],
+      "name": "Approve Trusted CI",
+      "status": "completed",
+      "updatedAt": "2026-09-26T01:41:29Z",
+      "url": "https://github.com/radixark/miles/actions/runs/36209270801"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-26T01:41:28Z",
+      "databaseId": 36209270943,
+      "event": "pull_request",
+      "headBranch": "glm52-delta-torch-compile-cpu",
+      "headSha": "6fb0e2a9d81fc343863ba6015512fe93992892e4",
+      "jobs": [
+        {
+          "completedAt": "2026-09-26T01:42:52Z",
+          "conclusion": "success",
+          "databaseId": 108312248752,
+          "name": "Run pre-commit",
+          "startedAt": "2026-09-26T01:41:39Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-09-26T01:41:41Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-09-26T01:41:40Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:41:48Z",
+              "conclusion": "success",
+              "name": "Checkout repository",
+              "number": 2,
+              "startedAt": "2026-09-26T01:41:41Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:41:52Z",
+              "conclusion": "success",
+              "name": "Set up Python",
+              "number": 3,
+              "startedAt": "2026-09-26T01:41:48Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:41:53Z",
+              "conclusion": "success",
+              "name": "Install Helm",
+              "number": 4,
+              "startedAt": "2026-09-26T01:41:52Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:41:55Z",
+              "conclusion": "success",
+              "name": "Install pre-commit",
+              "number": 5,
+              "startedAt": "2026-09-26T01:41:53Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:41:57Z",
+              "conclusion": "success",
+              "name": "Cache pre-commit environments",
+              "number": 6,
+              "startedAt": "2026-09-26T01:41:55Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:42:49Z",
+              "conclusion": "success",
+              "name": "Run pre-commit on all files",
+              "number": 7,
+              "startedAt": "2026-09-26T01:41:57Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:42:50Z",
+              "conclusion": "success",
+              "name": "Post Cache pre-commit environments",
+              "number": 12,
+              "startedAt": "2026-09-26T01:42:49Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:42:50Z",
+              "conclusion": "success",
+              "name": "Post Set up Python",
+              "number": 13,
+              "startedAt": "2026-09-26T01:42:50Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:42:50Z",
+              "conclusion": "success",
+              "name": "Post Checkout repository",
+              "number": 14,
+              "startedAt": "2026-09-26T01:42:50Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:42:50Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 15,
+              "startedAt": "2026-09-26T01:42:50Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/radixark/miles/actions/runs/36209270943/job/108312248752"
+        }
+      ],
+      "name": "pre-commit",
+      "status": "completed",
+      "updatedAt": "2026-09-26T01:42:52Z",
+      "url": "https://github.com/radixark/miles/actions/runs/36209270943"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-09-26T01:41:28Z",
+      "databaseId": 36209271034,
+      "event": "pull_request",
+      "headBranch": "glm52-delta-torch-compile-cpu",
+      "headSha": "6fb0e2a9d81fc343863ba6015512fe93992892e4",
+      "jobs": [
+        {
+          "completedAt": "2026-09-26T01:41:45Z",
+          "conclusion": "success",
+          "databaseId": 108312249498,
+          "name": "resolve-ci-policy",
+          "startedAt": "2026-09-26T01:41:39Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-09-26T01:41:40Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-09-26T01:41:40Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:41:42Z",
+              "conclusion": "success",
+              "name": "Checkout repository",
+              "number": 2,
+              "startedAt": "2026-09-26T01:41:40Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:41:42Z",
+              "conclusion": "success",
+              "name": "Collect PR changed files",
+              "number": 3,
+              "startedAt": "2026-09-26T01:41:42Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:41:43Z",
+              "conclusion": "success",
+              "name": "Resolve CI policy inputs",
+              "number": 4,
+              "startedAt": "2026-09-26T01:41:42Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:41:43Z",
+              "conclusion": "success",
+              "name": "Post Checkout repository",
+              "number": 8,
+              "startedAt": "2026-09-26T01:41:43Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:41:43Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "startedAt": "2026-09-26T01:41:43Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/radixark/miles/actions/runs/36209271034/job/108312249498"
+        },
+        {
+          "completedAt": "2026-09-26T01:47:49Z",
+          "conclusion": "success",
+          "databaseId": 108312293401,
+          "name": "stage-b-cpu / run-cpu",
+          "startedAt": "2026-09-26T01:41:49Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-09-26T01:41:52Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-09-26T01:41:49Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:42:49Z",
+              "conclusion": "success",
+              "name": "Free disk space",
+              "number": 2,
+              "startedAt": "2026-09-26T01:41:52Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:42:51Z",
+              "conclusion": "success",
+              "name": "Checkout miles",
+              "number": 3,
+              "startedAt": "2026-09-26T01:42:49Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:42:51Z",
+              "conclusion": "success",
+              "name": "Set up Python",
+              "number": 4,
+              "startedAt": "2026-09-26T01:42:51Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:42:54Z",
+              "conclusion": "success",
+              "name": "Install uv",
+              "number": 5,
+              "startedAt": "2026-09-26T01:42:51Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:42:54Z",
+              "conclusion": "success",
+              "name": "Resolve dependency refs",
+              "number": 6,
+              "startedAt": "2026-09-26T01:42:54Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:04Z",
+              "conclusion": "success",
+              "name": "Checkout sglang",
+              "number": 7,
+              "startedAt": "2026-09-26T01:42:54Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:07Z",
+              "conclusion": "success",
+              "name": "Checkout Megatron-LM",
+              "number": 8,
+              "startedAt": "2026-09-26T01:43:04Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:07Z",
+              "conclusion": "success",
+              "name": "Configure source paths",
+              "number": 9,
+              "startedAt": "2026-09-26T01:43:07Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:34Z",
+              "conclusion": "success",
+              "name": "Install dependencies",
+              "number": 10,
+              "startedAt": "2026-09-26T01:43:07Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:36Z",
+              "conclusion": "success",
+              "name": "Install Helm",
+              "number": 11,
+              "startedAt": "2026-09-26T01:43:34Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:37Z",
+              "conclusion": "success",
+              "name": "Resolve suite plan",
+              "number": 12,
+              "startedAt": "2026-09-26T01:43:36Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:47:45Z",
+              "conclusion": "success",
+              "name": "Run tests",
+              "number": 13,
+              "startedAt": "2026-09-26T01:43:37Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:47:45Z",
+              "conclusion": "success",
+              "name": "Post Checkout Megatron-LM",
+              "number": 22,
+              "startedAt": "2026-09-26T01:47:45Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:47:45Z",
+              "conclusion": "success",
+              "name": "Post Checkout sglang",
+              "number": 23,
+              "startedAt": "2026-09-26T01:47:45Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:47:45Z",
+              "conclusion": "success",
+              "name": "Post Install uv",
+              "number": 24,
+              "startedAt": "2026-09-26T01:47:45Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:47:45Z",
+              "conclusion": "success",
+              "name": "Post Set up Python",
+              "number": 25,
+              "startedAt": "2026-09-26T01:47:45Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:47:45Z",
+              "conclusion": "success",
+              "name": "Post Checkout miles",
+              "number": 26,
+              "startedAt": "2026-09-26T01:47:45Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:47:45Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 27,
+              "startedAt": "2026-09-26T01:47:45Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/radixark/miles/actions/runs/36209271034/job/108312293401"
+        },
+        {
+          "completedAt": "2026-09-26T01:49:10Z",
+          "conclusion": "success",
+          "databaseId": 108312293450,
+          "name": "stage-a-cpu (0) / run-cpu",
+          "startedAt": "2026-09-26T01:41:48Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-09-26T01:41:50Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-09-26T01:41:49Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:48Z",
+              "conclusion": "success",
+              "name": "Free disk space",
+              "number": 2,
+              "startedAt": "2026-09-26T01:41:50Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:50Z",
+              "conclusion": "success",
+              "name": "Checkout miles",
+              "number": 3,
+              "startedAt": "2026-09-26T01:43:48Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:50Z",
+              "conclusion": "success",
+              "name": "Set up Python",
+              "number": 4,
+              "startedAt": "2026-09-26T01:43:50Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:52Z",
+              "conclusion": "success",
+              "name": "Install uv",
+              "number": 5,
+              "startedAt": "2026-09-26T01:43:50Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:52Z",
+              "conclusion": "success",
+              "name": "Resolve dependency refs",
+              "number": 6,
+              "startedAt": "2026-09-26T01:43:52Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:44:01Z",
+              "conclusion": "success",
+              "name": "Checkout sglang",
+              "number": 7,
+              "startedAt": "2026-09-26T01:43:52Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:44:04Z",
+              "conclusion": "success",
+              "name": "Checkout Megatron-LM",
+              "number": 8,
+              "startedAt": "2026-09-26T01:44:01Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:44:04Z",
+              "conclusion": "success",
+              "name": "Configure source paths",
+              "number": 9,
+              "startedAt": "2026-09-26T01:44:04Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:44:20Z",
+              "conclusion": "success",
+              "name": "Install dependencies",
+              "number": 10,
+              "startedAt": "2026-09-26T01:44:04Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:44:20Z",
+              "conclusion": "success",
+              "name": "Install Helm",
+              "number": 11,
+              "startedAt": "2026-09-26T01:44:20Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:44:23Z",
+              "conclusion": "success",
+              "name": "Resolve suite plan",
+              "number": 12,
+              "startedAt": "2026-09-26T01:44:20Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:49:07Z",
+              "conclusion": "success",
+              "name": "Run tests",
+              "number": 13,
+              "startedAt": "2026-09-26T01:44:23Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:49:07Z",
+              "conclusion": "success",
+              "name": "Post Checkout Megatron-LM",
+              "number": 22,
+              "startedAt": "2026-09-26T01:49:07Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:49:08Z",
+              "conclusion": "success",
+              "name": "Post Checkout sglang",
+              "number": 23,
+              "startedAt": "2026-09-26T01:49:07Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:49:08Z",
+              "conclusion": "success",
+              "name": "Post Install uv",
+              "number": 24,
+              "startedAt": "2026-09-26T01:49:08Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:49:08Z",
+              "conclusion": "success",
+              "name": "Post Set up Python",
+              "number": 25,
+              "startedAt": "2026-09-26T01:49:08Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:49:08Z",
+              "conclusion": "success",
+              "name": "Post Checkout miles",
+              "number": 26,
+              "startedAt": "2026-09-26T01:49:08Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:49:08Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 27,
+              "startedAt": "2026-09-26T01:49:08Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/radixark/miles/actions/runs/36209271034/job/108312293450"
+        },
+        {
+          "completedAt": "2026-09-26T01:49:22Z",
+          "conclusion": "success",
+          "databaseId": 108312293470,
+          "name": "stage-a-cpu (2) / run-cpu",
+          "startedAt": "2026-09-26T01:41:48Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-09-26T01:41:50Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-09-26T01:41:49Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:13Z",
+              "conclusion": "success",
+              "name": "Free disk space",
+              "number": 2,
+              "startedAt": "2026-09-26T01:41:50Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:15Z",
+              "conclusion": "success",
+              "name": "Checkout miles",
+              "number": 3,
+              "startedAt": "2026-09-26T01:43:13Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:15Z",
+              "conclusion": "success",
+              "name": "Set up Python",
+              "number": 4,
+              "startedAt": "2026-09-26T01:43:15Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:17Z",
+              "conclusion": "success",
+              "name": "Install uv",
+              "number": 5,
+              "startedAt": "2026-09-26T01:43:15Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:17Z",
+              "conclusion": "success",
+              "name": "Resolve dependency refs",
+              "number": 6,
+              "startedAt": "2026-09-26T01:43:17Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:26Z",
+              "conclusion": "success",
+              "name": "Checkout sglang",
+              "number": 7,
+              "startedAt": "2026-09-26T01:43:17Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:28Z",
+              "conclusion": "success",
+              "name": "Checkout Megatron-LM",
+              "number": 8,
+              "startedAt": "2026-09-26T01:43:26Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:28Z",
+              "conclusion": "success",
+              "name": "Configure source paths",
+              "number": 9,
+              "startedAt": "2026-09-26T01:43:28Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:44Z",
+              "conclusion": "success",
+              "name": "Install dependencies",
+              "number": 10,
+              "startedAt": "2026-09-26T01:43:28Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:45Z",
+              "conclusion": "success",
+              "name": "Install Helm",
+              "number": 11,
+              "startedAt": "2026-09-26T01:43:44Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:48Z",
+              "conclusion": "success",
+              "name": "Resolve suite plan",
+              "number": 12,
+              "startedAt": "2026-09-26T01:43:45Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:49:19Z",
+              "conclusion": "success",
+              "name": "Run tests",
+              "number": 13,
+              "startedAt": "2026-09-26T01:43:48Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:49:19Z",
+              "conclusion": "success",
+              "name": "Post Checkout Megatron-LM",
+              "number": 22,
+              "startedAt": "2026-09-26T01:49:19Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:49:19Z",
+              "conclusion": "success",
+              "name": "Post Checkout sglang",
+              "number": 23,
+              "startedAt": "2026-09-26T01:49:19Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:49:19Z",
+              "conclusion": "success",
+              "name": "Post Install uv",
+              "number": 24,
+              "startedAt": "2026-09-26T01:49:19Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:49:20Z",
+              "conclusion": "success",
+              "name": "Post Set up Python",
+              "number": 25,
+              "startedAt": "2026-09-26T01:49:19Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:49:20Z",
+              "conclusion": "success",
+              "name": "Post Checkout miles",
+              "number": 26,
+              "startedAt": "2026-09-26T01:49:20Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:49:20Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 27,
+              "startedAt": "2026-09-26T01:49:20Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/radixark/miles/actions/runs/36209271034/job/108312293470"
+        },
+        {
+          "completedAt": "2026-09-26T01:49:05Z",
+          "conclusion": "success",
+          "databaseId": 108312293477,
+          "name": "stage-a-cpu (3) / run-cpu",
+          "startedAt": "2026-09-26T01:41:48Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-09-26T01:41:50Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-09-26T01:41:49Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:25Z",
+              "conclusion": "success",
+              "name": "Free disk space",
+              "number": 2,
+              "startedAt": "2026-09-26T01:41:50Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:26Z",
+              "conclusion": "success",
+              "name": "Checkout miles",
+              "number": 3,
+              "startedAt": "2026-09-26T01:43:25Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:26Z",
+              "conclusion": "success",
+              "name": "Set up Python",
+              "number": 4,
+              "startedAt": "2026-09-26T01:43:26Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:28Z",
+              "conclusion": "success",
+              "name": "Install uv",
+              "number": 5,
+              "startedAt": "2026-09-26T01:43:26Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:28Z",
+              "conclusion": "success",
+              "name": "Resolve dependency refs",
+              "number": 6,
+              "startedAt": "2026-09-26T01:43:28Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:39Z",
+              "conclusion": "success",
+              "name": "Checkout sglang",
+              "number": 7,
+              "startedAt": "2026-09-26T01:43:28Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:41Z",
+              "conclusion": "success",
+              "name": "Checkout Megatron-LM",
+              "number": 8,
+              "startedAt": "2026-09-26T01:43:39Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:41Z",
+              "conclusion": "success",
+              "name": "Configure source paths",
+              "number": 9,
+              "startedAt": "2026-09-26T01:43:41Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:57Z",
+              "conclusion": "success",
+              "name": "Install dependencies",
+              "number": 10,
+              "startedAt": "2026-09-26T01:43:41Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:58Z",
+              "conclusion": "success",
+              "name": "Install Helm",
+              "number": 11,
+              "startedAt": "2026-09-26T01:43:57Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:59Z",
+              "conclusion": "success",
+              "name": "Resolve suite plan",
+              "number": 12,
+              "startedAt": "2026-09-26T01:43:58Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:49:01Z",
+              "conclusion": "success",
+              "name": "Run tests",
+              "number": 13,
+              "startedAt": "2026-09-26T01:43:59Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:49:01Z",
+              "conclusion": "success",
+              "name": "Post Checkout Megatron-LM",
+              "number": 22,
+              "startedAt": "2026-09-26T01:49:01Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:49:01Z",
+              "conclusion": "success",
+              "name": "Post Checkout sglang",
+              "number": 23,
+              "startedAt": "2026-09-26T01:49:01Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:49:01Z",
+              "conclusion": "success",
+              "name": "Post Install uv",
+              "number": 24,
+              "startedAt": "2026-09-26T01:49:01Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:49:01Z",
+              "conclusion": "success",
+              "name": "Post Set up Python",
+              "number": 25,
+              "startedAt": "2026-09-26T01:49:01Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:49:02Z",
+              "conclusion": "success",
+              "name": "Post Checkout miles",
+              "number": 26,
+              "startedAt": "2026-09-26T01:49:01Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:49:02Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 27,
+              "startedAt": "2026-09-26T01:49:02Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/radixark/miles/actions/runs/36209271034/job/108312293477"
+        },
+        {
+          "completedAt": "2026-09-26T01:47:24Z",
+          "conclusion": "failure",
+          "databaseId": 108312293487,
+          "name": "stage-a-cpu (1) / run-cpu",
+          "startedAt": "2026-09-26T01:42:09Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-09-26T01:42:12Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-09-26T01:42:10Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:42:55Z",
+              "conclusion": "success",
+              "name": "Free disk space",
+              "number": 2,
+              "startedAt": "2026-09-26T01:42:12Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:42:57Z",
+              "conclusion": "success",
+              "name": "Checkout miles",
+              "number": 3,
+              "startedAt": "2026-09-26T01:42:55Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:42:58Z",
+              "conclusion": "success",
+              "name": "Set up Python",
+              "number": 4,
+              "startedAt": "2026-09-26T01:42:57Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:01Z",
+              "conclusion": "success",
+              "name": "Install uv",
+              "number": 5,
+              "startedAt": "2026-09-26T01:42:58Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:01Z",
+              "conclusion": "success",
+              "name": "Resolve dependency refs",
+              "number": 6,
+              "startedAt": "2026-09-26T01:43:01Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:11Z",
+              "conclusion": "success",
+              "name": "Checkout sglang",
+              "number": 7,
+              "startedAt": "2026-09-26T01:43:01Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:14Z",
+              "conclusion": "success",
+              "name": "Checkout Megatron-LM",
+              "number": 8,
+              "startedAt": "2026-09-26T01:43:11Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:14Z",
+              "conclusion": "success",
+              "name": "Configure source paths",
+              "number": 9,
+              "startedAt": "2026-09-26T01:43:14Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:32Z",
+              "conclusion": "success",
+              "name": "Install dependencies",
+              "number": 10,
+              "startedAt": "2026-09-26T01:43:14Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:33Z",
+              "conclusion": "success",
+              "name": "Install Helm",
+              "number": 11,
+              "startedAt": "2026-09-26T01:43:32Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:43:34Z",
+              "conclusion": "success",
+              "name": "Resolve suite plan",
+              "number": 12,
+              "startedAt": "2026-09-26T01:43:33Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:47:20Z",
+              "conclusion": "failure",
+              "name": "Run tests",
+              "number": 13,
+              "startedAt": "2026-09-26T01:43:34Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:47:20Z",
+              "conclusion": "success",
+              "name": "Post Checkout Megatron-LM",
+              "number": 22,
+              "startedAt": "2026-09-26T01:47:20Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:47:20Z",
+              "conclusion": "success",
+              "name": "Post Checkout sglang",
+              "number": 23,
+              "startedAt": "2026-09-26T01:47:20Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:47:20Z",
+              "conclusion": "skipped",
+              "name": "Post Install uv",
+              "number": 24,
+              "startedAt": "2026-09-26T01:47:20Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:47:20Z",
+              "conclusion": "skipped",
+              "name": "Post Set up Python",
+              "number": 25,
+              "startedAt": "2026-09-26T01:47:20Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:47:20Z",
+              "conclusion": "success",
+              "name": "Post Checkout miles",
+              "number": 26,
+              "startedAt": "2026-09-26T01:47:20Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:47:20Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 27,
+              "startedAt": "2026-09-26T01:47:20Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/radixark/miles/actions/runs/36209271034/job/108312293487"
+        },
+        {
+          "completedAt": "2026-09-26T01:49:22Z",
+          "conclusion": "skipped",
+          "databaseId": 108313483816,
+          "name": "docker-build",
+          "startedAt": "2026-09-26T01:49:23Z",
+          "status": "completed",
+          "steps": [],
+          "url": "https://github.com/radixark/miles/actions/runs/36209271034/job/108313483816"
+        },
+        {
+          "completedAt": "2026-09-26T01:49:23Z",
+          "conclusion": "skipped",
+          "databaseId": 108313484309,
+          "name": "resolve-ci-image",
+          "startedAt": "2026-09-26T01:49:23Z",
+          "status": "completed",
+          "steps": [],
+          "url": "https://github.com/radixark/miles/actions/runs/36209271034/job/108313484309"
+        },
+        {
+          "completedAt": "2026-09-26T01:49:23Z",
+          "conclusion": "skipped",
+          "databaseId": 108313485711,
+          "name": "stage-c-8-gpu-h200",
+          "startedAt": "2026-09-26T01:49:24Z",
+          "status": "completed",
+          "steps": [],
+          "url": "https://github.com/radixark/miles/actions/runs/36209271034/job/108313485711"
+        },
+        {
+          "completedAt": "2026-09-26T01:49:23Z",
+          "conclusion": "skipped",
+          "databaseId": 108313485791,
+          "name": "stage-c-2-gpu-h200",
+          "startedAt": "2026-09-26T01:49:24Z",
+          "status": "completed",
+          "steps": [],
+          "url": "https://github.com/radixark/miles/actions/runs/36209271034/job/108313485791"
+        },
+        {
+          "completedAt": "2026-09-26T01:49:23Z",
+          "conclusion": "skipped",
+          "databaseId": 108313486006,
+          "name": "stage-c-4-gpu-h200",
+          "startedAt": "2026-09-26T01:49:24Z",
+          "status": "completed",
+          "steps": [],
+          "url": "https://github.com/radixark/miles/actions/runs/36209271034/job/108313486006"
+        },
+        {
+          "completedAt": "2026-09-26T01:49:23Z",
+          "conclusion": "skipped",
+          "databaseId": 108313486095,
+          "name": "stage-b-2-gpu-h200",
+          "startedAt": "2026-09-26T01:49:24Z",
+          "status": "completed",
+          "steps": [],
+          "url": "https://github.com/radixark/miles/actions/runs/36209271034/job/108313486095"
+        },
+        {
+          "completedAt": "2026-09-26T01:49:23Z",
+          "conclusion": "skipped",
+          "databaseId": 108313486145,
+          "name": "stage-c-8-gpu-h100",
+          "startedAt": "2026-09-26T01:49:24Z",
+          "status": "completed",
+          "steps": [],
+          "url": "https://github.com/radixark/miles/actions/runs/36209271034/job/108313486145"
+        },
+        {
+          "completedAt": "2026-09-26T01:49:23Z",
+          "conclusion": "skipped",
+          "databaseId": 108313486166,
+          "name": "stage-c-8-gpu-b200",
+          "startedAt": "2026-09-26T01:49:24Z",
+          "status": "completed",
+          "steps": [],
+          "url": "https://github.com/radixark/miles/actions/runs/36209271034/job/108313486166"
+        }
+      ],
+      "name": "PR Test",
+      "status": "completed",
+      "updatedAt": "2026-09-26T01:49:24Z",
+      "url": "https://github.com/radixark/miles/actions/runs/36209271034"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-26T01:41:28Z",
+      "databaseId": 36209271072,
+      "event": "pull_request",
+      "headBranch": "glm52-delta-torch-compile-cpu",
+      "headSha": "6fb0e2a9d81fc343863ba6015512fe93992892e4",
+      "jobs": [
+        {
+          "completedAt": "2026-09-26T01:41:47Z",
+          "conclusion": "success",
+          "databaseId": 108312249416,
+          "name": "resolve-ci-policy",
+          "startedAt": "2026-09-26T01:41:40Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-09-26T01:41:41Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-09-26T01:41:41Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:41:43Z",
+              "conclusion": "success",
+              "name": "Checkout repository",
+              "number": 2,
+              "startedAt": "2026-09-26T01:41:41Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:41:43Z",
+              "conclusion": "success",
+              "name": "Collect PR changed files",
+              "number": 3,
+              "startedAt": "2026-09-26T01:41:43Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:41:44Z",
+              "conclusion": "success",
+              "name": "Resolve CI policy inputs",
+              "number": 4,
+              "startedAt": "2026-09-26T01:41:43Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:41:44Z",
+              "conclusion": "success",
+              "name": "Post Checkout repository",
+              "number": 8,
+              "startedAt": "2026-09-26T01:41:44Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:41:44Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "startedAt": "2026-09-26T01:41:44Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/radixark/miles/actions/runs/36209271072/job/108312249416"
+        },
+        {
+          "completedAt": "2026-09-26T01:41:41Z",
+          "conclusion": "success",
+          "databaseId": 108312249653,
+          "name": "resolve-ci-deps",
+          "startedAt": "2026-09-26T01:41:39Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-09-26T01:41:40Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-09-26T01:41:40Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:41:40Z",
+              "conclusion": "success",
+              "name": "Resolve whether the image's baked dependencies are overridden",
+              "number": 2,
+              "startedAt": "2026-09-26T01:41:40Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-26T01:41:40Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 3,
+              "startedAt": "2026-09-26T01:41:40Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/radixark/miles/actions/runs/36209271072/job/108312249653"
+        },
+        {
+          "completedAt": "2026-09-26T01:41:47Z",
+          "conclusion": "skipped",
+          "databaseId": 108312297716,
+          "name": "resolve-ci-image",
+          "startedAt": "2026-09-26T01:41:47Z",
+          "status": "completed",
+          "steps": [],
+          "url": "https://github.com/radixark/miles/actions/runs/36209271072/job/108312297716"
+        },
+        {
+          "completedAt": "2026-09-26T01:41:47Z",
+          "conclusion": "skipped",
+          "databaseId": 108312298365,
+          "name": "stage-c-4-gpu-mi350",
+          "startedAt": "2026-09-26T01:41:47Z",
+          "status": "completed",
+          "steps": [],
+          "url": "https://github.com/radixark/miles/actions/runs/36209271072/job/108312298365"
+        }
+      ],
+      "name": "PR Test (ROCm)",
+      "status": "completed",
+      "updatedAt": "2026-09-26T01:41:47Z",
+      "url": "https://github.com/radixark/miles/actions/runs/36209271072"
+    }
+  ]
+}

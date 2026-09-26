@@ -1,0 +1,7 @@
+{
+  "fixture_only": true,
+  "single_arm_6_shards_and_pinned_metadata": true,
+  "failed_arm_preserved_without_completeness_claim": true,
+  "metadata_mismatch_retained_and_rejected": true,
+  "atomic_archive_finalized_after_rehash": true
+}

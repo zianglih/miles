@@ -1,0 +1,11 @@
+test_actual_pr_mismatch_does_not_create_destination (test_capture_compile_pr_ci.CaptureOptionsTest.test_actual_pr_mismatch_does_not_create_destination) ... ok
+test_defaults_preserved (test_capture_compile_pr_ci.CaptureOptionsTest.test_defaults_preserved) ... ok
+test_existing_records_must_all_match (test_capture_compile_pr_ci.CaptureOptionsTest.test_existing_records_must_all_match) ... ok
+test_head_validation_and_old_destination_protected (test_capture_compile_pr_ci.CaptureOptionsTest.test_head_validation_and_old_destination_protected) ... ok
+test_new_head_snapshot_and_repeated_capture_preserve_raw (test_capture_compile_pr_ci.CaptureOptionsTest.test_new_head_snapshot_and_repeated_capture_preserve_raw) ... ok
+test_unknown_nonempty_directory_refused (test_capture_compile_pr_ci.CaptureOptionsTest.test_unknown_nonempty_directory_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.004s
+
+OK

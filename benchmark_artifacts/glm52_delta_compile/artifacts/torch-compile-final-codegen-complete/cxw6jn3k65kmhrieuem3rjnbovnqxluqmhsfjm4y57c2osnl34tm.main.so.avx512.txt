@@ -1,0 +1,291 @@
+# objdump -d -C artifacts/torch-compile-word-two-phase-32x1-replay-inductor-cache/xw/cxw6jn3k65kmhrieuem3rjnbovnqxluqmhsfjm4y57c2osnl34tm.main.so
+# SHA256 9775da3640753a4eee28d8540db34bdd42e6ce69facd50ea03d64b9889a99a91
+# 0000000000004990 <cpp_fused__to_copy_add_bitwise_and_bitwise_xor_ne_sum_view_0>:
+    4a5c:	62 72 7d 48 7c d8    	vpbroadcastd %eax,%zmm11
+    4a6e:	62 f2 7d 48 7c e8    	vpbroadcastd %eax,%zmm5
+    4a8d:	62 72 7d 48 7c d0    	vpbroadcastd %eax,%zmm10
+    4a93:	62 f3 5d 48 25 e4 ff 	vpternlogd $0xff,%zmm4,%zmm4,%zmm4
+    4ada:	62 52 7d 48 7c cd    	vpbroadcastd %r13d,%zmm9
+    4aea:	62 52 7d 48 7c c5    	vpbroadcastd %r13d,%zmm8
+    4b19:	62 d1 7e 48 6f 3c 80 	vmovdqu32 (%r8,%rax,4),%zmm7
+    4b24:	62 f1 45 48 ef 02    	vpxord (%rdx),%zmm7,%zmm0
+    4b2a:	62 d1 7d 48 db cb    	vpandd %zmm11,%zmm0,%zmm1
+    4b30:	62 f3 75 48 1f c2 04 	vpcmpneqd %zmm2,%zmm1,%k0
+    4b37:	62 d1 7d 48 db f2    	vpandd %zmm10,%zmm0,%zmm6
+    4b3d:	62 f2 7e 48 38 c8    	vpmovm2d %k0,%zmm1
+    4b43:	62 f3 4d 48 1f c2 04 	vpcmpneqd %zmm2,%zmm6,%k0
+    4b4a:	62 f2 7e 48 38 f0    	vpmovm2d %k0,%zmm6
+    4b50:	62 f3 75 48 1f cc 00 	vpcmpeqd %zmm4,%zmm1,%k1
+    4b57:	62 f2 6d 49 64 cd    	vpblendmd %zmm5,%zmm2,%zmm1{%k1}
+    4b5d:	62 f3 4d 48 1f cc 00 	vpcmpeqd %zmm4,%zmm6,%k1
+    4b64:	62 d1 7d 48 db f1    	vpandd %zmm9,%zmm0,%zmm6
+    4b6a:	62 f3 4d 48 1f c2 04 	vpcmpneqd %zmm2,%zmm6,%k0
+    4b71:	62 d1 7d 48 db c0    	vpandd %zmm8,%zmm0,%zmm0
+    4b77:	62 f2 6d 49 64 fd    	vpblendmd %zmm5,%zmm2,%zmm7{%k1}
+    4b7d:	62 f2 7e 48 38 f0    	vpmovm2d %k0,%zmm6
+    4b83:	62 f3 7d 48 1f c2 04 	vpcmpneqd %zmm2,%zmm0,%k0
+    4b8a:	62 f2 7e 48 38 c0    	vpmovm2d %k0,%zmm0
+    4b90:	62 f3 4d 48 1f cc 00 	vpcmpeqd %zmm4,%zmm6,%k1
+    4b97:	62 f2 6d 49 64 f5    	vpblendmd %zmm5,%zmm2,%zmm6{%k1}
+    4b9d:	62 f3 7d 48 1f cc 00 	vpcmpeqd %zmm4,%zmm0,%k1
+    4ba4:	62 f1 75 48 fe c7    	vpaddd %zmm7,%zmm1,%zmm0
+    4baa:	62 f1 7d 49 6f d5    	vmovdqa32 %zmm5,%zmm2{%k1}
+    4bb0:	62 f1 4d 48 fe ca    	vpaddd %zmm2,%zmm6,%zmm1
+    4bb6:	62 f1 7d 48 fe c1    	vpaddd %zmm1,%zmm0,%zmm0
+    4bbc:	62 f1 65 48 fe d8    	vpaddd %zmm0,%zmm3,%zmm3
+    4bc2:	62 f1 fd 48 6f cb    	vmovdqa64 %zmm3,%zmm1
+    4be9:	62 f1 7d 48 6f d9    	vmovdqa32 %zmm1,%zmm3
+    4c94:	62 d2 7d 48 7c c4    	vpbroadcastd %r12d,%zmm0
+    4ca1:	62 f1 7e 49 6f 07    	vmovdqu32 (%rdi),%zmm0{%k1}
+    4cd9:	62 d2 7d 48 7c d4    	vpbroadcastd %r12d,%zmm2
+    4ce3:	62 f1 7e 49 6f 12    	vmovdqu32 (%rdx),%zmm2{%k1}
+    4cef:	62 f1 7d 48 ef c2    	vpxord %zmm2,%zmm0,%zmm0
+    4cf5:	62 d2 7d 48 7c d4    	vpbroadcastd %r12d,%zmm2
+    4d00:	62 f1 7d 48 db d2    	vpandd %zmm2,%zmm0,%zmm2
+    4d06:	62 d3 6d 48 1f c4 04 	vpcmpneqd %zmm12,%zmm2,%k0
+    4d0d:	62 f3 45 48 25 ff ff 	vpternlogd $0xff,%zmm7,%zmm7,%zmm7
+    4d1a:	62 f2 7e 48 38 d0    	vpmovm2d %k0,%zmm2
+    4d23:	62 f3 6d 48 1f cf 00 	vpcmpeqd %zmm7,%zmm2,%k1
+    4d2a:	62 52 7d c9 7c f4    	vpbroadcastd %r12d,%zmm14{%k1}{z}
+    4d36:	62 d2 7d 48 7c d4    	vpbroadcastd %r12d,%zmm2
+    4d3c:	62 f1 7d 48 db d2    	vpandd %zmm2,%zmm0,%zmm2
+    4d42:	62 d3 6d 48 1f c4 04 	vpcmpneqd %zmm12,%zmm2,%k0
+    4d4f:	62 d2 7d 48 7c f4    	vpbroadcastd %r12d,%zmm6
+    4d55:	62 f1 7d 48 db f6    	vpandd %zmm6,%zmm0,%zmm6
+    4d5b:	62 f2 7e 48 38 d0    	vpmovm2d %k0,%zmm2
+    4d61:	62 d3 4d 48 1f c4 04 	vpcmpneqd %zmm12,%zmm6,%k0
+    4d6e:	62 f2 7e 48 38 f0    	vpmovm2d %k0,%zmm6
+    4d74:	62 f3 6d 48 1f cf 00 	vpcmpeqd %zmm7,%zmm2,%k1
+    4d7b:	62 f2 7d c9 7c d3    	vpbroadcastd %ebx,%zmm2{%k1}{z}
+    4d81:	62 f3 4d 48 1f cf 00 	vpcmpeqd %zmm7,%zmm6,%k1
+    4d88:	62 d2 7d 48 7c f4    	vpbroadcastd %r12d,%zmm6
+    4d8e:	62 f1 7d 48 db c6    	vpandd %zmm6,%zmm0,%zmm0
+    4d94:	62 d3 7d 48 1f c4 04 	vpcmpneqd %zmm12,%zmm0,%k0
+    4d9b:	62 72 7d c9 7c eb    	vpbroadcastd %ebx,%zmm13{%k1}{z}
+    4da1:	62 f2 7e 48 38 c0    	vpmovm2d %k0,%zmm0
+    4da7:	62 f3 7d 48 1f cf 00 	vpcmpeqd %zmm7,%zmm0,%k1
+    4dae:	62 d1 6d 48 fe c6    	vpaddd %zmm14,%zmm2,%zmm0
+    4db4:	62 f2 7d c9 7c f3    	vpbroadcastd %ebx,%zmm6{%k1}{z}
+    4dba:	62 d1 4d 48 fe d5    	vpaddd %zmm13,%zmm6,%zmm2
+    4dc0:	62 f1 7d 48 fe c2    	vpaddd %zmm2,%zmm0,%zmm0
+    4ddc:	62 f1 7d 48 fe c3    	vpaddd %zmm3,%zmm0,%zmm0
+    4e2b:	62 f1 fe 48 6f 5d fe 	vmovdqu64 -0x80(%rbp),%zmm3
+    4e4a:	62 f1 65 48 fe 5d fe 	vpaddd -0x80(%rbp),%zmm3,%zmm3
+    4e69:	62 f1 fe 48 6f 75 fe 	vmovdqu64 -0x80(%rbp),%zmm6
+    4e86:	62 f1 4d 48 fe 75 fe 	vpaddd -0x80(%rbp),%zmm6,%zmm6
+    4e94:	62 f1 4d 48 fe f3    	vpaddd %zmm3,%zmm6,%zmm6
+    4ec8:	62 f1 fe 48 6f 5d fe 	vmovdqu64 -0x80(%rbp),%zmm3
+    4ee5:	62 f1 65 48 fe 5d fe 	vpaddd -0x80(%rbp),%zmm3,%zmm3
+    4f02:	62 f3 7d 48 3b ca 01 	vextracti32x8 $0x1,%zmm1,%ymm2
+    4f09:	62 f1 65 48 fe de    	vpaddd %zmm6,%zmm3,%zmm3
+    4f0f:	62 f1 fe 48 6f 75 fe 	vmovdqu64 -0x80(%rbp),%zmm6
+    4f2c:	62 f1 4d 48 fe 75 fe 	vpaddd -0x80(%rbp),%zmm6,%zmm6
+    4f52:	62 f1 4d 48 fe f3    	vpaddd %zmm3,%zmm6,%zmm6
+    4f58:	62 f1 fe 48 6f 5d fe 	vmovdqu64 -0x80(%rbp),%zmm3
+    4f77:	62 f1 65 48 fe 5d fe 	vpaddd -0x80(%rbp),%zmm3,%zmm3
+    4f96:	62 f1 65 48 fe de    	vpaddd %zmm6,%zmm3,%zmm3
+    4f9c:	62 f1 fe 48 6f 75 fe 	vmovdqu64 -0x80(%rbp),%zmm6
+    4fb9:	62 f1 4d 48 fe 75 fe 	vpaddd -0x80(%rbp),%zmm6,%zmm6
+    4fc7:	62 f1 4d 48 fe f3    	vpaddd %zmm3,%zmm6,%zmm6
+    4ffb:	62 f1 fe 48 6f 5d fe 	vmovdqu64 -0x80(%rbp),%zmm3
+    5018:	62 f1 65 48 fe 5d fe 	vpaddd -0x80(%rbp),%zmm3,%zmm3
+    5035:	62 f1 75 48 fe 45 fe 	vpaddd -0x80(%rbp),%zmm1,%zmm0
+    503c:	62 f1 65 48 fe de    	vpaddd %zmm6,%zmm3,%zmm3
+    5042:	62 f1 7d 48 fe c3    	vpaddd %zmm3,%zmm0,%zmm0
+    5077:	62 f1 fe 48 6f 07    	vmovdqu64 (%rdi),%zmm0
+    514f:	62 d1 fe 48 6f 01    	vmovdqu64 (%r9),%zmm0
+    5155:	62 f2 7d 48 25 c8    	vpmovsxdq %ymm0,%zmm1
+    515b:	62 f3 7d 48 3b c0 01 	vextracti32x8 $0x1,%zmm0,%ymm0
+    5162:	62 f2 7d 48 25 c0    	vpmovsxdq %ymm0,%zmm0
+    5168:	62 f1 fe 48 7f 0f    	vmovdqu64 %zmm1,(%rdi)
+    516e:	62 f1 fe 48 7f 47 01 	vmovdqu64 %zmm0,0x40(%rdi)
+    5288:	62 f2 7d 48 7c c2    	vpbroadcastd %edx,%zmm0
+    5293:	62 d1 7e 4b 6f 01    	vmovdqu32 (%r9),%zmm0{%k3}
+    5299:	62 f1 fd 48 6f c8    	vmovdqa64 %zmm0,%zmm1
+    52ba:	62 f3 7d 48 3b c0 01 	vextracti32x8 $0x1,%zmm0,%ymm0
+    52c5:	62 f2 7d 48 25 c9    	vpmovsxdq %ymm1,%zmm1
+    52cb:	62 f2 7d 48 25 c0    	vpmovsxdq %ymm0,%zmm0
+    5301:	62 f1 fe 4a 7f 0f    	vmovdqu64 %zmm1,(%rdi){%k2}
+    5335:	62 72 7d 48 7c d8    	vpbroadcastd %eax,%zmm11
+    5345:	62 72 7d 48 7c c8    	vpbroadcastd %eax,%zmm9
+    5357:	62 72 7d 48 7c d0    	vpbroadcastd %eax,%zmm10
+    535d:	62 53 3d 48 25 c0 ff 	vpternlogd $0xff,%zmm8,%zmm8,%zmm8
+    53ba:	62 f2 7d 48 7c fb    	vpbroadcastd %ebx,%zmm7
+    53e9:	62 f2 7d 48 7c f3    	vpbroadcastd %ebx,%zmm6
+    5411:	62 f1 fe 48 6f 04 13 	vmovdqu64 (%rbx,%rdx,1),%zmm0
+    541b:	62 d1 7d 48 ef 04 1f 	vpxord (%r15,%rbx,1),%zmm0,%zmm0
+    5426:	62 d1 7d 48 db cb    	vpandd %zmm11,%zmm0,%zmm1
+    542c:	62 f3 75 48 1f c2 04 	vpcmpneqd %zmm2,%zmm1,%k0
+    5433:	62 d1 7d 48 db e2    	vpandd %zmm10,%zmm0,%zmm4
+    5439:	62 f2 7e 48 38 c8    	vpmovm2d %k0,%zmm1
+    543f:	62 f3 5d 48 1f c2 04 	vpcmpneqd %zmm2,%zmm4,%k0
+    5446:	62 f2 7e 48 38 e0    	vpmovm2d %k0,%zmm4
+    544c:	62 d3 75 48 1f c8 00 	vpcmpeqd %zmm8,%zmm1,%k1
+    5453:	62 d2 6d 49 64 c9    	vpblendmd %zmm9,%zmm2,%zmm1{%k1}
+    5459:	62 d3 5d 48 1f c8 00 	vpcmpeqd %zmm8,%zmm4,%k1
+    5460:	62 f1 7d 48 db e7    	vpandd %zmm7,%zmm0,%zmm4
+    5466:	62 f3 5d 48 1f c2 04 	vpcmpneqd %zmm2,%zmm4,%k0
+    546d:	62 f1 7d 48 db c6    	vpandd %zmm6,%zmm0,%zmm0
+    5473:	62 d2 6d 49 64 e9    	vpblendmd %zmm9,%zmm2,%zmm5{%k1}
+    5479:	62 f2 7e 48 38 e0    	vpmovm2d %k0,%zmm4
+    547f:	62 f3 7d 48 1f c2 04 	vpcmpneqd %zmm2,%zmm0,%k0
+    5486:	62 f2 7e 48 38 c0    	vpmovm2d %k0,%zmm0
+    548c:	62 d3 5d 48 1f c8 00 	vpcmpeqd %zmm8,%zmm4,%k1
+    5493:	62 d2 6d 49 64 e1    	vpblendmd %zmm9,%zmm2,%zmm4{%k1}
+    5499:	62 d3 7d 48 1f c8 00 	vpcmpeqd %zmm8,%zmm0,%k1
+    54a0:	62 f1 75 48 fe c5    	vpaddd %zmm5,%zmm1,%zmm0
+    54a6:	62 d1 7d 49 6f d1    	vmovdqa32 %zmm9,%zmm2{%k1}
+    54ac:	62 f1 5d 48 fe ca    	vpaddd %zmm2,%zmm4,%zmm1
+    54b2:	62 f1 7d 48 fe c1    	vpaddd %zmm1,%zmm0,%zmm0
+    54b8:	62 f1 65 48 fe d8    	vpaddd %zmm0,%zmm3,%zmm3
+    54be:	62 f1 fd 48 6f cb    	vmovdqa64 %zmm3,%zmm1
+    54e1:	62 f1 7d 48 6f d9    	vmovdqa32 %zmm1,%zmm3
+    5512:	62 f1 fe 48 6f 04 0b 	vmovdqu64 (%rbx,%rcx,1),%zmm0
+    55a7:	62 d2 7d 48 7c d5    	vpbroadcastd %r13d,%zmm2
+    55b1:	62 d1 7e 4d 6f 14 24 	vmovdqu32 (%r12),%zmm2{%k5}
+    5617:	62 d2 7d 48 7c c5    	vpbroadcastd %r13d,%zmm0
+    5621:	62 d1 7e 4e 6f 04 24 	vmovdqu32 (%r12),%zmm0{%k6}
+    562d:	62 f1 6d 48 ef d0    	vpxord %zmm0,%zmm2,%zmm2
+    5633:	62 f2 7d 48 7c c3    	vpbroadcastd %ebx,%zmm0
+    563e:	62 f1 6d 48 db c0    	vpandd %zmm0,%zmm2,%zmm0
+    5644:	62 d3 7d 48 1f c4 04 	vpcmpneqd %zmm12,%zmm0,%k0
+    564b:	62 f3 55 48 25 ed ff 	vpternlogd $0xff,%zmm5,%zmm5,%zmm5
+    5657:	62 f2 7e 48 38 c0    	vpmovm2d %k0,%zmm0
+    5660:	62 f3 7d 48 1f cd 00 	vpcmpeqd %zmm5,%zmm0,%k1
+    5667:	62 f2 7d c9 7c c3    	vpbroadcastd %ebx,%zmm0{%k1}{z}
+    5672:	62 f2 7d 48 7c e3    	vpbroadcastd %ebx,%zmm4
+    5678:	62 f1 6d 48 db e4    	vpandd %zmm4,%zmm2,%zmm4
+    567e:	62 d3 5d 48 1f c4 04 	vpcmpneqd %zmm12,%zmm4,%k0
+    568a:	62 f2 7e 48 38 e0    	vpmovm2d %k0,%zmm4
+    5690:	62 f3 5d 48 1f cd 00 	vpcmpeqd %zmm5,%zmm4,%k1
+    5697:	62 f2 7d 48 7c e3    	vpbroadcastd %ebx,%zmm4
+    569d:	62 f1 6d 48 db e4    	vpandd %zmm4,%zmm2,%zmm4
+    56a3:	62 d3 5d 48 1f c4 04 	vpcmpneqd %zmm12,%zmm4,%k0
+    56af:	62 72 7d 48 7c eb    	vpbroadcastd %ebx,%zmm13
+    56b5:	62 d1 6d 48 db d5    	vpandd %zmm13,%zmm2,%zmm2
+    56bb:	62 f2 7e 48 38 e0    	vpmovm2d %k0,%zmm4
+    56c1:	62 d3 6d 48 1f c4 04 	vpcmpneqd %zmm12,%zmm2,%k0
+    56c8:	62 52 7d c9 7c f5    	vpbroadcastd %r13d,%zmm14{%k1}{z}
+    56ce:	62 d1 7d 48 fe c6    	vpaddd %zmm14,%zmm0,%zmm0
+    56d4:	62 f2 7e 48 38 d0    	vpmovm2d %k0,%zmm2
+    56dd:	62 f3 5d 48 1f cd 00 	vpcmpeqd %zmm5,%zmm4,%k1
+    56e4:	62 d2 7d c9 7c e5    	vpbroadcastd %r13d,%zmm4{%k1}{z}
+    56ea:	62 f3 6d 48 1f cd 00 	vpcmpeqd %zmm5,%zmm2,%k1
+    56f1:	62 d2 7d c9 7c d5    	vpbroadcastd %r13d,%zmm2{%k1}{z}
+    56f7:	62 f1 5d 48 fe d2    	vpaddd %zmm2,%zmm4,%zmm2
+    56fd:	62 f1 7d 48 fe c2    	vpaddd %zmm2,%zmm0,%zmm0
+    572e:	62 f1 7d 48 fe c3    	vpaddd %zmm3,%zmm0,%zmm0
+    5793:	62 f1 fe 48 6f 5d fe 	vmovdqu64 -0x80(%rbp),%zmm3
+    57b2:	62 f1 65 48 fe 5d fe 	vpaddd -0x80(%rbp),%zmm3,%zmm3
+    57d1:	62 f1 fe 48 6f 65 fe 	vmovdqu64 -0x80(%rbp),%zmm4
+    57ee:	62 f1 5d 48 fe 65 fe 	vpaddd -0x80(%rbp),%zmm4,%zmm4
+    57fc:	62 f1 5d 48 fe e3    	vpaddd %zmm3,%zmm4,%zmm4
+    5834:	62 f1 fe 48 6f 5d fe 	vmovdqu64 -0x80(%rbp),%zmm3
+    5851:	62 f1 65 48 fe 5d fe 	vpaddd -0x80(%rbp),%zmm3,%zmm3
+    586e:	62 f1 65 48 fe dc    	vpaddd %zmm4,%zmm3,%zmm3
+    5874:	62 f1 fe 48 6f 65 fe 	vmovdqu64 -0x80(%rbp),%zmm4
+    587b:	62 f3 7d 48 3b ca 01 	vextracti32x8 $0x1,%zmm1,%ymm2
+    5898:	62 f1 5d 48 fe 65 fe 	vpaddd -0x80(%rbp),%zmm4,%zmm4
+    58be:	62 f1 5d 48 fe e3    	vpaddd %zmm3,%zmm4,%zmm4
+    58c4:	62 f1 fe 48 6f 5d fe 	vmovdqu64 -0x80(%rbp),%zmm3
+    58e3:	62 f1 65 48 fe 5d fe 	vpaddd -0x80(%rbp),%zmm3,%zmm3
+    5902:	62 f1 65 48 fe dc    	vpaddd %zmm4,%zmm3,%zmm3
+    5908:	62 f1 fe 48 6f 65 fe 	vmovdqu64 -0x80(%rbp),%zmm4
+    5925:	62 f1 5d 48 fe 65 fe 	vpaddd -0x80(%rbp),%zmm4,%zmm4
+    5933:	62 f1 5d 48 fe e3    	vpaddd %zmm3,%zmm4,%zmm4
+    5964:	62 f1 fe 48 6f 5d fe 	vmovdqu64 -0x80(%rbp),%zmm3
+    5981:	62 f1 65 48 fe 5d fe 	vpaddd -0x80(%rbp),%zmm3,%zmm3
+    599e:	62 f1 75 48 fe 45 fe 	vpaddd -0x80(%rbp),%zmm1,%zmm0
+    59a5:	62 f1 65 48 fe dc    	vpaddd %zmm4,%zmm3,%zmm3
+    59ab:	62 f1 7d 48 fe c3    	vpaddd %zmm3,%zmm0,%zmm0
+    5b18:	62 d1 fe 48 6f 01    	vmovdqu64 (%r9),%zmm0
+    5b1e:	62 f2 7d 48 25 c8    	vpmovsxdq %ymm0,%zmm1
+    5b24:	62 f3 7d 48 3b c0 01 	vextracti32x8 $0x1,%zmm0,%ymm0
+    5b2b:	62 f2 7d 48 25 c0    	vpmovsxdq %ymm0,%zmm0
+    5b31:	62 d1 fe 48 7f 08    	vmovdqu64 %zmm1,(%r8)
+    5b37:	62 d1 fe 48 7f 40 01 	vmovdqu64 %zmm0,0x40(%r8)
+    5bf1:	62 f2 7d 48 7c c2    	vpbroadcastd %edx,%zmm0
+    5bfb:	62 d1 7e 4c 6f 01    	vmovdqu32 (%r9),%zmm0{%k4}
+    5c01:	62 f1 fd 48 6f c8    	vmovdqa64 %zmm0,%zmm1
+    5c07:	62 f3 7d 48 3b c0 01 	vextracti32x8 $0x1,%zmm0,%ymm0
+    5c0e:	62 f2 7d 48 25 c9    	vpmovsxdq %ymm1,%zmm1
+    5c14:	62 f2 7d 48 25 c0    	vpmovsxdq %ymm0,%zmm0
+    5c90:	62 d1 fe 4d 7f 08    	vmovdqu64 %zmm1,(%r8){%k5}
+    5cf0:	62 f1 fe 48 6f 12    	vmovdqu64 (%rdx),%zmm2
+    5d10:	62 f1 fe 48 6f 03    	vmovdqu64 (%rbx),%zmm0
+    5d1b:	62 f1 fe 48 6f 13    	vmovdqu64 (%rbx),%zmm2
+    5d3e:	62 f1 7d 4a 6f c8    	vmovdqa32 %zmm0,%zmm1{%k2}
+    5d54:	62 f1 7d 4b 6f c8    	vmovdqa32 %zmm0,%zmm1{%k3}
+    5d6a:	62 f1 7d 4a 6f c8    	vmovdqa32 %zmm0,%zmm1{%k2}
+    5d80:	62 f1 7d 4b 6f c8    	vmovdqa32 %zmm0,%zmm1{%k3}
+    5d96:	62 f1 7d 4a 6f c8    	vmovdqa32 %zmm0,%zmm1{%k2}
+    5dac:	62 f1 7d 4f 6f c8    	vmovdqa32 %zmm0,%zmm1{%k7}
+    5dc2:	62 f1 7d 4e 6f c8    	vmovdqa32 %zmm0,%zmm1{%k6}
+    5dd8:	62 f1 7d 4d 6f c8    	vmovdqa32 %zmm0,%zmm1{%k5}
+    5dee:	62 f1 7d 4c 6f c8    	vmovdqa32 %zmm0,%zmm1{%k4}
+    5e04:	62 f1 7d 4b 6f c8    	vmovdqa32 %zmm0,%zmm1{%k3}
+    5e1a:	62 f1 7d 4f 6f c8    	vmovdqa32 %zmm0,%zmm1{%k7}
+    5e30:	62 f1 7d 4e 6f c8    	vmovdqa32 %zmm0,%zmm1{%k6}
+    5e46:	62 f1 7d 4d 6f c8    	vmovdqa32 %zmm0,%zmm1{%k5}
+    5e5c:	62 f1 7d 4c 6f c8    	vmovdqa32 %zmm0,%zmm1{%k4}
+    5e72:	62 f1 7d 4c 6f c8    	vmovdqa32 %zmm0,%zmm1{%k4}
+    5eae:	62 f1 7d 4a 6f c8    	vmovdqa32 %zmm0,%zmm1{%k2}
+    5ec2:	62 f1 7d 4f 6f c8    	vmovdqa32 %zmm0,%zmm1{%k7}
+    5ed6:	62 f1 7d 4e 6f c8    	vmovdqa32 %zmm0,%zmm1{%k6}
+    5eea:	62 f1 7d 4d 6f c8    	vmovdqa32 %zmm0,%zmm1{%k5}
+    5efe:	62 f1 7d 4c 6f c8    	vmovdqa32 %zmm0,%zmm1{%k4}
+    5f12:	62 f1 7d 4b 6f c8    	vmovdqa32 %zmm0,%zmm1{%k3}
+    5f26:	62 f1 7d 4a 6f c8    	vmovdqa32 %zmm0,%zmm1{%k2}
+    5f3a:	62 f1 7d 4f 6f c8    	vmovdqa32 %zmm0,%zmm1{%k7}
+    5f4e:	62 f1 7d 4e 6f c8    	vmovdqa32 %zmm0,%zmm1{%k6}
+    5f62:	62 f1 7d 4d 6f c8    	vmovdqa32 %zmm0,%zmm1{%k5}
+    5f76:	62 f1 7d 4c 6f c8    	vmovdqa32 %zmm0,%zmm1{%k4}
+    5f8a:	62 f1 7d 4b 6f c8    	vmovdqa32 %zmm0,%zmm1{%k3}
+    5f9e:	62 f1 7d 4a 6f c8    	vmovdqa32 %zmm0,%zmm1{%k2}
+    5fb2:	62 f1 7d 4f 6f c8    	vmovdqa32 %zmm0,%zmm1{%k7}
+    5fc6:	62 f1 7d 4b 6f c8    	vmovdqa32 %zmm0,%zmm1{%k3}
+    6010:	62 f1 fe 48 7f 0f    	vmovdqu64 %zmm1,(%rdi)
+    6034:	62 f1 fe 4f 7f 47 01 	vmovdqu64 %zmm0,0x40(%rdi){%k7}
+    6040:	62 f1 fd 48 6f c8    	vmovdqa64 %zmm0,%zmm1
+    6057:	62 f1 fe 48 7f 47 01 	vmovdqu64 %zmm0,0x40(%rdi)
+    606f:	62 d1 fe 48 6f 09    	vmovdqu64 (%r9),%zmm1
+    6075:	62 f1 7d 48 6f c1    	vmovdqa32 %zmm1,%zmm0
+    60b5:	62 d1 fe 48 7f 08    	vmovdqu64 %zmm1,(%r8)
+    60dd:	62 d1 fe 4e 7f 40 01 	vmovdqu64 %zmm0,0x40(%r8){%k6}
+    6174:	62 d1 fe 48 7f 40 01 	vmovdqu64 %zmm0,0x40(%r8)
+    6180:	62 d1 fe 48 6f 09    	vmovdqu64 (%r9),%zmm1
+    6186:	62 f1 7d 48 6f c1    	vmovdqa32 %zmm1,%zmm0
+    6191:	62 f1 fd 48 6f c8    	vmovdqa64 %zmm0,%zmm1
+# 0000000000006240 <cpp_fused_cat_new_zeros_sub_1>:
+    63bf:	62 f1 fe 48 6f 46 01 	vmovdqu64 0x40(%rsi),%zmm0
+    63c6:	62 f1 fe 48 6f 16    	vmovdqu64 (%rsi),%zmm2
+    63cc:	62 d1 fe 48 7f 40 01 	vmovdqu64 %zmm0,0x40(%r8)
+    63d3:	62 d1 fe 48 7f 10    	vmovdqu64 %zmm2,(%r8)
+    6469:	62 f2 fd 48 7c ca    	vpbroadcastq %rdx,%zmm1
+    647a:	62 f1 fe 4b 6f 0e    	vmovdqu64 (%rsi),%zmm1{%k3}
+    6485:	62 f2 fd 48 7c c0    	vpbroadcastq %rax,%zmm0
+    64da:	62 d1 fe 4a 7f 08    	vmovdqu64 %zmm1,(%r8){%k2}
+    65f4:	62 f1 fe 48 6f 06    	vmovdqu64 (%rsi),%zmm0
+    65fa:	62 f1 fe 48 6f 5e ff 	vmovdqu64 -0x40(%rsi),%zmm3
+    6601:	62 d1 fe 48 7f 40 01 	vmovdqu64 %zmm0,0x40(%r8)
+    6608:	62 d1 fe 48 7f 18    	vmovdqu64 %zmm3,(%r8)
+    67d5:	62 f2 fd 48 7c c8    	vpbroadcastq %rax,%zmm1
+    67e6:	62 f1 fe 4d 6f 4e ff 	vmovdqu64 -0x40(%rsi),%zmm1{%k5}
+    67f2:	62 f2 fd 48 7c c0    	vpbroadcastq %rax,%zmm0
+    6888:	62 d1 fe 4f 7f 08    	vmovdqu64 %zmm1,(%r8){%k7}
+    690d:	62 d1 fe 48 7f 08    	vmovdqu64 %zmm1,(%r8)
+    6931:	62 d1 fe 49 7f 40 01 	vmovdqu64 %zmm0,0x40(%r8){%k1}
+    6942:	62 f2 fd 48 7c c8    	vpbroadcastq %rax,%zmm1
+    694d:	62 d1 fe 48 7f 40 01 	vmovdqu64 %zmm0,0x40(%r8)
+    6959:	62 f1 fe 48 6f 0e    	vmovdqu64 (%rsi),%zmm1
+    6974:	62 f2 fd 48 7c c2    	vpbroadcastq %rdx,%zmm0
+    6985:	62 f1 fe 4c 6f 46 01 	vmovdqu64 0x40(%rsi),%zmm0{%k4}
+    69a4:	62 d1 fe 48 7f 08    	vmovdqu64 %zmm1,(%r8)
+    69c8:	62 d1 fe 49 7f 40 01 	vmovdqu64 %zmm0,0x40(%r8){%k1}
+    69d4:	62 f1 fe 48 6f 46 01 	vmovdqu64 0x40(%rsi),%zmm0
+    69e5:	62 f2 fd 48 7c c8    	vpbroadcastq %rax,%zmm1
+    69f0:	62 d1 fe 48 7f 40 01 	vmovdqu64 %zmm0,0x40(%r8)
+    6a7a:	62 f1 fe 48 6f 4e ff 	vmovdqu64 -0x40(%rsi),%zmm1
+    6a96:	62 f2 fd 48 7c c0    	vpbroadcastq %rax,%zmm0
+    6aa7:	62 f1 fe 4e 6f 06    	vmovdqu64 (%rsi),%zmm0{%k6}
+    6ab2:	62 f1 fe 48 6f 06    	vmovdqu64 (%rsi),%zmm0

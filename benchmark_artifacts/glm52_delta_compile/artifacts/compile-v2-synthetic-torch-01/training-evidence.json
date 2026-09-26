@@ -1,0 +1,6486 @@
+{
+  "run": "compile-v2-synthetic-torch-01",
+  "run_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01",
+  "mode": "disk-delta",
+  "reward_mode": "synthetic-balanced",
+  "log": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01.log",
+  "log_sha256": "b6112de3e664a2f6479333f20c5e32f6006fea792b2141d898cc6865f072a319",
+  "launcher_exit_code": 0,
+  "ray_terminal": {
+    "line": 7480,
+    "job_id": "miles-9f6710bd54ea4ea0b3419a59c943f7bb",
+    "status": "succeeded"
+  },
+  "run_succeeded": true,
+  "expected_rollouts": 7,
+  "expected_ranks": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "all_expected_rank_rollouts_completed": true,
+  "missing_rank_rollouts": [],
+  "unexpected_rank_rollouts": [],
+  "rank0_step_metric_count": 7,
+  "rank0_steps": [
+    {
+      "rollout": 0,
+      "step": 0,
+      "step_within_rollout": 0,
+      "train_log_line": 3821,
+      "rollout_log_line": 3496,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.380314826965332,
+      "rollout/raw_reward": 0.5,
+      "rollout/total_lengths": 256.0,
+      "rollout/ref_log_probs": -10.380776405334473,
+      "rollout/log_probs": -10.380494117736816,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.00010165851563215256,
+      "train/pg_loss": 0.00010165851563215256,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": 3.890602238243446e-05,
+      "train/ess_ratio": 0.9998351335525513,
+      "train/train_rollout_logprob_abs_diff": 0.01144798006862402,
+      "train/train_rollout_kl": 0.00010634435602696612,
+      "train/kl_loss": 0.00018080203153658658,
+      "train/ois": 1.0000444650650024,
+      "train/tis": 0.9999290108680725,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011445787735283375,
+      "train/grad_norm": 2.709739923477173,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 0
+    },
+    {
+      "rollout": 1,
+      "step": 1,
+      "step_within_rollout": 0,
+      "train_log_line": 4439,
+      "rollout_log_line": 4260,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.312302589416504,
+      "rollout/raw_reward": 0.5,
+      "rollout/total_lengths": 250.625,
+      "rollout/ref_log_probs": -10.312397956848145,
+      "rollout/log_probs": -10.31243896484375,
+      "rollout/advantages": 1.862645149230957e-09,
+      "rollout/returns": 1.862645149230957e-09,
+      "train/loss": 0.00038625486195087433,
+      "train/pg_loss": 0.00038625486195087433,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": 1.1113788787042722e-06,
+      "train/ess_ratio": 0.9998303651809692,
+      "train/train_rollout_logprob_abs_diff": 0.011567513458430767,
+      "train/train_rollout_kl": 0.00010863614443223923,
+      "train/kl_loss": 0.00020189021597616374,
+      "train/ois": 1.000084400177002,
+      "train/tis": 0.9999721050262451,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011567514389753342,
+      "train/grad_norm": 2.6820340156555176,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 1
+    },
+    {
+      "rollout": 2,
+      "step": 2,
+      "step_within_rollout": 0,
+      "train_log_line": 5047,
+      "rollout_log_line": 4874,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.273524284362793,
+      "rollout/raw_reward": 0.5,
+      "rollout/total_lengths": 270.625,
+      "rollout/ref_log_probs": -10.2732515335083,
+      "rollout/log_probs": -10.273645401000977,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": -2.073589712381363e-05,
+      "train/pg_loss": -2.073589712381363e-05,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": 0.00015773084305692464,
+      "train/ess_ratio": 0.999839186668396,
+      "train/train_rollout_logprob_abs_diff": 0.0115059120580554,
+      "train/train_rollout_kl": 0.00010693333751987666,
+      "train/kl_loss": 0.00018387677846476436,
+      "train/ois": 0.9999235272407532,
+      "train/tis": 0.9999781847000122,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011504030786454678,
+      "train/grad_norm": 2.7607762813568115,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 2
+    },
+    {
+      "rollout": 3,
+      "step": 3,
+      "step_within_rollout": 0,
+      "train_log_line": 5653,
+      "rollout_log_line": 5485,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.246893882751465,
+      "rollout/raw_reward": 0.5,
+      "rollout/total_lengths": 251.125,
+      "rollout/ref_log_probs": -10.24726390838623,
+      "rollout/log_probs": -10.24690055847168,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 5.0166621804237366e-05,
+      "train/pg_loss": 5.0166621804237366e-05,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": -4.6289493184303865e-05,
+      "train/ess_ratio": 0.9998253583908081,
+      "train/train_rollout_logprob_abs_diff": 0.011629780754446983,
+      "train/train_rollout_kl": 0.00011013836046913639,
+      "train/kl_loss": 0.00019744044402614236,
+      "train/ois": 1.0001344680786133,
+      "train/tis": 1.000104308128357,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011629940010607243,
+      "train/grad_norm": 2.4329144954681396,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 3
+    },
+    {
+      "rollout": 4,
+      "step": 4,
+      "step_within_rollout": 0,
+      "train_log_line": 6254,
+      "rollout_log_line": 6084,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.262191772460938,
+      "rollout/raw_reward": 0.5,
+      "rollout/total_lengths": 270.75,
+      "rollout/ref_log_probs": -10.262585639953613,
+      "rollout/log_probs": -10.262497901916504,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": -3.1501054763793945e-05,
+      "train/pg_loss": -3.1501054763793945e-05,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": 0.0001118015352403745,
+      "train/ess_ratio": 0.999833345413208,
+      "train/train_rollout_logprob_abs_diff": 0.011518668383359909,
+      "train/train_rollout_kl": 0.00010751316585810855,
+      "train/kl_loss": 0.00017801760986912996,
+      "train/ois": 0.999972403049469,
+      "train/tis": 0.9998026490211487,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011514753103256226,
+      "train/grad_norm": 2.3261475563049316,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 4
+    },
+    {
+      "rollout": 5,
+      "step": 5,
+      "step_within_rollout": 0,
+      "train_log_line": 6845,
+      "rollout_log_line": 6682,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.28685188293457,
+      "rollout/raw_reward": 0.5,
+      "rollout/total_lengths": 243.875,
+      "rollout/ref_log_probs": -10.286835670471191,
+      "rollout/log_probs": -10.286836624145508,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": -0.00028242822736501694,
+      "train/pg_loss": -0.00028242822736501694,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": 0.00012535003770608455,
+      "train/ess_ratio": 0.9998313188552856,
+      "train/train_rollout_logprob_abs_diff": 0.01146002672612667,
+      "train/train_rollout_kl": 0.00010668425966287032,
+      "train/kl_loss": 0.00020608189515769482,
+      "train/ois": 0.9999597668647766,
+      "train/tis": 1.000118374824524,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011461385525763035,
+      "train/grad_norm": 2.027017593383789,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 5
+    },
+    {
+      "rollout": 6,
+      "step": 6,
+      "step_within_rollout": 0,
+      "train_log_line": 7429,
+      "rollout_log_line": 7271,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.280527114868164,
+      "rollout/raw_reward": 0.5,
+      "rollout/total_lengths": 239.25,
+      "rollout/ref_log_probs": -10.280804634094238,
+      "rollout/log_probs": -10.280643463134766,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.00012378208339214325,
+      "train/pg_loss": 0.00012378208339214325,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": 5.294625589158386e-05,
+      "train/ess_ratio": 0.999832272529602,
+      "train/train_rollout_logprob_abs_diff": 0.011488382704555988,
+      "train/train_rollout_kl": 0.00010836990259122103,
+      "train/kl_loss": 0.00023077515652403235,
+      "train/ois": 1.000031590461731,
+      "train/tis": 0.9999924898147583,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011488929390907288,
+      "train/grad_norm": 2.0719356536865234,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 6
+    }
+  ],
+  "native_update_times": [
+    {
+      "perf_index": 0,
+      "line": 3833,
+      "initial": true,
+      "after_training_rollout": null,
+      "seconds": 114.71379065513611
+    },
+    {
+      "perf_index": 1,
+      "line": 4445,
+      "initial": false,
+      "after_training_rollout": 0,
+      "seconds": 14.489706039428711
+    },
+    {
+      "perf_index": 2,
+      "line": 5053,
+      "initial": false,
+      "after_training_rollout": 1,
+      "seconds": 14.72694993019104
+    },
+    {
+      "perf_index": 3,
+      "line": 5659,
+      "initial": false,
+      "after_training_rollout": 2,
+      "seconds": 16.964051723480225
+    },
+    {
+      "perf_index": 4,
+      "line": 6261,
+      "initial": false,
+      "after_training_rollout": 3,
+      "seconds": 15.482511281967163
+    },
+    {
+      "perf_index": 5,
+      "line": 6851,
+      "initial": false,
+      "after_training_rollout": 4,
+      "seconds": 17.28737473487854
+    },
+    {
+      "perf_index": 6,
+      "line": 7447,
+      "initial": false,
+      "after_training_rollout": 5,
+      "seconds": 16.60264825820923
+    }
+  ],
+  "native_update_time_distributions": {
+    "initial": {
+      "count": 1,
+      "finite_count": 1,
+      "min": 114.71379065513611,
+      "max": 114.71379065513611,
+      "mean": 114.71379065513611,
+      "median": 114.71379065513611
+    },
+    "post_training": {
+      "count": 6,
+      "finite_count": 6,
+      "min": 14.489706039428711,
+      "max": 17.28737473487854,
+      "mean": 15.925540328025818,
+      "median": 16.042579770088196
+    },
+    "steady": {
+      "count": 5,
+      "finite_count": 5,
+      "min": 14.72694993019104,
+      "max": 17.28737473487854,
+      "mean": 16.212707185745238,
+      "median": 16.60264825820923
+    }
+  },
+  "replay_total_checks": 1464,
+  "replay_nonzero_checks": 0,
+  "replay_mismatched_token_comparisons": 0,
+  "engines": {
+    "available": true,
+    "source": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/trainer-rank0.jsonl",
+    "summary": [
+      {
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "continue_generation",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "flush_cache",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "pause_generation",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "pull_weights",
+        "calls": 7,
+        "failed_calls": 0,
+        "requested_versions": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      },
+      {
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "update_weight_version",
+        "calls": 1,
+        "failed_calls": 0,
+        "requested_versions": [
+          "0"
+        ]
+      },
+      {
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "update_weights_from_disk",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      },
+      {
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "continue_generation",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "flush_cache",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "pause_generation",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "pull_weights",
+        "calls": 7,
+        "failed_calls": 0,
+        "requested_versions": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      },
+      {
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "update_weight_version",
+        "calls": 1,
+        "failed_calls": 0,
+        "requested_versions": [
+          "0"
+        ]
+      },
+      {
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "update_weights_from_disk",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      }
+    ],
+    "records": [
+      {
+        "line": 2,
+        "update_index": 0,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/delta-publication",
+          "target_version": 0
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 3,
+        "update_index": 0,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/delta-publication",
+          "target_version": 0
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 4,
+        "update_index": 0,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "update_weight_version",
+        "success": true,
+        "request": {
+          "abort_all_requests": false,
+          "new_version": "0"
+        },
+        "response": {
+          "message": "Weight version updated to 0",
+          "new_version": "0",
+          "success": true
+        }
+      },
+      {
+        "line": 5,
+        "update_index": 0,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "update_weight_version",
+        "success": true,
+        "request": {
+          "abort_all_requests": false,
+          "new_version": "0"
+        },
+        "response": {
+          "message": "Weight version updated to 0",
+          "new_version": "0",
+          "success": true
+        }
+      },
+      {
+        "line": 14,
+        "update_index": 1,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/delta-publication",
+          "target_version": 1
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 15,
+        "update_index": 1,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/delta-publication",
+          "target_version": 1
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 16,
+        "update_index": 1,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 17,
+        "update_index": 1,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 18,
+        "update_index": 1,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 19,
+        "update_index": 1,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 20,
+        "update_index": 1,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "weight_version": "1"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 1.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 21,
+        "update_index": 1,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "weight_version": "1"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 1.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 22,
+        "update_index": 1,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 23,
+        "update_index": 1,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 34,
+        "update_index": 2,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/delta-publication",
+          "target_version": 2
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 35,
+        "update_index": 2,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/delta-publication",
+          "target_version": 2
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 36,
+        "update_index": 2,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 37,
+        "update_index": 2,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 38,
+        "update_index": 2,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 39,
+        "update_index": 2,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 40,
+        "update_index": 2,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "weight_version": "2"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 2.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 41,
+        "update_index": 2,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "weight_version": "2"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 2.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 42,
+        "update_index": 2,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 43,
+        "update_index": 2,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 54,
+        "update_index": 3,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/delta-publication",
+          "target_version": 3
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 55,
+        "update_index": 3,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/delta-publication",
+          "target_version": 3
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 56,
+        "update_index": 3,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 57,
+        "update_index": 3,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 58,
+        "update_index": 3,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 59,
+        "update_index": 3,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 60,
+        "update_index": 3,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "weight_version": "3"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 3.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 61,
+        "update_index": 3,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "weight_version": "3"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 3.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 62,
+        "update_index": 3,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 63,
+        "update_index": 3,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 74,
+        "update_index": 4,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/delta-publication",
+          "target_version": 4
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 75,
+        "update_index": 4,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/delta-publication",
+          "target_version": 4
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 76,
+        "update_index": 4,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 77,
+        "update_index": 4,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 78,
+        "update_index": 4,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 79,
+        "update_index": 4,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 80,
+        "update_index": 4,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "weight_version": "4"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 4.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 81,
+        "update_index": 4,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "weight_version": "4"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 4.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 82,
+        "update_index": 4,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 83,
+        "update_index": 4,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 94,
+        "update_index": 5,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/delta-publication",
+          "target_version": 5
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 95,
+        "update_index": 5,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/delta-publication",
+          "target_version": 5
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 96,
+        "update_index": 5,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 97,
+        "update_index": 5,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 98,
+        "update_index": 5,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 99,
+        "update_index": 5,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 100,
+        "update_index": 5,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "weight_version": "5"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 5.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 101,
+        "update_index": 5,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "weight_version": "5"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 5.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 102,
+        "update_index": 5,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 103,
+        "update_index": 5,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 114,
+        "update_index": 6,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/delta-publication",
+          "target_version": 6
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 115,
+        "update_index": 6,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/delta-publication",
+          "target_version": 6
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 116,
+        "update_index": 6,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 117,
+        "update_index": 6,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 118,
+        "update_index": 6,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 119,
+        "update_index": 6,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 120,
+        "update_index": 6,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "weight_version": "6"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 6.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 121,
+        "update_index": 6,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/rollout-checkpoint",
+          "weight_version": "6"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 6.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 122,
+        "update_index": 6,
+        "engine": "http://10.102.0.130:20042",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 123,
+        "update_index": 6,
+        "engine": "http://10.102.0.130:20005",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      }
+    ],
+    "boundary": "RPC acknowledgement and version metadata are not active-GPU byte equality checks."
+  },
+  "debug_dumps": {
+    "files": {
+      "train_data": [
+        "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/train_data/0_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/train_data/1_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/train_data/2_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/train_data/3_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/train_data/4_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/train_data/5_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/train_data/6_0.pt"
+      ],
+      "rollout_data": [
+        "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/rollout_data/0.pt",
+        "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/rollout_data/1.pt",
+        "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/rollout_data/2.pt",
+        "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/rollout_data/3.pt",
+        "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/rollout_data/4.pt",
+        "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/rollout_data/5.pt",
+        "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/rollout_data/6.pt"
+      ]
+    },
+    "train": [
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/train_data/0_0.pt",
+        "rollout": 0,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 32,
+            "min": 0.0,
+            "max": 1.0,
+            "mean": 0.5,
+            "mean_abs": 0.5,
+            "rms": 0.7071067811865475
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 64,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.571186065673828,
+            "max": -0.02243949845433235,
+            "mean": -10.380493117202132,
+            "mean_abs": 10.380493117202132,
+            "rms": 10.590302969810356,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.571186065673828,
+              "max": -0.02243949845433235,
+              "mean": -10.380493117202132,
+              "mean_abs": 10.380493117202132,
+              "rms": 10.590302969810356
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.589447021484375,
+            "max": -0.022405577823519707,
+            "mean": -10.380774930128828,
+            "mean_abs": 10.380774930128828,
+            "rms": 10.590609010582876,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.589447021484375,
+              "max": -0.022405577823519707,
+              "mean": -10.380774930128828,
+              "mean_abs": 10.380774930128828,
+              "rms": 10.590609010582876
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.562580108642578,
+            "max": -0.021770058199763298,
+            "mean": -10.380315768805449,
+            "mean_abs": 10.380315768805449,
+            "rms": 10.590072989178731,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.562580108642578,
+              "max": -0.021770058199763298,
+              "mean": -10.380315768805449,
+              "mean_abs": 10.380315768805449,
+              "rms": 10.590072989178731
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6399,
+          "min": 0.0,
+          "max": 0.11192989349365234,
+          "mean": 0.011447980912344065,
+          "mean_abs": 0.011447980912344065,
+          "rms": 0.014586730912355971
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/train_data/1_0.pt",
+        "rollout": 1,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 32,
+            "min": 0.0,
+            "max": 1.0,
+            "mean": 0.5,
+            "mean_abs": 0.5,
+            "rms": 0.7071067811865475
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 64,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.264314651489258,
+            "max": -0.14362294971942902,
+            "mean": -10.312438902445138,
+            "mean_abs": 10.312438902445138,
+            "rms": 10.52039758722701,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.264314651489258,
+              "max": -0.14362294971942902,
+              "mean": -10.312438902445138,
+              "mean_abs": 10.312438902445138,
+              "rms": 10.52039758722701
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.26494026184082,
+            "max": -0.15240870416164398,
+            "mean": -10.31239712398965,
+            "mean_abs": 10.31239712398965,
+            "rms": 10.520325689768832,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.26494026184082,
+              "max": -0.15240870416164398,
+              "mean": -10.31239712398965,
+              "mean_abs": 10.31239712398965,
+              "rms": 10.520325689768832
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.26704216003418,
+            "max": -0.14431551098823547,
+            "mean": -10.312302419091575,
+            "mean_abs": 10.312302419091575,
+            "rms": 10.520267253098282,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.26704216003418,
+              "max": -0.14431551098823547,
+              "mean": -10.312302419091575,
+              "mean_abs": 10.312302419091575,
+              "rms": 10.520267253098282
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6399,
+          "min": 0.0,
+          "max": 0.0676126480102539,
+          "mean": 0.011567512429319322,
+          "mean_abs": 0.011567512429319322,
+          "rms": 0.014739299394377453
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/train_data/2_0.pt",
+        "rollout": 2,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 32,
+            "min": 0.0,
+            "max": 1.0,
+            "mean": 0.5,
+            "mean_abs": 0.5,
+            "rms": 0.7071067811865475
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 64,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.00098419189453,
+            "max": -0.010176085866987705,
+            "mean": -10.27364737101132,
+            "mean_abs": 10.27364737101132,
+            "rms": 10.496446285123824,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.00098419189453,
+              "max": -0.010176085866987705,
+              "mean": -10.27364737101132,
+              "mean_abs": 10.27364737101132,
+              "rms": 10.496446285123824
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.01279640197754,
+            "max": -0.010179625824093819,
+            "mean": -10.273252836246392,
+            "mean_abs": 10.273252836246392,
+            "rms": 10.49599714409449,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.01279640197754,
+              "max": -0.010179625824093819,
+              "mean": -10.273252836246392,
+              "mean_abs": 10.273252836246392,
+              "rms": 10.49599714409449
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.004648208618164,
+            "max": -0.010657213628292084,
+            "mean": -10.273518661191192,
+            "mean_abs": 10.273518661191192,
+            "rms": 10.496315438789512,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.004648208618164,
+              "max": -0.010657213628292084,
+              "mean": -10.273518661191192,
+              "mean_abs": 10.273518661191192,
+              "rms": 10.496315438789512
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 6.198883056640625e-06,
+          "max": 0.055614471435546875,
+          "mean": 0.011505912224965869,
+          "mean_abs": 0.011505912224965869,
+          "rms": 0.01462569051947378
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/train_data/3_0.pt",
+        "rollout": 3,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 32,
+            "min": 0.0,
+            "max": 1.0,
+            "mean": 0.5,
+            "mean_abs": 0.5,
+            "rms": 0.7071067811865475
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 64,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.253665924072266,
+            "max": -0.016142386943101883,
+            "mean": -10.24690159310645,
+            "mean_abs": 10.24690159310645,
+            "rms": 10.470582528942137,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.253665924072266,
+              "max": -0.016142386943101883,
+              "mean": -10.24690159310645,
+              "mean_abs": 10.24690159310645,
+              "rms": 10.470582528942137
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.255172729492188,
+            "max": -0.018285512924194336,
+            "mean": -10.247263535597595,
+            "mean_abs": 10.247263535597595,
+            "rms": 10.47081750914727,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.255172729492188,
+              "max": -0.018285512924194336,
+              "mean": -10.247263535597595,
+              "mean_abs": 10.247263535597595,
+              "rms": 10.47081750914727
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.263643264770508,
+            "max": -0.016873721033334732,
+            "mean": -10.246895768641844,
+            "mean_abs": 10.246895768641844,
+            "rms": 10.470629344426701,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.263643264770508,
+              "max": -0.016873721033334732,
+              "mean": -10.246895768641844,
+              "mean_abs": 10.246895768641844,
+              "rms": 10.470629344426701
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 1.430511474609375e-06,
+          "max": 0.06732749938964844,
+          "mean": 0.011629781351657584,
+          "mean_abs": 0.011629781351657584,
+          "rms": 0.01484232534350536
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/train_data/4_0.pt",
+        "rollout": 4,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 32,
+            "min": 0.0,
+            "max": 1.0,
+            "mean": 0.5,
+            "mean_abs": 0.5,
+            "rms": 0.7071067811865475
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 64,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.405841827392578,
+            "max": -0.03120516799390316,
+            "mean": -10.262496109568456,
+            "mean_abs": 10.262496109568456,
+            "rms": 10.489673640744437,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.405841827392578,
+              "max": -0.03120516799390316,
+              "mean": -10.262496109568456,
+              "mean_abs": 10.262496109568456,
+              "rms": 10.489673640744437
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.404132843017578,
+            "max": -0.03126005083322525,
+            "mean": -10.262583559929626,
+            "mean_abs": 10.262583559929626,
+            "rms": 10.489652424649664,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.404132843017578,
+              "max": -0.03126005083322525,
+              "mean": -10.262583559929626,
+              "mean_abs": 10.262583559929626,
+              "rms": 10.489652424649664
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.397441864013672,
+            "max": -0.030392754822969437,
+            "mean": -10.262191302904975,
+            "mean_abs": 10.262191302904975,
+            "rms": 10.489379552344245,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.397441864013672,
+              "max": -0.030392754822969437,
+              "mean": -10.262191302904975,
+              "mean_abs": 10.262191302904975,
+              "rms": 10.489379552344245
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6399,
+          "min": 0.0,
+          "max": 0.07048702239990234,
+          "mean": 0.011518667787604499,
+          "mean_abs": 0.011518667787604499,
+          "rms": 0.014667581928682413
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/train_data/5_0.pt",
+        "rollout": 5,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 32,
+            "min": 0.0,
+            "max": 1.0,
+            "mean": 0.5,
+            "mean_abs": 0.5,
+            "rms": 0.7071067811865475
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 64,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.016815185546875,
+            "max": -0.007051462307572365,
+            "mean": -10.286837713486747,
+            "mean_abs": 10.286837713486747,
+            "rms": 10.5020019853513,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.016815185546875,
+              "max": -0.007051462307572365,
+              "mean": -10.286837713486747,
+              "mean_abs": 10.286837713486747,
+              "rms": 10.5020019853513
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.001689910888672,
+            "max": -0.0070637729950249195,
+            "mean": -10.286833701631767,
+            "mean_abs": 10.286833701631767,
+            "rms": 10.501918280711447,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.001689910888672,
+              "max": -0.0070637729950249195,
+              "mean": -10.286833701631767,
+              "mean_abs": 10.286833701631767,
+              "rms": 10.501918280711447
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.001310348510742,
+            "max": -0.007347689941525459,
+            "mean": -10.286849418869242,
+            "mean_abs": 10.286849418869242,
+            "rms": 10.50204878592113,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.001310348510742,
+              "max": -0.007347689941525459,
+              "mean": -10.286849418869242,
+              "mean_abs": 10.286849418869242,
+              "rms": 10.50204878592113
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 9.5367431640625e-07,
+          "max": 0.06670761108398438,
+          "mean": 0.01146002727909945,
+          "mean_abs": 0.01146002727909945,
+          "rms": 0.014605963954421586
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/train_data/6_0.pt",
+        "rollout": 6,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 32,
+            "min": 0.0,
+            "max": 1.0,
+            "mean": 0.5,
+            "mean_abs": 0.5,
+            "rms": 0.7071067811865475
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 64,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.14204216003418,
+            "max": -0.05576265975832939,
+            "mean": -10.280643202918581,
+            "mean_abs": 10.280643202918581,
+            "rms": 10.498454628773196,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.14204216003418,
+              "max": -0.05576265975832939,
+              "mean": -10.280643202918581,
+              "mean_abs": 10.280643202918581,
+              "rms": 10.498454628773196
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.14289665222168,
+            "max": -0.05587223917245865,
+            "mean": -10.280803682266269,
+            "mean_abs": 10.280803682266269,
+            "rms": 10.49850269689757,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.14289665222168,
+              "max": -0.05587223917245865,
+              "mean": -10.280803682266269,
+              "mean_abs": 10.280803682266269,
+              "rms": 10.49850269689757
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.134124755859375,
+            "max": -0.056228745728731155,
+            "mean": -10.280527328710887,
+            "mean_abs": 10.280527328710887,
+            "rms": 10.498403136421498,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.134124755859375,
+              "max": -0.056228745728731155,
+              "mean": -10.280527328710887,
+              "mean_abs": 10.280527328710887,
+              "rms": 10.498403136421498
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 3.814697265625e-06,
+          "max": 0.07383108139038086,
+          "mean": 0.011488382391980849,
+          "mean_abs": 0.011488382391980849,
+          "rms": 0.014720483240991549
+        }
+      }
+    ],
+    "rollout": [
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/rollout_data/0.pt",
+        "rollout": 0,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "0": 64
+        },
+        "reward_groups": [
+          {
+            "group": "0",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "1",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "2",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "3",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "4",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "5",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "6",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "7",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/rollout_data/1.pt",
+        "rollout": 1,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "1": 64
+        },
+        "reward_groups": [
+          {
+            "group": "10",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "11",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "12",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "13",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "14",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "15",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "8",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "9",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/rollout_data/2.pt",
+        "rollout": 2,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "2": 64
+        },
+        "reward_groups": [
+          {
+            "group": "16",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "17",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "18",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "19",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "20",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "21",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "22",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "23",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/rollout_data/3.pt",
+        "rollout": 3,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "3": 64
+        },
+        "reward_groups": [
+          {
+            "group": "24",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "25",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "26",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "27",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "28",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "29",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "30",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "31",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/rollout_data/4.pt",
+        "rollout": 4,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "4": 64
+        },
+        "reward_groups": [
+          {
+            "group": "32",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "33",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "34",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "35",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "36",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "37",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "38",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "39",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/rollout_data/5.pt",
+        "rollout": 5,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "5": 64
+        },
+        "reward_groups": [
+          {
+            "group": "40",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "41",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "42",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "43",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "44",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "45",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "46",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "47",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/compile-v2-synthetic-torch-01/dump_details/rollout_data/6.pt",
+        "rollout": 6,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "6": 64
+        },
+        "reward_groups": [
+          {
+            "group": "48",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "49",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "50",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "51",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "52",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "53",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "54",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "55",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "note": "Only TP-rank0 on the last PP stage writes train dumps; four-rank completion comes from train_step log events.",
+    "status": "parsed"
+  },
+  "parsed_log_evidence": {
+    "train_events": [
+      {
+        "line": 3816,
+        "rank": 1,
+        "rollout": 0,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 3819,
+        "rank": 2,
+        "rollout": 0,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 3820,
+        "rank": 0,
+        "rollout": 0,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 3829,
+        "rank": 3,
+        "rollout": 0,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4424,
+        "rank": 3,
+        "rollout": 1,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4432,
+        "rank": 1,
+        "rollout": 1,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4438,
+        "rank": 0,
+        "rollout": 1,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4448,
+        "rank": 2,
+        "rollout": 1,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5038,
+        "rank": 3,
+        "rollout": 2,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5041,
+        "rank": 1,
+        "rollout": 2,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5046,
+        "rank": 0,
+        "rollout": 2,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5058,
+        "rank": 2,
+        "rollout": 2,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5643,
+        "rank": 2,
+        "rollout": 3,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5652,
+        "rank": 0,
+        "rollout": 3,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5662,
+        "rank": 3,
+        "rollout": 3,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5667,
+        "rank": 1,
+        "rollout": 3,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6253,
+        "rank": 0,
+        "rollout": 4,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6260,
+        "rank": 2,
+        "rollout": 4,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6268,
+        "rank": 1,
+        "rollout": 4,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6273,
+        "rank": 3,
+        "rollout": 4,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6830,
+        "rank": 2,
+        "rollout": 5,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6841,
+        "rank": 1,
+        "rollout": 5,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6844,
+        "rank": 0,
+        "rollout": 5,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6854,
+        "rank": 3,
+        "rollout": 5,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 7417,
+        "rank": 2,
+        "rollout": 6,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 7422,
+        "rank": 1,
+        "rollout": 6,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 7427,
+        "rank": 3,
+        "rollout": 6,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 7428,
+        "rank": 0,
+        "rollout": 6,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      }
+    ],
+    "rank0_rollout_metrics": [
+      {
+        "line": 3496,
+        "index": 0,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.380314826965332,
+          "rollout/raw_reward": 0.5,
+          "rollout/total_lengths": 256.0,
+          "rollout/ref_log_probs": -10.380776405334473,
+          "rollout/log_probs": -10.380494117736816,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 4260,
+        "index": 1,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.312302589416504,
+          "rollout/raw_reward": 0.5,
+          "rollout/total_lengths": 250.625,
+          "rollout/ref_log_probs": -10.312397956848145,
+          "rollout/log_probs": -10.31243896484375,
+          "rollout/advantages": 1.862645149230957e-09,
+          "rollout/returns": 1.862645149230957e-09
+        }
+      },
+      {
+        "line": 4874,
+        "index": 2,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.273524284362793,
+          "rollout/raw_reward": 0.5,
+          "rollout/total_lengths": 270.625,
+          "rollout/ref_log_probs": -10.2732515335083,
+          "rollout/log_probs": -10.273645401000977,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 5485,
+        "index": 3,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.246893882751465,
+          "rollout/raw_reward": 0.5,
+          "rollout/total_lengths": 251.125,
+          "rollout/ref_log_probs": -10.24726390838623,
+          "rollout/log_probs": -10.24690055847168,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 6084,
+        "index": 4,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.262191772460938,
+          "rollout/raw_reward": 0.5,
+          "rollout/total_lengths": 270.75,
+          "rollout/ref_log_probs": -10.262585639953613,
+          "rollout/log_probs": -10.262497901916504,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 6682,
+        "index": 5,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.28685188293457,
+          "rollout/raw_reward": 0.5,
+          "rollout/total_lengths": 243.875,
+          "rollout/ref_log_probs": -10.286835670471191,
+          "rollout/log_probs": -10.286836624145508,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 7271,
+        "index": 6,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.280527114868164,
+          "rollout/raw_reward": 0.5,
+          "rollout/total_lengths": 239.25,
+          "rollout/ref_log_probs": -10.280804634094238,
+          "rollout/log_probs": -10.280643463134766,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      }
+    ],
+    "rank0_step_metrics": [
+      {
+        "line": 3821,
+        "index": 0,
+        "metrics": {
+          "train/loss": 0.00010165851563215256,
+          "train/pg_loss": 0.00010165851563215256,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": 3.890602238243446e-05,
+          "train/ess_ratio": 0.9998351335525513,
+          "train/train_rollout_logprob_abs_diff": 0.01144798006862402,
+          "train/train_rollout_kl": 0.00010634435602696612,
+          "train/kl_loss": 0.00018080203153658658,
+          "train/ois": 1.0000444650650024,
+          "train/tis": 0.9999290108680725,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011445787735283375,
+          "train/grad_norm": 2.709739923477173,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 0
+        },
+        "rollout": 0,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 4439,
+        "index": 1,
+        "metrics": {
+          "train/loss": 0.00038625486195087433,
+          "train/pg_loss": 0.00038625486195087433,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": 1.1113788787042722e-06,
+          "train/ess_ratio": 0.9998303651809692,
+          "train/train_rollout_logprob_abs_diff": 0.011567513458430767,
+          "train/train_rollout_kl": 0.00010863614443223923,
+          "train/kl_loss": 0.00020189021597616374,
+          "train/ois": 1.000084400177002,
+          "train/tis": 0.9999721050262451,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011567514389753342,
+          "train/grad_norm": 2.6820340156555176,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 1
+        },
+        "rollout": 1,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 5047,
+        "index": 2,
+        "metrics": {
+          "train/loss": -2.073589712381363e-05,
+          "train/pg_loss": -2.073589712381363e-05,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": 0.00015773084305692464,
+          "train/ess_ratio": 0.999839186668396,
+          "train/train_rollout_logprob_abs_diff": 0.0115059120580554,
+          "train/train_rollout_kl": 0.00010693333751987666,
+          "train/kl_loss": 0.00018387677846476436,
+          "train/ois": 0.9999235272407532,
+          "train/tis": 0.9999781847000122,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011504030786454678,
+          "train/grad_norm": 2.7607762813568115,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 2
+        },
+        "rollout": 2,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 5653,
+        "index": 3,
+        "metrics": {
+          "train/loss": 5.0166621804237366e-05,
+          "train/pg_loss": 5.0166621804237366e-05,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": -4.6289493184303865e-05,
+          "train/ess_ratio": 0.9998253583908081,
+          "train/train_rollout_logprob_abs_diff": 0.011629780754446983,
+          "train/train_rollout_kl": 0.00011013836046913639,
+          "train/kl_loss": 0.00019744044402614236,
+          "train/ois": 1.0001344680786133,
+          "train/tis": 1.000104308128357,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011629940010607243,
+          "train/grad_norm": 2.4329144954681396,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 3
+        },
+        "rollout": 3,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 6254,
+        "index": 4,
+        "metrics": {
+          "train/loss": -3.1501054763793945e-05,
+          "train/pg_loss": -3.1501054763793945e-05,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": 0.0001118015352403745,
+          "train/ess_ratio": 0.999833345413208,
+          "train/train_rollout_logprob_abs_diff": 0.011518668383359909,
+          "train/train_rollout_kl": 0.00010751316585810855,
+          "train/kl_loss": 0.00017801760986912996,
+          "train/ois": 0.999972403049469,
+          "train/tis": 0.9998026490211487,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011514753103256226,
+          "train/grad_norm": 2.3261475563049316,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 4
+        },
+        "rollout": 4,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 6845,
+        "index": 5,
+        "metrics": {
+          "train/loss": -0.00028242822736501694,
+          "train/pg_loss": -0.00028242822736501694,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": 0.00012535003770608455,
+          "train/ess_ratio": 0.9998313188552856,
+          "train/train_rollout_logprob_abs_diff": 0.01146002672612667,
+          "train/train_rollout_kl": 0.00010668425966287032,
+          "train/kl_loss": 0.00020608189515769482,
+          "train/ois": 0.9999597668647766,
+          "train/tis": 1.000118374824524,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011461385525763035,
+          "train/grad_norm": 2.027017593383789,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 5
+        },
+        "rollout": 5,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 7429,
+        "index": 6,
+        "metrics": {
+          "train/loss": 0.00012378208339214325,
+          "train/pg_loss": 0.00012378208339214325,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": 5.294625589158386e-05,
+          "train/ess_ratio": 0.999832272529602,
+          "train/train_rollout_logprob_abs_diff": 0.011488382704555988,
+          "train/train_rollout_kl": 0.00010836990259122103,
+          "train/kl_loss": 0.00023077515652403235,
+          "train/ois": 1.000031590461731,
+          "train/tis": 0.9999924898147583,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011488929390907288,
+          "train/grad_norm": 2.0719356536865234,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 6
+        },
+        "rollout": 6,
+        "step_within_rollout": 0,
+        "attempt": 0
+      }
+    ],
+    "native_perf_metrics": [
+      {
+        "line": 3833,
+        "index": 0,
+        "metrics": {
+          "perf/update_weights_time": 114.71379065513611,
+          "perf/data_preprocess_time": 0.010953426361083984,
+          "perf/train_wait_time": 124.50599408149719,
+          "perf/ref_log_probs_time": 12.116181373596191,
+          "perf/log_probs_time": 1.058581829071045,
+          "perf/actor_train_time": 74.97361588478088,
+          "perf/train_time": 88.59613418579102,
+          "perf/log_probs_tflops": 21.994491416184513,
+          "perf/ref_log_probs_tflops": 1.921642490724898,
+          "perf/actor_train_tflops": 0.9316465003614004,
+          "perf/actor_train_tok_per_s": 218.5302096830818,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0004140651112717335,
+          "perf/step_time": 213.1021282672882,
+          "perf/wait_time_ratio": 0.5842550475391438
+        },
+        "initial": true,
+        "after_training_rollout": null
+      },
+      {
+        "line": 4445,
+        "index": 1,
+        "metrics": {
+          "perf/update_weights_implementation_time": 6.888444662094116,
+          "perf/finalize_and_resume_engines_time": 7.542202711105347,
+          "perf/update_weights_time": 14.489706039428711,
+          "perf/data_preprocess_time": 0.010803699493408203,
+          "perf/train_wait_time": 16.581924438476562,
+          "perf/ref_log_probs_time": 0.7656350135803223,
+          "perf/log_probs_time": 0.7728533744812012,
+          "perf/actor_train_time": 35.93413949012756,
+          "perf/train_time": 37.9181182384491,
+          "perf/update_weights_density": 0.005047113913506608,
+          "perf/update_weights_wire_bytes": 204933741,
+          "perf/log_probs_tflops": 29.492760822970865,
+          "perf/ref_log_probs_tflops": 29.770816799784118,
+          "perf/actor_train_tflops": 1.902946338625605,
+          "perf/actor_train_tok_per_s": 446.37217497323905,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0008457539282780466,
+          "perf/step_time": 54.50004267692566,
+          "perf/wait_time_ratio": 0.30425525603298387
+        },
+        "initial": false,
+        "after_training_rollout": 0
+      },
+      {
+        "line": 5053,
+        "index": 2,
+        "metrics": {
+          "perf/update_weights_implementation_time": 7.5284035205841064,
+          "perf/finalize_and_resume_engines_time": 7.1055684089660645,
+          "perf/update_weights_time": 14.72694993019104,
+          "perf/data_preprocess_time": 0.013375043869018555,
+          "perf/train_wait_time": 18.172974348068237,
+          "perf/ref_log_probs_time": 0.781456708908081,
+          "perf/log_probs_time": 0.7580544948577881,
+          "perf/actor_train_time": 27.968851327896118,
+          "perf/train_time": 29.954521417617798,
+          "perf/update_weights_density": 0.00444047565127191,
+          "perf/update_weights_wire_bytes": 183444567,
+          "perf/log_probs_tflops": 32.49015663548105,
+          "perf/ref_log_probs_tflops": 31.517176825539323,
+          "perf/actor_train_tflops": 2.6417934352128443,
+          "perf/actor_train_tok_per_s": 619.2603263161201,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.001174130415650153,
+          "perf/step_time": 48.127495765686035,
+          "perf/wait_time_ratio": 0.37760066379820273
+        },
+        "initial": false,
+        "after_training_rollout": 1
+      },
+      {
+        "line": 5659,
+        "index": 3,
+        "metrics": {
+          "perf/update_weights_implementation_time": 8.225551128387451,
+          "perf/finalize_and_resume_engines_time": 8.645045042037964,
+          "perf/update_weights_time": 16.964051723480225,
+          "perf/data_preprocess_time": 0.01073908805847168,
+          "perf/train_wait_time": 20.26166844367981,
+          "perf/ref_log_probs_time": 0.7477293014526367,
+          "perf/log_probs_time": 0.7618563175201416,
+          "perf/actor_train_time": 21.71560502052307,
+          "perf/train_time": 23.682075023651123,
+          "perf/update_weights_density": 0.004193491278400529,
+          "perf/update_weights_wire_bytes": 175201540,
+          "perf/log_probs_tflops": 29.97696479676723,
+          "perf/ref_log_probs_tflops": 30.543326262763333,
+          "perf/actor_train_tflops": 3.1550776488491166,
+          "perf/actor_train_tok_per_s": 740.1129273078327,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0014022567328218296,
+          "perf/step_time": 43.94374346733093,
+          "perf/wait_time_ratio": 0.4610819844864361
+        },
+        "initial": false,
+        "after_training_rollout": 2
+      },
+      {
+        "line": 6261,
+        "index": 4,
+        "metrics": {
+          "perf/update_weights_implementation_time": 8.002389430999756,
+          "perf/finalize_and_resume_engines_time": 7.38822340965271,
+          "perf/update_weights_time": 15.482511281967163,
+          "perf/data_preprocess_time": 0.011063337326049805,
+          "perf/train_wait_time": 19.823389291763306,
+          "perf/ref_log_probs_time": 0.7673935890197754,
+          "perf/log_probs_time": 0.7525506019592285,
+          "perf/actor_train_time": 18.156304836273193,
+          "perf/train_time": 20.12216567993164,
+          "perf/update_weights_density": 0.0035511588105704883,
+          "perf/update_weights_wire_bytes": 152594023,
+          "perf/log_probs_tflops": 32.741582104692704,
+          "perf/ref_log_probs_tflops": 32.10829185249949,
+          "perf/actor_train_tflops": 4.071262992802053,
+          "perf/actor_train_tok_per_s": 954.3792173714564,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0018094502190231347,
+          "perf/step_time": 39.945554971694946,
+          "perf/wait_time_ratio": 0.4962602048165303
+        },
+        "initial": false,
+        "after_training_rollout": 3
+      },
+      {
+        "line": 6851,
+        "index": 5,
+        "metrics": {
+          "perf/update_weights_implementation_time": 9.263143062591553,
+          "perf/finalize_and_resume_engines_time": 7.912158489227295,
+          "perf/update_weights_time": 17.28737473487854,
+          "perf/data_preprocess_time": 0.010715007781982422,
+          "perf/train_wait_time": 28.957716941833496,
+          "perf/ref_log_probs_time": 0.6760408878326416,
+          "perf/log_probs_time": 0.7024416923522949,
+          "perf/actor_train_time": 24.076977014541626,
+          "perf/train_time": 25.906566381454468,
+          "perf/update_weights_density": 0.004001723585541301,
+          "perf/update_weights_wire_bytes": 167624110,
+          "perf/log_probs_tflops": 31.57877625905348,
+          "perf/ref_log_probs_tflops": 32.81199323452069,
+          "perf/actor_train_tflops": 2.7639162122919405,
+          "perf/actor_train_tok_per_s": 648.2541388220511,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0012284072054630846,
+          "perf/step_time": 54.864283323287964,
+          "perf/wait_time_ratio": 0.5278063466390339
+        },
+        "initial": false,
+        "after_training_rollout": 4
+      },
+      {
+        "line": 7447,
+        "index": 6,
+        "metrics": {
+          "perf/update_weights_implementation_time": 8.25685715675354,
+          "perf/finalize_and_resume_engines_time": 8.258426904678345,
+          "perf/update_weights_time": 16.60264825820923,
+          "perf/data_preprocess_time": 0.011274337768554688,
+          "perf/train_wait_time": 20.74615740776062,
+          "perf/ref_log_probs_time": 0.6825375556945801,
+          "perf/log_probs_time": 0.6881124973297119,
+          "perf/actor_train_time": 24.184409379959106,
+          "perf/train_time": 26.001144409179688,
+          "perf/update_weights_density": 0.0035551166773564505,
+          "perf/update_weights_wire_bytes": 153124525,
+          "perf/log_probs_tflops": 31.615642356444436,
+          "perf/ref_log_probs_tflops": 31.87387775964509,
+          "perf/actor_train_tflops": 2.6986541132491513,
+          "perf/actor_train_tok_per_s": 633.1351640403753,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.001199401828110734,
+          "perf/step_time": 46.74730181694031,
+          "perf/wait_time_ratio": 0.4437936865105361
+        },
+        "initial": false,
+        "after_training_rollout": 5
+      }
+    ],
+    "rollout_service_metrics": [
+      {
+        "line": 3290,
+        "index": 0,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.5,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.02564102564102564,
+          "rollout/avg_cached_tokens_per_sample": 4.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 0.0,
+          "rollout/weight_version/median": 0.0,
+          "rollout/weight_version/max": 0,
+          "rollout/weight_version/min": 0,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 9.552196264266968,
+          "perf/tokens_per_gpu_per_sec": 167.5007459787347,
+          "perf/longest_sample_tokens_per_sec": 10.468796623670919,
+          "perf/effective_tokens_per_gpu_per_sec": 167.5007459787347,
+          "perf/longest_effective_sample_tokens_per_sec": 10.468796623670919
+        }
+      },
+      {
+        "line": 4158,
+        "index": 1,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.5,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.013278008298755186,
+          "rollout/avg_cached_tokens_per_sample": 2.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 1.0,
+          "rollout/weight_version/median": 1.0,
+          "rollout/weight_version/max": 1,
+          "rollout/weight_version/min": 1,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.6503505706787109,
+          "perf/tokens_per_gpu_per_sec": 2460.2115722451467,
+          "perf/longest_sample_tokens_per_sec": 153.76322326532167,
+          "perf/effective_tokens_per_gpu_per_sec": 2460.2115722451467,
+          "perf/longest_effective_sample_tokens_per_sec": 153.76322326532167
+        }
+      },
+      {
+        "line": 4778,
+        "index": 2,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.5,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.06446886446886448,
+          "rollout/avg_cached_tokens_per_sample": 11.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 2.0,
+          "rollout/weight_version/median": 2.0,
+          "rollout/weight_version/max": 2,
+          "rollout/weight_version/min": 2,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.7159600257873535,
+          "perf/tokens_per_gpu_per_sec": 2234.7616380404097,
+          "perf/longest_sample_tokens_per_sec": 139.6726023775256,
+          "perf/effective_tokens_per_gpu_per_sec": 2234.7616380404097,
+          "perf/longest_effective_sample_tokens_per_sec": 139.6726023775256
+        }
+      },
+      {
+        "line": 5389,
+        "index": 3,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.5,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.026468155500413565,
+          "rollout/avg_cached_tokens_per_sample": 4.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 3.0,
+          "rollout/weight_version/median": 3.0,
+          "rollout/weight_version/max": 3,
+          "rollout/weight_version/min": 3,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.7268812656402588,
+          "perf/tokens_per_gpu_per_sec": 2201.1848091733004,
+          "perf/longest_sample_tokens_per_sec": 137.57405057333128,
+          "perf/effective_tokens_per_gpu_per_sec": 2201.1848091733004,
+          "perf/longest_effective_sample_tokens_per_sec": 137.57405057333128
+        }
+      },
+      {
+        "line": 5995,
+        "index": 4,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.5,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.005856515373352855,
+          "rollout/avg_cached_tokens_per_sample": 1.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 4.0,
+          "rollout/weight_version/median": 4.0,
+          "rollout/weight_version/max": 4,
+          "rollout/weight_version/min": 4,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.6494591236114502,
+          "perf/tokens_per_gpu_per_sec": 2463.5884566573995,
+          "perf/longest_sample_tokens_per_sec": 153.97427854108747,
+          "perf/effective_tokens_per_gpu_per_sec": 2463.5884566573995,
+          "perf/longest_effective_sample_tokens_per_sec": 153.97427854108747
+        }
+      },
+      {
+        "line": 6600,
+        "index": 5,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.5,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.04865334491746308,
+          "rollout/avg_cached_tokens_per_sample": 7.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 5.0,
+          "rollout/weight_version/median": 5.0,
+          "rollout/weight_version/max": 5,
+          "rollout/weight_version/min": 5,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.6313614845275879,
+          "perf/tokens_per_gpu_per_sec": 2534.2059013897397,
+          "perf/longest_sample_tokens_per_sec": 158.38786883685873,
+          "perf/effective_tokens_per_gpu_per_sec": 2534.2059013897397,
+          "perf/longest_effective_sample_tokens_per_sec": 158.38786883685873
+        }
+      },
+      {
+        "line": 7183,
+        "index": 6,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.5,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.01436265709156194,
+          "rollout/avg_cached_tokens_per_sample": 2.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 6.0,
+          "rollout/weight_version/median": 6.0,
+          "rollout/weight_version/max": 6,
+          "rollout/weight_version/min": 6,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.6500289440155029,
+          "perf/tokens_per_gpu_per_sec": 2461.4288559462066,
+          "perf/longest_sample_tokens_per_sec": 153.8393034966379,
+          "perf/effective_tokens_per_gpu_per_sec": 2461.4288559462066,
+          "perf/longest_effective_sample_tokens_per_sec": 153.8393034966379
+        }
+      }
+    ],
+    "ray_terminal": [
+      {
+        "line": 7480,
+        "job_id": "miles-9f6710bd54ea4ea0b3419a59c943f7bb",
+        "status": "succeeded"
+      }
+    ],
+    "metric_parse_errors": [],
+    "fatal_signature_lines": [
+      {
+        "line": 2639,
+        "text": "(CommandActor pid=107437) Traceback (most recent call last):"
+      },
+      {
+        "line": 2651,
+        "text": "(CommandActor pid=107437) Traceback (most recent call last):"
+      },
+      {
+        "line": 2674,
+        "text": "(CommandActor pid=107437) Traceback (most recent call last):"
+      },
+      {
+        "line": 2688,
+        "text": "(CommandActor pid=107437) Traceback (most recent call last):"
+      },
+      {
+        "line": 2711,
+        "text": "(CommandActor pid=107436) Traceback (most recent call last):"
+      },
+      {
+        "line": 2723,
+        "text": "(CommandActor pid=107436) Traceback (most recent call last):"
+      },
+      {
+        "line": 2746,
+        "text": "(CommandActor pid=107436) Traceback (most recent call last):"
+      },
+      {
+        "line": 2760,
+        "text": "(CommandActor pid=107436) Traceback (most recent call last):"
+      }
+    ],
+    "duplicate_step_metric_lines": [
+      3822,
+      4440,
+      5048,
+      5654,
+      6255,
+      6846,
+      7430
+    ],
+    "conflicting_step_metric_lines": [],
+    "replay": [
+      {
+        "rollout": 0,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3569,
+          3604,
+          3655,
+          3670,
+          3685,
+          3686,
+          3698,
+          3702,
+          3711,
+          3718,
+          3733,
+          3734,
+          3746,
+          3750,
+          3762,
+          3766,
+          3778,
+          3782
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3421,
+          3424,
+          3425,
+          3426,
+          3436,
+          3437,
+          3444,
+          3445,
+          3446,
+          3458,
+          3459,
+          3460,
+          3471,
+          3472,
+          3479,
+          3480,
+          3481,
+          3491,
+          3520,
+          3521,
+          3642,
+          3652,
+          3674,
+          3675,
+          3690,
+          3691,
+          3706,
+          3710,
+          3722,
+          3723,
+          3738,
+          3739,
+          3754,
+          3755,
+          3770,
+          3771
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3572,
+          3605,
+          3659,
+          3671,
+          3682,
+          3687,
+          3699,
+          3703,
+          3713,
+          3719,
+          3726,
+          3735,
+          3747,
+          3751,
+          3763,
+          3767,
+          3779,
+          3783
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3422,
+          3427,
+          3428,
+          3429,
+          3438,
+          3439,
+          3447,
+          3448,
+          3449,
+          3462,
+          3463,
+          3464,
+          3473,
+          3474,
+          3482,
+          3483,
+          3484,
+          3498,
+          3522,
+          3523,
+          3645,
+          3656,
+          3676,
+          3677,
+          3692,
+          3693,
+          3707,
+          3712,
+          3724,
+          3725,
+          3740,
+          3741,
+          3756,
+          3757,
+          3772,
+          3773
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3575,
+          3606,
+          3663,
+          3672,
+          3683,
+          3688,
+          3700,
+          3704,
+          3715,
+          3720,
+          3729,
+          3736,
+          3748,
+          3752,
+          3764,
+          3768,
+          3780,
+          3784
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3423,
+          3430,
+          3431,
+          3432,
+          3440,
+          3441,
+          3450,
+          3451,
+          3452,
+          3465,
+          3466,
+          3467,
+          3475,
+          3476,
+          3485,
+          3486,
+          3487,
+          3500,
+          3524,
+          3525,
+          3648,
+          3660,
+          3678,
+          3679,
+          3694,
+          3695,
+          3708,
+          3714,
+          3727,
+          3728,
+          3742,
+          3743,
+          3758,
+          3759,
+          3774,
+          3775
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3576,
+          3607,
+          3667,
+          3673,
+          3684,
+          3689,
+          3701,
+          3705,
+          3717,
+          3721,
+          3732,
+          3737,
+          3749,
+          3753,
+          3765,
+          3769,
+          3781,
+          3785
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3420,
+          3433,
+          3434,
+          3435,
+          3442,
+          3443,
+          3453,
+          3454,
+          3455,
+          3468,
+          3469,
+          3470,
+          3477,
+          3478,
+          3488,
+          3489,
+          3490,
+          3502,
+          3526,
+          3527,
+          3651,
+          3664,
+          3680,
+          3681,
+          3696,
+          3697,
+          3709,
+          3716,
+          3730,
+          3731,
+          3744,
+          3745,
+          3760,
+          3761,
+          3776,
+          3777
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4276,
+          4280,
+          4286,
+          4296,
+          4302,
+          4312,
+          4324,
+          4330,
+          4343,
+          4347,
+          4356,
+          4366,
+          4372,
+          4382,
+          4394,
+          4398,
+          4404,
+          4414
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4187,
+          4188,
+          4189,
+          4199,
+          4203,
+          4204,
+          4211,
+          4212,
+          4213,
+          4223,
+          4224,
+          4225,
+          4235,
+          4236,
+          4243,
+          4244,
+          4245,
+          4255,
+          4262,
+          4273,
+          4284,
+          4285,
+          4300,
+          4301,
+          4316,
+          4317,
+          4335,
+          4336,
+          4354,
+          4355,
+          4370,
+          4371,
+          4386,
+          4387,
+          4402,
+          4403
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4277,
+          4281,
+          4289,
+          4297,
+          4305,
+          4313,
+          4325,
+          4332,
+          4344,
+          4348,
+          4359,
+          4367,
+          4375,
+          4383,
+          4395,
+          4399,
+          4407,
+          4415
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4190,
+          4191,
+          4192,
+          4200,
+          4205,
+          4206,
+          4214,
+          4215,
+          4216,
+          4226,
+          4227,
+          4228,
+          4237,
+          4238,
+          4246,
+          4247,
+          4248,
+          4263,
+          4265,
+          4274,
+          4287,
+          4288,
+          4303,
+          4304,
+          4318,
+          4319,
+          4337,
+          4338,
+          4357,
+          4358,
+          4373,
+          4374,
+          4388,
+          4389,
+          4405,
+          4406
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4278,
+          4282,
+          4292,
+          4298,
+          4308,
+          4314,
+          4326,
+          4333,
+          4345,
+          4349,
+          4362,
+          4368,
+          4378,
+          4384,
+          4396,
+          4400,
+          4410,
+          4416
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4193,
+          4194,
+          4195,
+          4201,
+          4207,
+          4208,
+          4217,
+          4218,
+          4219,
+          4229,
+          4230,
+          4231,
+          4239,
+          4240,
+          4249,
+          4250,
+          4251,
+          4266,
+          4268,
+          4275,
+          4290,
+          4291,
+          4306,
+          4307,
+          4320,
+          4321,
+          4339,
+          4340,
+          4360,
+          4361,
+          4376,
+          4377,
+          4390,
+          4391,
+          4408,
+          4409
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4279,
+          4283,
+          4295,
+          4299,
+          4311,
+          4315,
+          4327,
+          4334,
+          4346,
+          4350,
+          4365,
+          4369,
+          4381,
+          4385,
+          4397,
+          4401,
+          4413,
+          4417
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4196,
+          4197,
+          4198,
+          4202,
+          4209,
+          4210,
+          4220,
+          4221,
+          4222,
+          4232,
+          4233,
+          4234,
+          4241,
+          4242,
+          4252,
+          4253,
+          4254,
+          4269,
+          4271,
+          4272,
+          4293,
+          4294,
+          4309,
+          4310,
+          4322,
+          4323,
+          4341,
+          4342,
+          4363,
+          4364,
+          4379,
+          4380,
+          4392,
+          4393,
+          4411,
+          4412
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4886,
+          4890,
+          4902,
+          4906,
+          4918,
+          4922,
+          4933,
+          4940,
+          4946,
+          4956,
+          4965,
+          4975,
+          4987,
+          4994,
+          5000,
+          5010,
+          5022,
+          5026
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4794,
+          4795,
+          4805,
+          4806,
+          4813,
+          4814,
+          4815,
+          4825,
+          4826,
+          4827,
+          4837,
+          4838,
+          4845,
+          4846,
+          4847,
+          4857,
+          4858,
+          4859,
+          4876,
+          4877,
+          4894,
+          4895,
+          4910,
+          4914,
+          4926,
+          4932,
+          4944,
+          4945,
+          4963,
+          4964,
+          4982,
+          4986,
+          4998,
+          4999,
+          5014,
+          5015
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4887,
+          4891,
+          4903,
+          4907,
+          4919,
+          4923,
+          4935,
+          4941,
+          4949,
+          4957,
+          4968,
+          4976,
+          4989,
+          4995,
+          5003,
+          5011,
+          5023,
+          5027
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4797,
+          4798,
+          4807,
+          4808,
+          4816,
+          4817,
+          4818,
+          4828,
+          4829,
+          4830,
+          4839,
+          4840,
+          4848,
+          4849,
+          4850,
+          4860,
+          4861,
+          4862,
+          4879,
+          4880,
+          4896,
+          4897,
+          4911,
+          4915,
+          4927,
+          4934,
+          4947,
+          4948,
+          4966,
+          4967,
+          4983,
+          4988,
+          5001,
+          5002,
+          5016,
+          5017
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4888,
+          4892,
+          4904,
+          4908,
+          4920,
+          4924,
+          4937,
+          4942,
+          4952,
+          4958,
+          4971,
+          4977,
+          4991,
+          4996,
+          5006,
+          5012,
+          5024,
+          5028
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4800,
+          4801,
+          4809,
+          4810,
+          4819,
+          4820,
+          4821,
+          4831,
+          4832,
+          4833,
+          4841,
+          4842,
+          4851,
+          4852,
+          4853,
+          4863,
+          4864,
+          4865,
+          4882,
+          4883,
+          4898,
+          4899,
+          4912,
+          4916,
+          4928,
+          4936,
+          4950,
+          4951,
+          4969,
+          4970,
+          4984,
+          4990,
+          5004,
+          5005,
+          5018,
+          5019
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4889,
+          4893,
+          4905,
+          4909,
+          4921,
+          4925,
+          4939,
+          4943,
+          4955,
+          4959,
+          4974,
+          4978,
+          4993,
+          4997,
+          5009,
+          5013,
+          5025,
+          5029
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4803,
+          4804,
+          4811,
+          4812,
+          4822,
+          4823,
+          4824,
+          4834,
+          4835,
+          4836,
+          4843,
+          4844,
+          4854,
+          4855,
+          4856,
+          4866,
+          4867,
+          4868,
+          4884,
+          4885,
+          4900,
+          4901,
+          4913,
+          4917,
+          4929,
+          4938,
+          4953,
+          4954,
+          4972,
+          4973,
+          4985,
+          4992,
+          5007,
+          5008,
+          5020,
+          5021
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5489,
+          5499,
+          5511,
+          5515,
+          5527,
+          5531,
+          5545,
+          5549,
+          5561,
+          5565,
+          5577,
+          5581,
+          5593,
+          5597,
+          5606,
+          5613,
+          5619,
+          5629
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5406,
+          5407,
+          5408,
+          5418,
+          5419,
+          5429,
+          5430,
+          5431,
+          5438,
+          5439,
+          5446,
+          5450,
+          5451,
+          5452,
+          5462,
+          5463,
+          5470,
+          5471,
+          5487,
+          5488,
+          5503,
+          5504,
+          5519,
+          5520,
+          5537,
+          5538,
+          5553,
+          5554,
+          5569,
+          5570,
+          5585,
+          5586,
+          5601,
+          5605,
+          5617,
+          5618
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5492,
+          5500,
+          5512,
+          5516,
+          5528,
+          5532,
+          5546,
+          5550,
+          5562,
+          5566,
+          5578,
+          5582,
+          5594,
+          5598,
+          5608,
+          5614,
+          5622,
+          5630
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5409,
+          5410,
+          5411,
+          5420,
+          5421,
+          5422,
+          5432,
+          5433,
+          5440,
+          5441,
+          5447,
+          5453,
+          5454,
+          5455,
+          5464,
+          5465,
+          5475,
+          5476,
+          5490,
+          5491,
+          5505,
+          5506,
+          5521,
+          5522,
+          5539,
+          5540,
+          5555,
+          5556,
+          5571,
+          5572,
+          5587,
+          5588,
+          5602,
+          5607,
+          5620,
+          5621
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5495,
+          5501,
+          5513,
+          5517,
+          5529,
+          5533,
+          5547,
+          5551,
+          5563,
+          5567,
+          5579,
+          5583,
+          5595,
+          5599,
+          5610,
+          5615,
+          5625,
+          5631
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5412,
+          5413,
+          5414,
+          5423,
+          5424,
+          5425,
+          5434,
+          5435,
+          5442,
+          5443,
+          5448,
+          5456,
+          5457,
+          5458,
+          5466,
+          5467,
+          5478,
+          5479,
+          5493,
+          5494,
+          5507,
+          5508,
+          5523,
+          5524,
+          5541,
+          5542,
+          5557,
+          5558,
+          5573,
+          5574,
+          5589,
+          5590,
+          5603,
+          5609,
+          5623,
+          5624
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5498,
+          5502,
+          5514,
+          5518,
+          5530,
+          5534,
+          5548,
+          5552,
+          5564,
+          5568,
+          5580,
+          5584,
+          5596,
+          5600,
+          5612,
+          5616,
+          5628,
+          5632
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5415,
+          5416,
+          5417,
+          5426,
+          5427,
+          5428,
+          5436,
+          5437,
+          5444,
+          5445,
+          5449,
+          5459,
+          5460,
+          5461,
+          5468,
+          5469,
+          5481,
+          5482,
+          5496,
+          5497,
+          5509,
+          5510,
+          5525,
+          5526,
+          5543,
+          5544,
+          5559,
+          5560,
+          5575,
+          5576,
+          5591,
+          5592,
+          5604,
+          5611,
+          5626,
+          5627
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6097,
+          6107,
+          6116,
+          6123,
+          6137,
+          6139,
+          6154,
+          6158,
+          6173,
+          6177,
+          6183,
+          6193,
+          6205,
+          6209,
+          6215,
+          6225,
+          6231,
+          6243
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6011,
+          6012,
+          6022,
+          6023,
+          6031,
+          6034,
+          6035,
+          6036,
+          6046,
+          6047,
+          6054,
+          6058,
+          6059,
+          6060,
+          6070,
+          6071,
+          6078,
+          6079,
+          6095,
+          6096,
+          6111,
+          6115,
+          6127,
+          6128,
+          6146,
+          6150,
+          6165,
+          6166,
+          6181,
+          6182,
+          6197,
+          6201,
+          6213,
+          6214,
+          6229,
+          6230
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6100,
+          6108,
+          6118,
+          6124,
+          6138,
+          6140,
+          6155,
+          6159,
+          6174,
+          6178,
+          6186,
+          6194,
+          6206,
+          6210,
+          6218,
+          6226,
+          6234,
+          6245
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6014,
+          6015,
+          6024,
+          6025,
+          6032,
+          6037,
+          6038,
+          6039,
+          6048,
+          6049,
+          6055,
+          6061,
+          6062,
+          6063,
+          6072,
+          6073,
+          6086,
+          6087,
+          6098,
+          6099,
+          6112,
+          6117,
+          6129,
+          6130,
+          6147,
+          6151,
+          6167,
+          6168,
+          6184,
+          6185,
+          6198,
+          6202,
+          6216,
+          6217,
+          6232,
+          6233
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6103,
+          6109,
+          6120,
+          6125,
+          6133,
+          6141,
+          6156,
+          6160,
+          6175,
+          6179,
+          6189,
+          6195,
+          6207,
+          6211,
+          6221,
+          6227,
+          6237,
+          6246
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6017,
+          6018,
+          6026,
+          6027,
+          6033,
+          6040,
+          6041,
+          6042,
+          6050,
+          6051,
+          6056,
+          6064,
+          6065,
+          6066,
+          6074,
+          6075,
+          6089,
+          6090,
+          6101,
+          6102,
+          6113,
+          6119,
+          6131,
+          6132,
+          6148,
+          6152,
+          6169,
+          6170,
+          6187,
+          6188,
+          6199,
+          6203,
+          6219,
+          6220,
+          6235,
+          6236
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6106,
+          6110,
+          6122,
+          6126,
+          6136,
+          6142,
+          6157,
+          6161,
+          6176,
+          6180,
+          6192,
+          6196,
+          6208,
+          6212,
+          6224,
+          6228,
+          6240,
+          6247
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6020,
+          6021,
+          6028,
+          6029,
+          6030,
+          6043,
+          6044,
+          6045,
+          6052,
+          6053,
+          6057,
+          6067,
+          6068,
+          6069,
+          6076,
+          6077,
+          6092,
+          6093,
+          6104,
+          6105,
+          6114,
+          6121,
+          6134,
+          6135,
+          6149,
+          6153,
+          6171,
+          6172,
+          6190,
+          6191,
+          6200,
+          6204,
+          6222,
+          6223,
+          6238,
+          6239
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6697,
+          6704,
+          6716,
+          6720,
+          6726,
+          6736,
+          6745,
+          6752,
+          6764,
+          6768,
+          6780,
+          6784,
+          6790,
+          6800,
+          6811,
+          6818
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6614,
+          6621,
+          6622,
+          6623,
+          6633,
+          6634,
+          6641,
+          6642,
+          6643,
+          6653,
+          6657,
+          6658,
+          6665,
+          6666,
+          6673,
+          6677,
+          6684,
+          6696,
+          6708,
+          6709,
+          6724,
+          6725,
+          6740,
+          6744,
+          6756,
+          6757,
+          6772,
+          6773,
+          6788,
+          6789,
+          6806,
+          6810
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6699,
+          6705,
+          6717,
+          6721,
+          6729,
+          6737,
+          6747,
+          6753,
+          6765,
+          6769,
+          6781,
+          6785,
+          6793,
+          6801,
+          6813,
+          6819
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6616,
+          6624,
+          6625,
+          6626,
+          6635,
+          6636,
+          6644,
+          6645,
+          6646,
+          6654,
+          6659,
+          6660,
+          6667,
+          6668,
+          6674,
+          6685,
+          6687,
+          6698,
+          6710,
+          6711,
+          6727,
+          6728,
+          6741,
+          6746,
+          6758,
+          6759,
+          6774,
+          6775,
+          6791,
+          6792,
+          6807,
+          6812
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6701,
+          6706,
+          6718,
+          6722,
+          6732,
+          6738,
+          6749,
+          6754,
+          6766,
+          6770,
+          6782,
+          6786,
+          6796,
+          6802,
+          6815,
+          6820
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6618,
+          6627,
+          6628,
+          6629,
+          6637,
+          6638,
+          6647,
+          6648,
+          6649,
+          6655,
+          6661,
+          6662,
+          6669,
+          6670,
+          6675,
+          6688,
+          6690,
+          6700,
+          6712,
+          6713,
+          6730,
+          6731,
+          6742,
+          6748,
+          6760,
+          6761,
+          6776,
+          6777,
+          6794,
+          6795,
+          6808,
+          6814
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6703,
+          6707,
+          6719,
+          6723,
+          6735,
+          6739,
+          6751,
+          6755,
+          6767,
+          6771,
+          6783,
+          6787,
+          6799,
+          6803,
+          6817,
+          6821
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6620,
+          6630,
+          6631,
+          6632,
+          6639,
+          6640,
+          6650,
+          6651,
+          6652,
+          6656,
+          6663,
+          6664,
+          6671,
+          6672,
+          6676,
+          6691,
+          6693,
+          6702,
+          6714,
+          6715,
+          6733,
+          6734,
+          6743,
+          6750,
+          6762,
+          6763,
+          6778,
+          6779,
+          6797,
+          6798,
+          6809,
+          6816
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7284,
+          7291,
+          7303,
+          7307,
+          7313,
+          7323,
+          7335,
+          7339,
+          7355,
+          7360,
+          7366,
+          7378,
+          7391,
+          7395,
+          7401,
+          7411
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7200,
+          7207,
+          7208,
+          7209,
+          7219,
+          7220,
+          7227,
+          7228,
+          7229,
+          7239,
+          7240,
+          7241,
+          7254,
+          7255,
+          7265,
+          7266,
+          7273,
+          7283,
+          7295,
+          7296,
+          7311,
+          7312,
+          7327,
+          7331,
+          7343,
+          7344,
+          7364,
+          7365,
+          7383,
+          7390,
+          7399,
+          7400
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7286,
+          7292,
+          7304,
+          7308,
+          7316,
+          7324,
+          7336,
+          7340,
+          7357,
+          7361,
+          7369,
+          7380,
+          7392,
+          7396,
+          7404,
+          7412
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7202,
+          7210,
+          7211,
+          7212,
+          7221,
+          7222,
+          7230,
+          7231,
+          7232,
+          7242,
+          7243,
+          7244,
+          7256,
+          7257,
+          7258,
+          7274,
+          7276,
+          7285,
+          7297,
+          7298,
+          7314,
+          7315,
+          7328,
+          7332,
+          7345,
+          7346,
+          7367,
+          7368,
+          7384,
+          7385,
+          7402,
+          7403
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7288,
+          7293,
+          7305,
+          7309,
+          7319,
+          7325,
+          7337,
+          7341,
+          7358,
+          7362,
+          7372,
+          7381,
+          7393,
+          7397,
+          7407,
+          7413
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7204,
+          7213,
+          7214,
+          7215,
+          7223,
+          7224,
+          7233,
+          7234,
+          7235,
+          7245,
+          7246,
+          7247,
+          7259,
+          7260,
+          7261,
+          7277,
+          7279,
+          7287,
+          7299,
+          7300,
+          7317,
+          7318,
+          7329,
+          7333,
+          7347,
+          7348,
+          7370,
+          7371,
+          7386,
+          7387,
+          7405,
+          7406
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7290,
+          7294,
+          7306,
+          7310,
+          7322,
+          7326,
+          7338,
+          7342,
+          7359,
+          7363,
+          7375,
+          7382,
+          7394,
+          7398,
+          7410,
+          7414
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7206,
+          7216,
+          7217,
+          7218,
+          7225,
+          7226,
+          7236,
+          7237,
+          7238,
+          7248,
+          7249,
+          7250,
+          7262,
+          7263,
+          7264,
+          7280,
+          7282,
+          7289,
+          7301,
+          7302,
+          7320,
+          7321,
+          7330,
+          7334,
+          7349,
+          7350,
+          7373,
+          7374,
+          7388,
+          7389,
+          7408,
+          7409
+        ],
+        "logged_rounded_threshold": 10.0
+      }
+    ]
+  },
+  "boundaries": [
+    "Replay totals count repeated per-layer/stage/rank checks, not unique generated tokens; rollout grouping follows driver train-start log order.",
+    "Logged reward/advantage values are means: zero mean is not proof that every element is zero. Debug dumps report mean absolute value and nonzero counts.",
+    "Native perf 0 is initial sync, perf 1..6 are six post-training syncs, perf 2..6 are five steady samples for seven-rollout runs.",
+    "Exact changed-weight bytes come from timing JSONL delta_bytes events, not gradient norm or printed rounded density.",
+    "Successful RPCs, versions and training completion do not establish active GPU weight byte equality or learned-task quality."
+  ]
+}

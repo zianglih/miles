@@ -1,0 +1,45 @@
+test_backup_directory_requires_owned_data_subtree (test_compile_campaign_metadata.MetadataTests.test_backup_directory_requires_owned_data_subtree) ... ok
+test_legacy_defaults_and_explicit_override (test_compile_campaign_metadata.MetadataTests.test_legacy_defaults_and_explicit_override) ... ok
+test_malformed_and_escaping_metadata_rejected (test_compile_campaign_metadata.MetadataTests.test_malformed_and_escaping_metadata_rejected) ... ok
+test_pinned_selection_bytes_and_override (test_compile_campaign_metadata.MetadataTests.test_pinned_selection_bytes_and_override) ... ok
+test_backup_errors_stop_and_absence_preserves_legacy_behavior (test_run_compile_campaign.CampaignRunnerTests.test_backup_errors_stop_and_absence_preserves_legacy_behavior) ... {"event": "durable_backup", "run": "fixture", "complete_arm": true, "time": 1790390928.912042, "errors": ["incomplete"]}
+ok
+test_completed_arm_is_summarized_before_backup (test_run_compile_campaign.CampaignRunnerTests.test_completed_arm_is_summarized_before_backup) ... {"event": "durable_backup", "run": "fixture", "complete_arm": true, "time": 1790390928.913147, "errors": [], "archive": "fixture.tar", "sha256": "fixture", "files": 3, "delta_shards": 6}
+ok
+test_failed_arm_archives_partial_without_summarizers (test_run_compile_campaign.CampaignRunnerTests.test_failed_arm_archives_partial_without_summarizers) ... {"event": "durable_backup", "run": "fixture", "complete_arm": false, "time": 1790390928.913663, "errors": []}
+ok
+test_summary_failure_archives_partial_and_stops (test_run_compile_campaign.CampaignRunnerTests.test_summary_failure_archives_partial_and_stops) ... {"event": "durable_backup", "run": "fixture", "complete_arm": false, "time": 1790390928.9142542, "errors": []}
+ok
+test_compatibility_requires_selected_test_bytes_and_raw_log_hash (test_compile_evidence_attribution.AttributionTests.test_compatibility_requires_selected_test_bytes_and_raw_log_hash) ... ok
+test_current_ci_requires_current_head_and_complete_job_snapshot (test_compile_evidence_attribution.AttributionTests.test_current_ci_requires_current_head_and_complete_job_snapshot) ... ok
+test_descendant_requires_only_test_change_and_production_identity (test_compile_evidence_attribution.AttributionTests.test_descendant_requires_only_test_change_and_production_identity) ... ok
+test_new_preflight_must_match_new_heads_and_complete_logs (test_compile_evidence_attribution.AttributionTests.test_new_preflight_must_match_new_heads_and_complete_logs) ... ok
+test_retained_cpu_attribution_is_not_relabelled (test_compile_evidence_attribution.AttributionTests.test_retained_cpu_attribution_is_not_relabelled) ... ok
+test_original_admission_preserved_and_matching_pair (test_build_compiled_validation_report.FullAdapter.test_original_admission_preserved_and_matching_pair)
+Reuse immutable wall/CPU records only as a labeled temporary fixture. ... ok
+test_frozen_helper_and_run_contract (test_build_compiled_validation_report.PlanAndCounters.test_frozen_helper_and_run_contract) ... ok
+test_initial_and_first_post_compile_retained_steady_clean (test_build_compiled_validation_report.PlanAndCounters.test_initial_and_first_post_compile_retained_steady_clean) ... ok
+test_missing_misattributed_stale_and_steady_compile_rejected (test_build_compiled_validation_report.PlanAndCounters.test_missing_misattributed_stale_and_steady_compile_rejected) ... ok
+test_shard_mapping_checksums_sizes_and_lineage (test_build_compiled_validation_report.Publication.test_shard_mapping_checksums_sizes_and_lineage) ... ok
+test_complete_bundle_preserves_bytes_and_audit_is_read_only (test_publish_compile_evidence.BundleTests.test_complete_bundle_preserves_bytes_and_audit_is_read_only) ... ok
+test_missing_raw_file_rejects_before_any_stage (test_publish_compile_evidence.BundleTests.test_missing_raw_file_rejects_before_any_stage) ... ok
+test_only_exact_public_test_url_fixture_is_allowed (test_publish_compile_evidence.BundleTests.test_only_exact_public_test_url_fixture_is_allowed) ... ok
+test_real_historical_replay_and_failed_sample (test_publish_compile_evidence.BundleTests.test_real_historical_replay_and_failed_sample) ... ok
+test_stage_is_dedicated_idempotent_and_refuses_overwrite (test_publish_compile_evidence.BundleTests.test_stage_is_dedicated_idempotent_and_refuses_overwrite) ... ok
+test_text_boundary_and_non_disclosing_secret_scan (test_publish_compile_evidence.BundleTests.test_text_boundary_and_non_disclosing_secret_scan) ... ok
+test_all_fourteen_rows_and_steady_compiler_gate (test_finalize_compile_pr_body.FinalBodyTests.test_all_fourteen_rows_and_steady_compiler_gate) ... ok
+test_embedded_selected_preflight_logs_require_published_bytes (test_finalize_compile_pr_body.FinalBodyTests.test_embedded_selected_preflight_logs_require_published_bytes) ... ok
+test_hosted_ci_failure_remains_explicit (test_finalize_compile_pr_body.FinalBodyTests.test_hosted_ci_failure_remains_explicit) ... ok
+test_only_exact_fork_commit_url (test_finalize_compile_pr_body.FinalBodyTests.test_only_exact_fork_commit_url) ... ok
+test_published_bytes_and_cr_preservation (test_finalize_compile_pr_body.FinalBodyTests.test_published_bytes_and_cr_preservation) ... ok
+test_actual_pr_mismatch_does_not_create_destination (test_capture_compile_pr_ci.CaptureOptionsTest.test_actual_pr_mismatch_does_not_create_destination) ... ok
+test_defaults_preserved (test_capture_compile_pr_ci.CaptureOptionsTest.test_defaults_preserved) ... ok
+test_existing_records_must_all_match (test_capture_compile_pr_ci.CaptureOptionsTest.test_existing_records_must_all_match) ... ok
+test_head_validation_and_old_destination_protected (test_capture_compile_pr_ci.CaptureOptionsTest.test_head_validation_and_old_destination_protected) ... ok
+test_new_head_snapshot_and_repeated_capture_preserve_raw (test_capture_compile_pr_ci.CaptureOptionsTest.test_new_head_snapshot_and_repeated_capture_preserve_raw) ... ok
+test_unknown_nonempty_directory_refused (test_capture_compile_pr_ci.CaptureOptionsTest.test_unknown_nonempty_directory_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 35 tests in 1.998s
+
+OK

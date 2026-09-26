@@ -1,0 +1,70 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0
+rootdir: /hai-workspace/glm52-delta/miles-torch-compile-final
+configfile: pyproject.toml
+plugins: anyio-4.15.1, hypothesis-6.168.1, asyncio-1.4.0, jaxtyping-0.3.11, typeguard-2.13.3, ai-dynamo-1.5.0.dev20260917
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 45 items
+
+tests/fast/utils/test_delta_preparation.py ..................            [ 40%]
+tests/fast/backends/training_utils/weight_update/test_delta_compiled_cpu.py . [ 42%]
+...........                                                              [ 66%]
+tests/fast/backends/training_utils/weight_update/test_delta.py ...       [ 73%]
+tests/fast/backends/training_utils/weight_update/test_disk_delta_weight_version.py . [ 75%]
+.....                                                                    [ 86%]
+tests/fast/backends/training_utils/weight_update/test_disk_delta_engine_calls.py . [ 88%]
+.....                                                                    [100%]
+
+=============================== warnings summary ===============================
+../../../opt/sglang/lib/python3.12/site-packages/torch/jit/_script.py:1488
+../../../opt/sglang/lib/python3.12/site-packages/torch/jit/_script.py:1488
+../../../opt/sglang/lib/python3.12/site-packages/torch/jit/_script.py:1488
+  /opt/sglang/lib/python3.12/site-packages/torch/jit/_script.py:1488: DeprecationWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+../../../opt/sglang/lib/python3.12/site-packages/transformer_engine/__init__.py:103
+  /opt/sglang/lib/python3.12/site-packages/transformer_engine/__init__.py:103: RuntimeWarning: Detected a Jax installation but could not find the shared object file for the Transformer Engine Jax extension library. If this is not intentional, please reinstall Transformer Engine with `pip install transformer_engine[jax]` or build from source with `NVTE_FRAMEWORK=jax`.
+    warnings.warn(
+
+../../../opt/sglang/lib/python3.12/site-packages/torch/jit/_script.py:365: 14 warnings
+  /opt/sglang/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+../../../root/Megatron-LM/megatron/core/tensor_parallel/random.py:83
+  /root/Megatron-LM/megatron/core/tensor_parallel/random.py:83: DeprecationWarning: Using deprecated internal API from Transformer Engine. transformer_engine.pytorch.fp8 will be removed in a future release.
+    from transformer_engine.pytorch.fp8 import FP8GlobalStateManager, fp8_autocast
+
+../../../root/Megatron-LM/megatron/core/extensions/transformer_engine.py:3514
+  /root/Megatron-LM/megatron/core/extensions/transformer_engine.py:3514: DeprecationWarning: transformer_engine.pytorch.float8_tensor is deprecated and will be removed in a future release. Float8Tensor should be imported directly through `from transformer_engine.pytorch import Float8Tensor`
+    from transformer_engine.pytorch.float8_tensor import Float8Tensor
+
+../../../root/Megatron-LM/megatron/core/inference/contexts/__init__.py:9
+  /root/Megatron-LM/megatron/core/inference/contexts/__init__.py:9: DeprecationWarning: The following imports from `dynamic_context.py` will be removed in this file in `megatron-core` 0.14. The imports here result in a cyclic import issue that causes rotary embeddings to import from Apex rather than Transformer Engine.
+    warnings.warn(
+
+../../../opt/sglang/lib/python3.12/site-packages/fla/utils/_device.py:100
+  /opt/sglang/lib/python3.12/site-packages/fla/utils/_device.py:100: UserWarning: Triton is not supported on current platform, roll back to CPU.
+    _cpu_device_warning()
+
+../../../sgl-workspace/sglang/python/sglang/srt/layers/quantization/awq/awq.py:53
+  /sgl-workspace/sglang/python/sglang/srt/layers/quantization/awq/awq.py:53: UserWarning: Only CUDA, HIP and XPU support AWQ currently.
+    warnings.warn(f"Only CUDA, HIP and XPU support AWQ currently.")
+
+../../../sgl-workspace/sglang/python/sglang/srt/layers/quantization/gguf.py:69
+  /sgl-workspace/sglang/python/sglang/srt/layers/quantization/gguf.py:69: UserWarning: Only CUDA, MUSA and NPU support GGUF quantization currently.
+    warnings.warn(f"Only CUDA, MUSA and NPU support GGUF quantization currently.")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+============================== slowest durations ===============================
+18.74s setup    tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[False]
+5.39s call     tests/fast/utils/test_delta_preparation.py::test_actor_inference_allocations_match_warmed_worker_dispatch[entries1-4]
+3.34s call     tests/fast/utils/test_delta_preparation.py::test_word_lanes_tails_aligned_offsets_and_no_change_ownership[128]
+2.89s call     tests/fast/utils/test_delta_preparation.py::test_default_block_counts_remain_exact_above_float32_integer_range
+0.01s call     tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[True]
+0.01s call     tests/fast/utils/test_delta_preparation.py::test_failed_preparation_and_native_handoff_leave_active_base_unchanged
+0.01s call     tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[False]
+0.01s call     tests/fast/utils/test_delta_preparation.py::test_one_compiled_stage_can_prepare_distinct_concurrent_buckets
+0.01s call     tests/fast/backends/training_utils/weight_update/test_delta_compiled_cpu.py::test_packed_update_promotes_all_views_and_reuses_no_change_snapshot
+
+(126 durations < 0.005s hidden.  Use -vv to show these durations.)
+======================= 45 passed, 24 warnings in 30.89s =======================

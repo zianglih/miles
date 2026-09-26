@@ -1,0 +1,78 @@
+{
+  "provenance_file": "artifacts/torch-compile-word-two-phase-32x1-replay.jsonl",
+  "provenance_sha256": "61c6dd06df9be03609b64c2c1bab3c3937e48a4e7f8e4f1041b64e516bb5feec",
+  "canonical_tensor_count": 6226,
+  "canonical_files": [
+    {
+      "file_bytes": 5342821448,
+      "header_sha256": "284921106c3189657b46896a1b8e120c43144a732e00cf06290cda2f194ad833",
+      "name": "model-00001-of-00282.safetensors"
+    },
+    {
+      "file_bytes": 67109016,
+      "header_sha256": "67ebc88d36962e195713cfb82c9862240d1a25a5a7be93af39dea78279a426f5",
+      "name": "model-00002-of-00282.safetensors"
+    },
+    {
+      "file_bytes": 801799648,
+      "header_sha256": "e8a8932d578897c1448ffe94696b4b17f210bc63cf6f9687adddf44374c42442",
+      "name": "model-00038-of-00282.safetensors"
+    },
+    {
+      "file_bytes": 261911672,
+      "header_sha256": "180ccf965b9abe63bea20c2d63bfd3eaa765c7af3d8581406c9f34902111c706",
+      "name": "model-00075-of-00282.safetensors"
+    },
+    {
+      "file_bytes": 1507691736,
+      "header_sha256": "4dabbead929ea6d1b7c82c59f31014421190c55b1eacb080a36021c227f8d3bc",
+      "name": "model-00076-of-00282.safetensors"
+    },
+    {
+      "file_bytes": 1507691728,
+      "header_sha256": "4159923790878e66328dc07ed30aa821aa23d9a94ba004a8e2f7ed7289222df5",
+      "name": "model-00077-of-00282.safetensors"
+    },
+    {
+      "file_bytes": 1507691136,
+      "header_sha256": "05881d8ccfcbb200e895a762daf1bdaad4a9a91116687a8664c7e101f67e9401",
+      "name": "model-00078-of-00282.safetensors"
+    },
+    {
+      "file_bytes": 1059911576,
+      "header_sha256": "6e6fa8a5708a761098a64b6fd67c605216d8b1ab9700832ef89ebdc251e2f6bc",
+      "name": "model-00079-of-00282.safetensors"
+    },
+    {
+      "file_bytes": 1012218168,
+      "header_sha256": "9df535e59056051ef8c2550784da62dfd316b11fb1dfb927debc147c40b14d32",
+      "name": "model-00116-of-00282.safetensors"
+    },
+    {
+      "file_bytes": 1507691728,
+      "header_sha256": "23d4e929b3e5475f9ad095d9afde4081b41b17f365153094f02481de513fe6bd",
+      "name": "model-00117-of-00282.safetensors"
+    },
+    {
+      "file_bytes": 1507691576,
+      "header_sha256": "81f180016e8671026358d32876c3ff6f4f1e2678fdb0a66b7d4c8628ad39323b",
+      "name": "model-00118-of-00282.safetensors"
+    },
+    {
+      "file_bytes": 1750187616,
+      "header_sha256": "968b55e0a0195a688a6ecf5ecea3f1078bff5e8a636633788f3c636a04864341",
+      "name": "model-00119-of-00282.safetensors"
+    },
+    {
+      "file_bytes": 67109016,
+      "header_sha256": "118a955a272e65fe536aef5b0ce5f49f32beaf7225543bdbd5a6b1ccf62bf9e2",
+      "name": "model-00120-of-00282.safetensors"
+    },
+    {
+      "file_bytes": 12408,
+      "header_sha256": "8bc205eceedd21830fa7ea7bdb9b65dd437ce3ab0212f14bf076a6267dbbb3f7",
+      "name": "model-00282-of-00282.safetensors"
+    }
+  ],
+  "limit": "Matches serialized header bytes and shard sizes, not an original full converted-weight checksum. Full newly prepared file hashes are recorded independently."
+}

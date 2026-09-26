@@ -1,0 +1,93 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.11.14, pytest-9.1.1, pluggy-1.6.0 -- /Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/miles-torch-compile/../.venv-delta-cpu-torch211/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/miles-torch-compile
+configfile: pyproject.toml
+collecting ... collected 18 items
+
+tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[False] PASSED
+tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[True] PASSED
+tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_reuses_no_change_snapshot_after_a_successful_update PASSED
+tests/fast/utils/test_delta_preparation.py::test_one_compiled_stage_can_prepare_distinct_concurrent_buckets PASSED
+tests/fast/utils/test_delta_preparation.py::test_compact_scalar_layout_does_not_pad_scalars_to_large_weight_rows PASSED
+tests/fast/utils/test_delta_preparation.py::test_reassigning_a_staging_lease_resets_only_padding PASSED
+tests/fast/utils/test_delta_preparation.py::test_counts_reject_gross_padding_corruption PASSED
+tests/fast/utils/test_delta_preparation.py::test_actor_inference_allocations_match_warmed_worker_dispatch[entries0-64] PASSED
+tests/fast/utils/test_delta_preparation.py::test_actor_inference_allocations_match_warmed_worker_dispatch[entries1-4] PASSED
+tests/fast/utils/test_delta_preparation.py::test_warmup_uses_actual_layout_with_caller_snapshot_and_shared_scratch PASSED
+tests/fast/utils/test_delta_preparation.py::test_default_block_counts_remain_exact_above_float32_integer_range PASSED
+tests/fast/utils/test_delta_preparation.py::test_empty_bucket_preserves_snapshot_without_materialization[entries0] PASSED
+tests/fast/utils/test_delta_preparation.py::test_empty_bucket_preserves_snapshot_without_materialization[entries1] PASSED
+tests/fast/utils/test_delta_preparation.py::test_failed_preparation_and_native_handoff_leave_active_base_unchanged PASSED
+tests/fast/utils/test_delta_preparation.py::test_layout_guards_exact_accounting_and_staging_contract PASSED
+tests/fast/utils/test_delta_preparation.py::test_word_layout_rejects_unaligned_storage_and_non_word_rows PASSED
+tests/fast/utils/test_delta_preparation.py::test_word_lanes_tails_aligned_offsets_and_no_change_ownership[128] PASSED
+tests/fast/utils/test_delta_preparation.py::test_word_lanes_tails_aligned_offsets_and_no_change_ownership[255] PASSED
+
+=============================== warnings summary ===============================
+../.venv-delta-cpu-torch211/lib/python3.11/site-packages/_pytest/config/__init__.py:1464
+  /Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: asyncio_mode
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+tests/fast/utils/test_delta_preparation.py: 14 warnings
+  /Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/.venv-delta-cpu-torch211/lib/python3.11/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+============================== slowest durations ===============================
+3.98s setup    tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[False]
+1.49s call     tests/fast/utils/test_delta_preparation.py::test_actor_inference_allocations_match_warmed_worker_dispatch[entries1-4]
+0.88s call     tests/fast/utils/test_delta_preparation.py::test_default_block_counts_remain_exact_above_float32_integer_range
+0.86s call     tests/fast/utils/test_delta_preparation.py::test_word_lanes_tails_aligned_offsets_and_no_change_ownership[128]
+0.01s call     tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[True]
+0.00s call     tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[False]
+0.00s call     tests/fast/utils/test_delta_preparation.py::test_one_compiled_stage_can_prepare_distinct_concurrent_buckets
+0.00s call     tests/fast/utils/test_delta_preparation.py::test_failed_preparation_and_native_handoff_leave_active_base_unchanged
+0.00s call     tests/fast/utils/test_delta_preparation.py::test_warmup_uses_actual_layout_with_caller_snapshot_and_shared_scratch
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_actor_inference_allocations_match_warmed_worker_dispatch[entries1-4]
+0.00s call     tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_reuses_no_change_snapshot_after_a_successful_update
+0.00s call     tests/fast/utils/test_delta_preparation.py::test_actor_inference_allocations_match_warmed_worker_dispatch[entries0-64]
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_word_lanes_tails_aligned_offsets_and_no_change_ownership[128]
+0.00s call     tests/fast/utils/test_delta_preparation.py::test_word_lanes_tails_aligned_offsets_and_no_change_ownership[255]
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[False]
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_default_block_counts_remain_exact_above_float32_integer_range
+0.00s call     tests/fast/utils/test_delta_preparation.py::test_empty_bucket_preserves_snapshot_without_materialization[entries0]
+0.00s call     tests/fast/utils/test_delta_preparation.py::test_layout_guards_exact_accounting_and_staging_contract
+0.00s call     tests/fast/utils/test_delta_preparation.py::test_compact_scalar_layout_does_not_pad_scalars_to_large_weight_rows
+0.00s call     tests/fast/utils/test_delta_preparation.py::test_counts_reject_gross_padding_corruption
+0.00s call     tests/fast/utils/test_delta_preparation.py::test_reassigning_a_staging_lease_resets_only_padding
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[True]
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_word_lanes_tails_aligned_offsets_and_no_change_ownership[255]
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_empty_bucket_preserves_snapshot_without_materialization[entries0]
+0.00s call     tests/fast/utils/test_delta_preparation.py::test_empty_bucket_preserves_snapshot_without_materialization[entries1]
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_actor_inference_allocations_match_warmed_worker_dispatch[entries0-64]
+0.00s call     tests/fast/utils/test_delta_preparation.py::test_word_layout_rejects_unaligned_storage_and_non_word_rows
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_actor_inference_allocations_match_warmed_worker_dispatch[entries1-4]
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_warmup_uses_actual_layout_with_caller_snapshot_and_shared_scratch
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_owns_outputs_and_preserves_per_name_wire[True]
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_word_lanes_tails_aligned_offsets_and_no_change_ownership[255]
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_warmup_uses_actual_layout_with_caller_snapshot_and_shared_scratch
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_empty_bucket_preserves_snapshot_without_materialization[entries1]
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_word_lanes_tails_aligned_offsets_and_no_change_ownership[128]
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_reuses_no_change_snapshot_after_a_successful_update
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_one_compiled_stage_can_prepare_distinct_concurrent_buckets
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_compiled_bucket_reuses_no_change_snapshot_after_a_successful_update
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_default_block_counts_remain_exact_above_float32_integer_range
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_actor_inference_allocations_match_warmed_worker_dispatch[entries0-64]
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_one_compiled_stage_can_prepare_distinct_concurrent_buckets
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_failed_preparation_and_native_handoff_leave_active_base_unchanged
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_failed_preparation_and_native_handoff_leave_active_base_unchanged
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_compact_scalar_layout_does_not_pad_scalars_to_large_weight_rows
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_empty_bucket_preserves_snapshot_without_materialization[entries0]
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_compact_scalar_layout_does_not_pad_scalars_to_large_weight_rows
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_empty_bucket_preserves_snapshot_without_materialization[entries1]
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_counts_reject_gross_padding_corruption
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_counts_reject_gross_padding_corruption
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_reassigning_a_staging_lease_resets_only_padding
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_layout_guards_exact_accounting_and_staging_contract
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_reassigning_a_staging_lease_resets_only_padding
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_layout_guards_exact_accounting_and_staging_contract
+0.00s setup    tests/fast/utils/test_delta_preparation.py::test_word_layout_rejects_unaligned_storage_and_non_word_rows
+0.00s teardown tests/fast/utils/test_delta_preparation.py::test_word_layout_rejects_unaligned_storage_and_non_word_rows
+======================= 18 passed, 15 warnings in 7.68s ========================

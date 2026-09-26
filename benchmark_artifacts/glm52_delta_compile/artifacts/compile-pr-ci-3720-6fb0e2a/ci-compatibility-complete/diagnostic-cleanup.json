@@ -1,0 +1,888 @@
+{
+  "terminated": [
+    {
+      "pid": 19037,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_every_worker_of_every_cel0/probe-0/1-0.json",
+        "{\"cell_index\": 1, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20000, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20002, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20001, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20000, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20003, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 19038,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_every_worker_of_every_cel0/probe-0/0-1.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 1, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20001, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20002, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20001, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20000, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20003, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 19039,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_every_worker_of_every_cel0/probe-0/1-1.json",
+        "{\"cell_index\": 1, \"worker_in_cell_index\": 1, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20003, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20002, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20001, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20000, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20003, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 19040,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_every_worker_of_every_cel0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20002, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20002, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20001, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20000, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20003, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 19281,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_the_advertised_address_is0/probe-0/0-2.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 2, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20002, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20001, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20000, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20002, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "20002"
+      ]
+    },
+    {
+      "pid": 19282,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_the_advertised_address_is0/probe-0/0-1.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 1, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20000, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20001, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20000, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20002, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "20000"
+      ]
+    },
+    {
+      "pid": 19283,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_the_advertised_address_is0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20001, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20001, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20000, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20002, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "20001"
+      ]
+    },
+    {
+      "pid": 19412,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_the_worker_process_gets_t0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20003, \"external_host\": null}}, \"pool_addrs\": {\"router\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20003, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0",
+        "MILES_REAL_RAY_PROBE_VAR"
+      ]
+    },
+    {
+      "pid": 19539,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_a_static_port_reaches_the0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 21987, \"external_host\": null}}, \"pool_addrs\": {\"router\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 21987, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 19665,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_a_spec_without_cells_laun0/probe-1/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20003, \"external_host\": null}}, \"pool_addrs\": {\"session-server\": [], \"router\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20003, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 19788,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_a_driver_knowing_only_the0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20003, \"external_host\": null}}, \"pool_addrs\": {\"router\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20003, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "20003"
+      ]
+    },
+    {
+      "pid": 19921,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_an_unknown_worker_name_is0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}, \"pool_addrs\": {\"router\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 20339,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_a_larger_pool_still_gets_0/probe-0/2-0.json",
+        "{\"cell_index\": 2, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20012, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20013, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20016, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20017, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20020, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20021, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20012, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20013, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20024, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20025, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 20340,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_a_larger_pool_still_gets_0/probe-0/1-1.json",
+        "{\"cell_index\": 1, \"worker_in_cell_index\": 1, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20016, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20017, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20020, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20021, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20012, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20013, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20024, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20025, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 20341,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_a_larger_pool_still_gets_0/probe-0/1-0.json",
+        "{\"cell_index\": 1, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20016, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20017, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20020, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20021, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20012, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20013, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20024, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20025, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 20342,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_a_larger_pool_still_gets_0/probe-0/2-1.json",
+        "{\"cell_index\": 2, \"worker_in_cell_index\": 1, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20024, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20025, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20016, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20017, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20020, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20021, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20012, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20013, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20024, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20025, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 20343,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_a_larger_pool_still_gets_0/probe-0/0-1.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 1, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20020, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20021, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20016, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20017, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20020, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20021, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20012, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20013, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20024, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20025, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 20344,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_a_larger_pool_still_gets_0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20016, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20017, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20016, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20017, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20020, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20021, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20012, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20013, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20024, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20025, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 20472,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_the_well_known_name_can_b0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}, \"pool_addrs\": {\"router\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 20595,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_the_well_known_name_can_b0/probe-1/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}, \"pool_addrs\": {\"router\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 20839,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_a_dependent_workers_comma0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}}, \"pool_addrs\": {\"inference-router-0\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}}], \"session-server\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20006, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 20840,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_a_dependent_workers_comma0/probe-1/1-0.json",
+        "{\"cell_index\": 1, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20006, \"external_host\": null}}, \"pool_addrs\": {\"inference-router-0\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}}], \"session-server\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20006, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 20841,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_a_dependent_workers_comma0/probe-1/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}, \"pool_addrs\": {\"inference-router-0\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}}], \"session-server\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20006, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 21029,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_each_spec_only_gets_its_o0/probe-1/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}}, \"pool_addrs\": {\"router\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}], \"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0",
+        "ROUTER_ONLY",
+        "ENGINE_ONLY"
+      ]
+    },
+    {
+      "pid": 21030,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_each_spec_only_gets_its_o0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}, \"pool_addrs\": {\"router\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}], \"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0",
+        "ROUTER_ONLY",
+        "ENGINE_ONLY"
+      ]
+    },
+    {
+      "pid": 21327,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_all_ranks_of_a_cell_are_l0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20006, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20006, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20010, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20011, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20015, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 21328,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_all_ranks_of_a_cell_are_l0/probe-0/1-0.json",
+        "{\"cell_index\": 1, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20010, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20011, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20006, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20010, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20011, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20015, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 21329,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_all_ranks_of_a_cell_are_l0/probe-0/0-1.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 1, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20006, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20006, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20010, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20011, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20015, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 21330,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-1/test_all_ranks_of_a_cell_are_l0/probe-0/1-1.json",
+        "{\"cell_index\": 1, \"worker_in_cell_index\": 1, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20015, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20011, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20006, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20010, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20011, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20015, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 29822,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_every_worker_of_every_cel0/probe-0/1-0.json",
+        "{\"cell_index\": 1, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20006, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20007, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 29823,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_every_worker_of_every_cel0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20006, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20006, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20007, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 29824,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_every_worker_of_every_cel0/probe-0/0-1.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 1, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20006, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20007, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 29825,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_every_worker_of_every_cel0/probe-0/1-1.json",
+        "{\"cell_index\": 1, \"worker_in_cell_index\": 1, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20007, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20006, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20007, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 30084,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_the_advertised_address_is0/probe-0/0-2.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 2, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20006, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "20004"
+      ]
+    },
+    {
+      "pid": 30085,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_the_advertised_address_is0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20006, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20006, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "20006"
+      ]
+    },
+    {
+      "pid": 30086,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_the_advertised_address_is0/probe-0/0-1.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 1, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20006, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20005, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20004, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "20005"
+      ]
+    },
+    {
+      "pid": 30300,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_the_worker_process_gets_t0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20007, \"external_host\": null}}, \"pool_addrs\": {\"router\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20007, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0",
+        "MILES_REAL_RAY_PROBE_VAR"
+      ]
+    },
+    {
+      "pid": 30451,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_a_static_port_reaches_the0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 21987, \"external_host\": null}}, \"pool_addrs\": {\"router\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 21987, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 30581,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_a_spec_without_cells_laun0/probe-1/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20007, \"external_host\": null}}, \"pool_addrs\": {\"session-server\": [], \"router\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20007, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 30715,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_a_driver_knowing_only_the0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20007, \"external_host\": null}}, \"pool_addrs\": {\"router\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20007, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "20007"
+      ]
+    },
+    {
+      "pid": 30844,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_an_unknown_worker_name_is0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}, \"pool_addrs\": {\"router\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 31273,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_a_larger_pool_still_gets_0/probe-0/2-0.json",
+        "{\"cell_index\": 2, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20024, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20025, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20012, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20013, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20028, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20029, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20020, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20021, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20024, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20025, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20016, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20017, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 31274,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_a_larger_pool_still_gets_0/probe-0/2-1.json",
+        "{\"cell_index\": 2, \"worker_in_cell_index\": 1, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20016, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20017, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20012, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20013, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20028, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20029, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20020, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20021, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20024, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20025, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20016, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20017, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 31275,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_a_larger_pool_still_gets_0/probe-0/1-1.json",
+        "{\"cell_index\": 1, \"worker_in_cell_index\": 1, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20020, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20021, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20012, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20013, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20028, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20029, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20020, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20021, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20024, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20025, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20016, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20017, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 31276,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_a_larger_pool_still_gets_0/probe-0/0-1.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 1, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20012, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20013, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20028, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20029, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20020, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20021, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20024, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20025, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20016, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20017, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 31277,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_a_larger_pool_still_gets_0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20012, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20013, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20012, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20013, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20028, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20029, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20020, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20021, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20024, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20025, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20016, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20017, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 31278,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_a_larger_pool_still_gets_0/probe-0/1-0.json",
+        "{\"cell_index\": 1, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20028, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20029, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20012, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20013, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20028, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20029, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20020, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20021, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20024, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20025, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20016, \"external_host\": null}, \"nccl\": {\"host\": \"10.102.0.130\", \"port\": 20017, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 31403,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_the_well_known_name_can_b0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}, \"pool_addrs\": {\"router\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 31530,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_the_well_known_name_can_b0/probe-1/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}, \"pool_addrs\": {\"router\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 31792,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_a_dependent_workers_comma0/probe-1/1-0.json",
+        "{\"cell_index\": 1, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, \"pool_addrs\": {\"inference-router-0\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}], \"session-server\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20010, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 31793,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_a_dependent_workers_comma0/probe-1/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20010, \"external_host\": null}}, \"pool_addrs\": {\"inference-router-0\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}], \"session-server\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20010, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 31794,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_a_dependent_workers_comma0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}, \"pool_addrs\": {\"inference-router-0\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}], \"session-server\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20010, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 31998,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_each_spec_only_gets_its_o0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}, \"pool_addrs\": {\"router\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}], \"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0",
+        "ROUTER_ONLY",
+        "ENGINE_ONLY"
+      ]
+    },
+    {
+      "pid": 31999,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_each_spec_only_gets_its_o0/probe-1/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, \"pool_addrs\": {\"router\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}], \"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0",
+        "ROUTER_ONLY",
+        "ENGINE_ONLY"
+      ]
+    },
+    {
+      "pid": 32299,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_all_ranks_of_a_cell_are_l0/probe-0/0-1.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 1, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20014, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20016, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20015, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20016, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20014, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20013, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 32300,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_all_ranks_of_a_cell_are_l0/probe-0/1-0.json",
+        "{\"cell_index\": 1, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20015, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20016, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20014, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20013, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 32301,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_all_ranks_of_a_cell_are_l0/probe-0/1-1.json",
+        "{\"cell_index\": 1, \"worker_in_cell_index\": 1, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20013, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20015, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20016, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20014, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20013, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 32302,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_all_ranks_of_a_cell_are_l0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20015, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20016, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20015, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20016, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20014, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}, \"dist_init\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20013, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 32503,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_workers_run_inside_their_0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [10, 11], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}]}, \"local_gpu_ids\": [10, 11]}",
+        "0",
+        "CUDA_VISIBLE_DEVICES"
+      ]
+    },
+    {
+      "pid": 32504,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_workers_run_inside_their_0/probe-0/1-0.json",
+        "{\"cell_index\": 1, \"worker_in_cell_index\": 0, \"gpu_ids\": [12, 13], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}]}, \"local_gpu_ids\": [12, 13]}",
+        "0",
+        "CUDA_VISIBLE_DEVICES"
+      ]
+    },
+    {
+      "pid": 32802,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_stopping_a_cell_ends_its_0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20011, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20011, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20010, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 32804,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_stopping_a_cell_ends_its_0/probe-0/0-1.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 1, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20011, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20010, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 33118,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_a_driver_can_describe_and0/probe-0/0-0.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20010, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20010, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20011, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 33119,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_a_driver_can_describe_and0/probe-0/1-1.json",
+        "{\"cell_index\": 1, \"worker_in_cell_index\": 1, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20010, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20011, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 33120,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_a_driver_can_describe_and0/probe-0/0-1.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 1, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20010, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20011, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 33121,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_a_driver_can_describe_and0/probe-0/1-0.json",
+        "{\"cell_index\": 1, \"worker_in_cell_index\": 0, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20011, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20010, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20011, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    },
+    {
+      "pid": 33301,
+      "ppid": 1,
+      "exe": "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/managed-python/cpython-3.11.16-linux-x86_64-gnu/bin/python3.11",
+      "argv": [
+        "/hai-workspace/glm52-delta-ci-torch211/ci-torch211-repro/venv/bin/python",
+        "-c",
+        "\nimport json, os, socket, sys, time\n\nrecord_path, context_json, bind_port = sys.argv[1], sys.argv[2], int(sys.argv[3])\nenv_names = sys.argv[4:]\n\nheld_sockets = []\nif bind_port:\n    held = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    held.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    held.bind((\"\", bind_port))\n    held.listen(8)\n    held_sockets.append(held)\n\nrecord = {\n    \"pid\": os.getpid(),\n    \"context\": json.loads(context_json),\n    \"env\": {name: os.environ.get(name) for name in env_names},\n}\nwith open(record_path + \".tmp\", \"w\") as f:\n    json.dump(record, f)\nos.rename(record_path + \".tmp\", record_path)\n\ntime.sleep(600)\n",
+        "/tmp/pytest-of-root/pytest-2/test_an_actor_dies_with_the_co0/probe-0/0-1.json",
+        "{\"cell_index\": 0, \"worker_in_cell_index\": 1, \"gpu_ids\": [], \"self_addrs\": {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}, \"pool_addrs\": {\"engine\": [{\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20008, \"external_host\": null}}, {\"primary\": {\"host\": \"10.102.0.130\", \"port\": 20009, \"external_host\": null}}]}, \"local_gpu_ids\": []}",
+        "0"
+      ]
+    }
+  ],
+  "remaining_live": []
+}

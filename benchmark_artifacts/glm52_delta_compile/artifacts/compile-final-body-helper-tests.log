@@ -1,0 +1,9 @@
+test_all_fourteen_rows_and_steady_compiler_gate (test_finalize_compile_pr_body.FinalBodyTests.test_all_fourteen_rows_and_steady_compiler_gate) ... ok
+test_hosted_ci_failure_remains_explicit (test_finalize_compile_pr_body.FinalBodyTests.test_hosted_ci_failure_remains_explicit) ... ok
+test_only_exact_fork_commit_url (test_finalize_compile_pr_body.FinalBodyTests.test_only_exact_fork_commit_url) ... ok
+test_published_bytes_and_cr_preservation (test_finalize_compile_pr_body.FinalBodyTests.test_published_bytes_and_cr_preservation) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.002s
+
+OK

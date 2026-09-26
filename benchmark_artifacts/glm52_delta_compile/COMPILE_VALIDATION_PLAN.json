@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "frozen": true,
+  "sources": {
+    "miles": "767439e95bca5203211ba374b4e04b702c2b7ed2",
+    "sglang": "2f5fb2a09f08eb9a44c0fed5a28be0bda2942b0f"
+  },
+  "standalone_source": "d34a55113647315cc5b5eb5a3532dc563c72fa6c",
+  "script_sha256": {
+    "launch_weight_sync.py": "1e5c4a50a7f17fdcd61f3dc6875349ca7399667a4eb153c6525e193811ae5815",
+    "weight_sync_probe.py": "1e3f80082af5821993c57b6efc9624e9b60418b2264513fb0b54442fb8bc7ed1",
+    "train_weight_sync_profiled.py": "243b880d31a606ee2684635076040bd5c773eb2c6feb5c137fb7871514739051",
+    "weight_sync_reward.py": "2f785003f111cee264f4aa880cdf14127f6240cc8e3971765d4c7567b782e49c",
+    "launch_weight_sync_cpu_v2.py": "46f5b845dea53a59d6582f12f0346352adf8ed022900c6770b69d7be4eb6a2ab",
+    "weight_sync_probe_cpu_v2.py": "760cc0a1645d5a0a4dd48eaf8a4f26eede18015b21d82cd87eee72e819593e55",
+    "train_weight_sync_profiled_cpu_v2.py": "f8fb68508f7b3dd86979b3e66eb57dc265d11e726fdf34abf41f10270145f8ef",
+    "process_cpu_clocks_cpu_v2.py": "4a3b3ec5cf3fd1c27096d9979098a80008f69f88306527b7a75dd7b0b36aab81",
+    "launch_weight_sync_compile.py": "4002be757b0b43d195001829fea666ba6c9e138e3983c4674d9ff796ba0b82f1",
+    "weight_sync_probe_compile.py": "a048c4fc88c1a966dc79940bc501f3c78d0a5cb2f82e5de4062cd57f61077f04"
+  },
+  "runs": [
+    {
+      "name": "compile-v2-synthetic-numpy-01",
+      "mode": "disk-delta",
+      "reward_mode": "synthetic-balanced",
+      "delta_cpu_backend": "numpy",
+      "num_rollout": 7,
+      "compile_cache_dir": "/hai-workspace/glm52-delta/compile-v2-synthetic-numpy-01-cache",
+      "compile_cache_state_before": {
+        "exists": false,
+        "empty": true
+      }
+    },
+    {
+      "name": "compile-v2-synthetic-torch-01",
+      "mode": "disk-delta",
+      "reward_mode": "synthetic-balanced",
+      "delta_cpu_backend": "torch-compile",
+      "num_rollout": 7,
+      "compile_cache_dir": "/hai-workspace/glm52-delta/compile-v2-synthetic-torch-01-cache",
+      "compile_cache_state_before": {
+        "exists": false,
+        "empty": true
+      }
+    }
+  ],
+  "campaign_metadata": {
+    "path": "CAMPAIGN_COMPILE_V2.json",
+    "sha256": "66b650a5bc1ebb4c74327f0fca1a2fc055c98d3a512944b9afd9a91bd1363b53"
+  },
+  "environment_metadata": {
+    "path": "environment-image-compile-v2.json",
+    "sha256": "ee2e29f7ccdc3bbbb9a0f0c20e432ab25211a40b282551778b134d584ad8c96d"
+  },
+  "cpu_calibration_metadata": {
+    "path": "artifacts/cpu-observer-fast-final-calibration.json",
+    "sha256": "ce8386c75e01125a7e3754844389a82f2e889200df0ce233cd030aff87216707"
+  },
+  "durable_backup_dir": "/data/ziangli/glm52-delta-sync-c2/compile-v2-backups",
+  "evidence_source_commits": {
+    "cpu_replay": "6fb0e2a9d81fc343863ba6015512fe93992892e4",
+    "combined_preflight": "283a1cb4e6ed4a3712a39bc5dbd26060465bdcca"
+  },
+  "preflight_evidence_directory": "artifacts/compile-v2-preflight-01",
+  "frozen_at_utc": "2026-09-26T02:41:20.389795+00:00"
+}

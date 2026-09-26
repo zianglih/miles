@@ -1,0 +1,34 @@
+{
+  "objective": "Matched NumPy versus torch.compile delta CPU backend validation after original devbox removal",
+  "devbox": "glm52-delta-0926",
+  "cluster": "c2",
+  "namespace": "ziangli",
+  "host": "hu-pdx-130",
+  "remote_root": "/hai-workspace/glm52-delta",
+  "image": "radixark/miles:dev-202609252029",
+  "image_index_digest": "sha256:291b2b86c900cd49a0c0cbc494bb4c2f15cc76d27497adabcf689b1865d1cad2",
+  "image_amd64_digest": "sha256:0c2e77991235b6592dea7fe1238a74d60aa94aa3cc82543fbfcb40f3f064cbb8",
+  "miles_head": "767439e95bca5203211ba374b4e04b702c2b7ed2",
+  "standalone_source": "d34a55113647315cc5b5eb5a3532dc563c72fa6c",
+  "sglang_head": "2f5fb2a09f08eb9a44c0fed5a28be0bda2942b0f",
+  "megatron_head": "f148a32b4385b758b66a77c9c3ad1641f1295d4b",
+  "hf_source": "Pinaster/GLM-5.2_5layer",
+  "hf_revision": "1c749139f70e158e4420ba67f342bef1de2e650d",
+  "topology": {
+    "training_gpus": 4,
+    "rollout_gpus": 4,
+    "rollout_engines": 2,
+    "gpus_per_engine": 2
+  },
+  "dataset": {
+    "repository": "zhuzilin/dapo-math-17k",
+    "revision": "2e65612930298bde4c5d58fd97b3f23a483aaff9",
+    "bytes": 10490834,
+    "sha256": "cc9c39c2aa19177abe9464741e121cf4cac90fd25484ef3cdf86535101e3a5b6"
+  },
+  "replacement_reason": "Original devbox removed during v1 compiled-arm startup; cause not established by retained events. V1 summary-only control excluded from strict paired comparison.",
+  "prepared_inputs": {
+    "path": "artifacts/recovery-inputs-ready.json",
+    "sha256": "87dc3807a42f77a53e45a2611a8a436f7a12613ffcb51472a4f5bf1fde7823f8"
+  }
+}

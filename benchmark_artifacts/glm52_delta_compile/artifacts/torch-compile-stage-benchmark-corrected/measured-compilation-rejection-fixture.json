@@ -1,0 +1,123 @@
+[
+  {
+    "event": "workload",
+    "case": "native-unchanged",
+    "encoding": "xor",
+    "checksum": "xxh3-128",
+    "setup_wall_s_untimed": 0.01365354098379612,
+    "lineage": [],
+    "old_state_checksum_manifest_sha256": "90103ad6c4fa944e7d050cbacd0a582a9ebbddd59340b98d476a3c5997fc2c20",
+    "new_state_checksum_manifest_sha256": "90103ad6c4fa944e7d050cbacd0a582a9ebbddd59340b98d476a3c5997fc2c20",
+    "padded_input_bytes": 360472,
+    "baseline_task_count": 6,
+    "baseline_scalar_batch_count": 1,
+    "baseline_scalar_batch_tensor_count": 3,
+    "tensor_count": 8,
+    "total_bytes": 168992,
+    "changed_tensor_count": 0,
+    "unchanged_tensor_count": 8,
+    "unchanged_tensor_bytes": 168992,
+    "unchanged_tensor_byte_fraction": 1.0,
+    "changed_bytes": 0,
+    "changed_byte_density": 0.0,
+    "tensor_size_min_bytes": 0,
+    "tensor_size_max_bytes": 98317,
+    "tensor_size_quantiles_bytes": {
+      "p50": 516.0,
+      "p90": 75370.29999999999,
+      "p99": 96022.32999999999
+    },
+    "size_buckets": [
+      {
+        "bytes_gt": -1,
+        "bytes_le": 16,
+        "tensor_count": 4,
+        "tensor_bytes": 12,
+        "unchanged_tensor_bytes": 12
+      },
+      {
+        "bytes_gt": 16,
+        "bytes_le": 1024,
+        "tensor_count": 0,
+        "tensor_bytes": 0,
+        "unchanged_tensor_bytes": 0
+      },
+      {
+        "bytes_gt": 1024,
+        "bytes_le": 65536,
+        "tensor_count": 3,
+        "tensor_bytes": 70663,
+        "unchanged_tensor_bytes": 70663
+      },
+      {
+        "bytes_gt": 65536,
+        "bytes_le": 1048576,
+        "tensor_count": 1,
+        "tensor_bytes": 98317,
+        "unchanged_tensor_bytes": 98317
+      },
+      {
+        "bytes_gt": 1048576,
+        "bytes_le": 16777216,
+        "tensor_count": 0,
+        "tensor_bytes": 0,
+        "unchanged_tensor_bytes": 0
+      }
+    ]
+  },
+  {
+    "event": "compile_warmup",
+    "case": "native-unchanged",
+    "phase": "initial_compile_and_warmup",
+    "initial_empty_cache_compile": false,
+    "wall_s": 8.33e-07,
+    "process_cpu_s": 7e-06,
+    "process_cpu_excludes_compiler_children": true,
+    "cache_may_be_warm": true,
+    "new_compile_counters": {},
+    "block_sizes": [],
+    "actual_layouts_warmed": [],
+    "warmup_inputs": "each actual bucket.old and bucket.incoming, serially before fanout"
+  },
+  {
+    "event": "sample",
+    "case": "native-unchanged",
+    "variant": "exact_f17",
+    "iteration": 0,
+    "warmup": false,
+    "wall_s": 0.000364583,
+    "process_cpu_s": 0.000386,
+    "new_compile_counters": {},
+    "new_graphs_or_kernels": false,
+    "compressed_payload_bytes": 0,
+    "exact_bytes_counts_checksums_verified": true,
+    "lease_return_once_before_compression": null,
+    "lease_return_scope": "tensor_or_scalar_group_exact_ast",
+    "copied_unchanged_bytes": 12,
+    "copied_padding_bytes": 0,
+    "snapshot_copy_bytes": 12,
+    "lease_returns": 6
+  },
+  {
+    "event": "sample",
+    "case": "native-unchanged",
+    "variant": "packed_stage",
+    "iteration": 0,
+    "warmup": false,
+    "wall_s": 0.008156917,
+    "process_cpu_s": 0.007061,
+    "new_compile_counters": {
+      "stats.unique_graphs": 1
+    },
+    "new_graphs_or_kernels": true,
+    "compressed_payload_bytes": 0,
+    "exact_bytes_counts_checksums_verified": true,
+    "lease_return_once_before_compression": true,
+    "lease_return_scope": "bucket",
+    "copied_unchanged_bytes": 0,
+    "copied_padding_bytes": 0,
+    "snapshot_copy_bytes": 0,
+    "materialized_buckets": 0,
+    "lease_returns": 4
+  }
+]
