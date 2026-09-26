@@ -1,0 +1,6493 @@
+{
+  "run": "native-disk-delta-01",
+  "run_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01",
+  "mode": "disk-delta",
+  "reward_mode": "native",
+  "log": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01.log",
+  "log_sha256": "67842a9c29331e85e8e525495e2e50e5bf25c31e090c2269520d0da88ccf0d0b",
+  "launcher_exit_code": 0,
+  "ray_terminal": {
+    "line": 7339,
+    "job_id": "miles-cf06745e136d4eed8f3a47fddb1b6bda",
+    "status": "succeeded"
+  },
+  "run_succeeded": true,
+  "expected_rollouts": 7,
+  "expected_ranks": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "all_expected_rank_rollouts_completed": true,
+  "missing_rank_rollouts": [],
+  "unexpected_rank_rollouts": [],
+  "rank0_step_metric_count": 7,
+  "rank0_steps": [
+    {
+      "rollout": 0,
+      "step": 0,
+      "step_within_rollout": 0,
+      "train_log_line": 3714,
+      "rollout_log_line": 3427,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.380314826965332,
+      "rollout/raw_reward": 0.0,
+      "rollout/total_lengths": 256.0,
+      "rollout/ref_log_probs": -10.380661964416504,
+      "rollout/log_probs": -10.380579948425293,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.0,
+      "train/pg_loss": 0.0,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": -9.614648297429085e-05,
+      "train/ess_ratio": 0.9998329281806946,
+      "train/train_rollout_logprob_abs_diff": 0.01137320976704359,
+      "train/train_rollout_kl": 0.00010511435539228842,
+      "train/kl_loss": 0.0001881362550193444,
+      "train/ois": 1.0001804828643799,
+      "train/tis": 0.9998403191566467,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011369865387678146,
+      "train/grad_norm": 0.0,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 0
+    },
+    {
+      "rollout": 1,
+      "step": 1,
+      "step_within_rollout": 0,
+      "train_log_line": 4322,
+      "rollout_log_line": 4141,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.302135467529297,
+      "rollout/raw_reward": 0.0,
+      "rollout/total_lengths": 250.625,
+      "rollout/ref_log_probs": -10.302297592163086,
+      "rollout/log_probs": -10.30233383178711,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.0,
+      "train/pg_loss": 0.0,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": -0.0003639149363152683,
+      "train/ess_ratio": 0.9998292922973633,
+      "train/train_rollout_logprob_abs_diff": 0.011748161166906357,
+      "train/train_rollout_kl": 0.00011202457244507968,
+      "train/kl_loss": 0.0001658751571085304,
+      "train/ois": 1.0004502534866333,
+      "train/tis": 0.9999143481254578,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011746246367692947,
+      "train/grad_norm": 0.0,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 1
+    },
+    {
+      "rollout": 2,
+      "step": 2,
+      "step_within_rollout": 0,
+      "train_log_line": 4931,
+      "rollout_log_line": 4755,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.264431953430176,
+      "rollout/raw_reward": 0.0,
+      "rollout/total_lengths": 270.625,
+      "rollout/ref_log_probs": -10.264811515808105,
+      "rollout/log_probs": -10.264444351196289,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.0,
+      "train/pg_loss": 0.0,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": -0.0003192470467183739,
+      "train/ess_ratio": 0.9998311400413513,
+      "train/train_rollout_logprob_abs_diff": 0.011413075029850006,
+      "train/train_rollout_kl": 0.00010594212653813884,
+      "train/kl_loss": 0.0001864050718722865,
+      "train/ois": 1.0004043579101562,
+      "train/tis": 1.0000866651535034,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011415453627705574,
+      "train/grad_norm": 0.0,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 2
+    },
+    {
+      "rollout": 3,
+      "step": 3,
+      "step_within_rollout": 0,
+      "train_log_line": 5537,
+      "rollout_log_line": 5352,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.222463607788086,
+      "rollout/raw_reward": 0.0,
+      "rollout/total_lengths": 251.125,
+      "rollout/ref_log_probs": -10.223029136657715,
+      "rollout/log_probs": -10.222761154174805,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.0,
+      "train/pg_loss": 0.0,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": -0.00033256009919568896,
+      "train/ess_ratio": 0.999835193157196,
+      "train/train_rollout_logprob_abs_diff": 0.01135214138776064,
+      "train/train_rollout_kl": 0.00010599890083540231,
+      "train/kl_loss": 0.00018728789291344583,
+      "train/ois": 1.0004156827926636,
+      "train/tis": 0.9998089671134949,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011347342282533646,
+      "train/grad_norm": 0.0,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 3
+    },
+    {
+      "rollout": 4,
+      "step": 4,
+      "step_within_rollout": 0,
+      "train_log_line": 6131,
+      "rollout_log_line": 5960,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.287896156311035,
+      "rollout/raw_reward": 0.0,
+      "rollout/total_lengths": 270.75,
+      "rollout/ref_log_probs": -10.287956237792969,
+      "rollout/log_probs": -10.288235664367676,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.0,
+      "train/pg_loss": 0.0,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": 0.00022333368542604148,
+      "train/ess_ratio": 0.9998432993888855,
+      "train/train_rollout_logprob_abs_diff": 0.011281131766736507,
+      "train/train_rollout_kl": 0.00010301147995050997,
+      "train/kl_loss": 0.00018241361249238253,
+      "train/ois": 0.9998556971549988,
+      "train/tis": 0.9997631907463074,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011279338970780373,
+      "train/grad_norm": 0.0,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 4
+    },
+    {
+      "rollout": 5,
+      "step": 5,
+      "step_within_rollout": 0,
+      "train_log_line": 6702,
+      "rollout_log_line": 6547,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.294469833374023,
+      "rollout/raw_reward": 0.0,
+      "rollout/total_lengths": 243.875,
+      "rollout/ref_log_probs": -10.294676780700684,
+      "rollout/log_probs": -10.294605255126953,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.0,
+      "train/pg_loss": 0.0,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": 1.5547600924037397e-05,
+      "train/ess_ratio": 0.9998275637626648,
+      "train/train_rollout_logprob_abs_diff": 0.011510885320603848,
+      "train/train_rollout_kl": 0.00010532711166888475,
+      "train/kl_loss": 0.00021523761097341776,
+      "train/ois": 1.0000715255737305,
+      "train/tis": 0.9999695420265198,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011512290686368942,
+      "train/grad_norm": 0.0,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 5
+    },
+    {
+      "rollout": 6,
+      "step": 6,
+      "step_within_rollout": 0,
+      "train_log_line": 7282,
+      "rollout_log_line": 7124,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.278386116027832,
+      "rollout/raw_reward": 0.0,
+      "rollout/total_lengths": 239.25,
+      "rollout/ref_log_probs": -10.278526306152344,
+      "rollout/log_probs": -10.27869701385498,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.0,
+      "train/pg_loss": 0.0,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": -0.00016173615586012602,
+      "train/ess_ratio": 0.9998372793197632,
+      "train/train_rollout_logprob_abs_diff": 0.011638790369033813,
+      "train/train_rollout_kl": 0.0001074743049684912,
+      "train/kl_loss": 0.00018727307906374335,
+      "train/ois": 1.000243902206421,
+      "train/tis": 0.9997954964637756,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011636888608336449,
+      "train/grad_norm": 0.0,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 6
+    }
+  ],
+  "native_update_times": [
+    {
+      "perf_index": 0,
+      "line": 3725,
+      "initial": true,
+      "after_training_rollout": null,
+      "seconds": 18.06361722946167
+    },
+    {
+      "perf_index": 1,
+      "line": 4328,
+      "initial": false,
+      "after_training_rollout": 0,
+      "seconds": 24.975753784179688
+    },
+    {
+      "perf_index": 2,
+      "line": 4940,
+      "initial": false,
+      "after_training_rollout": 1,
+      "seconds": 6.447613477706909
+    },
+    {
+      "perf_index": 3,
+      "line": 5546,
+      "initial": false,
+      "after_training_rollout": 2,
+      "seconds": 6.931683778762817
+    },
+    {
+      "perf_index": 4,
+      "line": 6137,
+      "initial": false,
+      "after_training_rollout": 3,
+      "seconds": 6.609894752502441
+    },
+    {
+      "perf_index": 5,
+      "line": 6708,
+      "initial": false,
+      "after_training_rollout": 4,
+      "seconds": 6.5295984745025635
+    },
+    {
+      "perf_index": 6,
+      "line": 7288,
+      "initial": false,
+      "after_training_rollout": 5,
+      "seconds": 6.897026538848877
+    }
+  ],
+  "native_update_time_distributions": {
+    "initial": {
+      "count": 1,
+      "finite_count": 1,
+      "min": 18.06361722946167,
+      "max": 18.06361722946167,
+      "mean": 18.06361722946167,
+      "median": 18.06361722946167
+    },
+    "post_training": {
+      "count": 6,
+      "finite_count": 6,
+      "min": 6.447613477706909,
+      "max": 24.975753784179688,
+      "mean": 9.73192846775055,
+      "median": 6.753460645675659
+    },
+    "steady": {
+      "count": 5,
+      "finite_count": 5,
+      "min": 6.447613477706909,
+      "max": 6.931683778762817,
+      "mean": 6.683163404464722,
+      "median": 6.609894752502441
+    }
+  },
+  "replay_total_checks": 1464,
+  "replay_nonzero_checks": 0,
+  "replay_mismatched_token_comparisons": 0,
+  "engines": {
+    "available": true,
+    "source": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/trainer-rank0.jsonl",
+    "summary": [
+      {
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "continue_generation",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "flush_cache",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "pause_generation",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "pull_weights",
+        "calls": 7,
+        "failed_calls": 0,
+        "requested_versions": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      },
+      {
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "update_weight_version",
+        "calls": 1,
+        "failed_calls": 0,
+        "requested_versions": [
+          "0"
+        ]
+      },
+      {
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "update_weights_from_disk",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      },
+      {
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "continue_generation",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "flush_cache",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pause_generation",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pull_weights",
+        "calls": 7,
+        "failed_calls": 0,
+        "requested_versions": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      },
+      {
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "update_weight_version",
+        "calls": 1,
+        "failed_calls": 0,
+        "requested_versions": [
+          "0"
+        ]
+      },
+      {
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "update_weights_from_disk",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      }
+    ],
+    "records": [
+      {
+        "line": 2,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/delta-publication",
+          "target_version": 0
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 3,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/delta-publication",
+          "target_version": 0
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 4,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "update_weight_version",
+        "success": true,
+        "request": {
+          "abort_all_requests": false,
+          "new_version": "0"
+        },
+        "response": {
+          "message": "Weight version updated to 0",
+          "new_version": "0",
+          "success": true
+        }
+      },
+      {
+        "line": 5,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "update_weight_version",
+        "success": true,
+        "request": {
+          "abort_all_requests": false,
+          "new_version": "0"
+        },
+        "response": {
+          "message": "Weight version updated to 0",
+          "new_version": "0",
+          "success": true
+        }
+      },
+      {
+        "line": 13,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/delta-publication",
+          "target_version": 1
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 14,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/delta-publication",
+          "target_version": 1
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 15,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 16,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 17,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 18,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 19,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "1"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 1.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 20,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "1"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 1.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 21,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 22,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 32,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/delta-publication",
+          "target_version": 2
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 33,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/delta-publication",
+          "target_version": 2
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 34,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 35,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 36,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 37,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 38,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "2"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 2.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 39,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "2"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 2.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 40,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 41,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 51,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/delta-publication",
+          "target_version": 3
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 52,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/delta-publication",
+          "target_version": 3
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 53,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 54,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 55,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 56,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 57,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "3"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 3.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 58,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "3"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 3.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 59,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 60,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 70,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/delta-publication",
+          "target_version": 4
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 71,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/delta-publication",
+          "target_version": 4
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 72,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 73,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 74,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 75,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 76,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "4"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 4.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 77,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "4"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 4.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 78,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 79,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 89,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/delta-publication",
+          "target_version": 5
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 90,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/delta-publication",
+          "target_version": 5
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 91,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 92,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 93,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 94,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 95,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "5"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 5.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 96,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "5"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 5.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 97,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 98,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 108,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/delta-publication",
+          "target_version": 6
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 109,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/delta-publication",
+          "target_version": 6
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 110,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 111,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 112,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 113,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 114,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "6"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 6.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 115,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "6"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 6.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 116,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20002",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 117,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      }
+    ],
+    "boundary": "RPC acknowledgement and version metadata are not active-GPU byte equality checks."
+  },
+  "debug_dumps": {
+    "files": {
+      "train_data": [
+        "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/train_data/0_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/train_data/1_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/train_data/2_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/train_data/3_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/train_data/4_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/train_data/5_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/train_data/6_0.pt"
+      ],
+      "rollout_data": [
+        "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/rollout_data/0.pt",
+        "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/rollout_data/1.pt",
+        "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/rollout_data/2.pt",
+        "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/rollout_data/3.pt",
+        "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/rollout_data/4.pt",
+        "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/rollout_data/5.pt",
+        "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/rollout_data/6.pt"
+      ]
+    },
+    "train": [
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/train_data/0_0.pt",
+        "rollout": 0,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.57364273071289,
+            "max": -0.02248787134885788,
+            "mean": -10.380580571921891,
+            "mean_abs": 10.380580571921891,
+            "rms": 10.590361840055303,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.57364273071289,
+              "max": -0.02248787134885788,
+              "mean": -10.380580571921891,
+              "mean_abs": 10.380580571921891,
+              "rms": 10.590361840055303
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.589466094970703,
+            "max": -0.022445326671004295,
+            "mean": -10.380660850776476,
+            "mean_abs": 10.380660850776476,
+            "rms": 10.590410046916027,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.589466094970703,
+              "max": -0.022445326671004295,
+              "mean": -10.380660850776476,
+              "mean_abs": 10.380660850776476,
+              "rms": 10.590410046916027
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.562580108642578,
+            "max": -0.021770058199763298,
+            "mean": -10.380315768805449,
+            "mean_abs": 10.380315768805449,
+            "rms": 10.590072989178731,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.562580108642578,
+              "max": -0.021770058199763298,
+              "mean": -10.380315768805449,
+              "mean_abs": 10.380315768805449,
+              "rms": 10.590072989178731
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6399,
+          "min": 0.0,
+          "max": 0.0673208236694336,
+          "mean": 0.011373210054589435,
+          "mean_abs": 0.011373210054589435,
+          "rms": 0.014502640654480758
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/train_data/1_0.pt",
+        "rollout": 1,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.237205505371094,
+            "max": -0.17700845003128052,
+            "mean": -10.302331984702032,
+            "mean_abs": 10.302331984702032,
+            "rms": 10.50493986312764,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.237205505371094,
+              "max": -0.17700845003128052,
+              "mean": -10.302331984702032,
+              "mean_abs": 10.302331984702032,
+              "rms": 10.50493986312764
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.23678207397461,
+            "max": -0.17705859243869781,
+            "mean": -10.302297532185912,
+            "mean_abs": 10.302297532185912,
+            "rms": 10.50499084661015,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.23678207397461,
+              "max": -0.17705859243869781,
+              "mean": -10.302297532185912,
+              "mean_abs": 10.302297532185912,
+              "rms": 10.50499084661015
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.238855361938477,
+            "max": -0.1773531138896942,
+            "mean": -10.302134273329283,
+            "mean_abs": 10.302134273329283,
+            "rms": 10.504685381873731,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.238855361938477,
+              "max": -0.1773531138896942,
+              "mean": -10.302134273329283,
+              "mean_abs": 10.302134273329283,
+              "rms": 10.504685381873731
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 5.7220458984375e-06,
+          "max": 0.08008813858032227,
+          "mean": 0.011748161436989903,
+          "mean_abs": 0.011748161436989903,
+          "rms": 0.014969772050027058
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/train_data/2_0.pt",
+        "rollout": 2,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.530550003051758,
+            "max": -0.012625408358871937,
+            "mean": -10.264447893924517,
+            "mean_abs": 10.264447893924517,
+            "rms": 10.48766127588528,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.530550003051758,
+              "max": -0.012625408358871937,
+              "mean": -10.264447893924517,
+              "mean_abs": 10.264447893924517,
+              "rms": 10.48766127588528
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.538061141967773,
+            "max": -0.012468954548239708,
+            "mean": -10.264811433803988,
+            "mean_abs": 10.264811433803988,
+            "rms": 10.487977845974756,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.538061141967773,
+              "max": -0.012468954548239708,
+              "mean": -10.264811433803988,
+              "mean_abs": 10.264811433803988,
+              "rms": 10.487977845974756
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.53904151916504,
+            "max": -0.012713923119008541,
+            "mean": -10.264428699912386,
+            "mean_abs": 10.264428699912386,
+            "rms": 10.487623088042476,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.53904151916504,
+              "max": -0.012713923119008541,
+              "mean": -10.264428699912386,
+              "mean_abs": 10.264428699912386,
+              "rms": 10.487623088042476
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 5.7220458984375e-06,
+          "max": 0.07691049575805664,
+          "mean": 0.011413075069285697,
+          "mean_abs": 0.011413075069285697,
+          "rms": 0.014553701601374015
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/train_data/3_0.pt",
+        "rollout": 3,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.533245086669922,
+            "max": -0.017945075407624245,
+            "mean": -10.222762419700157,
+            "mean_abs": 10.222762419700157,
+            "rms": 10.452882596972227,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.533245086669922,
+              "max": -0.017945075407624245,
+              "mean": -10.222762419700157,
+              "mean_abs": 10.222762419700157,
+              "rms": 10.452882596972227
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.537796020507812,
+            "max": -0.018307168036699295,
+            "mean": -10.223026990551443,
+            "mean_abs": 10.223026990551443,
+            "rms": 10.453085865592085,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.537796020507812,
+              "max": -0.018307168036699295,
+              "mean": -10.223026990551443,
+              "mean_abs": 10.223026990551443,
+              "rms": 10.453085865592085
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.52892303466797,
+            "max": -0.01825733482837677,
+            "mean": -10.222465367271507,
+            "mean_abs": 10.222465367271507,
+            "rms": 10.4526058293641,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.52892303466797,
+              "max": -0.01825733482837677,
+              "mean": -10.222465367271507,
+              "mean_abs": 10.222465367271507,
+              "rms": 10.4526058293641
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 2.86102294921875e-06,
+          "max": 0.0659189224243164,
+          "mean": 0.011352141413080972,
+          "mean_abs": 0.011352141413080972,
+          "rms": 0.014564591860474518
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/train_data/4_0.pt",
+        "rollout": 4,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.390880584716797,
+            "max": -0.02524428814649582,
+            "mean": -10.288235573577985,
+            "mean_abs": 10.288235573577985,
+            "rms": 10.514258054920868,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.390880584716797,
+              "max": -0.02524428814649582,
+              "mean": -10.288235573577985,
+              "mean_abs": 10.288235573577985,
+              "rms": 10.514258054920868
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.405445098876953,
+            "max": -0.02236209623515606,
+            "mean": -10.287955296545697,
+            "mean_abs": 10.287955296545697,
+            "rms": 10.514023761585447,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.405445098876953,
+              "max": -0.02236209623515606,
+              "mean": -10.287955296545697,
+              "mean_abs": 10.287955296545697,
+              "rms": 10.514023761585447
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.4172420501709,
+            "max": -0.023835796862840652,
+            "mean": -10.287895698352367,
+            "mean_abs": 10.287895698352367,
+            "rms": 10.513959897589228,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.4172420501709,
+              "max": -0.023835796862840652,
+              "mean": -10.287895698352367,
+              "mean_abs": 10.287895698352367,
+              "rms": 10.513959897589228
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6399,
+          "min": 0.0,
+          "max": 0.07086658477783203,
+          "mean": 0.01128113121347269,
+          "mean_abs": 0.01128113121347269,
+          "rms": 0.014353607094455273
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/train_data/5_0.pt",
+        "rollout": 5,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.075380325317383,
+            "max": -0.008496091701090336,
+            "mean": -10.294605275046779,
+            "mean_abs": 10.294605275046779,
+            "rms": 10.505425758034704,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.075380325317383,
+              "max": -0.008496091701090336,
+              "mean": -10.294605275046779,
+              "mean_abs": 10.294605275046779,
+              "rms": 10.505425758034704
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.058773040771484,
+            "max": -0.008493373170495033,
+            "mean": -10.294678115801362,
+            "mean_abs": 10.294678115801362,
+            "rms": 10.505450465537841,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.058773040771484,
+              "max": -0.008493373170495033,
+              "mean": -10.294678115801362,
+              "mean_abs": 10.294678115801362,
+              "rms": 10.505450465537841
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.071744918823242,
+            "max": -0.00800545047968626,
+            "mean": -10.294469494716177,
+            "mean_abs": 10.294469494716177,
+            "rms": 10.505261919547578,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.071744918823242,
+              "max": -0.00800545047968626,
+              "mean": -10.294469494716177,
+              "mean_abs": 10.294469494716177,
+              "rms": 10.505261919547578
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 4.76837158203125e-06,
+          "max": 0.05895423889160156,
+          "mean": 0.011510885162715567,
+          "mean_abs": 0.011510885162715567,
+          "rms": 0.014511804525646151
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/train_data/6_0.pt",
+        "rollout": 6,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.080591201782227,
+            "max": -0.02290564589202404,
+            "mean": -10.278697613037366,
+            "mean_abs": 10.278697613037366,
+            "rms": 10.493712820721726,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.080591201782227,
+              "max": -0.02290564589202404,
+              "mean": -10.278697613037366,
+              "mean_abs": 10.278697613037366,
+              "rms": 10.493712820721726
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.108978271484375,
+            "max": -0.02295585907995701,
+            "mean": -10.278526427579054,
+            "mean_abs": 10.278526427579054,
+            "rms": 10.493644098241052,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.108978271484375,
+              "max": -0.02295585907995701,
+              "mean": -10.278526427579054,
+              "mean_abs": 10.278526427579054,
+              "rms": 10.493644098241052
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.07042121887207,
+            "max": -0.022872095927596092,
+            "mean": -10.278385573382257,
+            "mean_abs": 10.278385573382257,
+            "rms": 10.493387480077926,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.07042121887207,
+              "max": -0.022872095927596092,
+              "mean": -10.278385573382257,
+              "mean_abs": 10.278385573382257,
+              "rms": 10.493387480077926
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 1.9073486328125e-06,
+          "max": 0.053849220275878906,
+          "mean": 0.011638790226134005,
+          "mean_abs": 0.011638790226134005,
+          "rms": 0.014661376811891513
+        }
+      }
+    ],
+    "rollout": [
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/rollout_data/0.pt",
+        "rollout": 0,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "0": 64
+        },
+        "reward_groups": [
+          {
+            "group": "0",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "1",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "2",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "3",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "4",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "5",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "6",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "7",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/rollout_data/1.pt",
+        "rollout": 1,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "1": 64
+        },
+        "reward_groups": [
+          {
+            "group": "10",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "11",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "12",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "13",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "14",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "15",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "8",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "9",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/rollout_data/2.pt",
+        "rollout": 2,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "2": 64
+        },
+        "reward_groups": [
+          {
+            "group": "16",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "17",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "18",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "19",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "20",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "21",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "22",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "23",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/rollout_data/3.pt",
+        "rollout": 3,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "3": 64
+        },
+        "reward_groups": [
+          {
+            "group": "24",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "25",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "26",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "27",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "28",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "29",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "30",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "31",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/rollout_data/4.pt",
+        "rollout": 4,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "4": 64
+        },
+        "reward_groups": [
+          {
+            "group": "32",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "33",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "34",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "35",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "36",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "37",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "38",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "39",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/rollout_data/5.pt",
+        "rollout": 5,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "5": 64
+        },
+        "reward_groups": [
+          {
+            "group": "40",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "41",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "42",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "43",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "44",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "45",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "46",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "47",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/native-disk-delta-01/dump_details/rollout_data/6.pt",
+        "rollout": 6,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "6": 64
+        },
+        "reward_groups": [
+          {
+            "group": "48",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "49",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "50",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "51",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "52",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "53",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "54",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "55",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "note": "Only TP-rank0 on the last PP stage writes train dumps; four-rank completion comes from train_step log events.",
+    "status": "parsed"
+  },
+  "parsed_log_evidence": {
+    "train_events": [
+      {
+        "line": 3704,
+        "rank": 2,
+        "rollout": 0,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 3707,
+        "rank": 3,
+        "rollout": 0,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 3712,
+        "rank": 1,
+        "rollout": 0,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 3713,
+        "rank": 0,
+        "rollout": 0,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4316,
+        "rank": 2,
+        "rollout": 1,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4321,
+        "rank": 0,
+        "rollout": 1,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4333,
+        "rank": 1,
+        "rollout": 1,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4336,
+        "rank": 3,
+        "rollout": 1,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4913,
+        "rank": 2,
+        "rollout": 2,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4916,
+        "rank": 3,
+        "rollout": 2,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4927,
+        "rank": 1,
+        "rollout": 2,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4930,
+        "rank": 0,
+        "rollout": 2,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5517,
+        "rank": 2,
+        "rollout": 3,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5526,
+        "rank": 3,
+        "rollout": 3,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5533,
+        "rank": 1,
+        "rollout": 3,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5536,
+        "rank": 0,
+        "rollout": 3,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6124,
+        "rank": 2,
+        "rollout": 4,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6127,
+        "rank": 3,
+        "rollout": 4,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6130,
+        "rank": 0,
+        "rollout": 4,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6143,
+        "rank": 1,
+        "rollout": 4,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6698,
+        "rank": 2,
+        "rollout": 5,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6701,
+        "rank": 0,
+        "rollout": 5,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6711,
+        "rank": 3,
+        "rollout": 5,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6719,
+        "rank": 1,
+        "rollout": 5,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 7276,
+        "rank": 2,
+        "rollout": 6,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 7281,
+        "rank": 0,
+        "rollout": 6,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 7293,
+        "rank": 3,
+        "rollout": 6,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 7296,
+        "rank": 1,
+        "rollout": 6,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      }
+    ],
+    "rank0_rollout_metrics": [
+      {
+        "line": 3427,
+        "index": 0,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.380314826965332,
+          "rollout/raw_reward": 0.0,
+          "rollout/total_lengths": 256.0,
+          "rollout/ref_log_probs": -10.380661964416504,
+          "rollout/log_probs": -10.380579948425293,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 4141,
+        "index": 1,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.302135467529297,
+          "rollout/raw_reward": 0.0,
+          "rollout/total_lengths": 250.625,
+          "rollout/ref_log_probs": -10.302297592163086,
+          "rollout/log_probs": -10.30233383178711,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 4755,
+        "index": 2,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.264431953430176,
+          "rollout/raw_reward": 0.0,
+          "rollout/total_lengths": 270.625,
+          "rollout/ref_log_probs": -10.264811515808105,
+          "rollout/log_probs": -10.264444351196289,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 5352,
+        "index": 3,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.222463607788086,
+          "rollout/raw_reward": 0.0,
+          "rollout/total_lengths": 251.125,
+          "rollout/ref_log_probs": -10.223029136657715,
+          "rollout/log_probs": -10.222761154174805,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 5960,
+        "index": 4,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.287896156311035,
+          "rollout/raw_reward": 0.0,
+          "rollout/total_lengths": 270.75,
+          "rollout/ref_log_probs": -10.287956237792969,
+          "rollout/log_probs": -10.288235664367676,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 6547,
+        "index": 5,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.294469833374023,
+          "rollout/raw_reward": 0.0,
+          "rollout/total_lengths": 243.875,
+          "rollout/ref_log_probs": -10.294676780700684,
+          "rollout/log_probs": -10.294605255126953,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 7124,
+        "index": 6,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.278386116027832,
+          "rollout/raw_reward": 0.0,
+          "rollout/total_lengths": 239.25,
+          "rollout/ref_log_probs": -10.278526306152344,
+          "rollout/log_probs": -10.27869701385498,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      }
+    ],
+    "rank0_step_metrics": [
+      {
+        "line": 3714,
+        "index": 0,
+        "metrics": {
+          "train/loss": 0.0,
+          "train/pg_loss": 0.0,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": -9.614648297429085e-05,
+          "train/ess_ratio": 0.9998329281806946,
+          "train/train_rollout_logprob_abs_diff": 0.01137320976704359,
+          "train/train_rollout_kl": 0.00010511435539228842,
+          "train/kl_loss": 0.0001881362550193444,
+          "train/ois": 1.0001804828643799,
+          "train/tis": 0.9998403191566467,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011369865387678146,
+          "train/grad_norm": 0.0,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 0
+        },
+        "rollout": 0,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 4322,
+        "index": 1,
+        "metrics": {
+          "train/loss": 0.0,
+          "train/pg_loss": 0.0,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": -0.0003639149363152683,
+          "train/ess_ratio": 0.9998292922973633,
+          "train/train_rollout_logprob_abs_diff": 0.011748161166906357,
+          "train/train_rollout_kl": 0.00011202457244507968,
+          "train/kl_loss": 0.0001658751571085304,
+          "train/ois": 1.0004502534866333,
+          "train/tis": 0.9999143481254578,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011746246367692947,
+          "train/grad_norm": 0.0,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 1
+        },
+        "rollout": 1,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 4931,
+        "index": 2,
+        "metrics": {
+          "train/loss": 0.0,
+          "train/pg_loss": 0.0,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": -0.0003192470467183739,
+          "train/ess_ratio": 0.9998311400413513,
+          "train/train_rollout_logprob_abs_diff": 0.011413075029850006,
+          "train/train_rollout_kl": 0.00010594212653813884,
+          "train/kl_loss": 0.0001864050718722865,
+          "train/ois": 1.0004043579101562,
+          "train/tis": 1.0000866651535034,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011415453627705574,
+          "train/grad_norm": 0.0,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 2
+        },
+        "rollout": 2,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 5537,
+        "index": 3,
+        "metrics": {
+          "train/loss": 0.0,
+          "train/pg_loss": 0.0,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": -0.00033256009919568896,
+          "train/ess_ratio": 0.999835193157196,
+          "train/train_rollout_logprob_abs_diff": 0.01135214138776064,
+          "train/train_rollout_kl": 0.00010599890083540231,
+          "train/kl_loss": 0.00018728789291344583,
+          "train/ois": 1.0004156827926636,
+          "train/tis": 0.9998089671134949,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011347342282533646,
+          "train/grad_norm": 0.0,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 3
+        },
+        "rollout": 3,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 6131,
+        "index": 4,
+        "metrics": {
+          "train/loss": 0.0,
+          "train/pg_loss": 0.0,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": 0.00022333368542604148,
+          "train/ess_ratio": 0.9998432993888855,
+          "train/train_rollout_logprob_abs_diff": 0.011281131766736507,
+          "train/train_rollout_kl": 0.00010301147995050997,
+          "train/kl_loss": 0.00018241361249238253,
+          "train/ois": 0.9998556971549988,
+          "train/tis": 0.9997631907463074,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011279338970780373,
+          "train/grad_norm": 0.0,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 4
+        },
+        "rollout": 4,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 6702,
+        "index": 5,
+        "metrics": {
+          "train/loss": 0.0,
+          "train/pg_loss": 0.0,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": 1.5547600924037397e-05,
+          "train/ess_ratio": 0.9998275637626648,
+          "train/train_rollout_logprob_abs_diff": 0.011510885320603848,
+          "train/train_rollout_kl": 0.00010532711166888475,
+          "train/kl_loss": 0.00021523761097341776,
+          "train/ois": 1.0000715255737305,
+          "train/tis": 0.9999695420265198,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011512290686368942,
+          "train/grad_norm": 0.0,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 5
+        },
+        "rollout": 5,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 7282,
+        "index": 6,
+        "metrics": {
+          "train/loss": 0.0,
+          "train/pg_loss": 0.0,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": -0.00016173615586012602,
+          "train/ess_ratio": 0.9998372793197632,
+          "train/train_rollout_logprob_abs_diff": 0.011638790369033813,
+          "train/train_rollout_kl": 0.0001074743049684912,
+          "train/kl_loss": 0.00018727307906374335,
+          "train/ois": 1.000243902206421,
+          "train/tis": 0.9997954964637756,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011636888608336449,
+          "train/grad_norm": 0.0,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 6
+        },
+        "rollout": 6,
+        "step_within_rollout": 0,
+        "attempt": 0
+      }
+    ],
+    "native_perf_metrics": [
+      {
+        "line": 3725,
+        "index": 0,
+        "metrics": {
+          "perf/update_weights_time": 18.06361722946167,
+          "perf/data_preprocess_time": 0.009797096252441406,
+          "perf/train_wait_time": 27.19874358177185,
+          "perf/ref_log_probs_time": 59.95139670372009,
+          "perf/log_probs_time": 6.860516548156738,
+          "perf/actor_train_time": 72.02014994621277,
+          "perf/train_time": 139.27787113189697,
+          "perf/log_probs_tflops": 3.39376325228566,
+          "perf/ref_log_probs_tflops": 0.3883640787869626,
+          "perf/actor_train_tflops": 0.9698522831549459,
+          "perf/actor_train_tok_per_s": 227.49188959251208,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.00043104545917997596,
+          "perf/step_time": 166.47661471366882,
+          "perf/wait_time_ratio": 0.16337876420992994
+        },
+        "initial": true,
+        "after_training_rollout": null
+      },
+      {
+        "line": 4328,
+        "index": 1,
+        "metrics": {
+          "perf/update_weights_implementation_time": 3.8992385864257812,
+          "perf/finalize_and_resume_engines_time": 3.4229562282562256,
+          "perf/update_weights_time": 24.975753784179688,
+          "perf/data_preprocess_time": 0.0068018436431884766,
+          "perf/train_wait_time": 27.024840593338013,
+          "perf/ref_log_probs_time": 0.7675707340240479,
+          "perf/log_probs_time": 0.7728853225708008,
+          "perf/actor_train_time": 33.44028329849243,
+          "perf/train_time": 35.425230503082275,
+          "perf/update_weights_density": 0.0,
+          "perf/update_weights_wire_bytes": 0,
+          "perf/log_probs_tflops": 29.49154170632083,
+          "perf/ref_log_probs_tflops": 29.69573840485414,
+          "perf/actor_train_tflops": 2.044861240080546,
+          "perf/actor_train_tok_per_s": 479.6610081566839,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0009088272178135761,
+          "perf/step_time": 62.45007109642029,
+          "perf/wait_time_ratio": 0.4327431517509851
+        },
+        "initial": false,
+        "after_training_rollout": 0
+      },
+      {
+        "line": 4940,
+        "index": 2,
+        "metrics": {
+          "perf/update_weights_implementation_time": 3.2827959060668945,
+          "perf/finalize_and_resume_engines_time": 3.1525418758392334,
+          "perf/update_weights_time": 6.447613477706909,
+          "perf/data_preprocess_time": 0.009788990020751953,
+          "perf/train_wait_time": 11.005658388137817,
+          "perf/ref_log_probs_time": 0.7720708847045898,
+          "perf/log_probs_time": 0.7730426788330078,
+          "perf/actor_train_time": 34.60404944419861,
+          "perf/train_time": 36.59477949142456,
+          "perf/update_weights_density": 0.0,
+          "perf/update_weights_wire_bytes": 0,
+          "perf/log_probs_tflops": 31.860219300363376,
+          "perf/ref_log_probs_tflops": 31.90032128407961,
+          "perf/actor_train_tflops": 2.1352393438123283,
+          "perf/actor_train_tok_per_s": 500.51945590731174,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0009489952639165903,
+          "perf/step_time": 47.60043787956238,
+          "perf/wait_time_ratio": 0.23120918374709287
+        },
+        "initial": false,
+        "after_training_rollout": 1
+      },
+      {
+        "line": 5546,
+        "index": 3,
+        "metrics": {
+          "perf/update_weights_implementation_time": 3.3338608741760254,
+          "perf/finalize_and_resume_engines_time": 3.5847206115722656,
+          "perf/update_weights_time": 6.931683778762817,
+          "perf/data_preprocess_time": 0.009775400161743164,
+          "perf/train_wait_time": 8.926287412643433,
+          "perf/ref_log_probs_time": 0.7475399971008301,
+          "perf/log_probs_time": 0.7555360794067383,
+          "perf/actor_train_time": 32.67870211601257,
+          "perf/train_time": 34.62640619277954,
+          "perf/update_weights_density": 0.0,
+          "perf/update_weights_wire_bytes": 0,
+          "perf/log_probs_tflops": 30.227729201799278,
+          "perf/ref_log_probs_tflops": 30.551060945325627,
+          "perf/actor_train_tflops": 2.096607747402426,
+          "perf/actor_train_tok_per_s": 491.8187981561457,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0009318256655121893,
+          "perf/step_time": 43.552693605422974,
+          "perf/wait_time_ratio": 0.20495373933730643
+        },
+        "initial": false,
+        "after_training_rollout": 2
+      },
+      {
+        "line": 6137,
+        "index": 4,
+        "metrics": {
+          "perf/update_weights_implementation_time": 3.291419267654419,
+          "perf/finalize_and_resume_engines_time": 3.306222438812256,
+          "perf/update_weights_time": 6.609894752502441,
+          "perf/data_preprocess_time": 0.009791374206542969,
+          "perf/train_wait_time": 8.580443382263184,
+          "perf/ref_log_probs_time": 0.7668361663818359,
+          "perf/log_probs_time": 0.7658102512359619,
+          "perf/actor_train_time": 28.4489643573761,
+          "perf/train_time": 30.42561626434326,
+          "perf/update_weights_density": 0.0,
+          "perf/update_weights_wire_bytes": 0,
+          "perf/log_probs_tflops": 32.174676797832525,
+          "perf/ref_log_probs_tflops": 32.131631764633006,
+          "perf/actor_train_tflops": 2.5983051979460416,
+          "perf/actor_train_tok_per_s": 609.0907135432255,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0011548023101982407,
+          "perf/step_time": 39.006059646606445,
+          "perf/wait_time_ratio": 0.21997718969825983
+        },
+        "initial": false,
+        "after_training_rollout": 3
+      },
+      {
+        "line": 6708,
+        "index": 5,
+        "metrics": {
+          "perf/update_weights_implementation_time": 3.085740089416504,
+          "perf/finalize_and_resume_engines_time": 3.432140350341797,
+          "perf/update_weights_time": 6.5295984745025635,
+          "perf/data_preprocess_time": 0.00665736198425293,
+          "perf/train_wait_time": 11.594493627548218,
+          "perf/ref_log_probs_time": 0.6502511501312256,
+          "perf/log_probs_time": 0.659254789352417,
+          "perf/actor_train_time": 24.459638833999634,
+          "perf/train_time": 26.229135990142822,
+          "perf/update_weights_density": 0.0,
+          "perf/update_weights_wire_bytes": 0,
+          "perf/log_probs_tflops": 33.647459822951795,
+          "perf/ref_log_probs_tflops": 34.11335609840514,
+          "perf/actor_train_tflops": 2.7206757861432536,
+          "perf/actor_train_tok_per_s": 638.112447445643,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0012091892382858904,
+          "perf/step_time": 37.82362961769104,
+          "perf/wait_time_ratio": 0.3065410100707307
+        },
+        "initial": false,
+        "after_training_rollout": 4
+      },
+      {
+        "line": 7288,
+        "index": 6,
+        "metrics": {
+          "perf/update_weights_implementation_time": 3.309833526611328,
+          "perf/finalize_and_resume_engines_time": 3.575404405593872,
+          "perf/update_weights_time": 6.897026538848877,
+          "perf/data_preprocess_time": 0.009743928909301758,
+          "perf/train_wait_time": 16.398111820220947,
+          "perf/ref_log_probs_time": 0.6731719970703125,
+          "perf/log_probs_time": 0.6797523498535156,
+          "perf/actor_train_time": 23.142539978027344,
+          "perf/train_time": 24.940425395965576,
+          "perf/update_weights_density": 0.0,
+          "perf/update_weights_wire_bytes": 0,
+          "perf/log_probs_tflops": 32.00447725008108,
+          "perf/ref_log_probs_tflops": 32.31732560364315,
+          "perf/actor_train_tflops": 2.820146617946609,
+          "perf/actor_train_tok_per_s": 661.6386971584778,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0012533984968651594,
+          "perf/step_time": 41.33853721618652,
+          "perf/wait_time_ratio": 0.39667856979225913
+        },
+        "initial": false,
+        "after_training_rollout": 5
+      }
+    ],
+    "rollout_service_metrics": [
+      {
+        "line": 3250,
+        "index": 0,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.0,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/count_0": 8,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.02564102564102564,
+          "rollout/avg_cached_tokens_per_sample": 4.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 0.0,
+          "rollout/weight_version/median": 0.0,
+          "rollout/weight_version/max": 0,
+          "rollout/weight_version/min": 0,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 8.876906871795654,
+          "perf/tokens_per_gpu_per_sec": 180.24296335513387,
+          "perf/longest_sample_tokens_per_sec": 11.265185209695867,
+          "perf/effective_tokens_per_gpu_per_sec": 180.24296335513387,
+          "perf/longest_effective_sample_tokens_per_sec": 11.265185209695867
+        }
+      },
+      {
+        "line": 4054,
+        "index": 1,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.0,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/count_0": 8,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.053112033195020746,
+          "rollout/avg_cached_tokens_per_sample": 8.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 1.0,
+          "rollout/weight_version/median": 1.0,
+          "rollout/weight_version/max": 1,
+          "rollout/weight_version/min": 1,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.6096172332763672,
+          "perf/tokens_per_gpu_per_sec": 2624.5977191308293,
+          "perf/longest_sample_tokens_per_sec": 164.03735744567683,
+          "perf/effective_tokens_per_gpu_per_sec": 2624.5977191308293,
+          "perf/longest_effective_sample_tokens_per_sec": 164.03735744567683
+        }
+      },
+      {
+        "line": 4657,
+        "index": 2,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.0,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/count_0": 8,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.05274725274725275,
+          "rollout/avg_cached_tokens_per_sample": 9.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 2.0,
+          "rollout/weight_version/median": 2.0,
+          "rollout/weight_version/max": 2,
+          "rollout/weight_version/min": 2,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.6204779148101807,
+          "perf/tokens_per_gpu_per_sec": 2578.657453890972,
+          "perf/longest_sample_tokens_per_sec": 161.16609086818576,
+          "perf/effective_tokens_per_gpu_per_sec": 2578.657453890972,
+          "perf/longest_effective_sample_tokens_per_sec": 161.16609086818576
+        }
+      },
+      {
+        "line": 5263,
+        "index": 3,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.0,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/count_0": 8,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.04631927212572374,
+          "rollout/avg_cached_tokens_per_sample": 7.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 3.0,
+          "rollout/weight_version/median": 3.0,
+          "rollout/weight_version/max": 3,
+          "rollout/weight_version/min": 3,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.63340163230896,
+          "perf/tokens_per_gpu_per_sec": 2526.0433797233313,
+          "perf/longest_sample_tokens_per_sec": 157.8777112327082,
+          "perf/effective_tokens_per_gpu_per_sec": 2526.0433797233313,
+          "perf/longest_effective_sample_tokens_per_sec": 157.8777112327082
+        }
+      },
+      {
+        "line": 5862,
+        "index": 4,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.0,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/count_0": 8,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.040995607613469986,
+          "rollout/avg_cached_tokens_per_sample": 7.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 4.0,
+          "rollout/weight_version/median": 4.0,
+          "rollout/weight_version/max": 4,
+          "rollout/weight_version/min": 4,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.6713786125183105,
+          "perf/tokens_per_gpu_per_sec": 2383.156046628404,
+          "perf/longest_sample_tokens_per_sec": 148.94725291427525,
+          "perf/effective_tokens_per_gpu_per_sec": 2383.156046628404,
+          "perf/longest_effective_sample_tokens_per_sec": 148.94725291427525
+        }
+      },
+      {
+        "line": 6465,
+        "index": 5,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.0,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/count_0": 8,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.020851433536055605,
+          "rollout/avg_cached_tokens_per_sample": 3.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 5.0,
+          "rollout/weight_version/median": 5.0,
+          "rollout/weight_version/max": 5,
+          "rollout/weight_version/min": 5,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.9343798160552979,
+          "perf/tokens_per_gpu_per_sec": 1712.3657558815567,
+          "perf/longest_sample_tokens_per_sec": 107.02285974259729,
+          "perf/effective_tokens_per_gpu_per_sec": 1712.3657558815567,
+          "perf/longest_effective_sample_tokens_per_sec": 107.02285974259729
+        }
+      },
+      {
+        "line": 7042,
+        "index": 6,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.0,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/count_0": 8,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.01436265709156194,
+          "rollout/avg_cached_tokens_per_sample": 2.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 6.0,
+          "rollout/weight_version/median": 6.0,
+          "rollout/weight_version/max": 6,
+          "rollout/weight_version/min": 6,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.6506006717681885,
+          "perf/tokens_per_gpu_per_sec": 2459.2658283791106,
+          "perf/longest_sample_tokens_per_sec": 153.70411427369442,
+          "perf/effective_tokens_per_gpu_per_sec": 2459.2658283791106,
+          "perf/longest_effective_sample_tokens_per_sec": 153.70411427369442
+        }
+      }
+    ],
+    "ray_terminal": [
+      {
+        "line": 7339,
+        "job_id": "miles-cf06745e136d4eed8f3a47fddb1b6bda",
+        "status": "succeeded"
+      }
+    ],
+    "metric_parse_errors": [],
+    "fatal_signature_lines": [
+      {
+        "line": 2634,
+        "text": "(CommandActor pid=111835) Traceback (most recent call last):"
+      },
+      {
+        "line": 2646,
+        "text": "(CommandActor pid=111835) Traceback (most recent call last):"
+      },
+      {
+        "line": 2669,
+        "text": "(CommandActor pid=111835) Traceback (most recent call last):"
+      },
+      {
+        "line": 2683,
+        "text": "(CommandActor pid=111835) Traceback (most recent call last):"
+      },
+      {
+        "line": 2704,
+        "text": "(CommandActor pid=111834) Traceback (most recent call last):"
+      },
+      {
+        "line": 2716,
+        "text": "(CommandActor pid=111834) Traceback (most recent call last):"
+      },
+      {
+        "line": 2739,
+        "text": "(CommandActor pid=111834) Traceback (most recent call last):"
+      },
+      {
+        "line": 2753,
+        "text": "(CommandActor pid=111834) Traceback (most recent call last):"
+      }
+    ],
+    "duplicate_step_metric_lines": [
+      3715,
+      4323,
+      4932,
+      5538,
+      6132,
+      6703,
+      7283
+    ],
+    "conflicting_step_metric_lines": [],
+    "replay": [
+      {
+        "rollout": 0,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3498,
+          3526,
+          3554,
+          3558,
+          3571,
+          3574,
+          3586,
+          3590,
+          3604,
+          3608,
+          3620,
+          3624,
+          3639,
+          3640,
+          3646,
+          3656,
+          3668,
+          3672
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3359,
+          3360,
+          3361,
+          3369,
+          3370,
+          3379,
+          3381,
+          3382,
+          3389,
+          3390,
+          3391,
+          3401,
+          3402,
+          3403,
+          3413,
+          3414,
+          3421,
+          3422,
+          3451,
+          3452,
+          3538,
+          3539,
+          3562,
+          3563,
+          3578,
+          3579,
+          3594,
+          3595,
+          3612,
+          3613,
+          3628,
+          3629,
+          3644,
+          3645,
+          3660,
+          3664
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3504,
+          3528,
+          3556,
+          3560,
+          3573,
+          3576,
+          3588,
+          3592,
+          3606,
+          3610,
+          3622,
+          3626,
+          3635,
+          3642,
+          3652,
+          3658,
+          3670,
+          3674
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3357,
+          3365,
+          3366,
+          3373,
+          3374,
+          3375,
+          3385,
+          3386,
+          3395,
+          3396,
+          3397,
+          3407,
+          3408,
+          3409,
+          3417,
+          3418,
+          3432,
+          3433,
+          3456,
+          3457,
+          3546,
+          3547,
+          3566,
+          3567,
+          3582,
+          3583,
+          3598,
+          3599,
+          3616,
+          3617,
+          3633,
+          3634,
+          3650,
+          3651,
+          3662,
+          3666
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3501,
+          3527,
+          3555,
+          3559,
+          3572,
+          3575,
+          3587,
+          3591,
+          3605,
+          3609,
+          3621,
+          3625,
+          3632,
+          3641,
+          3649,
+          3657,
+          3669,
+          3673
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3356,
+          3363,
+          3364,
+          3371,
+          3372,
+          3380,
+          3383,
+          3384,
+          3392,
+          3393,
+          3394,
+          3404,
+          3405,
+          3406,
+          3415,
+          3416,
+          3429,
+          3430,
+          3454,
+          3455,
+          3542,
+          3543,
+          3564,
+          3565,
+          3580,
+          3581,
+          3596,
+          3597,
+          3614,
+          3615,
+          3630,
+          3631,
+          3647,
+          3648,
+          3661,
+          3665
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3507,
+          3529,
+          3557,
+          3561,
+          3570,
+          3577,
+          3589,
+          3593,
+          3607,
+          3611,
+          3623,
+          3627,
+          3638,
+          3643,
+          3655,
+          3659,
+          3671,
+          3675
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3358,
+          3367,
+          3368,
+          3376,
+          3377,
+          3378,
+          3387,
+          3388,
+          3398,
+          3399,
+          3400,
+          3410,
+          3411,
+          3412,
+          3419,
+          3420,
+          3435,
+          3436,
+          3462,
+          3463,
+          3550,
+          3551,
+          3568,
+          3569,
+          3584,
+          3585,
+          3600,
+          3601,
+          3618,
+          3619,
+          3636,
+          3637,
+          3653,
+          3654,
+          3663,
+          3667
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4154,
+          4166,
+          4178,
+          4182,
+          4194,
+          4198,
+          4212,
+          4214,
+          4220,
+          4230,
+          4242,
+          4246,
+          4254,
+          4264,
+          4273,
+          4280,
+          4292,
+          4296
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4068,
+          4069,
+          4079,
+          4080,
+          4081,
+          4091,
+          4092,
+          4093,
+          4103,
+          4104,
+          4111,
+          4112,
+          4113,
+          4123,
+          4127,
+          4128,
+          4135,
+          4136,
+          4152,
+          4153,
+          4170,
+          4174,
+          4186,
+          4187,
+          4202,
+          4203,
+          4218,
+          4219,
+          4234,
+          4235,
+          4252,
+          4253,
+          4268,
+          4272,
+          4284,
+          4285
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4162,
+          4168,
+          4180,
+          4184,
+          4196,
+          4200,
+          4208,
+          4216,
+          4226,
+          4232,
+          4244,
+          4248,
+          4260,
+          4266,
+          4277,
+          4282,
+          4294,
+          4298
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4074,
+          4075,
+          4085,
+          4086,
+          4087,
+          4097,
+          4098,
+          4099,
+          4107,
+          4108,
+          4117,
+          4118,
+          4119,
+          4125,
+          4131,
+          4132,
+          4146,
+          4147,
+          4160,
+          4161,
+          4172,
+          4176,
+          4190,
+          4191,
+          4206,
+          4207,
+          4224,
+          4225,
+          4238,
+          4239,
+          4258,
+          4259,
+          4270,
+          4276,
+          4288,
+          4289
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4159,
+          4167,
+          4179,
+          4183,
+          4195,
+          4199,
+          4213,
+          4215,
+          4223,
+          4231,
+          4243,
+          4247,
+          4257,
+          4265,
+          4275,
+          4281,
+          4293,
+          4297
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4071,
+          4072,
+          4082,
+          4083,
+          4084,
+          4094,
+          4095,
+          4096,
+          4105,
+          4106,
+          4114,
+          4115,
+          4116,
+          4124,
+          4129,
+          4130,
+          4143,
+          4144,
+          4157,
+          4158,
+          4171,
+          4175,
+          4188,
+          4189,
+          4204,
+          4205,
+          4221,
+          4222,
+          4236,
+          4237,
+          4255,
+          4256,
+          4269,
+          4274,
+          4286,
+          4287
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4165,
+          4169,
+          4181,
+          4185,
+          4197,
+          4201,
+          4211,
+          4217,
+          4229,
+          4233,
+          4245,
+          4249,
+          4263,
+          4267,
+          4279,
+          4283,
+          4295,
+          4299
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4077,
+          4078,
+          4088,
+          4089,
+          4090,
+          4100,
+          4101,
+          4102,
+          4109,
+          4110,
+          4120,
+          4121,
+          4122,
+          4126,
+          4133,
+          4134,
+          4149,
+          4150,
+          4163,
+          4164,
+          4173,
+          4177,
+          4192,
+          4193,
+          4209,
+          4210,
+          4227,
+          4228,
+          4240,
+          4241,
+          4261,
+          4262,
+          4271,
+          4278,
+          4290,
+          4291
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4759,
+          4769,
+          4775,
+          4785,
+          4797,
+          4801,
+          4813,
+          4817,
+          4823,
+          4833,
+          4842,
+          4849,
+          4861,
+          4865,
+          4874,
+          4884,
+          4896,
+          4903
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4673,
+          4674,
+          4684,
+          4685,
+          4692,
+          4693,
+          4694,
+          4704,
+          4708,
+          4709,
+          4716,
+          4717,
+          4718,
+          4728,
+          4729,
+          4730,
+          4740,
+          4741,
+          4757,
+          4758,
+          4773,
+          4774,
+          4789,
+          4793,
+          4805,
+          4806,
+          4821,
+          4822,
+          4837,
+          4841,
+          4853,
+          4854,
+          4872,
+          4873,
+          4891,
+          4895
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4765,
+          4771,
+          4781,
+          4787,
+          4799,
+          4803,
+          4815,
+          4819,
+          4829,
+          4835,
+          4846,
+          4851,
+          4863,
+          4867,
+          4880,
+          4886,
+          4900,
+          4905
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4679,
+          4680,
+          4688,
+          4689,
+          4698,
+          4699,
+          4700,
+          4706,
+          4712,
+          4713,
+          4722,
+          4723,
+          4724,
+          4734,
+          4735,
+          4736,
+          4748,
+          4749,
+          4763,
+          4764,
+          4779,
+          4780,
+          4791,
+          4795,
+          4809,
+          4810,
+          4827,
+          4828,
+          4839,
+          4845,
+          4857,
+          4858,
+          4878,
+          4879,
+          4893,
+          4899
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4762,
+          4770,
+          4778,
+          4786,
+          4798,
+          4802,
+          4814,
+          4818,
+          4826,
+          4834,
+          4844,
+          4850,
+          4862,
+          4866,
+          4877,
+          4885,
+          4898,
+          4904
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4676,
+          4677,
+          4686,
+          4687,
+          4695,
+          4696,
+          4697,
+          4705,
+          4710,
+          4711,
+          4719,
+          4720,
+          4721,
+          4731,
+          4732,
+          4733,
+          4745,
+          4746,
+          4760,
+          4761,
+          4776,
+          4777,
+          4790,
+          4794,
+          4807,
+          4808,
+          4824,
+          4825,
+          4838,
+          4843,
+          4855,
+          4856,
+          4875,
+          4876,
+          4892,
+          4897
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4768,
+          4772,
+          4784,
+          4788,
+          4800,
+          4804,
+          4816,
+          4820,
+          4832,
+          4836,
+          4848,
+          4852,
+          4864,
+          4868,
+          4883,
+          4887,
+          4902,
+          4906
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4682,
+          4683,
+          4690,
+          4691,
+          4701,
+          4702,
+          4703,
+          4707,
+          4714,
+          4715,
+          4725,
+          4726,
+          4727,
+          4737,
+          4738,
+          4739,
+          4751,
+          4752,
+          4766,
+          4767,
+          4782,
+          4783,
+          4792,
+          4796,
+          4811,
+          4812,
+          4830,
+          4831,
+          4840,
+          4847,
+          4859,
+          4860,
+          4881,
+          4882,
+          4894,
+          4901
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5365,
+          5375,
+          5381,
+          5391,
+          5403,
+          5407,
+          5413,
+          5423,
+          5434,
+          5441,
+          5453,
+          5457,
+          5463,
+          5473,
+          5479,
+          5489,
+          5498,
+          5505
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5279,
+          5280,
+          5290,
+          5291,
+          5298,
+          5299,
+          5300,
+          5310,
+          5314,
+          5315,
+          5322,
+          5323,
+          5324,
+          5334,
+          5335,
+          5336,
+          5346,
+          5347,
+          5363,
+          5364,
+          5379,
+          5380,
+          5395,
+          5399,
+          5411,
+          5412,
+          5429,
+          5433,
+          5445,
+          5446,
+          5461,
+          5462,
+          5477,
+          5478,
+          5493,
+          5497
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5371,
+          5377,
+          5387,
+          5393,
+          5405,
+          5409,
+          5419,
+          5425,
+          5438,
+          5443,
+          5455,
+          5459,
+          5469,
+          5475,
+          5485,
+          5491,
+          5502,
+          5507
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5285,
+          5286,
+          5294,
+          5295,
+          5304,
+          5305,
+          5306,
+          5312,
+          5318,
+          5319,
+          5328,
+          5329,
+          5330,
+          5340,
+          5341,
+          5342,
+          5357,
+          5358,
+          5369,
+          5370,
+          5385,
+          5386,
+          5397,
+          5401,
+          5417,
+          5418,
+          5431,
+          5437,
+          5449,
+          5450,
+          5467,
+          5468,
+          5483,
+          5484,
+          5495,
+          5501
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5368,
+          5376,
+          5384,
+          5392,
+          5404,
+          5408,
+          5416,
+          5424,
+          5436,
+          5442,
+          5454,
+          5458,
+          5466,
+          5474,
+          5482,
+          5490,
+          5500,
+          5506
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5282,
+          5283,
+          5292,
+          5293,
+          5301,
+          5302,
+          5303,
+          5311,
+          5316,
+          5317,
+          5325,
+          5326,
+          5327,
+          5337,
+          5338,
+          5339,
+          5354,
+          5355,
+          5366,
+          5367,
+          5382,
+          5383,
+          5396,
+          5400,
+          5414,
+          5415,
+          5430,
+          5435,
+          5447,
+          5448,
+          5464,
+          5465,
+          5480,
+          5481,
+          5494,
+          5499
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5374,
+          5378,
+          5390,
+          5394,
+          5406,
+          5410,
+          5422,
+          5426,
+          5440,
+          5444,
+          5456,
+          5460,
+          5472,
+          5476,
+          5488,
+          5492,
+          5504,
+          5508
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5288,
+          5289,
+          5296,
+          5297,
+          5307,
+          5308,
+          5309,
+          5313,
+          5320,
+          5321,
+          5331,
+          5332,
+          5333,
+          5343,
+          5344,
+          5345,
+          5360,
+          5361,
+          5372,
+          5373,
+          5388,
+          5389,
+          5398,
+          5402,
+          5420,
+          5421,
+          5432,
+          5439,
+          5451,
+          5452,
+          5470,
+          5471,
+          5486,
+          5487,
+          5496,
+          5503
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5966,
+          5977,
+          5991,
+          5996,
+          6002,
+          6012,
+          6018,
+          6028,
+          6037,
+          6044,
+          6056,
+          6060,
+          6066,
+          6076,
+          6088,
+          6092,
+          6104,
+          6108
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5876,
+          5877,
+          5887,
+          5888,
+          5895,
+          5896,
+          5897,
+          5907,
+          5911,
+          5912,
+          5919,
+          5920,
+          5921,
+          5933,
+          5934,
+          5935,
+          5945,
+          5946,
+          5964,
+          5965,
+          5981,
+          5982,
+          6000,
+          6001,
+          6016,
+          6017,
+          6032,
+          6036,
+          6048,
+          6049,
+          6064,
+          6065,
+          6080,
+          6081,
+          6096,
+          6097
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5972,
+          5979,
+          5994,
+          5998,
+          6008,
+          6014,
+          6024,
+          6030,
+          6041,
+          6046,
+          6058,
+          6062,
+          6072,
+          6078,
+          6090,
+          6094,
+          6106,
+          6110
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5882,
+          5883,
+          5891,
+          5892,
+          5901,
+          5902,
+          5903,
+          5909,
+          5915,
+          5916,
+          5925,
+          5926,
+          5927,
+          5939,
+          5940,
+          5941,
+          5953,
+          5954,
+          5970,
+          5971,
+          5985,
+          5986,
+          6006,
+          6007,
+          6022,
+          6023,
+          6034,
+          6040,
+          6052,
+          6053,
+          6070,
+          6071,
+          6084,
+          6085,
+          6100,
+          6101
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5969,
+          5978,
+          5993,
+          5997,
+          6005,
+          6013,
+          6021,
+          6029,
+          6039,
+          6045,
+          6057,
+          6061,
+          6069,
+          6077,
+          6089,
+          6093,
+          6105,
+          6109
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5879,
+          5880,
+          5889,
+          5890,
+          5898,
+          5899,
+          5900,
+          5908,
+          5913,
+          5914,
+          5922,
+          5923,
+          5924,
+          5936,
+          5937,
+          5938,
+          5950,
+          5951,
+          5967,
+          5968,
+          5983,
+          5984,
+          6003,
+          6004,
+          6019,
+          6020,
+          6033,
+          6038,
+          6050,
+          6051,
+          6067,
+          6068,
+          6082,
+          6083,
+          6098,
+          6099
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5975,
+          5980,
+          5995,
+          5999,
+          6011,
+          6015,
+          6027,
+          6031,
+          6043,
+          6047,
+          6059,
+          6063,
+          6075,
+          6079,
+          6091,
+          6095,
+          6107,
+          6111
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5885,
+          5886,
+          5893,
+          5894,
+          5904,
+          5905,
+          5906,
+          5910,
+          5917,
+          5918,
+          5928,
+          5929,
+          5930,
+          5942,
+          5943,
+          5944,
+          5956,
+          5957,
+          5973,
+          5974,
+          5987,
+          5988,
+          6009,
+          6010,
+          6025,
+          6026,
+          6035,
+          6042,
+          6054,
+          6055,
+          6073,
+          6074,
+          6086,
+          6087,
+          6102,
+          6103
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6560,
+          6570,
+          6579,
+          6586,
+          6598,
+          6602,
+          6611,
+          6618,
+          6632,
+          6636,
+          6642,
+          6652,
+          6661,
+          6668,
+          6680,
+          6684
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6482,
+          6483,
+          6493,
+          6494,
+          6495,
+          6505,
+          6506,
+          6507,
+          6517,
+          6518,
+          6525,
+          6526,
+          6527,
+          6537,
+          6541,
+          6542,
+          6558,
+          6559,
+          6574,
+          6578,
+          6590,
+          6591,
+          6606,
+          6610,
+          6624,
+          6625,
+          6640,
+          6641,
+          6656,
+          6660,
+          6672,
+          6673
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6566,
+          6572,
+          6583,
+          6588,
+          6600,
+          6604,
+          6615,
+          6620,
+          6634,
+          6638,
+          6648,
+          6654,
+          6665,
+          6670,
+          6682,
+          6686
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6488,
+          6489,
+          6499,
+          6500,
+          6501,
+          6511,
+          6512,
+          6513,
+          6521,
+          6522,
+          6531,
+          6532,
+          6533,
+          6539,
+          6552,
+          6553,
+          6564,
+          6565,
+          6576,
+          6582,
+          6594,
+          6595,
+          6608,
+          6614,
+          6628,
+          6629,
+          6646,
+          6647,
+          6658,
+          6664,
+          6676,
+          6677
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6563,
+          6571,
+          6581,
+          6587,
+          6599,
+          6603,
+          6613,
+          6619,
+          6633,
+          6637,
+          6645,
+          6653,
+          6663,
+          6669,
+          6681,
+          6685
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6485,
+          6486,
+          6496,
+          6497,
+          6498,
+          6508,
+          6509,
+          6510,
+          6519,
+          6520,
+          6528,
+          6529,
+          6530,
+          6538,
+          6549,
+          6550,
+          6561,
+          6562,
+          6575,
+          6580,
+          6592,
+          6593,
+          6607,
+          6612,
+          6626,
+          6627,
+          6643,
+          6644,
+          6657,
+          6662,
+          6674,
+          6675
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6569,
+          6573,
+          6585,
+          6589,
+          6601,
+          6605,
+          6617,
+          6621,
+          6635,
+          6639,
+          6651,
+          6655,
+          6667,
+          6671,
+          6683,
+          6687
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6491,
+          6492,
+          6502,
+          6503,
+          6504,
+          6514,
+          6515,
+          6516,
+          6523,
+          6524,
+          6534,
+          6535,
+          6536,
+          6540,
+          6555,
+          6556,
+          6567,
+          6568,
+          6577,
+          6584,
+          6596,
+          6597,
+          6609,
+          6616,
+          6630,
+          6631,
+          6649,
+          6650,
+          6659,
+          6666,
+          6678,
+          6679
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7137,
+          7144,
+          7156,
+          7160,
+          7166,
+          7176,
+          7185,
+          7192,
+          7204,
+          7208,
+          7220,
+          7224,
+          7230,
+          7242,
+          7254,
+          7258
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7059,
+          7063,
+          7064,
+          7065,
+          7075,
+          7076,
+          7083,
+          7084,
+          7085,
+          7095,
+          7099,
+          7100,
+          7107,
+          7108,
+          7109,
+          7119,
+          7126,
+          7136,
+          7148,
+          7149,
+          7164,
+          7165,
+          7180,
+          7184,
+          7196,
+          7197,
+          7212,
+          7213,
+          7228,
+          7229,
+          7246,
+          7250
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7141,
+          7146,
+          7158,
+          7162,
+          7172,
+          7178,
+          7189,
+          7194,
+          7206,
+          7210,
+          7222,
+          7226,
+          7236,
+          7244,
+          7256,
+          7260
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7061,
+          7069,
+          7070,
+          7071,
+          7079,
+          7080,
+          7089,
+          7090,
+          7091,
+          7097,
+          7103,
+          7104,
+          7113,
+          7114,
+          7115,
+          7130,
+          7132,
+          7140,
+          7152,
+          7153,
+          7170,
+          7171,
+          7182,
+          7188,
+          7200,
+          7201,
+          7216,
+          7217,
+          7234,
+          7235,
+          7248,
+          7252
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7139,
+          7145,
+          7157,
+          7161,
+          7169,
+          7177,
+          7187,
+          7193,
+          7205,
+          7209,
+          7221,
+          7225,
+          7233,
+          7243,
+          7255,
+          7259
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7060,
+          7066,
+          7067,
+          7068,
+          7077,
+          7078,
+          7086,
+          7087,
+          7088,
+          7096,
+          7101,
+          7102,
+          7110,
+          7111,
+          7112,
+          7127,
+          7129,
+          7138,
+          7150,
+          7151,
+          7167,
+          7168,
+          7181,
+          7186,
+          7198,
+          7199,
+          7214,
+          7215,
+          7231,
+          7232,
+          7247,
+          7251
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7143,
+          7147,
+          7159,
+          7163,
+          7175,
+          7179,
+          7191,
+          7195,
+          7207,
+          7211,
+          7223,
+          7227,
+          7239,
+          7245,
+          7257,
+          7261
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7062,
+          7072,
+          7073,
+          7074,
+          7081,
+          7082,
+          7092,
+          7093,
+          7094,
+          7098,
+          7105,
+          7106,
+          7116,
+          7117,
+          7118,
+          7133,
+          7135,
+          7142,
+          7154,
+          7155,
+          7173,
+          7174,
+          7183,
+          7190,
+          7202,
+          7203,
+          7218,
+          7219,
+          7237,
+          7238,
+          7249,
+          7253
+        ],
+        "logged_rounded_threshold": 10.0
+      }
+    ]
+  },
+  "boundaries": [
+    "Replay totals count repeated per-layer/stage/rank checks, not unique generated tokens; rollout grouping follows driver train-start log order.",
+    "Logged reward/advantage values are means: zero mean is not proof that every element is zero. Debug dumps report mean absolute value and nonzero counts.",
+    "Native perf 0 is initial sync, perf 1..6 are six post-training syncs, perf 2..6 are five steady samples for seven-rollout runs.",
+    "Exact changed-weight bytes come from timing JSONL delta_bytes events, not gradient norm or printed rounded density.",
+    "Successful RPCs, versions and training completion do not establish active GPU weight byte equality or learned-task quality."
+  ]
+}

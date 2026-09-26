@@ -1,0 +1,10 @@
+[
+  {
+    "line": 85,
+    "text": "call-gate / pr-gate\tUNKNOWN STEP\t2026-09-25T21:36:22.2650769Z PR is draft. Blocking CI."
+  },
+  {
+    "line": 86,
+    "text": "call-gate / pr-gate\tUNKNOWN STEP\t2026-09-25T21:36:22.2663318Z ##[error]Process completed with exit code 1."
+  }
+]

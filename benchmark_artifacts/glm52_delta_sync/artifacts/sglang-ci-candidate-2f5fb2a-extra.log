@@ -1,0 +1,321 @@
+check-changes / check-changes	UNKNOWN STEP	﻿2026-09-25T21:36:12.7539163Z Current runner version: '2.337.0'
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7588986Z ##[group]Runner Image Provisioner
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7589877Z Hosted Compute Agent
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7590597Z Version: 20260828.587
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7591255Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7592012Z Build Date: 2026-08-28T16:44:25Z
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7592809Z Worker ID: {6deebd76-a817-44e4-b3a2-d91d101bf76b}
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7593526Z Azure Region: eastus2
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7594166Z ##[endgroup]
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7596118Z ##[group]Operating System
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7596805Z Ubuntu
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7597424Z 24.04.5
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7597941Z LTS
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7598719Z ##[endgroup]
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7599307Z ##[group]Runner Image
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7599934Z Image: ubuntu-24.04
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7600576Z Version: 20260920.314.1
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7601820Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260920.314/images/ubuntu/Ubuntu2404-Readme.md
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7603459Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260920.314
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7604457Z ##[endgroup]
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7605865Z ##[group]GITHUB_TOKEN Permissions
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7608056Z Actions: read
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7609276Z Contents: read
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7609905Z Issues: read
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7610484Z Metadata: read
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7611061Z PullRequests: read
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7611620Z ##[endgroup]
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7613739Z Secret source: None
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7614730Z Cache mode: write
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7615924Z Prepare workflow directory
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7944407Z Prepare all required actions
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:12.7992323Z Getting action download info
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.0593147Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.1903858Z Download action repository 'dorny/paths-filter@v3' (SHA:0e4a8c6effa4802afeda77dc8d303f8176d7dfad)
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.4139563Z Uses: sgl-project/sglang/.github/workflows/_pr-test-check-changes.yml@refs/pull/41274/merge (5d88623c8d3292270dd1b1005a348544033604ef)
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.4144427Z ##[group] Inputs
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.4144948Z   git_ref: 
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.4145755Z   run_all_tests: false
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.4146395Z   force_continue_on_error: false
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.4147015Z   pr_test_yml: .github/workflows/pr-test-extra.yml
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.4147689Z ##[endgroup]
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.4148402Z Complete job name: check-changes / check-changes
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.5033466Z ##[group]Run actions/checkout@v4
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.5034346Z with:
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.5034821Z   ref: 5d88623c8d3292270dd1b1005a348544033604ef
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.5035485Z   repository: sgl-project/sglang
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.5039733Z   token: ***
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.5040185Z   ssh-strict: true
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.5040627Z   ssh-user: git
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.5041068Z   persist-credentials: true
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.5041548Z   clean: true
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.5042010Z   sparse-checkout-cone-mode: true
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.5042524Z   fetch-depth: 1
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.5042952Z   fetch-tags: false
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.5043389Z   show-progress: true
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.5043828Z   lfs: false
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.5044247Z   submodules: false
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.5044688Z   set-safe-directory: true
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.5045192Z   allow-unsafe-pr-checkout: false
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.5045993Z ##[endgroup]
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6003008Z Syncing repository: sgl-project/sglang
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6004890Z ##[group]Getting Git version info
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6005605Z Working directory is '/home/runner/work/sglang/sglang'
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6006571Z [command]/usr/bin/git version
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6097887Z git version 2.55.0
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6119997Z ##[endgroup]
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6133861Z Temporarily overriding HOME='/home/runner/work/_temp/cd6789cc-4d82-4c63-bfbe-cc5d07f22cfd' before making global git config changes
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6135994Z Adding repository directory to the temporary git global config as a safe directory
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6138887Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/sglang/sglang
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6188985Z Deleting the contents of '/home/runner/work/sglang/sglang'
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6193762Z ##[group]Initializing the repository
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6198523Z [command]/usr/bin/git init /home/runner/work/sglang/sglang
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6325229Z hint: Using 'master' as the name for the initial branch. This default branch name
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6326313Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6327414Z hint: to use in all of your new repositories, which will suppress this warning,
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6328648Z hint: call:
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6329391Z hint:
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6330220Z hint: 	git config --global init.defaultBranch <name>
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6331023Z hint:
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6332120Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6333933Z hint: 'development'. The just-created branch can be renamed via this command:
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6335380Z hint:
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6336216Z hint: 	git branch -m <name>
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6337085Z hint:
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6338540Z hint: Disable this message with "git config set advice.defaultBranchName false"
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6340353Z Initialized empty Git repository in /home/runner/work/sglang/sglang/.git/
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6343348Z [command]/usr/bin/git remote add origin https://github.com/sgl-project/sglang
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6396322Z ##[endgroup]
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6397662Z ##[group]Disabling automatic garbage collection
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6401131Z [command]/usr/bin/git config --local gc.auto 0
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6430170Z ##[endgroup]
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6430897Z ##[group]Setting up auth
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6436744Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6467740Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6869029Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.6900954Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.7121083Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.7153743Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.7383211Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.7420428Z ##[endgroup]
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.7421339Z ##[group]Fetching the repository
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:13.7429128Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 5d88623c8d3292270dd1b1005a348544033604ef
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.0780272Z From https://github.com/sgl-project/sglang
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.0782184Z  * branch            5d88623c8d3292270dd1b1005a348544033604ef -> FETCH_HEAD
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.0787943Z ##[endgroup]
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.0789634Z ##[group]Determining the checkout info
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.0791317Z ##[endgroup]
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.0793973Z [command]/usr/bin/git sparse-checkout disable
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.0848836Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.0925876Z ##[group]Checking out the ref
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.0929472Z [command]/usr/bin/git checkout --progress --force 5d88623c8d3292270dd1b1005a348544033604ef
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.8364012Z Note: switching to '5d88623c8d3292270dd1b1005a348544033604ef'.
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.8364929Z 
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.8365963Z You are in 'detached HEAD' state. You can look around, make experimental
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.8366787Z changes and commit them, and you can discard any commits you make in this
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.8367578Z state without impacting any branches by switching back to a branch.
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.8368042Z 
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.8368939Z If you want to create a new branch to retain commits you create, you may
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.8369605Z do so (now or later) by using -c with the switch command. Example:
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.8369966Z 
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.8370131Z   git switch -c <new-branch-name>
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.8370373Z 
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.8370533Z Or undo this operation with:
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.8370753Z 
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.8370896Z   git switch -
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.8371087Z 
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.8371380Z Turn off this advice by setting config variable advice.detachedHead to false
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.8371812Z 
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.8372256Z HEAD is now at 5d88623 Merge 2f5fb2a09f08eb9a44c0fed5a28be0bda2942b0f into 106ef6d1262a8c1bf61cabcb9053102ff80f71f9
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.8388727Z ##[endgroup]
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.8448808Z [command]/usr/bin/git log -1 --format=%H
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.8478299Z 5d88623c8d3292270dd1b1005a348544033604ef
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.8842613Z Prepare all required actions
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9003428Z ##[group]Run ./.github/actions/check-maintenance
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9003904Z with:
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9007204Z   github-token: ***
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9007538Z ##[endgroup]
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9070164Z ##[start-action display=Check maintenance mode;id=__self.__run]
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9143738Z ##[group]Run MAINTENANCE_ISSUE=21065
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9144962Z ^[[36;1mMAINTENANCE_ISSUE=21065^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9145370Z ^[[36;1mREPO="sgl-project/sglang"^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9145752Z ^[[36;1mPR_NUMBER="41274"^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9146182Z ^[[36;1mPR_HEAD_SHA="2f5fb2a09f08eb9a44c0fed5a28be0bda2942b0f"^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9146646Z ^[[36;1m^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9147165Z ^[[36;1m# PR Test workflow only: scheduled runs and runs on main (dispatch / workflow_call) set this env^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9147907Z ^[[36;1mif [[ "${PR_TEST_BYPASS_MAINTENANCE_ON_MAIN:-}" == "true" ]]; then^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9148799Z ^[[36;1m  echo "✅ PR Test on main branch; bypassing maintenance gate."^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9149300Z ^[[36;1m  exit 0^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9149588Z ^[[36;1mfi^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9149860Z ^[[36;1m^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9150251Z ^[[36;1m# Use curl + jq instead of `gh` because self-hosted GPU runners^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9150835Z ^[[36;1m# don't have the gh CLI installed. Without this, the action^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9151399Z ^[[36;1m# silently fell through to "Proceeding with CI" on every GPU^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9151965Z ^[[36;1m# job — the rebase gate only fired on ubuntu-latest jobs that^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9152548Z ^[[36;1m# had gh pre-installed. curl+jq are reliably available on every^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9153039Z ^[[36;1m# Linux runner.^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9153368Z ^[[36;1mgh_api() {^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9153686Z ^[[36;1m  local path="$1"^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9154025Z ^[[36;1m  local err_file="$2"^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9154403Z ^[[36;1m  curl --silent --show-error --fail \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9154816Z ^[[36;1m    --max-time 30 \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9155367Z ^[[36;1m    -H "Authorization: ***" \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9155815Z ^[[36;1m    -H "Accept: application/vnd.github+json" \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9156290Z ^[[36;1m    -H "X-GitHub-Api-Version: 2022-11-28" \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9156752Z ^[[36;1m    "https://api.github.com/$path" 2>"$err_file"^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9157154Z ^[[36;1m}^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9157420Z ^[[36;1m^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9157816Z ^[[36;1m# Fetch issue state and body. Fail-open: if we can't read the issue^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9158537Z ^[[36;1m# (network blip, missing token scope), CI proceeds.^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9158979Z ^[[36;1mERR_FILE=$(mktemp)^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9159479Z ^[[36;1mISSUE_JSON=$(gh_api "repos/$REPO/issues/$MAINTENANCE_ISSUE" "$ERR_FILE" || true)^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9160286Z ^[[36;1mif [[ -z "$ISSUE_JSON" ]]; then^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9160756Z ^[[36;1m  echo "⚠️  Issue fetch returned empty. curl stderr was:"^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9161224Z ^[[36;1m  cat "$ERR_FILE" || true^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9161559Z ^[[36;1mfi^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9161845Z ^[[36;1mrm -f "$ERR_FILE"^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9162391Z ^[[36;1mISSUE_STATE=$(printf '%s' "$ISSUE_JSON" | jq -r '.state // "UNKNOWN"' 2>/dev/null || echo "UNKNOWN")^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9163109Z ^[[36;1m# Issues API returns state in lowercase ("open"/"closed"); normalize^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9163712Z ^[[36;1m# to uppercase so existing comparisons against "OPEN" still work.^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9164322Z ^[[36;1mISSUE_STATE=$(printf '%s' "$ISSUE_STATE" | tr '[:lower:]' '[:upper:]')^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9164980Z ^[[36;1mISSUE_BODY=$(printf '%s' "$ISSUE_JSON" | jq -r '.body // ""' 2>/dev/null || echo "")^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9165636Z ^[[36;1mecho "DEBUG: ISSUE_STATE=$ISSUE_STATE  body_length=${#ISSUE_BODY}"^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9166107Z ^[[36;1m^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9166583Z ^[[36;1m# Parse optional `MIN_BASE_SHA: <sha>` directive from the issue body^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9167370Z ^[[36;1m# (first occurrence wins). Whenever this directive is present, the^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9168002Z ^[[36;1m# rebase check is enforced regardless of whether the issue is open^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9168759Z ^[[36;1m# or closed — so maintainers can require all PRs to rebase past a^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9169361Z ^[[36;1m# specific commit without having to open the maintenance issue.^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9169954Z ^[[36;1m# `grep` exits 1 on no-match, which under `set -eo pipefail` (the^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9170547Z ^[[36;1m# default for `shell: bash` composite steps) would abort the whole^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9171128Z ^[[36;1m# script — silently failing every PR whose issue body has no^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9171698Z ^[[36;1m# MIN_BASE_SHA line. Wrap grep in a brace group with `|| true` so^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9172302Z ^[[36;1m# an empty match falls through cleanly to "no directive set".^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9172766Z ^[[36;1mMIN_BASE_SHA=$(^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9173328Z ^[[36;1m  { printf '%s' "$ISSUE_BODY" | tr -d '\r' | grep -iE '^[[:space:]]*`?MIN_BASE_SHA`?[[:space:]]*[:=]' || true; } \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9174023Z ^[[36;1m    | head -n1 | sed -E 's/.*[:=][[:space:]]*//; s/`//g' | awk '{print $1}'^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9174478Z ^[[36;1m)^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9174889Z ^[[36;1mif [[ -n "$MIN_BASE_SHA" ]] && ! [[ "$MIN_BASE_SHA" =~ ^[a-fA-F0-9]{7,40}$ ]]; then^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9175715Z ^[[36;1m  WARN="⚠️  Ignoring malformed MIN_BASE_SHA directive in issue #$MAINTENANCE_ISSUE: '$MIN_BASE_SHA' (must be 7-40 hex chars)"^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9176409Z ^[[36;1m  echo "$WARN"^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9176757Z ^[[36;1m  echo "$WARN" >> "$GITHUB_STEP_SUMMARY"^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9177155Z ^[[36;1m  MIN_BASE_SHA=""^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9177501Z ^[[36;1mfi^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9177799Z ^[[36;1m^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9178663Z ^[[36;1m# If neither gate is active (no MIN_BASE_SHA, issue not open), nothing to do.^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9179410Z ^[[36;1mif [[ -z "$MIN_BASE_SHA" && "$ISSUE_STATE" != "OPEN" ]]; then^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9180093Z ^[[36;1m  echo "✅ Maintenance mode is OFF and no MIN_BASE_SHA directive. Proceeding with CI."^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9180676Z ^[[36;1m  exit 0^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9181000Z ^[[36;1mfi^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9181303Z ^[[36;1m^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9181747Z ^[[36;1m# bypass-maintenance label bypasses both gates. PR labels live on^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9182387Z ^[[36;1m# the issue resource (PRs are issues with extra metadata in the^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9182966Z ^[[36;1m# GH API), so we hit the same /issues/{n} endpoint.^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9183437Z ^[[36;1mif [[ -n "$PR_NUMBER" ]]; then^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9183844Z ^[[36;1m  ERR_FILE=$(mktemp)^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9184341Z ^[[36;1m  PR_JSON=$(gh_api "repos/$REPO/issues/$PR_NUMBER" "$ERR_FILE" || true)^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9185066Z ^[[36;1m  rm -f "$ERR_FILE"^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9185786Z ^[[36;1m  HAS_BYPASS=$(printf '%s' "$PR_JSON" | jq -r '[.labels[]?.name] | map(select(. == "bypass-maintenance")) | length' 2>/dev/null || echo "0")^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9186565Z ^[[36;1m  if [[ "${HAS_BYPASS:-0}" -gt 0 ]]; then^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9187223Z ^[[36;1m    echo "✅ PR #$PR_NUMBER has 'bypass-maintenance' label. Bypassing maintenance + rebase checks."^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9187848Z ^[[36;1m    exit 0^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9188374Z ^[[36;1m  fi^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9188695Z ^[[36;1mfi^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9188999Z ^[[36;1m^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9189438Z ^[[36;1m# Rebase-required gate (independent of issue open/closed state).^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9189993Z ^[[36;1mif [[ -n "$MIN_BASE_SHA" ]]; then^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9190461Z ^[[36;1m  if [[ -z "$PR_NUMBER" || -z "$PR_HEAD_SHA" ]]; then^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9190986Z ^[[36;1m    echo "✅ Not a PR context; skipping rebase check."^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9191455Z ^[[36;1m  else^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9192028Z ^[[36;1m    # Use GitHub compare API: status is "ahead"/"identical" when MIN_BASE_SHA is reachable from PR head.^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9192823Z ^[[36;1m    ERR_FILE=$(mktemp)^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9193440Z ^[[36;1m    COMPARE_JSON=$(gh_api "repos/$REPO/compare/$MIN_BASE_SHA...$PR_HEAD_SHA" "$ERR_FILE" || true)^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9194094Z ^[[36;1m    if [[ -z "$COMPARE_JSON" ]]; then^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9194577Z ^[[36;1m      echo "⚠️  Compare API failed. curl stderr was:"^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9195047Z ^[[36;1m      cat "$ERR_FILE" || true^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9195425Z ^[[36;1m    fi^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9195757Z ^[[36;1m    rm -f "$ERR_FILE"^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9196375Z ^[[36;1m    COMPARE_STATUS=$(printf '%s' "$COMPARE_JSON" | jq -r '.status // "UNKNOWN"' 2>/dev/null || echo "UNKNOWN")^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9197089Z ^[[36;1m    COMPARE_STATUS="${COMPARE_STATUS:-UNKNOWN}"^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9197535Z ^[[36;1m^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9197866Z ^[[36;1m    case "$COMPARE_STATUS" in^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9198421Z ^[[36;1m      ahead|identical)^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9199009Z ^[[36;1m        echo "✅ PR #$PR_NUMBER contains required base ${MIN_BASE_SHA:0:12} ($COMPARE_STATUS)."^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9199603Z ^[[36;1m        ;;^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9199937Z ^[[36;1m      UNKNOWN)^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9200561Z ^[[36;1m        echo "⚠️  Could not determine rebase status via GitHub API; fail-open, allowing rebase check to pass."^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9201219Z ^[[36;1m        ;;^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9201537Z ^[[36;1m      *)^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9201870Z ^[[36;1m        MSG=$(printf "%s\n" \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9202329Z ^[[36;1m          "## ⚠️ Rebase Required Before CI Can Run" \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9203043Z ^[[36;1m          "A major update has landed on \`main\`. All PRs must rebase onto the latest \`main\` before CI will run." \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9203957Z ^[[36;1m          "Required base commit: \`${MIN_BASE_SHA:0:12}\` (your PR is \`$COMPARE_STATUS\` relative to this commit)." \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9204593Z ^[[36;1m          "" \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9204967Z ^[[36;1m          "What should you do?" \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9205496Z ^[[36;1m          "- Rebase your branch onto the latest \`main\` and push again" \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9206368Z ^[[36;1m          "- Follow CI Maintenance Mode issue: https://github.com/$REPO/issues/$MAINTENANCE_ISSUE for context" \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9207239Z ^[[36;1m          "- CI-fix PRs may request the \`bypass-maintenance\` label to skip this check")^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9207863Z ^[[36;1m        echo "$MSG" >> "$GITHUB_STEP_SUMMARY"^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9208509Z ^[[36;1m        while IFS= read -r line; do^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9208936Z ^[[36;1m          echo "::error::$line"^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9209334Z ^[[36;1m        done <<< "$MSG"^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9209705Z ^[[36;1m        exit 1^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9210196Z ^[[36;1m        ;;^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9210518Z ^[[36;1m    esac^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9210830Z ^[[36;1m  fi^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9211140Z ^[[36;1mfi^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9211445Z ^[[36;1m^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9211859Z ^[[36;1m# Full-pause maintenance gate (only when issue is open).^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9212381Z ^[[36;1mif [[ "$ISSUE_STATE" == "OPEN" ]]; then^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9212818Z ^[[36;1m  MSG=$(printf "%s\n" \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9213240Z ^[[36;1m    "## ⚠️ CI Maintenance Mode is Active" \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9213763Z ^[[36;1m    "The CI infrastructure is currently under maintenance." \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9214366Z ^[[36;1m    "All PR CI runs are paused until maintenance is complete." \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9215204Z ^[[36;1m    "**Merging non-CI-fix PRs is prohibited during maintenance mode.** In severe cases, merge permissions may be revoked." \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9216076Z ^[[36;1m    "You might also experience unexpected failures during this period." \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9216818Z ^[[36;1m    "The team is working on the issue and will update the status as soon as possible." \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9217411Z ^[[36;1m    "" \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9217895Z ^[[36;1m    "What should you do?" \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9218830Z ^[[36;1m    "- **Do NOT merge non-CI-fix PRs** until maintenance mode is lifted" \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9219417Z ^[[36;1m    "- Check back later (~12 hours)" \^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9220134Z ^[[36;1m    "- Follow CI Maintenance Mode issue: https://github.com/$REPO/issues/$MAINTENANCE_ISSUE for status updates")^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9220812Z ^[[36;1m^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9221158Z ^[[36;1m  echo "$MSG" >> "$GITHUB_STEP_SUMMARY"^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9221597Z ^[[36;1m  while IFS= read -r line; do^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9222007Z ^[[36;1m    echo "::error::$line"^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9222395Z ^[[36;1m  done <<< "$MSG"^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9222743Z ^[[36;1m  exit 1^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9223054Z ^[[36;1mfi^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9223365Z ^[[36;1m^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9223833Z ^[[36;1mecho "✅ Rebase check passed; full-pause not active. Proceeding with CI."^[[0m
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9538964Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9539550Z env:
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9543157Z   GH_TOKEN: ***
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:19.9543505Z ##[endgroup]
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:20.2329597Z DEBUG: ISSUE_STATE=CLOSED  body_length=747
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:21.8192851Z ##[error]## ⚠️ Rebase Required Before CI Can Run
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:21.8194648Z ##[error]A major update has landed on `main`. All PRs must rebase onto the latest `main` before CI will run.
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:21.8195998Z ##[error]Required base commit: `3fc7a669bfe3` (your PR is `diverged` relative to this commit).
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:21.8197353Z ##[error]What should you do?
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:21.8198560Z ##[error]- Rebase your branch onto the latest `main` and push again
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:21.8199925Z ##[error]- Follow CI Maintenance Mode issue: https://github.com/sgl-project/sglang/issues/21065 for context
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:21.8201210Z ##[error]- CI-fix PRs may request the `bypass-maintenance` label to skip this check
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:21.8205526Z ##[error]Process completed with exit code 1.
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:21.8230889Z ##[end-action id=__self.__run;outcome=failure;conclusion=failure;duration_ms=1915]
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:21.8472748Z Post job cleanup.
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:21.9348182Z [command]/usr/bin/git version
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:21.9385571Z git version 2.55.0
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:21.9425832Z Temporarily overriding HOME='/home/runner/work/_temp/80bddaf5-d9a1-4ba1-a92b-0b969299143d' before making global git config changes
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:21.9427614Z Adding repository directory to the temporary git global config as a safe directory
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:21.9432561Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/sglang/sglang
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:21.9469493Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:21.9503320Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:21.9739578Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:21.9766342Z http.https://github.com/.extraheader
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:21.9776913Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:21.9808840Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:22.0084802Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:22.0118939Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:22.0500627Z Evaluate and set job outputs
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:22.0514937Z Cleaning up orphan processes
+check-changes / check-changes	UNKNOWN STEP	2026-09-25T21:36:22.0823792Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

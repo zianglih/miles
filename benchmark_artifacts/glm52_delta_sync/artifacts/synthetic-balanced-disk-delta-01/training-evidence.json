@@ -1,0 +1,6486 @@
+{
+  "run": "synthetic-balanced-disk-delta-01",
+  "run_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01",
+  "mode": "disk-delta",
+  "reward_mode": "synthetic-balanced",
+  "log": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01.log",
+  "log_sha256": "e9b0a65b19bd4c31109b8e84e7f0a492c2da9b8c3ae9b997af5607b28a651ebe",
+  "launcher_exit_code": 0,
+  "ray_terminal": {
+    "line": 7359,
+    "job_id": "miles-12828651dfe948be86466080b750137a",
+    "status": "succeeded"
+  },
+  "run_succeeded": true,
+  "expected_rollouts": 7,
+  "expected_ranks": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "all_expected_rank_rollouts_completed": true,
+  "missing_rank_rollouts": [],
+  "unexpected_rank_rollouts": [],
+  "rank0_step_metric_count": 7,
+  "rank0_steps": [
+    {
+      "rollout": 0,
+      "step": 0,
+      "step_within_rollout": 0,
+      "train_log_line": 3714,
+      "rollout_log_line": 3434,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.397229194641113,
+      "rollout/raw_reward": 0.5,
+      "rollout/total_lengths": 256.0,
+      "rollout/ref_log_probs": -10.397794723510742,
+      "rollout/log_probs": -10.397533416748047,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": -9.983684867620468e-05,
+      "train/pg_loss": -9.983684867620468e-05,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": -9.18604782782495e-05,
+      "train/ess_ratio": 0.9998314380645752,
+      "train/train_rollout_logprob_abs_diff": 0.01143704168498516,
+      "train/train_rollout_kl": 0.00010560823284322396,
+      "train/kl_loss": 0.00017388073320034891,
+      "train/ois": 1.0001773834228516,
+      "train/tis": 0.9998024106025696,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011432992294430733,
+      "train/grad_norm": 2.7867448329925537,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 0
+    },
+    {
+      "rollout": 1,
+      "step": 1,
+      "step_within_rollout": 0,
+      "train_log_line": 4325,
+      "rollout_log_line": 4152,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.3180570602417,
+      "rollout/raw_reward": 0.5,
+      "rollout/total_lengths": 250.625,
+      "rollout/ref_log_probs": -10.318416595458984,
+      "rollout/log_probs": -10.318140983581543,
+      "rollout/advantages": 1.862645149230957e-09,
+      "rollout/returns": 1.862645149230957e-09,
+      "train/loss": -0.00019935425370931625,
+      "train/pg_loss": -0.00019935425370931625,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": 0.00026251256349496543,
+      "train/ess_ratio": 0.9998360276222229,
+      "train/train_rollout_logprob_abs_diff": 0.011573437601327896,
+      "train/train_rollout_kl": 0.00010939997446257621,
+      "train/kl_loss": 0.0001795727148419246,
+      "train/ois": 0.999820351600647,
+      "train/tis": 1.0000280141830444,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011573003605008125,
+      "train/grad_norm": 2.7648022174835205,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 1
+    },
+    {
+      "rollout": 2,
+      "step": 2,
+      "step_within_rollout": 0,
+      "train_log_line": 4929,
+      "rollout_log_line": 4757,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.255805015563965,
+      "rollout/raw_reward": 0.5,
+      "rollout/total_lengths": 270.625,
+      "rollout/ref_log_probs": -10.255980491638184,
+      "rollout/log_probs": -10.25582504272461,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 5.115475505590439e-05,
+      "train/pg_loss": 5.115475505590439e-05,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": 3.2588439353276044e-05,
+      "train/ess_ratio": 0.9998310804367065,
+      "train/train_rollout_logprob_abs_diff": 0.011393507942557335,
+      "train/train_rollout_kl": 0.00010641393600963056,
+      "train/kl_loss": 0.00020395666069816798,
+      "train/ois": 1.00005304813385,
+      "train/tis": 1.0000855922698975,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011392772197723389,
+      "train/grad_norm": 2.454990863800049,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 2
+    },
+    {
+      "rollout": 3,
+      "step": 3,
+      "step_within_rollout": 0,
+      "train_log_line": 5530,
+      "rollout_log_line": 5348,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.253766059875488,
+      "rollout/raw_reward": 0.5,
+      "rollout/total_lengths": 251.125,
+      "rollout/ref_log_probs": -10.254119873046875,
+      "rollout/log_probs": -10.253778457641602,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": -0.0001793093979358673,
+      "train/pg_loss": -0.0001793093979358673,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": 0.0002199649898102507,
+      "train/ess_ratio": 0.9998350143432617,
+      "train/train_rollout_logprob_abs_diff": 0.011352356523275375,
+      "train/train_rollout_kl": 0.00010488156840438023,
+      "train/kl_loss": 0.00019593261822592467,
+      "train/ois": 0.9998634457588196,
+      "train/tis": 1.0000919103622437,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011352432891726494,
+      "train/grad_norm": 2.377612590789795,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 3
+    },
+    {
+      "rollout": 4,
+      "step": 4,
+      "step_within_rollout": 0,
+      "train_log_line": 6129,
+      "rollout_log_line": 5957,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.296224594116211,
+      "rollout/raw_reward": 0.5,
+      "rollout/total_lengths": 270.75,
+      "rollout/ref_log_probs": -10.296968460083008,
+      "rollout/log_probs": -10.296441078186035,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": -0.00019430089741945267,
+      "train/pg_loss": -0.00019430089741945267,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": 0.0001085477415472269,
+      "train/ess_ratio": 0.9998353719711304,
+      "train/train_rollout_logprob_abs_diff": 0.011444741860032082,
+      "train/train_rollout_kl": 0.00010666000889614224,
+      "train/kl_loss": 0.0002056711819022894,
+      "train/ois": 0.9999745488166809,
+      "train/tis": 0.9998894929885864,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011442039161920547,
+      "train/grad_norm": 2.3417630195617676,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 4
+    },
+    {
+      "rollout": 5,
+      "step": 5,
+      "step_within_rollout": 0,
+      "train_log_line": 6710,
+      "rollout_log_line": 6570,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.304141998291016,
+      "rollout/raw_reward": 0.5,
+      "rollout/total_lengths": 243.875,
+      "rollout/ref_log_probs": -10.30447006225586,
+      "rollout/log_probs": -10.304706573486328,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 5.05959615111351e-05,
+      "train/pg_loss": 5.05959615111351e-05,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": -0.0002189322840422392,
+      "train/ess_ratio": 0.9998290538787842,
+      "train/train_rollout_logprob_abs_diff": 0.011491824872791767,
+      "train/train_rollout_kl": 0.00010687178291846067,
+      "train/kl_loss": 0.00020858939387835562,
+      "train/ois": 1.0003052949905396,
+      "train/tis": 0.9995423555374146,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011486039496958256,
+      "train/grad_norm": 2.344681739807129,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 5
+    },
+    {
+      "rollout": 6,
+      "step": 6,
+      "step_within_rollout": 0,
+      "train_log_line": 7300,
+      "rollout_log_line": 7148,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.2999849319458,
+      "rollout/raw_reward": 0.5,
+      "rollout/total_lengths": 239.25,
+      "rollout/ref_log_probs": -10.30047607421875,
+      "rollout/log_probs": -10.300146102905273,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.00014988519251346588,
+      "train/pg_loss": 0.00014988519251346588,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": 0.00014219479635357857,
+      "train/ess_ratio": 0.9998295903205872,
+      "train/train_rollout_logprob_abs_diff": 0.011581210419535637,
+      "train/train_rollout_kl": 0.00010810006642714143,
+      "train/kl_loss": 0.00024039884738158435,
+      "train/ois": 0.9999439120292664,
+      "train/tis": 0.9999511241912842,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011579968966543674,
+      "train/grad_norm": 2.0527284145355225,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 6
+    }
+  ],
+  "native_update_times": [
+    {
+      "perf_index": 0,
+      "line": 3720,
+      "initial": true,
+      "after_training_rollout": null,
+      "seconds": 16.146458625793457
+    },
+    {
+      "perf_index": 1,
+      "line": 4331,
+      "initial": false,
+      "after_training_rollout": 0,
+      "seconds": 31.415995836257935
+    },
+    {
+      "perf_index": 2,
+      "line": 4938,
+      "initial": false,
+      "after_training_rollout": 1,
+      "seconds": 13.384368658065796
+    },
+    {
+      "perf_index": 3,
+      "line": 5536,
+      "initial": false,
+      "after_training_rollout": 2,
+      "seconds": 13.919214725494385
+    },
+    {
+      "perf_index": 4,
+      "line": 6135,
+      "initial": false,
+      "after_training_rollout": 3,
+      "seconds": 13.483909130096436
+    },
+    {
+      "perf_index": 5,
+      "line": 6716,
+      "initial": false,
+      "after_training_rollout": 4,
+      "seconds": 14.262575626373291
+    },
+    {
+      "perf_index": 6,
+      "line": 7306,
+      "initial": false,
+      "after_training_rollout": 5,
+      "seconds": 13.996295928955078
+    }
+  ],
+  "native_update_time_distributions": {
+    "initial": {
+      "count": 1,
+      "finite_count": 1,
+      "min": 16.146458625793457,
+      "max": 16.146458625793457,
+      "mean": 16.146458625793457,
+      "median": 16.146458625793457
+    },
+    "post_training": {
+      "count": 6,
+      "finite_count": 6,
+      "min": 13.384368658065796,
+      "max": 31.415995836257935,
+      "mean": 16.74372665087382,
+      "median": 13.957755327224731
+    },
+    "steady": {
+      "count": 5,
+      "finite_count": 5,
+      "min": 13.384368658065796,
+      "max": 14.262575626373291,
+      "mean": 13.809272813796998,
+      "median": 13.919214725494385
+    }
+  },
+  "replay_total_checks": 1464,
+  "replay_nonzero_checks": 0,
+  "replay_mismatched_token_comparisons": 0,
+  "engines": {
+    "available": true,
+    "source": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/trainer-rank0.jsonl",
+    "summary": [
+      {
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "continue_generation",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "flush_cache",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "pause_generation",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "pull_weights",
+        "calls": 7,
+        "failed_calls": 0,
+        "requested_versions": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      },
+      {
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "update_weight_version",
+        "calls": 1,
+        "failed_calls": 0,
+        "requested_versions": [
+          "0"
+        ]
+      },
+      {
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "update_weights_from_disk",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      },
+      {
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "continue_generation",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "flush_cache",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "pause_generation",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "pull_weights",
+        "calls": 7,
+        "failed_calls": 0,
+        "requested_versions": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      },
+      {
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "update_weight_version",
+        "calls": 1,
+        "failed_calls": 0,
+        "requested_versions": [
+          "0"
+        ]
+      },
+      {
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "update_weights_from_disk",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      }
+    ],
+    "records": [
+      {
+        "line": 2,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/delta-publication",
+          "target_version": 0
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 3,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/delta-publication",
+          "target_version": 0
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 4,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "update_weight_version",
+        "success": true,
+        "request": {
+          "abort_all_requests": false,
+          "new_version": "0"
+        },
+        "response": {
+          "message": "Weight version updated to 0",
+          "new_version": "0",
+          "success": true
+        }
+      },
+      {
+        "line": 5,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "update_weight_version",
+        "success": true,
+        "request": {
+          "abort_all_requests": false,
+          "new_version": "0"
+        },
+        "response": {
+          "message": "Weight version updated to 0",
+          "new_version": "0",
+          "success": true
+        }
+      },
+      {
+        "line": 13,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/delta-publication",
+          "target_version": 1
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 14,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/delta-publication",
+          "target_version": 1
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 15,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 16,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 17,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 18,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 19,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "weight_version": "1"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 1.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 20,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "weight_version": "1"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 1.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 21,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 22,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 32,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/delta-publication",
+          "target_version": 2
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 33,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/delta-publication",
+          "target_version": 2
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 34,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 35,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 36,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 37,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 38,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "weight_version": "2"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 2.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 39,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "weight_version": "2"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 2.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 40,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 41,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 51,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/delta-publication",
+          "target_version": 3
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 52,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/delta-publication",
+          "target_version": 3
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 53,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 54,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 55,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 56,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 57,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "weight_version": "3"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 3.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 58,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "weight_version": "3"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 3.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 59,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 60,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 70,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/delta-publication",
+          "target_version": 4
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 71,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/delta-publication",
+          "target_version": 4
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 72,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 73,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 74,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 75,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 76,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "weight_version": "4"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 4.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 77,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "weight_version": "4"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 4.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 78,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 79,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 89,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/delta-publication",
+          "target_version": 5
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 90,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/delta-publication",
+          "target_version": 5
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 91,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 92,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 93,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 94,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 95,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "weight_version": "5"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 5.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 96,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "weight_version": "5"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 5.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 97,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 98,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 108,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/delta-publication",
+          "target_version": 6
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 109,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/delta-publication",
+          "target_version": 6
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 110,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 111,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 112,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 113,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 114,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "weight_version": "6"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 6.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 115,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/rollout-checkpoint",
+          "weight_version": "6"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 6.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 116,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20000",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 117,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20039",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      }
+    ],
+    "boundary": "RPC acknowledgement and version metadata are not active-GPU byte equality checks."
+  },
+  "debug_dumps": {
+    "files": {
+      "train_data": [
+        "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/train_data/0_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/train_data/1_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/train_data/2_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/train_data/3_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/train_data/4_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/train_data/5_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/train_data/6_0.pt"
+      ],
+      "rollout_data": [
+        "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/rollout_data/0.pt",
+        "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/rollout_data/1.pt",
+        "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/rollout_data/2.pt",
+        "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/rollout_data/3.pt",
+        "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/rollout_data/4.pt",
+        "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/rollout_data/5.pt",
+        "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/rollout_data/6.pt"
+      ]
+    },
+    "train": [
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/train_data/0_0.pt",
+        "rollout": 0,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 32,
+            "min": 0.0,
+            "max": 1.0,
+            "mean": 0.5,
+            "mean_abs": 0.5,
+            "rms": 0.7071067811865475
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 64,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.582843780517578,
+            "max": -0.022443577647209167,
+            "mean": -10.3975332981252,
+            "mean_abs": 10.3975332981252,
+            "rms": 10.605189465254037,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.582843780517578,
+              "max": -0.022443577647209167,
+              "mean": -10.3975332981252,
+              "mean_abs": 10.3975332981252,
+              "rms": 10.605189465254037
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.570032119750977,
+            "max": -0.022412454709410667,
+            "mean": -10.39779431297211,
+            "mean_abs": 10.39779431297211,
+            "rms": 10.605431433723501,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.570032119750977,
+              "max": -0.022412454709410667,
+              "mean": -10.39779431297211,
+              "mean_abs": 10.39779431297211,
+              "rms": 10.605431433723501
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.571352005004883,
+            "max": -0.022198209539055824,
+            "mean": -10.39723010056594,
+            "mean_abs": 10.39723010056594,
+            "rms": 10.604882667550303,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.571352005004883,
+              "max": -0.022198209539055824,
+              "mean": -10.39723010056594,
+              "mean_abs": 10.39723010056594,
+              "rms": 10.604882667550303
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 3.814697265625e-06,
+          "max": 0.06710052490234375,
+          "mean": 0.011437041018216404,
+          "mean_abs": 0.011437041018216404,
+          "rms": 0.014536766066635632
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/train_data/1_0.pt",
+        "rollout": 1,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 32,
+            "min": 0.0,
+            "max": 1.0,
+            "mean": 0.5,
+            "mean_abs": 0.5,
+            "rms": 0.7071067811865475
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 64,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.323949813842773,
+            "max": -0.05924892798066139,
+            "mean": -10.318139519040123,
+            "mean_abs": 10.318139519040123,
+            "rms": 10.524702663499049,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.323949813842773,
+              "max": -0.05924892798066139,
+              "mean": -10.318139519040123,
+              "mean_abs": 10.318139519040123,
+              "rms": 10.524702663499049
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.319622039794922,
+            "max": -0.05925004929304123,
+            "mean": -10.31841855332139,
+            "mean_abs": 10.31841855332139,
+            "rms": 10.52492895110051,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.319622039794922,
+              "max": -0.05925004929304123,
+              "mean": -10.31841855332139,
+              "mean_abs": 10.31841855332139,
+              "rms": 10.52492895110051
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.329713821411133,
+            "max": -0.05730549991130829,
+            "mean": -10.31805816099979,
+            "mean_abs": 10.31805816099979,
+            "rms": 10.524651585548817,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.329713821411133,
+              "max": -0.05730549991130829,
+              "mean": -10.31805816099979,
+              "mean_abs": 10.31805816099979,
+              "rms": 10.524651585548817
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6399,
+          "min": 0.0,
+          "max": 0.058564186096191406,
+          "mean": 0.011573437331826426,
+          "mean_abs": 0.011573437331826426,
+          "rms": 0.01479269692808693
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/train_data/2_0.pt",
+        "rollout": 2,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 32,
+            "min": 0.0,
+            "max": 1.0,
+            "mean": 0.5,
+            "mean_abs": 0.5,
+            "rms": 0.7071067811865475
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 64,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.163211822509766,
+            "max": -0.009769602678716183,
+            "mean": -10.255825407244119,
+            "mean_abs": 10.255825407244119,
+            "rms": 10.478709686220869,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.163211822509766,
+              "max": -0.009769602678716183,
+              "mean": -10.255825407244119,
+              "mean_abs": 10.255825407244119,
+              "rms": 10.478709686220869
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.14718246459961,
+            "max": -0.009771373122930527,
+            "mean": -10.255980411777855,
+            "mean_abs": 10.255980411777855,
+            "rms": 10.478758390666348,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.14718246459961,
+              "max": -0.009771373122930527,
+              "mean": -10.255980411777855,
+              "mean_abs": 10.255980411777855,
+              "rms": 10.478758390666348
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.15267562866211,
+            "max": -0.009079963900148869,
+            "mean": -10.255804593078793,
+            "mean_abs": 10.255804593078793,
+            "rms": 10.478740568924733,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.15267562866211,
+              "max": -0.009079963900148869,
+              "mean": -10.255804593078793,
+              "mean_abs": 10.255804593078793,
+              "rms": 10.478740568924733
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6399,
+          "min": 0.0,
+          "max": 0.07585525512695312,
+          "mean": 0.011393506866443203,
+          "mean_abs": 0.011393506866443203,
+          "rms": 0.014588759809633454
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/train_data/3_0.pt",
+        "rollout": 3,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 32,
+            "min": 0.0,
+            "max": 1.0,
+            "mean": 0.5,
+            "mean_abs": 0.5,
+            "rms": 0.7071067811865475
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 64,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.358318328857422,
+            "max": -0.016231883317232132,
+            "mean": -10.25377804762742,
+            "mean_abs": 10.25377804762742,
+            "rms": 10.475860623371661,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.358318328857422,
+              "max": -0.016231883317232132,
+              "mean": -10.25377804762742,
+              "mean_abs": 10.25377804762742,
+              "rms": 10.475860623371661
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.352481842041016,
+            "max": -0.01839202269911766,
+            "mean": -10.254120751378942,
+            "mean_abs": 10.254120751378942,
+            "rms": 10.476110452386914,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.352481842041016,
+              "max": -0.01839202269911766,
+              "mean": -10.254120751378942,
+              "mean_abs": 10.254120751378942,
+              "rms": 10.476110452386914
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.358858108520508,
+            "max": -0.018091993406414986,
+            "mean": -10.253765032468655,
+            "mean_abs": 10.253765032468655,
+            "rms": 10.475864418457146,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.358858108520508,
+              "max": -0.018091993406414986,
+              "mean": -10.253765032468655,
+              "mean_abs": 10.253765032468655,
+              "rms": 10.475864418457146
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 9.5367431640625e-07,
+          "max": 0.0692753791809082,
+          "mean": 0.011352356290153694,
+          "mean_abs": 0.011352356290153694,
+          "rms": 0.014483703715408672
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/train_data/4_0.pt",
+        "rollout": 4,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 32,
+            "min": 0.0,
+            "max": 1.0,
+            "mean": 0.5,
+            "mean_abs": 0.5,
+            "rms": 0.7071067811865475
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 64,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.169246673583984,
+            "max": -0.0356953889131546,
+            "mean": -10.296440281978576,
+            "mean_abs": 10.296440281978576,
+            "rms": 10.513644383335087,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.169246673583984,
+              "max": -0.0356953889131546,
+              "mean": -10.296440281978576,
+              "mean_abs": 10.296440281978576,
+              "rms": 10.513644383335087
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.16994857788086,
+            "max": -0.03718080744147301,
+            "mean": -10.296967469657538,
+            "mean_abs": 10.296967469657538,
+            "rms": 10.51408598119956,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.16994857788086,
+              "max": -0.03718080744147301,
+              "mean": -10.296967469657538,
+              "mean_abs": 10.296967469657538,
+              "rms": 10.51408598119956
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.15277099609375,
+            "max": -0.03766460716724396,
+            "mean": -10.296223122678349,
+            "mean_abs": 10.296223122678349,
+            "rms": 10.513430225491106,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.15277099609375,
+              "max": -0.03766460716724396,
+              "mean": -10.296223122678349,
+              "mean_abs": 10.296223122678349,
+              "rms": 10.513430225491106
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 1.9073486328125e-05,
+          "max": 0.09496116638183594,
+          "mean": 0.011444743377505801,
+          "mean_abs": 0.011444743377505801,
+          "rms": 0.014608135674397482
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/train_data/5_0.pt",
+        "rollout": 5,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 32,
+            "min": 0.0,
+            "max": 1.0,
+            "mean": 0.5,
+            "mean_abs": 0.5,
+            "rms": 0.7071067811865475
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 64,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.121662139892578,
+            "max": -0.021351130679249763,
+            "mean": -10.30470596189989,
+            "mean_abs": 10.30470596189989,
+            "rms": 10.511134525287243,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.121662139892578,
+              "max": -0.021351130679249763,
+              "mean": -10.30470596189989,
+              "mean_abs": 10.30470596189989,
+              "rms": 10.511134525287243
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.126708984375,
+            "max": -0.02133479341864586,
+            "mean": -10.304471738116991,
+            "mean_abs": 10.304471738116991,
+            "rms": 10.510867482931895,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.126708984375,
+              "max": -0.02133479341864586,
+              "mean": -10.304471738116991,
+              "mean_abs": 10.304471738116991,
+              "rms": 10.510867482931895
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.114856719970703,
+            "max": -0.019687606021761894,
+            "mean": -10.304141454178898,
+            "mean_abs": 10.304141454178898,
+            "rms": 10.510616376700298,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.114856719970703,
+              "max": -0.019687606021761894,
+              "mean": -10.304141454178898,
+              "mean_abs": 10.304141454178898,
+              "rms": 10.510616376700298
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 1.9073486328125e-06,
+          "max": 0.08634138107299805,
+          "mean": 0.011491825630655513,
+          "mean_abs": 0.011491825630655513,
+          "rms": 0.014623084098534172
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/train_data/6_0.pt",
+        "rollout": 6,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 32,
+            "min": 0.0,
+            "max": 1.0,
+            "mean": 0.5,
+            "mean_abs": 0.5,
+            "rms": 0.7071067811865475
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 64,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -0.935412585735321,
+            "max": 0.935412585735321,
+            "mean": 0.0,
+            "mean_abs": 0.935412585735321,
+            "rms": 0.935412585735321,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -0.935412585735321,
+              "max": 0.935412585735321,
+              "mean": 0.0,
+              "mean_abs": 0.935412585735321,
+              "rms": 0.935412585735321
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.179218292236328,
+            "max": -0.06332100182771683,
+            "mean": -10.300143236776348,
+            "mean_abs": 10.300143236776348,
+            "rms": 10.512111030067679,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.179218292236328,
+              "max": -0.06332100182771683,
+              "mean": -10.300143236776348,
+              "mean_abs": 10.300143236776348,
+              "rms": 10.512111030067679
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.15184783935547,
+            "max": -0.06342897564172745,
+            "mean": -10.300478342483984,
+            "mean_abs": 10.300478342483984,
+            "rms": 10.512284698228333,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.15184783935547,
+              "max": -0.06342897564172745,
+              "mean": -10.300478342483984,
+              "mean_abs": 10.300478342483984,
+              "rms": 10.512284698228333
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.161314010620117,
+            "max": -0.06750272959470749,
+            "mean": -10.299986361574847,
+            "mean_abs": 10.299986361574847,
+            "rms": 10.5119167133376,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.161314010620117,
+              "max": -0.06750272959470749,
+              "mean": -10.299986361574847,
+              "mean_abs": 10.299986361574847,
+              "rms": 10.5119167133376
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 9.5367431640625e-07,
+          "max": 0.07897615432739258,
+          "mean": 0.011581209343858064,
+          "mean_abs": 0.011581209343858064,
+          "rms": 0.014705024415257291
+        }
+      }
+    ],
+    "rollout": [
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/rollout_data/0.pt",
+        "rollout": 0,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "0": 64
+        },
+        "reward_groups": [
+          {
+            "group": "0",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "1",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "2",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "3",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "4",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "5",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "6",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "7",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/rollout_data/1.pt",
+        "rollout": 1,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "1": 64
+        },
+        "reward_groups": [
+          {
+            "group": "10",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "11",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "12",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "13",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "14",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "15",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "8",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "9",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/rollout_data/2.pt",
+        "rollout": 2,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "2": 64
+        },
+        "reward_groups": [
+          {
+            "group": "16",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "17",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "18",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "19",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "20",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "21",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "22",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "23",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/rollout_data/3.pt",
+        "rollout": 3,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "3": 64
+        },
+        "reward_groups": [
+          {
+            "group": "24",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "25",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "26",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "27",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "28",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "29",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "30",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "31",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/rollout_data/4.pt",
+        "rollout": 4,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "4": 64
+        },
+        "reward_groups": [
+          {
+            "group": "32",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "33",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "34",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "35",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "36",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "37",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "38",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "39",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/rollout_data/5.pt",
+        "rollout": 5,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "5": 64
+        },
+        "reward_groups": [
+          {
+            "group": "40",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "41",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "42",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "43",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "44",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "45",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "46",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "47",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/synthetic-balanced-disk-delta-01/dump_details/rollout_data/6.pt",
+        "rollout": 6,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "6": 64
+        },
+        "reward_groups": [
+          {
+            "group": "48",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "49",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "50",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "51",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "52",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "53",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "54",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          },
+          {
+            "group": "55",
+            "count": 8,
+            "rewards": [
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "zero_variance": false
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "note": "Only TP-rank0 on the last PP stage writes train dumps; four-rank completion comes from train_step log events.",
+    "status": "parsed"
+  },
+  "parsed_log_evidence": {
+    "train_events": [
+      {
+        "line": 3697,
+        "rank": 2,
+        "rollout": 0,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 3707,
+        "rank": 3,
+        "rollout": 0,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 3710,
+        "rank": 1,
+        "rollout": 0,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 3713,
+        "rank": 0,
+        "rollout": 0,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4316,
+        "rank": 2,
+        "rollout": 1,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4321,
+        "rank": 3,
+        "rollout": 1,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4324,
+        "rank": 0,
+        "rollout": 1,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4334,
+        "rank": 1,
+        "rollout": 1,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4913,
+        "rank": 2,
+        "rollout": 2,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4916,
+        "rank": 3,
+        "rollout": 2,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4919,
+        "rank": 1,
+        "rollout": 2,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4928,
+        "rank": 0,
+        "rollout": 2,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5521,
+        "rank": 2,
+        "rollout": 3,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5524,
+        "rank": 3,
+        "rollout": 3,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5529,
+        "rank": 0,
+        "rollout": 3,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5544,
+        "rank": 1,
+        "rollout": 3,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6122,
+        "rank": 3,
+        "rollout": 4,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6125,
+        "rank": 2,
+        "rollout": 4,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6128,
+        "rank": 0,
+        "rollout": 4,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6150,
+        "rank": 1,
+        "rollout": 4,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6704,
+        "rank": 3,
+        "rollout": 5,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6709,
+        "rank": 0,
+        "rollout": 5,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6719,
+        "rank": 2,
+        "rollout": 5,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6731,
+        "rank": 1,
+        "rollout": 5,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 7296,
+        "rank": 3,
+        "rollout": 6,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 7299,
+        "rank": 0,
+        "rollout": 6,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 7311,
+        "rank": 2,
+        "rollout": 6,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 7316,
+        "rank": 1,
+        "rollout": 6,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      }
+    ],
+    "rank0_rollout_metrics": [
+      {
+        "line": 3434,
+        "index": 0,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.397229194641113,
+          "rollout/raw_reward": 0.5,
+          "rollout/total_lengths": 256.0,
+          "rollout/ref_log_probs": -10.397794723510742,
+          "rollout/log_probs": -10.397533416748047,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 4152,
+        "index": 1,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.3180570602417,
+          "rollout/raw_reward": 0.5,
+          "rollout/total_lengths": 250.625,
+          "rollout/ref_log_probs": -10.318416595458984,
+          "rollout/log_probs": -10.318140983581543,
+          "rollout/advantages": 1.862645149230957e-09,
+          "rollout/returns": 1.862645149230957e-09
+        }
+      },
+      {
+        "line": 4757,
+        "index": 2,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.255805015563965,
+          "rollout/raw_reward": 0.5,
+          "rollout/total_lengths": 270.625,
+          "rollout/ref_log_probs": -10.255980491638184,
+          "rollout/log_probs": -10.25582504272461,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 5348,
+        "index": 3,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.253766059875488,
+          "rollout/raw_reward": 0.5,
+          "rollout/total_lengths": 251.125,
+          "rollout/ref_log_probs": -10.254119873046875,
+          "rollout/log_probs": -10.253778457641602,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 5957,
+        "index": 4,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.296224594116211,
+          "rollout/raw_reward": 0.5,
+          "rollout/total_lengths": 270.75,
+          "rollout/ref_log_probs": -10.296968460083008,
+          "rollout/log_probs": -10.296441078186035,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 6570,
+        "index": 5,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.304141998291016,
+          "rollout/raw_reward": 0.5,
+          "rollout/total_lengths": 243.875,
+          "rollout/ref_log_probs": -10.30447006225586,
+          "rollout/log_probs": -10.304706573486328,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 7148,
+        "index": 6,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.2999849319458,
+          "rollout/raw_reward": 0.5,
+          "rollout/total_lengths": 239.25,
+          "rollout/ref_log_probs": -10.30047607421875,
+          "rollout/log_probs": -10.300146102905273,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      }
+    ],
+    "rank0_step_metrics": [
+      {
+        "line": 3714,
+        "index": 0,
+        "metrics": {
+          "train/loss": -9.983684867620468e-05,
+          "train/pg_loss": -9.983684867620468e-05,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": -9.18604782782495e-05,
+          "train/ess_ratio": 0.9998314380645752,
+          "train/train_rollout_logprob_abs_diff": 0.01143704168498516,
+          "train/train_rollout_kl": 0.00010560823284322396,
+          "train/kl_loss": 0.00017388073320034891,
+          "train/ois": 1.0001773834228516,
+          "train/tis": 0.9998024106025696,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011432992294430733,
+          "train/grad_norm": 2.7867448329925537,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 0
+        },
+        "rollout": 0,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 4325,
+        "index": 1,
+        "metrics": {
+          "train/loss": -0.00019935425370931625,
+          "train/pg_loss": -0.00019935425370931625,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": 0.00026251256349496543,
+          "train/ess_ratio": 0.9998360276222229,
+          "train/train_rollout_logprob_abs_diff": 0.011573437601327896,
+          "train/train_rollout_kl": 0.00010939997446257621,
+          "train/kl_loss": 0.0001795727148419246,
+          "train/ois": 0.999820351600647,
+          "train/tis": 1.0000280141830444,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011573003605008125,
+          "train/grad_norm": 2.7648022174835205,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 1
+        },
+        "rollout": 1,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 4929,
+        "index": 2,
+        "metrics": {
+          "train/loss": 5.115475505590439e-05,
+          "train/pg_loss": 5.115475505590439e-05,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": 3.2588439353276044e-05,
+          "train/ess_ratio": 0.9998310804367065,
+          "train/train_rollout_logprob_abs_diff": 0.011393507942557335,
+          "train/train_rollout_kl": 0.00010641393600963056,
+          "train/kl_loss": 0.00020395666069816798,
+          "train/ois": 1.00005304813385,
+          "train/tis": 1.0000855922698975,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011392772197723389,
+          "train/grad_norm": 2.454990863800049,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 2
+        },
+        "rollout": 2,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 5530,
+        "index": 3,
+        "metrics": {
+          "train/loss": -0.0001793093979358673,
+          "train/pg_loss": -0.0001793093979358673,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": 0.0002199649898102507,
+          "train/ess_ratio": 0.9998350143432617,
+          "train/train_rollout_logprob_abs_diff": 0.011352356523275375,
+          "train/train_rollout_kl": 0.00010488156840438023,
+          "train/kl_loss": 0.00019593261822592467,
+          "train/ois": 0.9998634457588196,
+          "train/tis": 1.0000919103622437,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011352432891726494,
+          "train/grad_norm": 2.377612590789795,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 3
+        },
+        "rollout": 3,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 6129,
+        "index": 4,
+        "metrics": {
+          "train/loss": -0.00019430089741945267,
+          "train/pg_loss": -0.00019430089741945267,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": 0.0001085477415472269,
+          "train/ess_ratio": 0.9998353719711304,
+          "train/train_rollout_logprob_abs_diff": 0.011444741860032082,
+          "train/train_rollout_kl": 0.00010666000889614224,
+          "train/kl_loss": 0.0002056711819022894,
+          "train/ois": 0.9999745488166809,
+          "train/tis": 0.9998894929885864,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011442039161920547,
+          "train/grad_norm": 2.3417630195617676,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 4
+        },
+        "rollout": 4,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 6710,
+        "index": 5,
+        "metrics": {
+          "train/loss": 5.05959615111351e-05,
+          "train/pg_loss": 5.05959615111351e-05,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": -0.0002189322840422392,
+          "train/ess_ratio": 0.9998290538787842,
+          "train/train_rollout_logprob_abs_diff": 0.011491824872791767,
+          "train/train_rollout_kl": 0.00010687178291846067,
+          "train/kl_loss": 0.00020858939387835562,
+          "train/ois": 1.0003052949905396,
+          "train/tis": 0.9995423555374146,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011486039496958256,
+          "train/grad_norm": 2.344681739807129,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 5
+        },
+        "rollout": 5,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 7300,
+        "index": 6,
+        "metrics": {
+          "train/loss": 0.00014988519251346588,
+          "train/pg_loss": 0.00014988519251346588,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": 0.00014219479635357857,
+          "train/ess_ratio": 0.9998295903205872,
+          "train/train_rollout_logprob_abs_diff": 0.011581210419535637,
+          "train/train_rollout_kl": 0.00010810006642714143,
+          "train/kl_loss": 0.00024039884738158435,
+          "train/ois": 0.9999439120292664,
+          "train/tis": 0.9999511241912842,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011579968966543674,
+          "train/grad_norm": 2.0527284145355225,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 6
+        },
+        "rollout": 6,
+        "step_within_rollout": 0,
+        "attempt": 0
+      }
+    ],
+    "native_perf_metrics": [
+      {
+        "line": 3720,
+        "index": 0,
+        "metrics": {
+          "perf/update_weights_time": 16.146458625793457,
+          "perf/data_preprocess_time": 0.009999275207519531,
+          "perf/train_wait_time": 25.282463312149048,
+          "perf/ref_log_probs_time": 59.586567640304565,
+          "perf/log_probs_time": 10.535135269165039,
+          "perf/actor_train_time": 72.39548015594482,
+          "perf/train_time": 142.96592545509338,
+          "perf/log_probs_tflops": 2.210030375307871,
+          "perf/ref_log_probs_tflops": 0.3907419050108756,
+          "perf/actor_train_tflops": 0.9648241396843653,
+          "perf/actor_train_tok_per_s": 226.31247095409466,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0004288107287486068,
+          "perf/step_time": 168.24838876724243,
+          "perf/wait_time_ratio": 0.15026868011868583
+        },
+        "initial": true,
+        "after_training_rollout": null
+      },
+      {
+        "line": 4331,
+        "index": 1,
+        "metrics": {
+          "perf/update_weights_implementation_time": 6.541665554046631,
+          "perf/finalize_and_resume_engines_time": 7.168395519256592,
+          "perf/update_weights_time": 31.415995836257935,
+          "perf/data_preprocess_time": 0.009604215621948242,
+          "perf/train_wait_time": 33.56199336051941,
+          "perf/ref_log_probs_time": 0.7585334777832031,
+          "perf/log_probs_time": 0.7743785381317139,
+          "perf/actor_train_time": 31.334380388259888,
+          "perf/train_time": 33.313071489334106,
+          "perf/update_weights_density": 0.005046086641246914,
+          "perf/update_weights_wire_bytes": 204800625,
+          "perf/log_probs_tflops": 29.43467387382971,
+          "perf/ref_log_probs_tflops": 30.04953689244372,
+          "perf/actor_train_tflops": 2.1822910913540947,
+          "perf/actor_train_tok_per_s": 511.8977877095581,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.000969907151712931,
+          "perf/step_time": 66.87506484985352,
+          "perf/wait_time_ratio": 0.5018610962975825
+        },
+        "initial": false,
+        "after_training_rollout": 0
+      },
+      {
+        "line": 4938,
+        "index": 2,
+        "metrics": {
+          "perf/update_weights_implementation_time": 5.7629852294921875,
+          "perf/finalize_and_resume_engines_time": 7.587873458862305,
+          "perf/update_weights_time": 13.384368658065796,
+          "perf/data_preprocess_time": 0.009802818298339844,
+          "perf/train_wait_time": 16.05209970474243,
+          "perf/ref_log_probs_time": 0.7767808437347412,
+          "perf/log_probs_time": 0.7649312019348145,
+          "perf/actor_train_time": 26.78480839729309,
+          "perf/train_time": 28.77094268798828,
+          "perf/update_weights_density": 0.0044411860104026,
+          "perf/update_weights_wire_bytes": 183308084,
+          "perf/log_probs_tflops": 32.198071164913536,
+          "perf/ref_log_probs_tflops": 31.70689580569849,
+          "perf/actor_train_tflops": 2.758575933511147,
+          "perf/actor_train_tok_per_s": 646.635202428791,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0012260337482271765,
+          "perf/step_time": 44.82304239273071,
+          "perf/wait_time_ratio": 0.3581216010304941
+        },
+        "initial": false,
+        "after_training_rollout": 1
+      },
+      {
+        "line": 5536,
+        "index": 3,
+        "metrics": {
+          "perf/update_weights_implementation_time": 5.879993915557861,
+          "perf/finalize_and_resume_engines_time": 8.016396760940552,
+          "perf/update_weights_time": 13.919214725494385,
+          "perf/data_preprocess_time": 0.0095977783203125,
+          "perf/train_wait_time": 15.90403938293457,
+          "perf/ref_log_probs_time": 0.7364685535430908,
+          "perf/log_probs_time": 0.756178617477417,
+          "perf/actor_train_time": 25.231850147247314,
+          "perf/train_time": 27.168426513671875,
+          "perf/update_weights_density": 0.004212881188943705,
+          "perf/update_weights_wire_bytes": 175793256,
+          "perf/log_probs_tflops": 30.20204417665652,
+          "perf/ref_log_probs_tflops": 31.0103396820184,
+          "perf/actor_train_tflops": 2.7153942192765688,
+          "perf/actor_train_tok_per_s": 636.9727113234851,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0012068418752340306,
+          "perf/step_time": 43.072465896606445,
+          "perf/wait_time_ratio": 0.36923911951341526
+        },
+        "initial": false,
+        "after_training_rollout": 2
+      },
+      {
+        "line": 6135,
+        "index": 4,
+        "metrics": {
+          "perf/update_weights_implementation_time": 5.714986562728882,
+          "perf/finalize_and_resume_engines_time": 7.740289211273193,
+          "perf/update_weights_time": 13.483909130096436,
+          "perf/data_preprocess_time": 0.009959936141967773,
+          "perf/train_wait_time": 23.539761304855347,
+          "perf/ref_log_probs_time": 0.7444381713867188,
+          "perf/log_probs_time": 0.7494947910308838,
+          "perf/actor_train_time": 20.109551191329956,
+          "perf/train_time": 22.047954082489014,
+          "perf/update_weights_density": 0.0035722774143583345,
+          "perf/update_weights_wire_bytes": 153285636,
+          "perf/log_probs_tflops": 32.87507480618193,
+          "perf/ref_log_probs_tflops": 33.09837978362374,
+          "perf/actor_train_tflops": 3.6758200748817065,
+          "perf/actor_train_tok_per_s": 861.6800959471838,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0016336978110585362,
+          "perf/step_time": 45.58771538734436,
+          "perf/wait_time_ratio": 0.516361943230659
+        },
+        "initial": false,
+        "after_training_rollout": 3
+      },
+      {
+        "line": 6716,
+        "index": 5,
+        "metrics": {
+          "perf/update_weights_implementation_time": 5.602556467056274,
+          "perf/finalize_and_resume_engines_time": 8.634315013885498,
+          "perf/update_weights_time": 14.262575626373291,
+          "perf/data_preprocess_time": 0.00993204116821289,
+          "perf/train_wait_time": 31.042217016220093,
+          "perf/ref_log_probs_time": 0.655623197555542,
+          "perf/log_probs_time": 0.6883161067962646,
+          "perf/actor_train_time": 19.39570713043213,
+          "perf/train_time": 21.183945655822754,
+          "perf/update_weights_density": 0.0039859179831566146,
+          "perf/update_weights_wire_bytes": 167146269,
+          "perf/log_probs_tflops": 32.22683418098445,
+          "perf/ref_log_probs_tflops": 33.83383797359428,
+          "perf/actor_train_tflops": 3.4310039157613,
+          "perf/actor_train_tok_per_s": 804.7141511799193,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0015248906292272444,
+          "perf/step_time": 52.22616267204285,
+          "perf/wait_time_ratio": 0.5943805829877155
+        },
+        "initial": false,
+        "after_training_rollout": 4
+      },
+      {
+        "line": 7306,
+        "index": 6,
+        "metrics": {
+          "perf/update_weights_implementation_time": 5.667669057846069,
+          "perf/finalize_and_resume_engines_time": 8.305427074432373,
+          "perf/update_weights_time": 13.996295928955078,
+          "perf/data_preprocess_time": 0.010025978088378906,
+          "perf/train_wait_time": 26.90878939628601,
+          "perf/ref_log_probs_time": 0.685213565826416,
+          "perf/log_probs_time": 0.6723737716674805,
+          "perf/actor_train_time": 19.090498685836792,
+          "perf/train_time": 20.893263816833496,
+          "perf/update_weights_density": 0.0035528738731429427,
+          "perf/update_weights_wire_bytes": 153284995,
+          "perf/log_probs_tflops": 32.35569192805293,
+          "perf/ref_log_probs_tflops": 31.74939858398423,
+          "perf/actor_train_tflops": 3.418734990833333,
+          "perf/actor_train_tok_per_s": 802.074385377892,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0015194377737037035,
+          "perf/step_time": 47.80205321311951,
+          "perf/wait_time_ratio": 0.5629212050017292
+        },
+        "initial": false,
+        "after_training_rollout": 5
+      }
+    ],
+    "rollout_service_metrics": [
+      {
+        "line": 3252,
+        "index": 0,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.5,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.0,
+          "rollout/avg_cached_tokens_per_sample": 0.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 0.0,
+          "rollout/weight_version/median": 0.0,
+          "rollout/weight_version/max": 0,
+          "rollout/weight_version/min": 0,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 8.706305742263794,
+          "perf/tokens_per_gpu_per_sec": 183.77484634303363,
+          "perf/longest_sample_tokens_per_sec": 11.485927896439602,
+          "perf/effective_tokens_per_gpu_per_sec": 183.77484634303363,
+          "perf/longest_effective_sample_tokens_per_sec": 11.485927896439602
+        }
+      },
+      {
+        "line": 4056,
+        "index": 1,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.5,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.013278008298755186,
+          "rollout/avg_cached_tokens_per_sample": 2.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 1.0,
+          "rollout/weight_version/median": 1.0,
+          "rollout/weight_version/max": 1,
+          "rollout/weight_version/min": 1,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.6658577919006348,
+          "perf/tokens_per_gpu_per_sec": 2402.91548655297,
+          "perf/longest_sample_tokens_per_sec": 150.18221790956062,
+          "perf/effective_tokens_per_gpu_per_sec": 2402.91548655297,
+          "perf/longest_effective_sample_tokens_per_sec": 150.18221790956062
+        }
+      },
+      {
+        "line": 4659,
+        "index": 2,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.5,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.05860805860805861,
+          "rollout/avg_cached_tokens_per_sample": 10.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 2.0,
+          "rollout/weight_version/median": 2.0,
+          "rollout/weight_version/max": 2,
+          "rollout/weight_version/min": 2,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.6732826232910156,
+          "perf/tokens_per_gpu_per_sec": 2376.416596316085,
+          "perf/longest_sample_tokens_per_sec": 148.5260372697553,
+          "perf/effective_tokens_per_gpu_per_sec": 2376.416596316085,
+          "perf/longest_effective_sample_tokens_per_sec": 148.5260372697553
+        }
+      },
+      {
+        "line": 5261,
+        "index": 3,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.5,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.05293631100082713,
+          "rollout/avg_cached_tokens_per_sample": 8.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 3.0,
+          "rollout/weight_version/median": 3.0,
+          "rollout/weight_version/max": 3,
+          "rollout/weight_version/min": 3,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.7033371925354004,
+          "perf/tokens_per_gpu_per_sec": 2274.8690343422563,
+          "perf/longest_sample_tokens_per_sec": 142.17931464639102,
+          "perf/effective_tokens_per_gpu_per_sec": 2274.8690343422563,
+          "perf/longest_effective_sample_tokens_per_sec": 142.17931464639102
+        }
+      },
+      {
+        "line": 5866,
+        "index": 4,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.5,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.01171303074670571,
+          "rollout/avg_cached_tokens_per_sample": 2.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 4.0,
+          "rollout/weight_version/median": 4.0,
+          "rollout/weight_version/max": 4,
+          "rollout/weight_version/min": 4,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.6220695972442627,
+          "perf/tokens_per_gpu_per_sec": 2572.0594722647115,
+          "perf/longest_sample_tokens_per_sec": 160.75371701654447,
+          "perf/effective_tokens_per_gpu_per_sec": 2572.0594722647115,
+          "perf/longest_effective_sample_tokens_per_sec": 160.75371701654447
+        }
+      },
+      {
+        "line": 6474,
+        "index": 5,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.5,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.020851433536055605,
+          "rollout/avg_cached_tokens_per_sample": 3.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 5.0,
+          "rollout/weight_version/median": 5.0,
+          "rollout/weight_version/max": 5,
+          "rollout/weight_version/min": 5,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 1.0499866008758545,
+          "perf/tokens_per_gpu_per_sec": 1523.8289694986083,
+          "perf/longest_sample_tokens_per_sec": 95.23931059366302,
+          "perf/effective_tokens_per_gpu_per_sec": 1523.8289694986083,
+          "perf/longest_effective_sample_tokens_per_sec": 95.23931059366302
+        }
+      },
+      {
+        "line": 7060,
+        "index": 6,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.5,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.0,
+          "rollout/avg_cached_tokens_per_sample": 0.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 6.0,
+          "rollout/weight_version/median": 6.0,
+          "rollout/weight_version/max": 6,
+          "rollout/weight_version/min": 6,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 1.0960865020751953,
+          "perf/tokens_per_gpu_per_sec": 1459.7388043468804,
+          "perf/longest_sample_tokens_per_sec": 91.23367527168003,
+          "perf/effective_tokens_per_gpu_per_sec": 1459.7388043468804,
+          "perf/longest_effective_sample_tokens_per_sec": 91.23367527168003
+        }
+      }
+    ],
+    "ray_terminal": [
+      {
+        "line": 7359,
+        "job_id": "miles-12828651dfe948be86466080b750137a",
+        "status": "succeeded"
+      }
+    ],
+    "metric_parse_errors": [],
+    "fatal_signature_lines": [
+      {
+        "line": 2615,
+        "text": "(CommandActor pid=204289) Traceback (most recent call last):"
+      },
+      {
+        "line": 2627,
+        "text": "(CommandActor pid=204289) Traceback (most recent call last):"
+      },
+      {
+        "line": 2650,
+        "text": "(CommandActor pid=204289) Traceback (most recent call last):"
+      },
+      {
+        "line": 2664,
+        "text": "(CommandActor pid=204289) Traceback (most recent call last):"
+      },
+      {
+        "line": 2704,
+        "text": "(CommandActor pid=204290) Traceback (most recent call last):"
+      },
+      {
+        "line": 2716,
+        "text": "(CommandActor pid=204290) Traceback (most recent call last):"
+      },
+      {
+        "line": 2739,
+        "text": "(CommandActor pid=204290) Traceback (most recent call last):"
+      },
+      {
+        "line": 2753,
+        "text": "(CommandActor pid=204290) Traceback (most recent call last):"
+      }
+    ],
+    "duplicate_step_metric_lines": [
+      3715,
+      4326,
+      4930,
+      5531,
+      6130,
+      6711,
+      7301
+    ],
+    "conflicting_step_metric_lines": [],
+    "replay": [
+      {
+        "rollout": 0,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3500,
+          3526,
+          3545,
+          3558,
+          3567,
+          3574,
+          3586,
+          3590,
+          3602,
+          3606,
+          3621,
+          3622,
+          3628,
+          3638,
+          3644,
+          3654,
+          3668,
+          3672
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3359,
+          3365,
+          3366,
+          3373,
+          3377,
+          3378,
+          3385,
+          3386,
+          3393,
+          3394,
+          3395,
+          3405,
+          3409,
+          3410,
+          3417,
+          3418,
+          3425,
+          3429,
+          3458,
+          3459,
+          3532,
+          3542,
+          3562,
+          3566,
+          3578,
+          3579,
+          3594,
+          3595,
+          3610,
+          3611,
+          3626,
+          3627,
+          3642,
+          3643,
+          3660,
+          3664
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3503,
+          3527,
+          3549,
+          3559,
+          3569,
+          3575,
+          3587,
+          3591,
+          3603,
+          3607,
+          3614,
+          3623,
+          3631,
+          3639,
+          3647,
+          3655,
+          3669,
+          3673
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3360,
+          3367,
+          3368,
+          3374,
+          3379,
+          3380,
+          3387,
+          3388,
+          3396,
+          3397,
+          3398,
+          3406,
+          3411,
+          3412,
+          3419,
+          3420,
+          3426,
+          3436,
+          3460,
+          3461,
+          3535,
+          3546,
+          3563,
+          3568,
+          3580,
+          3581,
+          3596,
+          3597,
+          3612,
+          3613,
+          3629,
+          3630,
+          3645,
+          3646,
+          3661,
+          3665
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3506,
+          3528,
+          3553,
+          3560,
+          3571,
+          3576,
+          3588,
+          3592,
+          3604,
+          3608,
+          3617,
+          3624,
+          3634,
+          3640,
+          3650,
+          3656,
+          3670,
+          3674
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3361,
+          3369,
+          3370,
+          3375,
+          3381,
+          3382,
+          3389,
+          3390,
+          3399,
+          3400,
+          3401,
+          3407,
+          3413,
+          3414,
+          3421,
+          3422,
+          3427,
+          3438,
+          3462,
+          3463,
+          3538,
+          3550,
+          3564,
+          3570,
+          3582,
+          3583,
+          3598,
+          3599,
+          3615,
+          3616,
+          3632,
+          3633,
+          3648,
+          3649,
+          3662,
+          3666
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3509,
+          3529,
+          3557,
+          3561,
+          3573,
+          3577,
+          3589,
+          3593,
+          3605,
+          3609,
+          3620,
+          3625,
+          3637,
+          3641,
+          3653,
+          3657,
+          3671,
+          3675
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3358,
+          3371,
+          3372,
+          3376,
+          3383,
+          3384,
+          3391,
+          3392,
+          3402,
+          3403,
+          3404,
+          3408,
+          3415,
+          3416,
+          3423,
+          3424,
+          3428,
+          3440,
+          3464,
+          3465,
+          3541,
+          3554,
+          3565,
+          3572,
+          3584,
+          3585,
+          3600,
+          3601,
+          3618,
+          3619,
+          3635,
+          3636,
+          3651,
+          3652,
+          3663,
+          3667
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4162,
+          4166,
+          4172,
+          4182,
+          4191,
+          4201,
+          4213,
+          4217,
+          4226,
+          4236,
+          4248,
+          4252,
+          4258,
+          4268,
+          4274,
+          4284,
+          4295,
+          4302
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4070,
+          4077,
+          4081,
+          4082,
+          4089,
+          4090,
+          4091,
+          4101,
+          4102,
+          4103,
+          4113,
+          4114,
+          4121,
+          4122,
+          4123,
+          4133,
+          4134,
+          4135,
+          4154,
+          4155,
+          4170,
+          4171,
+          4186,
+          4190,
+          4205,
+          4206,
+          4224,
+          4225,
+          4240,
+          4244,
+          4256,
+          4257,
+          4272,
+          4273,
+          4290,
+          4294
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4163,
+          4167,
+          4175,
+          4183,
+          4193,
+          4198,
+          4214,
+          4218,
+          4229,
+          4237,
+          4249,
+          4253,
+          4261,
+          4269,
+          4277,
+          4285,
+          4297,
+          4303
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4072,
+          4078,
+          4083,
+          4084,
+          4092,
+          4093,
+          4094,
+          4104,
+          4105,
+          4106,
+          4115,
+          4116,
+          4124,
+          4125,
+          4126,
+          4136,
+          4137,
+          4138,
+          4156,
+          4157,
+          4173,
+          4174,
+          4187,
+          4192,
+          4207,
+          4208,
+          4227,
+          4228,
+          4241,
+          4245,
+          4259,
+          4260,
+          4275,
+          4276,
+          4291,
+          4296
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4164,
+          4168,
+          4178,
+          4184,
+          4195,
+          4199,
+          4215,
+          4219,
+          4232,
+          4238,
+          4250,
+          4254,
+          4264,
+          4270,
+          4280,
+          4286,
+          4299,
+          4304
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4074,
+          4079,
+          4085,
+          4086,
+          4095,
+          4096,
+          4097,
+          4107,
+          4108,
+          4109,
+          4117,
+          4118,
+          4127,
+          4128,
+          4129,
+          4140,
+          4141,
+          4142,
+          4158,
+          4159,
+          4176,
+          4177,
+          4188,
+          4194,
+          4209,
+          4210,
+          4230,
+          4231,
+          4242,
+          4246,
+          4262,
+          4263,
+          4278,
+          4279,
+          4292,
+          4298
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4165,
+          4169,
+          4181,
+          4185,
+          4197,
+          4200,
+          4216,
+          4220,
+          4235,
+          4239,
+          4251,
+          4255,
+          4267,
+          4271,
+          4283,
+          4287,
+          4301,
+          4305
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4076,
+          4080,
+          4087,
+          4088,
+          4098,
+          4099,
+          4100,
+          4110,
+          4111,
+          4112,
+          4119,
+          4120,
+          4130,
+          4131,
+          4132,
+          4144,
+          4145,
+          4146,
+          4160,
+          4161,
+          4179,
+          4180,
+          4189,
+          4196,
+          4211,
+          4212,
+          4233,
+          4234,
+          4243,
+          4247,
+          4265,
+          4266,
+          4281,
+          4282,
+          4293,
+          4300
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4767,
+          4771,
+          4777,
+          4787,
+          4799,
+          4803,
+          4818,
+          4819,
+          4825,
+          4835,
+          4847,
+          4851,
+          4857,
+          4867,
+          4873,
+          4883,
+          4892,
+          4899
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4673,
+          4680,
+          4681,
+          4682,
+          4694,
+          4695,
+          4702,
+          4706,
+          4707,
+          4708,
+          4718,
+          4719,
+          4726,
+          4727,
+          4728,
+          4738,
+          4739,
+          4740,
+          4759,
+          4760,
+          4775,
+          4776,
+          4791,
+          4795,
+          4807,
+          4808,
+          4823,
+          4824,
+          4839,
+          4846,
+          4855,
+          4856,
+          4871,
+          4872,
+          4887,
+          4891
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4768,
+          4772,
+          4780,
+          4788,
+          4800,
+          4804,
+          4815,
+          4820,
+          4828,
+          4836,
+          4848,
+          4852,
+          4860,
+          4868,
+          4876,
+          4884,
+          4894,
+          4900
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4675,
+          4685,
+          4686,
+          4687,
+          4696,
+          4697,
+          4703,
+          4709,
+          4710,
+          4711,
+          4720,
+          4721,
+          4729,
+          4730,
+          4731,
+          4741,
+          4742,
+          4743,
+          4761,
+          4762,
+          4778,
+          4779,
+          4792,
+          4796,
+          4809,
+          4810,
+          4826,
+          4827,
+          4840,
+          4841,
+          4858,
+          4859,
+          4874,
+          4875,
+          4888,
+          4893
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4769,
+          4773,
+          4783,
+          4789,
+          4801,
+          4805,
+          4816,
+          4821,
+          4831,
+          4837,
+          4849,
+          4853,
+          4863,
+          4869,
+          4879,
+          4885,
+          4896,
+          4901
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4677,
+          4688,
+          4689,
+          4690,
+          4698,
+          4699,
+          4704,
+          4712,
+          4713,
+          4714,
+          4722,
+          4723,
+          4732,
+          4733,
+          4734,
+          4744,
+          4745,
+          4746,
+          4763,
+          4764,
+          4781,
+          4782,
+          4793,
+          4797,
+          4811,
+          4812,
+          4829,
+          4830,
+          4842,
+          4843,
+          4861,
+          4862,
+          4877,
+          4878,
+          4889,
+          4895
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4770,
+          4774,
+          4786,
+          4790,
+          4802,
+          4806,
+          4817,
+          4822,
+          4834,
+          4838,
+          4850,
+          4854,
+          4866,
+          4870,
+          4882,
+          4886,
+          4898,
+          4902
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4679,
+          4691,
+          4692,
+          4693,
+          4700,
+          4701,
+          4705,
+          4715,
+          4716,
+          4717,
+          4724,
+          4725,
+          4735,
+          4736,
+          4737,
+          4748,
+          4749,
+          4750,
+          4765,
+          4766,
+          4784,
+          4785,
+          4794,
+          4798,
+          4813,
+          4814,
+          4832,
+          4833,
+          4844,
+          4845,
+          4864,
+          4865,
+          4880,
+          4881,
+          4890,
+          4897
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5361,
+          5371,
+          5383,
+          5387,
+          5396,
+          5406,
+          5418,
+          5427,
+          5433,
+          5443,
+          5449,
+          5459,
+          5468,
+          5475,
+          5487,
+          5491,
+          5497,
+          5507
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5275,
+          5276,
+          5286,
+          5287,
+          5294,
+          5298,
+          5299,
+          5300,
+          5310,
+          5311,
+          5318,
+          5319,
+          5320,
+          5330,
+          5334,
+          5335,
+          5342,
+          5343,
+          5359,
+          5360,
+          5375,
+          5379,
+          5394,
+          5395,
+          5413,
+          5417,
+          5431,
+          5432,
+          5447,
+          5448,
+          5463,
+          5467,
+          5479,
+          5480,
+          5495,
+          5496
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5364,
+          5372,
+          5384,
+          5388,
+          5399,
+          5407,
+          5420,
+          5428,
+          5436,
+          5444,
+          5452,
+          5460,
+          5470,
+          5476,
+          5488,
+          5492,
+          5500,
+          5508
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5278,
+          5279,
+          5288,
+          5289,
+          5295,
+          5301,
+          5302,
+          5303,
+          5312,
+          5313,
+          5321,
+          5322,
+          5323,
+          5331,
+          5336,
+          5337,
+          5350,
+          5351,
+          5362,
+          5363,
+          5376,
+          5380,
+          5397,
+          5398,
+          5414,
+          5419,
+          5434,
+          5435,
+          5450,
+          5451,
+          5464,
+          5469,
+          5481,
+          5482,
+          5498,
+          5499
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5367,
+          5373,
+          5385,
+          5389,
+          5402,
+          5408,
+          5422,
+          5429,
+          5439,
+          5445,
+          5455,
+          5461,
+          5472,
+          5477,
+          5489,
+          5493,
+          5503,
+          5509
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5281,
+          5282,
+          5290,
+          5291,
+          5296,
+          5304,
+          5305,
+          5306,
+          5314,
+          5315,
+          5324,
+          5325,
+          5326,
+          5332,
+          5338,
+          5339,
+          5353,
+          5354,
+          5365,
+          5366,
+          5377,
+          5381,
+          5400,
+          5401,
+          5415,
+          5421,
+          5437,
+          5438,
+          5453,
+          5454,
+          5465,
+          5471,
+          5483,
+          5484,
+          5501,
+          5502
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5370,
+          5374,
+          5386,
+          5390,
+          5405,
+          5409,
+          5424,
+          5430,
+          5442,
+          5446,
+          5458,
+          5462,
+          5474,
+          5478,
+          5490,
+          5494,
+          5506,
+          5510
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5284,
+          5285,
+          5292,
+          5293,
+          5297,
+          5307,
+          5308,
+          5309,
+          5316,
+          5317,
+          5327,
+          5328,
+          5329,
+          5333,
+          5340,
+          5341,
+          5356,
+          5357,
+          5368,
+          5369,
+          5378,
+          5382,
+          5403,
+          5404,
+          5416,
+          5423,
+          5440,
+          5441,
+          5456,
+          5457,
+          5466,
+          5473,
+          5485,
+          5486,
+          5504,
+          5505
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5970,
+          5980,
+          5986,
+          5996,
+          6008,
+          6012,
+          6020,
+          6030,
+          6039,
+          6046,
+          6058,
+          6062,
+          6077,
+          6078,
+          6087,
+          6094,
+          6106,
+          6110
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5884,
+          5891,
+          5895,
+          5896,
+          5903,
+          5904,
+          5905,
+          5915,
+          5919,
+          5920,
+          5927,
+          5928,
+          5929,
+          5939,
+          5940,
+          5941,
+          5951,
+          5952,
+          5968,
+          5969,
+          5984,
+          5985,
+          6000,
+          6001,
+          6018,
+          6019,
+          6034,
+          6038,
+          6050,
+          6051,
+          6066,
+          6067,
+          6082,
+          6086,
+          6098,
+          6099
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5973,
+          5981,
+          5989,
+          5997,
+          6009,
+          6013,
+          6023,
+          6031,
+          6041,
+          6047,
+          6059,
+          6063,
+          6070,
+          6079,
+          6089,
+          6095,
+          6107,
+          6111
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5886,
+          5892,
+          5897,
+          5898,
+          5906,
+          5907,
+          5908,
+          5916,
+          5921,
+          5922,
+          5930,
+          5931,
+          5932,
+          5942,
+          5943,
+          5944,
+          5959,
+          5960,
+          5971,
+          5972,
+          5987,
+          5988,
+          6002,
+          6003,
+          6021,
+          6022,
+          6035,
+          6040,
+          6052,
+          6053,
+          6068,
+          6069,
+          6083,
+          6088,
+          6100,
+          6101
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5976,
+          5982,
+          5992,
+          5998,
+          6010,
+          6014,
+          6026,
+          6032,
+          6043,
+          6048,
+          6060,
+          6064,
+          6073,
+          6080,
+          6091,
+          6096,
+          6108,
+          6112
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5888,
+          5893,
+          5899,
+          5900,
+          5909,
+          5910,
+          5911,
+          5917,
+          5923,
+          5924,
+          5933,
+          5934,
+          5935,
+          5945,
+          5946,
+          5947,
+          5962,
+          5963,
+          5974,
+          5975,
+          5990,
+          5991,
+          6004,
+          6005,
+          6024,
+          6025,
+          6036,
+          6042,
+          6054,
+          6055,
+          6071,
+          6072,
+          6084,
+          6090,
+          6102,
+          6103
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5979,
+          5983,
+          5995,
+          5999,
+          6011,
+          6015,
+          6029,
+          6033,
+          6045,
+          6049,
+          6061,
+          6065,
+          6076,
+          6081,
+          6093,
+          6097,
+          6109,
+          6113
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5890,
+          5894,
+          5901,
+          5902,
+          5912,
+          5913,
+          5914,
+          5918,
+          5925,
+          5926,
+          5936,
+          5937,
+          5938,
+          5948,
+          5949,
+          5950,
+          5965,
+          5966,
+          5977,
+          5978,
+          5993,
+          5994,
+          6006,
+          6007,
+          6027,
+          6028,
+          6037,
+          6044,
+          6056,
+          6057,
+          6074,
+          6075,
+          6085,
+          6092,
+          6104,
+          6105
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6580,
+          6584,
+          6590,
+          6602,
+          6614,
+          6618,
+          6624,
+          6634,
+          6643,
+          6650,
+          6662,
+          6666,
+          6678,
+          6682,
+          6688,
+          6698
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6493,
+          6494,
+          6504,
+          6505,
+          6515,
+          6519,
+          6520,
+          6521,
+          6531,
+          6532,
+          6539,
+          6540,
+          6541,
+          6551,
+          6555,
+          6556,
+          6572,
+          6573,
+          6588,
+          6589,
+          6606,
+          6607,
+          6622,
+          6623,
+          6638,
+          6642,
+          6654,
+          6655,
+          6670,
+          6671,
+          6686,
+          6687
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6582,
+          6585,
+          6593,
+          6603,
+          6615,
+          6619,
+          6627,
+          6635,
+          6645,
+          6651,
+          6663,
+          6667,
+          6679,
+          6683,
+          6691,
+          6699
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6496,
+          6497,
+          6506,
+          6507,
+          6516,
+          6522,
+          6523,
+          6524,
+          6533,
+          6534,
+          6542,
+          6543,
+          6544,
+          6552,
+          6559,
+          6560,
+          6574,
+          6575,
+          6591,
+          6592,
+          6608,
+          6609,
+          6625,
+          6626,
+          6639,
+          6644,
+          6656,
+          6657,
+          6672,
+          6673,
+          6689,
+          6690
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6583,
+          6586,
+          6596,
+          6604,
+          6616,
+          6620,
+          6630,
+          6636,
+          6647,
+          6652,
+          6664,
+          6668,
+          6680,
+          6684,
+          6694,
+          6700
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6499,
+          6500,
+          6508,
+          6509,
+          6517,
+          6525,
+          6526,
+          6527,
+          6535,
+          6536,
+          6545,
+          6546,
+          6547,
+          6553,
+          6562,
+          6563,
+          6576,
+          6577,
+          6594,
+          6595,
+          6610,
+          6611,
+          6628,
+          6629,
+          6640,
+          6646,
+          6658,
+          6659,
+          6674,
+          6675,
+          6692,
+          6693
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6581,
+          6587,
+          6599,
+          6605,
+          6617,
+          6621,
+          6633,
+          6637,
+          6649,
+          6653,
+          6665,
+          6669,
+          6681,
+          6685,
+          6697,
+          6701
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6502,
+          6503,
+          6510,
+          6511,
+          6518,
+          6528,
+          6529,
+          6530,
+          6537,
+          6538,
+          6548,
+          6549,
+          6550,
+          6554,
+          6565,
+          6566,
+          6578,
+          6579,
+          6597,
+          6598,
+          6612,
+          6613,
+          6631,
+          6632,
+          6641,
+          6648,
+          6660,
+          6661,
+          6676,
+          6677,
+          6695,
+          6696
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7158,
+          7162,
+          7168,
+          7178,
+          7192,
+          7196,
+          7202,
+          7212,
+          7220,
+          7231,
+          7237,
+          7250,
+          7262,
+          7266,
+          7272,
+          7282
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7074,
+          7075,
+          7085,
+          7086,
+          7093,
+          7094,
+          7095,
+          7105,
+          7109,
+          7110,
+          7117,
+          7118,
+          7119,
+          7129,
+          7130,
+          7131,
+          7150,
+          7151,
+          7166,
+          7167,
+          7184,
+          7185,
+          7200,
+          7201,
+          7218,
+          7219,
+          7235,
+          7236,
+          7254,
+          7255,
+          7270,
+          7271
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7159,
+          7163,
+          7171,
+          7179,
+          7193,
+          7197,
+          7205,
+          7213,
+          7224,
+          7232,
+          7240,
+          7251,
+          7263,
+          7267,
+          7275,
+          7283
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7077,
+          7078,
+          7087,
+          7088,
+          7096,
+          7097,
+          7098,
+          7106,
+          7111,
+          7112,
+          7120,
+          7121,
+          7122,
+          7132,
+          7133,
+          7134,
+          7152,
+          7153,
+          7169,
+          7170,
+          7186,
+          7187,
+          7203,
+          7204,
+          7222,
+          7223,
+          7238,
+          7239,
+          7256,
+          7257,
+          7273,
+          7274
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7160,
+          7164,
+          7174,
+          7180,
+          7194,
+          7198,
+          7208,
+          7214,
+          7227,
+          7233,
+          7243,
+          7252,
+          7264,
+          7268,
+          7278,
+          7284
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7080,
+          7081,
+          7089,
+          7090,
+          7099,
+          7100,
+          7101,
+          7107,
+          7113,
+          7114,
+          7123,
+          7124,
+          7125,
+          7135,
+          7136,
+          7137,
+          7154,
+          7155,
+          7172,
+          7173,
+          7188,
+          7189,
+          7206,
+          7207,
+          7225,
+          7226,
+          7241,
+          7242,
+          7258,
+          7259,
+          7276,
+          7277
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7161,
+          7165,
+          7177,
+          7181,
+          7195,
+          7199,
+          7211,
+          7215,
+          7230,
+          7234,
+          7246,
+          7253,
+          7265,
+          7269,
+          7281,
+          7285
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7083,
+          7084,
+          7091,
+          7092,
+          7102,
+          7103,
+          7104,
+          7108,
+          7115,
+          7116,
+          7126,
+          7127,
+          7128,
+          7138,
+          7139,
+          7140,
+          7156,
+          7157,
+          7175,
+          7176,
+          7190,
+          7191,
+          7209,
+          7210,
+          7228,
+          7229,
+          7244,
+          7245,
+          7260,
+          7261,
+          7279,
+          7280
+        ],
+        "logged_rounded_threshold": 10.0
+      }
+    ]
+  },
+  "boundaries": [
+    "Replay totals count repeated per-layer/stage/rank checks, not unique generated tokens; rollout grouping follows driver train-start log order.",
+    "Logged reward/advantage values are means: zero mean is not proof that every element is zero. Debug dumps report mean absolute value and nonzero counts.",
+    "Native perf 0 is initial sync, perf 1..6 are six post-training syncs, perf 2..6 are five steady samples for seven-rollout runs.",
+    "Exact changed-weight bytes come from timing JSONL delta_bytes events, not gradient norm or printed rounded density.",
+    "Successful RPCs, versions and training completion do not establish active GPU weight byte equality or learned-task quality."
+  ]
+}

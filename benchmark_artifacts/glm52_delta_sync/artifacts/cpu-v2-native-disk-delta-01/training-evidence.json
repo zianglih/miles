@@ -1,0 +1,6493 @@
+{
+  "run": "cpu-v2-native-disk-delta-01",
+  "run_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01",
+  "mode": "disk-delta",
+  "reward_mode": "native",
+  "log": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01.log",
+  "log_sha256": "0e35324148e7b91e1dfbfe9079eb18f92f9b27ee21c1bf49fb93f445c8d4beb2",
+  "launcher_exit_code": 0,
+  "ray_terminal": {
+    "line": 7352,
+    "job_id": "miles-a5c1073e619b45dd8c9b9a0ec60c1fa3",
+    "status": "succeeded"
+  },
+  "run_succeeded": true,
+  "expected_rollouts": 7,
+  "expected_ranks": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "all_expected_rank_rollouts_completed": true,
+  "missing_rank_rollouts": [],
+  "unexpected_rank_rollouts": [],
+  "rank0_step_metric_count": 7,
+  "rank0_steps": [
+    {
+      "rollout": 0,
+      "step": 0,
+      "step_within_rollout": 0,
+      "train_log_line": 3735,
+      "rollout_log_line": 3463,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.3804292678833,
+      "rollout/raw_reward": 0.0,
+      "rollout/total_lengths": 256.0,
+      "rollout/ref_log_probs": -10.381077766418457,
+      "rollout/log_probs": -10.380467414855957,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.0,
+      "train/pg_loss": 0.0,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": -1.9681339836097322e-05,
+      "train/ess_ratio": 0.9998303055763245,
+      "train/train_rollout_logprob_abs_diff": 0.011493009515106678,
+      "train/train_rollout_kl": 0.0001060960057657212,
+      "train/kl_loss": 0.00017706904327496886,
+      "train/ois": 1.0001055002212524,
+      "train/tis": 1.0000669956207275,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011493198573589325,
+      "train/grad_norm": 0.0,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 0
+    },
+    {
+      "rollout": 1,
+      "step": 1,
+      "step_within_rollout": 0,
+      "train_log_line": 4361,
+      "rollout_log_line": 4174,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.283892631530762,
+      "rollout/raw_reward": 0.0,
+      "rollout/total_lengths": 250.625,
+      "rollout/ref_log_probs": -10.284253120422363,
+      "rollout/log_probs": -10.283814430236816,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.0,
+      "train/pg_loss": 0.0,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": 0.0003677406639326364,
+      "train/ess_ratio": 0.9998316168785095,
+      "train/train_rollout_logprob_abs_diff": 0.011466382071375847,
+      "train/train_rollout_kl": 0.0001061734656104818,
+      "train/kl_loss": 0.00018421221466269344,
+      "train/ois": 0.999717116355896,
+      "train/tis": 1.0001871585845947,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011467384174466133,
+      "train/grad_norm": 0.0,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 1
+    },
+    {
+      "rollout": 2,
+      "step": 2,
+      "step_within_rollout": 0,
+      "train_log_line": 4948,
+      "rollout_log_line": 4771,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.250608444213867,
+      "rollout/raw_reward": 0.0,
+      "rollout/total_lengths": 270.625,
+      "rollout/ref_log_probs": -10.250452995300293,
+      "rollout/log_probs": -10.250497817993164,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.0,
+      "train/pg_loss": 0.0,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": 9.923022298607975e-05,
+      "train/ess_ratio": 0.9998310208320618,
+      "train/train_rollout_logprob_abs_diff": 0.011540601029992104,
+      "train/train_rollout_kl": 0.0001073652965715155,
+      "train/kl_loss": 0.00018248855485580862,
+      "train/ois": 0.9999858736991882,
+      "train/tis": 1.0002163648605347,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011542818509042263,
+      "train/grad_norm": 0.0,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 2
+    },
+    {
+      "rollout": 3,
+      "step": 3,
+      "step_within_rollout": 0,
+      "train_log_line": 5535,
+      "rollout_log_line": 5371,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.241604804992676,
+      "rollout/raw_reward": 0.0,
+      "rollout/total_lengths": 251.125,
+      "rollout/ref_log_probs": -10.241950035095215,
+      "rollout/log_probs": -10.241815567016602,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.0,
+      "train/pg_loss": 0.0,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": 0.00022240550606511533,
+      "train/ess_ratio": 0.9998330473899841,
+      "train/train_rollout_logprob_abs_diff": 0.011549487709999084,
+      "train/train_rollout_kl": 0.00010818903683684766,
+      "train/kl_loss": 0.00018567542429082096,
+      "train/ois": 0.9998621940612793,
+      "train/tis": 0.9998967051506042,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.0115482397377491,
+      "train/grad_norm": 0.0,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 3
+    },
+    {
+      "rollout": 4,
+      "step": 4,
+      "step_within_rollout": 0,
+      "train_log_line": 6137,
+      "rollout_log_line": 5966,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.29111099243164,
+      "rollout/raw_reward": 0.0,
+      "rollout/total_lengths": 270.75,
+      "rollout/ref_log_probs": -10.291411399841309,
+      "rollout/log_probs": -10.291081428527832,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.0,
+      "train/pg_loss": 0.0,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": 0.00018183383508585393,
+      "train/ess_ratio": 0.999835193157196,
+      "train/train_rollout_logprob_abs_diff": 0.011401383206248283,
+      "train/train_rollout_kl": 0.00010412265692139044,
+      "train/kl_loss": 0.00017301157640758902,
+      "train/ois": 0.9999012351036072,
+      "train/tis": 1.0001344680786133,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011401800438761711,
+      "train/grad_norm": 0.0,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 4
+    },
+    {
+      "rollout": 5,
+      "step": 5,
+      "step_within_rollout": 0,
+      "train_log_line": 6713,
+      "rollout_log_line": 6561,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.306499481201172,
+      "rollout/raw_reward": 0.0,
+      "rollout/total_lengths": 243.875,
+      "rollout/ref_log_probs": -10.306699752807617,
+      "rollout/log_probs": -10.306722640991211,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.0,
+      "train/pg_loss": 0.0,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": -9.919150761561468e-05,
+      "train/ess_ratio": 0.999832034111023,
+      "train/train_rollout_logprob_abs_diff": 0.011383706703782082,
+      "train/train_rollout_kl": 0.00010619240492815152,
+      "train/kl_loss": 0.00017258356092497706,
+      "train/ois": 1.0001839399337769,
+      "train/tis": 0.9998816251754761,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011379792355000973,
+      "train/grad_norm": 0.0,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 5
+    },
+    {
+      "rollout": 6,
+      "step": 6,
+      "step_within_rollout": 0,
+      "train_log_line": 7298,
+      "rollout_log_line": 7137,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.24224853515625,
+      "rollout/raw_reward": 0.0,
+      "rollout/total_lengths": 239.25,
+      "rollout/ref_log_probs": -10.242351531982422,
+      "rollout/log_probs": -10.242718696594238,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.0,
+      "train/pg_loss": 0.0,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": -1.881122443592176e-05,
+      "train/ess_ratio": 0.9998263716697693,
+      "train/train_rollout_logprob_abs_diff": 0.011504041031002998,
+      "train/train_rollout_kl": 0.00010698711412260309,
+      "train/kl_loss": 0.0001755306002451107,
+      "train/ois": 1.0001064538955688,
+      "train/tis": 0.999638557434082,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011500217020511627,
+      "train/grad_norm": 0.0,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 6
+    }
+  ],
+  "native_update_times": [
+    {
+      "perf_index": 0,
+      "line": 3741,
+      "initial": true,
+      "after_training_rollout": null,
+      "seconds": 33.137890577316284
+    },
+    {
+      "perf_index": 1,
+      "line": 4370,
+      "initial": false,
+      "after_training_rollout": 0,
+      "seconds": 18.545242309570312
+    },
+    {
+      "perf_index": 2,
+      "line": 4954,
+      "initial": false,
+      "after_training_rollout": 1,
+      "seconds": 6.028110027313232
+    },
+    {
+      "perf_index": 3,
+      "line": 5543,
+      "initial": false,
+      "after_training_rollout": 2,
+      "seconds": 5.9517247676849365
+    },
+    {
+      "perf_index": 4,
+      "line": 6143,
+      "initial": false,
+      "after_training_rollout": 3,
+      "seconds": 5.192755222320557
+    },
+    {
+      "perf_index": 5,
+      "line": 6719,
+      "initial": false,
+      "after_training_rollout": 4,
+      "seconds": 5.9155261516571045
+    },
+    {
+      "perf_index": 6,
+      "line": 7304,
+      "initial": false,
+      "after_training_rollout": 5,
+      "seconds": 6.132843971252441
+    }
+  ],
+  "native_update_time_distributions": {
+    "initial": {
+      "count": 1,
+      "finite_count": 1,
+      "min": 33.137890577316284,
+      "max": 33.137890577316284,
+      "mean": 33.137890577316284,
+      "median": 33.137890577316284
+    },
+    "post_training": {
+      "count": 6,
+      "finite_count": 6,
+      "min": 5.192755222320557,
+      "max": 18.545242309570312,
+      "mean": 7.961033741633098,
+      "median": 5.9899173974990845
+    },
+    "steady": {
+      "count": 5,
+      "finite_count": 5,
+      "min": 5.192755222320557,
+      "max": 6.132843971252441,
+      "mean": 5.844192028045654,
+      "median": 5.9517247676849365
+    }
+  },
+  "replay_total_checks": 1464,
+  "replay_nonzero_checks": 0,
+  "replay_mismatched_token_comparisons": 0,
+  "engines": {
+    "available": true,
+    "source": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/trainer-rank0.jsonl",
+    "summary": [
+      {
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "continue_generation",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "flush_cache",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "pause_generation",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "pull_weights",
+        "calls": 7,
+        "failed_calls": 0,
+        "requested_versions": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      },
+      {
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "update_weight_version",
+        "calls": 1,
+        "failed_calls": 0,
+        "requested_versions": [
+          "0"
+        ]
+      },
+      {
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "update_weights_from_disk",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      },
+      {
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "continue_generation",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "flush_cache",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pause_generation",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pull_weights",
+        "calls": 7,
+        "failed_calls": 0,
+        "requested_versions": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      },
+      {
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "update_weight_version",
+        "calls": 1,
+        "failed_calls": 0,
+        "requested_versions": [
+          "0"
+        ]
+      },
+      {
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "update_weights_from_disk",
+        "calls": 6,
+        "failed_calls": 0,
+        "requested_versions": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      }
+    ],
+    "records": [
+      {
+        "line": 2,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/delta-publication",
+          "target_version": 0
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 3,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/delta-publication",
+          "target_version": 0
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 4,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "update_weight_version",
+        "success": true,
+        "request": {
+          "abort_all_requests": false,
+          "new_version": "0"
+        },
+        "response": {
+          "message": "Weight version updated to 0",
+          "new_version": "0",
+          "success": true
+        }
+      },
+      {
+        "line": 5,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "update_weight_version",
+        "success": true,
+        "request": {
+          "abort_all_requests": false,
+          "new_version": "0"
+        },
+        "response": {
+          "message": "Weight version updated to 0",
+          "new_version": "0",
+          "success": true
+        }
+      },
+      {
+        "line": 13,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/delta-publication",
+          "target_version": 1
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 14,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/delta-publication",
+          "target_version": 1
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 15,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 16,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 17,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 18,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 19,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "1"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 1.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 20,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "1"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 1.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 21,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 22,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 32,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/delta-publication",
+          "target_version": 2
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 33,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/delta-publication",
+          "target_version": 2
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 34,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 35,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 36,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 37,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 38,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "2"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 2.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 39,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "2"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 2.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 40,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 41,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 51,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/delta-publication",
+          "target_version": 3
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 52,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/delta-publication",
+          "target_version": 3
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 53,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 54,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 55,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 56,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 57,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "3"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 3.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 58,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "3"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 3.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 59,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 60,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 70,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/delta-publication",
+          "target_version": 4
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 71,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/delta-publication",
+          "target_version": 4
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 72,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 73,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 74,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 75,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 76,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "4"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 4.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 77,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "4"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 4.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 78,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 79,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 89,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/delta-publication",
+          "target_version": 5
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 90,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/delta-publication",
+          "target_version": 5
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 91,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 92,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 93,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 94,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 95,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "5"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 5.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 96,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "5"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 5.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 97,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 98,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 108,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/delta-publication",
+          "target_version": 6
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 109,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pull_weights",
+        "success": true,
+        "request": {
+          "local_checkpoint_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "source_dir": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/delta-publication",
+          "target_version": 6
+        },
+        "response": {
+          "message": "Success. | Success.",
+          "success": true
+        }
+      },
+      {
+        "line": 110,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 111,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 112,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 113,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 114,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "6"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 6.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 115,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "update_weights_from_disk",
+        "success": true,
+        "request": {
+          "model_path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/rollout-checkpoint",
+          "weight_version": "6"
+        },
+        "response": {
+          "message": "Succeeded to update model weights. | Succeeded to update model weights. Weight version updated to 6.",
+          "num_paused_requests": [
+            0,
+            0
+          ],
+          "success": true
+        }
+      },
+      {
+        "line": 116,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20040",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 117,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20004",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      }
+    ],
+    "boundary": "RPC acknowledgement and version metadata are not active-GPU byte equality checks."
+  },
+  "debug_dumps": {
+    "files": {
+      "train_data": [
+        "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/train_data/0_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/train_data/1_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/train_data/2_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/train_data/3_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/train_data/4_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/train_data/5_0.pt",
+        "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/train_data/6_0.pt"
+      ],
+      "rollout_data": [
+        "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/rollout_data/0.pt",
+        "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/rollout_data/1.pt",
+        "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/rollout_data/2.pt",
+        "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/rollout_data/3.pt",
+        "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/rollout_data/4.pt",
+        "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/rollout_data/5.pt",
+        "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/rollout_data/6.pt"
+      ]
+    },
+    "train": [
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/train_data/0_0.pt",
+        "rollout": 0,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.57248878479004,
+            "max": -0.022402895614504814,
+            "mean": -10.380468331134761,
+            "mean_abs": 10.380468331134761,
+            "rms": 10.583741620100637,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.57248878479004,
+              "max": -0.022402895614504814,
+              "mean": -10.380468331134761,
+              "mean_abs": 10.380468331134761,
+              "rms": 10.583741620100637
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.560258865356445,
+            "max": -0.022389840334653854,
+            "mean": -10.381077379867783,
+            "mean_abs": 10.381077379867783,
+            "rms": 10.58424913686259,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.560258865356445,
+              "max": -0.022389840334653854,
+              "mean": -10.381077379867783,
+              "mean_abs": 10.381077379867783,
+              "rms": 10.58424913686259
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.562580108642578,
+            "max": -0.022198209539055824,
+            "mean": -10.380429163795489,
+            "mean_abs": 10.380429163795489,
+            "rms": 10.583689143525577,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.562580108642578,
+              "max": -0.022198209539055824,
+              "mean": -10.380429163795489,
+              "mean_abs": 10.380429163795489,
+              "rms": 10.583689143525577
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 2.86102294921875e-06,
+          "max": 0.06622743606567383,
+          "mean": 0.011493009301193523,
+          "mean_abs": 0.011493009301193523,
+          "rms": 0.014567559762337125
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/train_data/1_0.pt",
+        "rollout": 1,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.064254760742188,
+            "max": -0.03427192568778992,
+            "mean": -10.283812892688438,
+            "mean_abs": 10.283812892688438,
+            "rms": 10.495001299917263,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.064254760742188,
+              "max": -0.03427192568778992,
+              "mean": -10.283812892688438,
+              "mean_abs": 10.283812892688438,
+              "rms": 10.495001299917263
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.064075469970703,
+            "max": -0.03431869298219681,
+            "mean": -10.284253484751098,
+            "mean_abs": 10.284253484751098,
+            "rms": 10.495419123616891,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.064075469970703,
+              "max": -0.03431869298219681,
+              "mean": -10.284253484751098,
+              "mean_abs": 10.284253484751098,
+              "rms": 10.495419123616891
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.064422607421875,
+            "max": -0.032748956233263016,
+            "mean": -10.28389390318247,
+            "mean_abs": 10.28389390318247,
+            "rms": 10.495017281866371,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.064422607421875,
+              "max": -0.032748956233263016,
+              "mean": -10.28389390318247,
+              "mean_abs": 10.28389390318247,
+              "rms": 10.495017281866371
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 1.9073486328125e-06,
+          "max": 0.05529308319091797,
+          "mean": 0.011466382899670861,
+          "mean_abs": 0.011466382899670861,
+          "rms": 0.014571204846629186
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/train_data/2_0.pt",
+        "rollout": 2,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.533695220947266,
+            "max": -0.01412383932620287,
+            "mean": -10.250497087013354,
+            "mean_abs": 10.250497087013354,
+            "rms": 10.474142496411698,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.533695220947266,
+              "max": -0.01412383932620287,
+              "mean": -10.250497087013354,
+              "mean_abs": 10.250497087013354,
+              "rms": 10.474142496411698
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.531538009643555,
+            "max": -0.012469543144106865,
+            "mean": -10.250455594139348,
+            "mean_abs": 10.250455594139348,
+            "rms": 10.47397947583106,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.531538009643555,
+              "max": -0.012469543144106865,
+              "mean": -10.250455594139348,
+              "mean_abs": 10.250455594139348,
+              "rms": 10.47397947583106
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.53904151916504,
+            "max": -0.012713923119008541,
+            "mean": -10.250606124985934,
+            "mean_abs": 10.250606124985934,
+            "rms": 10.474182639567003,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.53904151916504,
+              "max": -0.012713923119008541,
+              "mean": -10.250606124985934,
+              "mean_abs": 10.250606124985934,
+              "rms": 10.474182639567003
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 9.5367431640625e-07,
+          "max": 0.07271051406860352,
+          "mean": 0.011540600739826913,
+          "mean_abs": 0.011540600739826913,
+          "rms": 0.014652843577369932
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/train_data/3_0.pt",
+        "rollout": 3,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -15.686074256896973,
+            "max": -0.09777544438838959,
+            "mean": -10.241816290235146,
+            "mean_abs": 10.241816290235146,
+            "rms": 10.46292182687867,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -15.686074256896973,
+              "max": -0.09777544438838959,
+              "mean": -10.241816290235146,
+              "mean_abs": 10.241816290235146,
+              "rms": 10.46292182687867
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -15.697772979736328,
+            "max": -0.09789326786994934,
+            "mean": -10.24194951921003,
+            "mean_abs": 10.24194951921003,
+            "rms": 10.463025333002625,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -15.697772979736328,
+              "max": -0.09789326786994934,
+              "mean": -10.24194951921003,
+              "mean_abs": 10.24194951921003,
+              "rms": 10.463025333002625
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -15.662206649780273,
+            "max": -0.10366033762693405,
+            "mean": -10.241604791783029,
+            "mean_abs": 10.241604791783029,
+            "rms": 10.462695432068058,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -15.662206649780273,
+              "max": -0.10366033762693405,
+              "mean": -10.241604791783029,
+              "mean_abs": 10.241604791783029,
+              "rms": 10.462695432068058
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 3.814697265625e-06,
+          "max": 0.06840801239013672,
+          "mean": 0.01154948710114695,
+          "mean_abs": 0.01154948710114695,
+          "rms": 0.014709812545250922
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/train_data/4_0.pt",
+        "rollout": 4,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.15789794921875,
+            "max": -0.02747228927910328,
+            "mean": -10.291080047592695,
+            "mean_abs": 10.291080047592695,
+            "rms": 10.509285175720422,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.15789794921875,
+              "max": -0.02747228927910328,
+              "mean": -10.291080047592695,
+              "mean_abs": 10.291080047592695,
+              "rms": 10.509285175720422
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.15471076965332,
+            "max": -0.0275446567684412,
+            "mean": -10.29141033798427,
+            "mean_abs": 10.29141033798427,
+            "rms": 10.509552694269873,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.15471076965332,
+              "max": -0.0275446567684412,
+              "mean": -10.29141033798427,
+              "mean_abs": 10.29141033798427,
+              "rms": 10.509552694269873
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.14742660522461,
+            "max": -0.028309088200330734,
+            "mean": -10.291110440098564,
+            "mean_abs": 10.291110440098564,
+            "rms": 10.50932290293631,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.14742660522461,
+              "max": -0.028309088200330734,
+              "mean": -10.291110440098564,
+              "mean_abs": 10.291110440098564,
+              "rms": 10.50932290293631
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 3.814697265625e-06,
+          "max": 0.0741724967956543,
+          "mean": 0.01140138332353672,
+          "mean_abs": 0.01140138332353672,
+          "rms": 0.014431304593437552
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/train_data/5_0.pt",
+        "rollout": 5,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.56467056274414,
+            "max": -0.05012618750333786,
+            "mean": -10.306725073697743,
+            "mean_abs": 10.306725073697743,
+            "rms": 10.521804722892496,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.56467056274414,
+              "max": -0.05012618750333786,
+              "mean": -10.306725073697743,
+              "mean_abs": 10.306725073697743,
+              "rms": 10.521804722892496
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.583669662475586,
+            "max": -0.050015293061733246,
+            "mean": -10.30669927821611,
+            "mean_abs": 10.30669927821611,
+            "rms": 10.521785182091374,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.583669662475586,
+              "max": -0.050015293061733246,
+              "mean": -10.30669927821611,
+              "mean_abs": 10.30669927821611,
+              "rms": 10.521785182091374
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.56175994873047,
+            "max": -0.05023854598402977,
+            "mean": -10.306500555768725,
+            "mean_abs": 10.306500555768725,
+            "rms": 10.521636958199444,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.56175994873047,
+              "max": -0.05023854598402977,
+              "mean": -10.306500555768725,
+              "mean_abs": 10.306500555768725,
+              "rms": 10.521636958199444
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 9.5367431640625e-07,
+          "max": 0.1313033103942871,
+          "mean": 0.011383706910419279,
+          "mean_abs": 0.011383706910419279,
+          "rms": 0.014580232637255136
+        }
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/train_data/6_0.pt",
+        "rollout": 6,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.91327476501465,
+            "max": -0.011298955418169498,
+            "mean": -10.242717664270458,
+            "mean_abs": 10.242717664270458,
+            "rms": 10.464873682605996,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.91327476501465,
+              "max": -0.011298955418169498,
+              "mean": -10.242717664270458,
+              "mean_abs": 10.242717664270458,
+              "rms": 10.464873682605996
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.93122673034668,
+            "max": -0.00997829344123602,
+            "mean": -10.242350961154298,
+            "mean_abs": 10.242350961154298,
+            "rms": 10.464550158975433,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.93122673034668,
+              "max": -0.00997829344123602,
+              "mean": -10.242350961154298,
+              "mean_abs": 10.242350961154298,
+              "rms": 10.464550158975433
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.913341522216797,
+            "max": -0.010336409322917461,
+            "mean": -10.24224934733109,
+            "mean_abs": 10.24224934733109,
+            "rms": 10.464421391416057,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.913341522216797,
+              "max": -0.010336409322917461,
+              "mean": -10.24224934733109,
+              "mean_abs": 10.24224934733109,
+              "rms": 10.464421391416057
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 9.5367431640625e-07,
+          "max": 0.06214570999145508,
+          "mean": 0.011504041279840749,
+          "mean_abs": 0.011504041279840749,
+          "rms": 0.014629276741872213
+        }
+      }
+    ],
+    "rollout": [
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/rollout_data/0.pt",
+        "rollout": 0,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "0": 64
+        },
+        "reward_groups": [
+          {
+            "group": "0",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "1",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "2",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "3",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "4",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "5",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "6",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "7",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/rollout_data/1.pt",
+        "rollout": 1,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "1": 64
+        },
+        "reward_groups": [
+          {
+            "group": "10",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "11",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "12",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "13",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "14",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "15",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "8",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "9",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/rollout_data/2.pt",
+        "rollout": 2,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "2": 64
+        },
+        "reward_groups": [
+          {
+            "group": "16",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "17",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "18",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "19",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "20",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "21",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "22",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "23",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/rollout_data/3.pt",
+        "rollout": 3,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "3": 64
+        },
+        "reward_groups": [
+          {
+            "group": "24",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "25",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "26",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "27",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "28",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "29",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "30",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "31",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/rollout_data/4.pt",
+        "rollout": 4,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "4": 64
+        },
+        "reward_groups": [
+          {
+            "group": "32",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "33",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "34",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "35",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "36",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "37",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "38",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "39",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/rollout_data/5.pt",
+        "rollout": 5,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "5": 64
+        },
+        "reward_groups": [
+          {
+            "group": "40",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "41",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "42",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "43",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "44",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "45",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "46",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "47",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          }
+        ]
+      },
+      {
+        "path": "/hai-workspace/glm52-delta/artifacts/cpu-v2-native-disk-delta-01/dump_details/rollout_data/6.pt",
+        "rollout": 6,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "6": 64
+        },
+        "reward_groups": [
+          {
+            "group": "48",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "49",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "50",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "51",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "52",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "53",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "54",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "55",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "note": "Only TP-rank0 on the last PP stage writes train dumps; four-rank completion comes from train_step log events.",
+    "status": "parsed"
+  },
+  "parsed_log_evidence": {
+    "train_events": [
+      {
+        "line": 3734,
+        "rank": 0,
+        "rollout": 0,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 3751,
+        "rank": 3,
+        "rollout": 0,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 3754,
+        "rank": 2,
+        "rollout": 0,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 3757,
+        "rank": 1,
+        "rollout": 0,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4346,
+        "rank": 2,
+        "rollout": 1,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4354,
+        "rank": 3,
+        "rollout": 1,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4357,
+        "rank": 1,
+        "rollout": 1,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4360,
+        "rank": 0,
+        "rollout": 1,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4944,
+        "rank": 2,
+        "rollout": 2,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4947,
+        "rank": 0,
+        "rollout": 2,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4957,
+        "rank": 1,
+        "rollout": 2,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4962,
+        "rank": 3,
+        "rollout": 2,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5534,
+        "rank": 0,
+        "rollout": 3,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5546,
+        "rank": 1,
+        "rollout": 3,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5554,
+        "rank": 2,
+        "rollout": 3,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5555,
+        "rank": 3,
+        "rollout": 3,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6136,
+        "rank": 0,
+        "rollout": 4,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6151,
+        "rank": 2,
+        "rollout": 4,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6154,
+        "rank": 3,
+        "rollout": 4,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6157,
+        "rank": 1,
+        "rollout": 4,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6709,
+        "rank": 2,
+        "rollout": 5,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6712,
+        "rank": 0,
+        "rollout": 5,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6722,
+        "rank": 3,
+        "rollout": 5,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6730,
+        "rank": 1,
+        "rollout": 5,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 7289,
+        "rank": 2,
+        "rollout": 6,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 7292,
+        "rank": 3,
+        "rollout": 6,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 7297,
+        "rank": 0,
+        "rollout": 6,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 7307,
+        "rank": 1,
+        "rollout": 6,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      }
+    ],
+    "rank0_rollout_metrics": [
+      {
+        "line": 3463,
+        "index": 0,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.3804292678833,
+          "rollout/raw_reward": 0.0,
+          "rollout/total_lengths": 256.0,
+          "rollout/ref_log_probs": -10.381077766418457,
+          "rollout/log_probs": -10.380467414855957,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 4174,
+        "index": 1,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.283892631530762,
+          "rollout/raw_reward": 0.0,
+          "rollout/total_lengths": 250.625,
+          "rollout/ref_log_probs": -10.284253120422363,
+          "rollout/log_probs": -10.283814430236816,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 4771,
+        "index": 2,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.250608444213867,
+          "rollout/raw_reward": 0.0,
+          "rollout/total_lengths": 270.625,
+          "rollout/ref_log_probs": -10.250452995300293,
+          "rollout/log_probs": -10.250497817993164,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 5371,
+        "index": 3,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.241604804992676,
+          "rollout/raw_reward": 0.0,
+          "rollout/total_lengths": 251.125,
+          "rollout/ref_log_probs": -10.241950035095215,
+          "rollout/log_probs": -10.241815567016602,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 5966,
+        "index": 4,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.29111099243164,
+          "rollout/raw_reward": 0.0,
+          "rollout/total_lengths": 270.75,
+          "rollout/ref_log_probs": -10.291411399841309,
+          "rollout/log_probs": -10.291081428527832,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 6561,
+        "index": 5,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.306499481201172,
+          "rollout/raw_reward": 0.0,
+          "rollout/total_lengths": 243.875,
+          "rollout/ref_log_probs": -10.306699752807617,
+          "rollout/log_probs": -10.306722640991211,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 7137,
+        "index": 6,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.24224853515625,
+          "rollout/raw_reward": 0.0,
+          "rollout/total_lengths": 239.25,
+          "rollout/ref_log_probs": -10.242351531982422,
+          "rollout/log_probs": -10.242718696594238,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      }
+    ],
+    "rank0_step_metrics": [
+      {
+        "line": 3735,
+        "index": 0,
+        "metrics": {
+          "train/loss": 0.0,
+          "train/pg_loss": 0.0,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": -1.9681339836097322e-05,
+          "train/ess_ratio": 0.9998303055763245,
+          "train/train_rollout_logprob_abs_diff": 0.011493009515106678,
+          "train/train_rollout_kl": 0.0001060960057657212,
+          "train/kl_loss": 0.00017706904327496886,
+          "train/ois": 1.0001055002212524,
+          "train/tis": 1.0000669956207275,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011493198573589325,
+          "train/grad_norm": 0.0,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 0
+        },
+        "rollout": 0,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 4361,
+        "index": 1,
+        "metrics": {
+          "train/loss": 0.0,
+          "train/pg_loss": 0.0,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": 0.0003677406639326364,
+          "train/ess_ratio": 0.9998316168785095,
+          "train/train_rollout_logprob_abs_diff": 0.011466382071375847,
+          "train/train_rollout_kl": 0.0001061734656104818,
+          "train/kl_loss": 0.00018421221466269344,
+          "train/ois": 0.999717116355896,
+          "train/tis": 1.0001871585845947,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011467384174466133,
+          "train/grad_norm": 0.0,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 1
+        },
+        "rollout": 1,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 4948,
+        "index": 2,
+        "metrics": {
+          "train/loss": 0.0,
+          "train/pg_loss": 0.0,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": 9.923022298607975e-05,
+          "train/ess_ratio": 0.9998310208320618,
+          "train/train_rollout_logprob_abs_diff": 0.011540601029992104,
+          "train/train_rollout_kl": 0.0001073652965715155,
+          "train/kl_loss": 0.00018248855485580862,
+          "train/ois": 0.9999858736991882,
+          "train/tis": 1.0002163648605347,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011542818509042263,
+          "train/grad_norm": 0.0,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 2
+        },
+        "rollout": 2,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 5535,
+        "index": 3,
+        "metrics": {
+          "train/loss": 0.0,
+          "train/pg_loss": 0.0,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": 0.00022240550606511533,
+          "train/ess_ratio": 0.9998330473899841,
+          "train/train_rollout_logprob_abs_diff": 0.011549487709999084,
+          "train/train_rollout_kl": 0.00010818903683684766,
+          "train/kl_loss": 0.00018567542429082096,
+          "train/ois": 0.9998621940612793,
+          "train/tis": 0.9998967051506042,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.0115482397377491,
+          "train/grad_norm": 0.0,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 3
+        },
+        "rollout": 3,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 6137,
+        "index": 4,
+        "metrics": {
+          "train/loss": 0.0,
+          "train/pg_loss": 0.0,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": 0.00018183383508585393,
+          "train/ess_ratio": 0.999835193157196,
+          "train/train_rollout_logprob_abs_diff": 0.011401383206248283,
+          "train/train_rollout_kl": 0.00010412265692139044,
+          "train/kl_loss": 0.00017301157640758902,
+          "train/ois": 0.9999012351036072,
+          "train/tis": 1.0001344680786133,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011401800438761711,
+          "train/grad_norm": 0.0,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 4
+        },
+        "rollout": 4,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 6713,
+        "index": 5,
+        "metrics": {
+          "train/loss": 0.0,
+          "train/pg_loss": 0.0,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": -9.919150761561468e-05,
+          "train/ess_ratio": 0.999832034111023,
+          "train/train_rollout_logprob_abs_diff": 0.011383706703782082,
+          "train/train_rollout_kl": 0.00010619240492815152,
+          "train/kl_loss": 0.00017258356092497706,
+          "train/ois": 1.0001839399337769,
+          "train/tis": 0.9998816251754761,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011379792355000973,
+          "train/grad_norm": 0.0,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 5
+        },
+        "rollout": 5,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 7298,
+        "index": 6,
+        "metrics": {
+          "train/loss": 0.0,
+          "train/pg_loss": 0.0,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": -1.881122443592176e-05,
+          "train/ess_ratio": 0.9998263716697693,
+          "train/train_rollout_logprob_abs_diff": 0.011504041031002998,
+          "train/train_rollout_kl": 0.00010698711412260309,
+          "train/kl_loss": 0.0001755306002451107,
+          "train/ois": 1.0001064538955688,
+          "train/tis": 0.999638557434082,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011500217020511627,
+          "train/grad_norm": 0.0,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 6
+        },
+        "rollout": 6,
+        "step_within_rollout": 0,
+        "attempt": 0
+      }
+    ],
+    "native_perf_metrics": [
+      {
+        "line": 3741,
+        "index": 0,
+        "metrics": {
+          "perf/update_weights_time": 33.137890577316284,
+          "perf/data_preprocess_time": 0.010098457336425781,
+          "perf/train_wait_time": 40.91026711463928,
+          "perf/ref_log_probs_time": 79.28865170478821,
+          "perf/log_probs_time": 10.556790113449097,
+          "perf/actor_train_time": 54.94552731513977,
+          "perf/train_time": 145.23630237579346,
+          "perf/log_probs_tflops": 2.205497002651408,
+          "perf/ref_log_probs_tflops": 0.2936481886401652,
+          "perf/actor_train_tflops": 1.2712391758091244,
+          "perf/actor_train_tok_per_s": 298.1862364525079,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0005649951892484997,
+          "perf/step_time": 186.14656949043274,
+          "perf/wait_time_ratio": 0.21977448860126278
+        },
+        "initial": true,
+        "after_training_rollout": null
+      },
+      {
+        "line": 4370,
+        "index": 1,
+        "metrics": {
+          "perf/update_weights_implementation_time": 2.75193452835083,
+          "perf/finalize_and_resume_engines_time": 3.2204508781433105,
+          "perf/update_weights_time": 18.545242309570312,
+          "perf/data_preprocess_time": 0.009458065032958984,
+          "perf/train_wait_time": 37.215526819229126,
+          "perf/ref_log_probs_time": 0.7683601379394531,
+          "perf/log_probs_time": 0.7816383838653564,
+          "perf/actor_train_time": 37.286354541778564,
+          "perf/train_time": 39.27995467185974,
+          "perf/update_weights_density": 0.0,
+          "perf/update_weights_wire_bytes": 0,
+          "perf/log_probs_tflops": 29.16128505880333,
+          "perf/ref_log_probs_tflops": 29.66522936227092,
+          "perf/actor_train_tflops": 1.8339346931269682,
+          "perf/actor_train_tok_per_s": 430.18418392249964,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0008150820858342081,
+          "perf/step_time": 76.49548149108887,
+          "perf/wait_time_ratio": 0.4865062104820459
+        },
+        "initial": false,
+        "after_training_rollout": 0
+      },
+      {
+        "line": 4954,
+        "index": 2,
+        "metrics": {
+          "perf/update_weights_implementation_time": 2.6866042613983154,
+          "perf/finalize_and_resume_engines_time": 3.27191424369812,
+          "perf/update_weights_time": 6.028110027313232,
+          "perf/data_preprocess_time": 0.0064144134521484375,
+          "perf/train_wait_time": 7.789553880691528,
+          "perf/ref_log_probs_time": 0.7503523826599121,
+          "perf/log_probs_time": 0.7436873912811279,
+          "perf/actor_train_time": 23.722471475601196,
+          "perf/train_time": 25.66219449043274,
+          "perf/update_weights_density": 0.0,
+          "perf/update_weights_wire_bytes": 0,
+          "perf/log_probs_tflops": 33.11782553383328,
+          "perf/ref_log_probs_tflops": 32.82365705144023,
+          "perf/actor_train_tflops": 3.11468085879983,
+          "perf/actor_train_tok_per_s": 730.1094246362061,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0013843026039110356,
+          "perf/step_time": 33.45174837112427,
+          "perf/wait_time_ratio": 0.23285939479969048
+        },
+        "initial": false,
+        "after_training_rollout": 1
+      },
+      {
+        "line": 5543,
+        "index": 3,
+        "metrics": {
+          "perf/update_weights_implementation_time": 2.165001392364502,
+          "perf/finalize_and_resume_engines_time": 3.68694806098938,
+          "perf/update_weights_time": 5.9517247676849365,
+          "perf/data_preprocess_time": 0.009251594543457031,
+          "perf/train_wait_time": 13.694767236709595,
+          "perf/ref_log_probs_time": 0.7382447719573975,
+          "perf/log_probs_time": 0.7447695732116699,
+          "perf/actor_train_time": 18.686832666397095,
+          "perf/train_time": 20.61430811882019,
+          "perf/update_weights_density": 0.0,
+          "perf/update_weights_wire_bytes": 0,
+          "perf/log_probs_tflops": 30.664706013715204,
+          "perf/ref_log_probs_tflops": 30.935728742030214,
+          "perf/actor_train_tflops": 3.6664544096170735,
+          "perf/actor_train_tok_per_s": 860.070847046267,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0016295352931631438,
+          "perf/step_time": 34.309075355529785,
+          "perf/wait_time_ratio": 0.3991587384619601
+        },
+        "initial": false,
+        "after_training_rollout": 2
+      },
+      {
+        "line": 6143,
+        "index": 4,
+        "metrics": {
+          "perf/update_weights_implementation_time": 2.1190500259399414,
+          "perf/finalize_and_resume_engines_time": 3.003289222717285,
+          "perf/update_weights_time": 5.192755222320557,
+          "perf/data_preprocess_time": 0.006531238555908203,
+          "perf/train_wait_time": 15.383869409561157,
+          "perf/ref_log_probs_time": 0.7636265754699707,
+          "perf/log_probs_time": 0.736994743347168,
+          "perf/actor_train_time": 21.675480365753174,
+          "perf/train_time": 23.621000289916992,
+          "perf/update_weights_density": 0.0,
+          "perf/update_weights_wire_bytes": 0,
+          "perf/log_probs_tflops": 33.43266359008106,
+          "perf/ref_log_probs_tflops": 32.26668389169091,
+          "perf/actor_train_tflops": 3.410263150741641,
+          "perf/actor_train_tok_per_s": 799.4286496818726,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0015156725114407294,
+          "perf/step_time": 39.00486969947815,
+          "perf/wait_time_ratio": 0.39440894247537966
+        },
+        "initial": false,
+        "after_training_rollout": 3
+      },
+      {
+        "line": 6719,
+        "index": 5,
+        "metrics": {
+          "perf/update_weights_implementation_time": 2.6778202056884766,
+          "perf/finalize_and_resume_engines_time": 3.164940118789673,
+          "perf/update_weights_time": 5.9155261516571045,
+          "perf/data_preprocess_time": 0.009344816207885742,
+          "perf/train_wait_time": 13.192042589187622,
+          "perf/ref_log_probs_time": 0.6820840835571289,
+          "perf/log_probs_time": 0.6836435794830322,
+          "perf/actor_train_time": 25.368677616119385,
+          "perf/train_time": 27.184160470962524,
+          "perf/update_weights_density": 0.0,
+          "perf/update_weights_wire_bytes": 0,
+          "perf/log_probs_tflops": 32.44709626995708,
+          "perf/ref_log_probs_tflops": 32.521282306048846,
+          "perf/actor_train_tflops": 2.623185493562655,
+          "perf/actor_train_tok_per_s": 615.2468897347096,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.00116586021936118,
+          "perf/step_time": 40.37620306015015,
+          "perf/wait_time_ratio": 0.32672816137601834
+        },
+        "initial": false,
+        "after_training_rollout": 4
+      },
+      {
+        "line": 7304,
+        "index": 6,
+        "metrics": {
+          "perf/update_weights_implementation_time": 2.212298631668091,
+          "perf/finalize_and_resume_engines_time": 3.829451560974121,
+          "perf/update_weights_time": 6.132843971252441,
+          "perf/data_preprocess_time": 0.009441852569580078,
+          "perf/train_wait_time": 13.172702074050903,
+          "perf/ref_log_probs_time": 0.676063060760498,
+          "perf/log_probs_time": 0.6722962856292725,
+          "perf/actor_train_time": 27.414474725723267,
+          "perf/train_time": 29.20880436897278,
+          "perf/update_weights_density": 0.0,
+          "perf/update_weights_wire_bytes": 0,
+          "perf/log_probs_tflops": 32.35942110882422,
+          "perf/ref_log_probs_tflops": 32.179126296449084,
+          "perf/actor_train_tflops": 2.3806896357743774,
+          "perf/actor_train_tok_per_s": 558.537055814263,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.00105808428256639,
+          "perf/step_time": 42.38150644302368,
+          "perf/wait_time_ratio": 0.3108125024239017
+        },
+        "initial": false,
+        "after_training_rollout": 5
+      }
+    ],
+    "rollout_service_metrics": [
+      {
+        "line": 3257,
+        "index": 0,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.0,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/count_0": 8,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.00641025641025641,
+          "rollout/avg_cached_tokens_per_sample": 1.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 0.0,
+          "rollout/weight_version/median": 0.0,
+          "rollout/weight_version/max": 0,
+          "rollout/weight_version/min": 0,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 7.46270751953125,
+          "perf/tokens_per_gpu_per_sec": 214.39939804856505,
+          "perf/longest_sample_tokens_per_sec": 13.399962378035315,
+          "perf/effective_tokens_per_gpu_per_sec": 214.39939804856505,
+          "perf/longest_effective_sample_tokens_per_sec": 13.399962378035315
+        }
+      },
+      {
+        "line": 4082,
+        "index": 1,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.0,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/count_0": 8,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.026556016597510373,
+          "rollout/avg_cached_tokens_per_sample": 4.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 1.0,
+          "rollout/weight_version/median": 1.0,
+          "rollout/weight_version/max": 1,
+          "rollout/weight_version/min": 1,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.6971619129180908,
+          "perf/tokens_per_gpu_per_sec": 2295.0192349190816,
+          "perf/longest_sample_tokens_per_sec": 143.4387021824426,
+          "perf/effective_tokens_per_gpu_per_sec": 2295.0192349190816,
+          "perf/longest_effective_sample_tokens_per_sec": 143.4387021824426
+        }
+      },
+      {
+        "line": 4682,
+        "index": 2,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.0,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/count_0": 8,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.06446886446886448,
+          "rollout/avg_cached_tokens_per_sample": 11.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 2.0,
+          "rollout/weight_version/median": 2.0,
+          "rollout/weight_version/max": 2,
+          "rollout/weight_version/min": 2,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.6506986618041992,
+          "perf/tokens_per_gpu_per_sec": 2458.8954825320566,
+          "perf/longest_sample_tokens_per_sec": 153.68096765825354,
+          "perf/effective_tokens_per_gpu_per_sec": 2458.8954825320566,
+          "perf/longest_effective_sample_tokens_per_sec": 153.68096765825354
+        }
+      },
+      {
+        "line": 5282,
+        "index": 3,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.0,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/count_0": 8,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.0,
+          "rollout/avg_cached_tokens_per_sample": 0.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 3.0,
+          "rollout/weight_version/median": 3.0,
+          "rollout/weight_version/max": 3,
+          "rollout/weight_version/min": 3,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.7048153877258301,
+          "perf/tokens_per_gpu_per_sec": 2270.097997097635,
+          "perf/longest_sample_tokens_per_sec": 141.8811248186022,
+          "perf/effective_tokens_per_gpu_per_sec": 2270.097997097635,
+          "perf/longest_effective_sample_tokens_per_sec": 141.8811248186022
+        }
+      },
+      {
+        "line": 5879,
+        "index": 4,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.0,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/count_0": 8,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.06442166910688141,
+          "rollout/avg_cached_tokens_per_sample": 11.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 4.0,
+          "rollout/weight_version/median": 4.0,
+          "rollout/weight_version/max": 4,
+          "rollout/weight_version/min": 4,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 1.0832767486572266,
+          "perf/tokens_per_gpu_per_sec": 1477.000223611627,
+          "perf/longest_sample_tokens_per_sec": 92.31251397572669,
+          "perf/effective_tokens_per_gpu_per_sec": 1477.000223611627,
+          "perf/longest_effective_sample_tokens_per_sec": 92.31251397572669
+        }
+      },
+      {
+        "line": 6476,
+        "index": 5,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.0,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/count_0": 8,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.013900955690703735,
+          "rollout/avg_cached_tokens_per_sample": 2.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 5.0,
+          "rollout/weight_version/median": 5.0,
+          "rollout/weight_version/max": 5,
+          "rollout/weight_version/min": 5,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 1.1024906635284424,
+          "perf/tokens_per_gpu_per_sec": 1451.2594554581665,
+          "perf/longest_sample_tokens_per_sec": 90.7037159661354,
+          "perf/effective_tokens_per_gpu_per_sec": 1451.2594554581665,
+          "perf/longest_effective_sample_tokens_per_sec": 90.7037159661354
+        }
+      },
+      {
+        "line": 7053,
+        "index": 6,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.0,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/count_0": 8,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.01436265709156194,
+          "rollout/avg_cached_tokens_per_sample": 2.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 6.0,
+          "rollout/weight_version/median": 6.0,
+          "rollout/weight_version/max": 6,
+          "rollout/weight_version/min": 6,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.6615850925445557,
+          "perf/tokens_per_gpu_per_sec": 2418.434178808594,
+          "perf/longest_sample_tokens_per_sec": 151.15213617553712,
+          "perf/effective_tokens_per_gpu_per_sec": 2418.434178808594,
+          "perf/longest_effective_sample_tokens_per_sec": 151.15213617553712
+        }
+      }
+    ],
+    "ray_terminal": [
+      {
+        "line": 7352,
+        "job_id": "miles-a5c1073e619b45dd8c9b9a0ec60c1fa3",
+        "status": "succeeded"
+      }
+    ],
+    "metric_parse_errors": [],
+    "fatal_signature_lines": [
+      {
+        "line": 2648,
+        "text": "(CommandActor pid=258946) Traceback (most recent call last):"
+      },
+      {
+        "line": 2660,
+        "text": "(CommandActor pid=258946) Traceback (most recent call last):"
+      },
+      {
+        "line": 2683,
+        "text": "(CommandActor pid=258946) Traceback (most recent call last):"
+      },
+      {
+        "line": 2697,
+        "text": "(CommandActor pid=258946) Traceback (most recent call last):"
+      },
+      {
+        "line": 2721,
+        "text": "(CommandActor pid=258945) Traceback (most recent call last):"
+      },
+      {
+        "line": 2733,
+        "text": "(CommandActor pid=258945) Traceback (most recent call last):"
+      },
+      {
+        "line": 2756,
+        "text": "(CommandActor pid=258945) Traceback (most recent call last):"
+      },
+      {
+        "line": 2770,
+        "text": "(CommandActor pid=258945) Traceback (most recent call last):"
+      }
+    ],
+    "duplicate_step_metric_lines": [
+      3736,
+      4362,
+      4949,
+      5536,
+      6138,
+      6714,
+      7299
+    ],
+    "conflicting_step_metric_lines": [],
+    "replay": [
+      {
+        "rollout": 0,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3532,
+          3561,
+          3583,
+          3593,
+          3604,
+          3611,
+          3623,
+          3627,
+          3633,
+          3643,
+          3649,
+          3659,
+          3671,
+          3675,
+          3687,
+          3691,
+          3703,
+          3707
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3392,
+          3397,
+          3401,
+          3402,
+          3409,
+          3410,
+          3411,
+          3421,
+          3425,
+          3426,
+          3433,
+          3434,
+          3435,
+          3445,
+          3446,
+          3447,
+          3457,
+          3458,
+          3478,
+          3479,
+          3567,
+          3577,
+          3599,
+          3603,
+          3615,
+          3619,
+          3631,
+          3632,
+          3647,
+          3648,
+          3663,
+          3664,
+          3679,
+          3680,
+          3695,
+          3696
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3535,
+          3562,
+          3586,
+          3594,
+          3606,
+          3612,
+          3624,
+          3628,
+          3636,
+          3644,
+          3652,
+          3660,
+          3672,
+          3676,
+          3688,
+          3692,
+          3704,
+          3708
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3393,
+          3398,
+          3403,
+          3404,
+          3412,
+          3413,
+          3414,
+          3422,
+          3427,
+          3428,
+          3436,
+          3437,
+          3438,
+          3448,
+          3449,
+          3450,
+          3465,
+          3466,
+          3484,
+          3485,
+          3570,
+          3578,
+          3600,
+          3605,
+          3616,
+          3620,
+          3634,
+          3635,
+          3650,
+          3651,
+          3665,
+          3666,
+          3681,
+          3682,
+          3697,
+          3698
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3541,
+          3564,
+          3592,
+          3596,
+          3610,
+          3614,
+          3626,
+          3630,
+          3642,
+          3646,
+          3658,
+          3662,
+          3674,
+          3678,
+          3690,
+          3694,
+          3706,
+          3710
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3391,
+          3400,
+          3407,
+          3408,
+          3418,
+          3419,
+          3420,
+          3424,
+          3431,
+          3432,
+          3442,
+          3443,
+          3444,
+          3454,
+          3455,
+          3456,
+          3471,
+          3472,
+          3496,
+          3497,
+          3576,
+          3580,
+          3602,
+          3609,
+          3618,
+          3622,
+          3640,
+          3641,
+          3656,
+          3657,
+          3669,
+          3670,
+          3685,
+          3686,
+          3701,
+          3702
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3538,
+          3563,
+          3589,
+          3595,
+          3608,
+          3613,
+          3625,
+          3629,
+          3639,
+          3645,
+          3655,
+          3661,
+          3673,
+          3677,
+          3689,
+          3693,
+          3705,
+          3709
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3394,
+          3399,
+          3405,
+          3406,
+          3415,
+          3416,
+          3417,
+          3423,
+          3429,
+          3430,
+          3439,
+          3440,
+          3441,
+          3451,
+          3452,
+          3453,
+          3468,
+          3469,
+          3490,
+          3491,
+          3573,
+          3579,
+          3601,
+          3607,
+          3617,
+          3621,
+          3637,
+          3638,
+          3653,
+          3654,
+          3667,
+          3668,
+          3683,
+          3684,
+          3699,
+          3700
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4190,
+          4194,
+          4206,
+          4210,
+          4218,
+          4229,
+          4240,
+          4248,
+          4260,
+          4264,
+          4270,
+          4280,
+          4294,
+          4298,
+          4304,
+          4314,
+          4323,
+          4330
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4101,
+          4105,
+          4106,
+          4107,
+          4117,
+          4118,
+          4125,
+          4126,
+          4127,
+          4137,
+          4138,
+          4139,
+          4149,
+          4150,
+          4157,
+          4158,
+          4159,
+          4169,
+          4176,
+          4186,
+          4198,
+          4199,
+          4216,
+          4217,
+          4233,
+          4239,
+          4252,
+          4253,
+          4268,
+          4269,
+          4286,
+          4290,
+          4302,
+          4303,
+          4318,
+          4322
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4191,
+          4195,
+          4207,
+          4211,
+          4222,
+          4230,
+          4243,
+          4249,
+          4261,
+          4265,
+          4273,
+          4281,
+          4295,
+          4299,
+          4307,
+          4315,
+          4325,
+          4331
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4102,
+          4108,
+          4109,
+          4110,
+          4119,
+          4120,
+          4128,
+          4129,
+          4130,
+          4140,
+          4141,
+          4142,
+          4151,
+          4152,
+          4160,
+          4161,
+          4162,
+          4177,
+          4179,
+          4187,
+          4200,
+          4201,
+          4220,
+          4221,
+          4234,
+          4242,
+          4254,
+          4255,
+          4271,
+          4272,
+          4287,
+          4291,
+          4305,
+          4306,
+          4319,
+          4324
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4193,
+          4197,
+          4209,
+          4213,
+          4228,
+          4232,
+          4247,
+          4251,
+          4263,
+          4267,
+          4279,
+          4283,
+          4297,
+          4301,
+          4313,
+          4317,
+          4329,
+          4333
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4104,
+          4114,
+          4115,
+          4116,
+          4123,
+          4124,
+          4134,
+          4135,
+          4136,
+          4146,
+          4147,
+          4148,
+          4155,
+          4156,
+          4166,
+          4167,
+          4168,
+          4183,
+          4185,
+          4189,
+          4204,
+          4205,
+          4226,
+          4227,
+          4236,
+          4246,
+          4258,
+          4259,
+          4277,
+          4278,
+          4289,
+          4293,
+          4311,
+          4312,
+          4321,
+          4328
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4192,
+          4196,
+          4208,
+          4212,
+          4225,
+          4231,
+          4245,
+          4250,
+          4262,
+          4266,
+          4276,
+          4282,
+          4296,
+          4300,
+          4310,
+          4316,
+          4327,
+          4332
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4103,
+          4111,
+          4112,
+          4113,
+          4121,
+          4122,
+          4131,
+          4132,
+          4133,
+          4143,
+          4144,
+          4145,
+          4153,
+          4154,
+          4163,
+          4164,
+          4165,
+          4180,
+          4182,
+          4188,
+          4202,
+          4203,
+          4223,
+          4224,
+          4235,
+          4244,
+          4256,
+          4257,
+          4274,
+          4275,
+          4288,
+          4292,
+          4308,
+          4309,
+          4320,
+          4326
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4784,
+          4794,
+          4806,
+          4810,
+          4818,
+          4828,
+          4837,
+          4844,
+          4856,
+          4860,
+          4866,
+          4876,
+          4891,
+          4895,
+          4904,
+          4914,
+          4923,
+          4930
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4698,
+          4699,
+          4709,
+          4710,
+          4717,
+          4718,
+          4719,
+          4720,
+          4733,
+          4734,
+          4741,
+          4742,
+          4743,
+          4753,
+          4754,
+          4755,
+          4765,
+          4766,
+          4782,
+          4783,
+          4798,
+          4802,
+          4816,
+          4817,
+          4832,
+          4836,
+          4848,
+          4849,
+          4864,
+          4865,
+          4883,
+          4884,
+          4902,
+          4903,
+          4918,
+          4922
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4787,
+          4795,
+          4807,
+          4811,
+          4821,
+          4829,
+          4839,
+          4845,
+          4857,
+          4861,
+          4869,
+          4877,
+          4892,
+          4896,
+          4907,
+          4915,
+          4925,
+          4931
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4701,
+          4702,
+          4711,
+          4712,
+          4721,
+          4722,
+          4723,
+          4724,
+          4735,
+          4736,
+          4744,
+          4745,
+          4746,
+          4756,
+          4757,
+          4758,
+          4773,
+          4774,
+          4785,
+          4786,
+          4799,
+          4803,
+          4819,
+          4820,
+          4833,
+          4838,
+          4850,
+          4851,
+          4867,
+          4868,
+          4885,
+          4886,
+          4905,
+          4906,
+          4919,
+          4924
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4793,
+          4797,
+          4809,
+          4813,
+          4827,
+          4831,
+          4843,
+          4847,
+          4859,
+          4863,
+          4875,
+          4879,
+          4894,
+          4898,
+          4913,
+          4917,
+          4929,
+          4933
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4707,
+          4708,
+          4715,
+          4716,
+          4729,
+          4730,
+          4731,
+          4732,
+          4739,
+          4740,
+          4750,
+          4751,
+          4752,
+          4762,
+          4763,
+          4764,
+          4779,
+          4780,
+          4791,
+          4792,
+          4801,
+          4805,
+          4825,
+          4826,
+          4835,
+          4842,
+          4854,
+          4855,
+          4873,
+          4874,
+          4889,
+          4890,
+          4911,
+          4912,
+          4921,
+          4928
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4790,
+          4796,
+          4808,
+          4812,
+          4824,
+          4830,
+          4841,
+          4846,
+          4858,
+          4862,
+          4872,
+          4878,
+          4893,
+          4897,
+          4910,
+          4916,
+          4927,
+          4932
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4704,
+          4705,
+          4713,
+          4714,
+          4725,
+          4726,
+          4727,
+          4728,
+          4737,
+          4738,
+          4747,
+          4748,
+          4749,
+          4759,
+          4760,
+          4761,
+          4776,
+          4777,
+          4788,
+          4789,
+          4800,
+          4804,
+          4822,
+          4823,
+          4834,
+          4840,
+          4852,
+          4853,
+          4870,
+          4871,
+          4887,
+          4888,
+          4908,
+          4909,
+          4920,
+          4926
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5384,
+          5394,
+          5406,
+          5410,
+          5422,
+          5426,
+          5435,
+          5442,
+          5454,
+          5458,
+          5464,
+          5474,
+          5483,
+          5490,
+          5502,
+          5506,
+          5512,
+          5522
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5298,
+          5299,
+          5309,
+          5310,
+          5311,
+          5321,
+          5322,
+          5323,
+          5333,
+          5334,
+          5341,
+          5342,
+          5343,
+          5344,
+          5357,
+          5358,
+          5365,
+          5366,
+          5382,
+          5383,
+          5398,
+          5402,
+          5414,
+          5415,
+          5430,
+          5434,
+          5446,
+          5447,
+          5462,
+          5463,
+          5478,
+          5482,
+          5494,
+          5495,
+          5510,
+          5511
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5387,
+          5395,
+          5407,
+          5411,
+          5423,
+          5427,
+          5437,
+          5443,
+          5455,
+          5459,
+          5467,
+          5475,
+          5485,
+          5491,
+          5503,
+          5507,
+          5515,
+          5523
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5301,
+          5302,
+          5312,
+          5313,
+          5314,
+          5324,
+          5325,
+          5326,
+          5335,
+          5336,
+          5345,
+          5346,
+          5347,
+          5348,
+          5359,
+          5360,
+          5373,
+          5374,
+          5385,
+          5386,
+          5399,
+          5403,
+          5416,
+          5417,
+          5431,
+          5436,
+          5448,
+          5449,
+          5465,
+          5466,
+          5479,
+          5484,
+          5496,
+          5497,
+          5513,
+          5514
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5393,
+          5397,
+          5409,
+          5413,
+          5425,
+          5429,
+          5441,
+          5445,
+          5457,
+          5461,
+          5473,
+          5477,
+          5489,
+          5493,
+          5505,
+          5509,
+          5521,
+          5525
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5307,
+          5308,
+          5318,
+          5319,
+          5320,
+          5330,
+          5331,
+          5332,
+          5339,
+          5340,
+          5353,
+          5354,
+          5355,
+          5356,
+          5363,
+          5364,
+          5379,
+          5380,
+          5391,
+          5392,
+          5401,
+          5405,
+          5420,
+          5421,
+          5433,
+          5440,
+          5452,
+          5453,
+          5471,
+          5472,
+          5481,
+          5488,
+          5500,
+          5501,
+          5519,
+          5520
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5390,
+          5396,
+          5408,
+          5412,
+          5424,
+          5428,
+          5439,
+          5444,
+          5456,
+          5460,
+          5470,
+          5476,
+          5487,
+          5492,
+          5504,
+          5508,
+          5518,
+          5524
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5304,
+          5305,
+          5315,
+          5316,
+          5317,
+          5327,
+          5328,
+          5329,
+          5337,
+          5338,
+          5349,
+          5350,
+          5351,
+          5352,
+          5361,
+          5362,
+          5376,
+          5377,
+          5388,
+          5389,
+          5400,
+          5404,
+          5418,
+          5419,
+          5432,
+          5438,
+          5450,
+          5451,
+          5468,
+          5469,
+          5480,
+          5486,
+          5498,
+          5499,
+          5516,
+          5517
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5982,
+          5989,
+          6001,
+          6005,
+          6011,
+          6021,
+          6033,
+          6039,
+          6054,
+          6058,
+          6066,
+          6077,
+          6089,
+          6093,
+          6099,
+          6109,
+          6115,
+          6125
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5893,
+          5894,
+          5904,
+          5905,
+          5906,
+          5916,
+          5917,
+          5918,
+          5928,
+          5929,
+          5930,
+          5940,
+          5941,
+          5942,
+          5952,
+          5953,
+          5960,
+          5961,
+          5968,
+          5981,
+          5993,
+          5994,
+          6009,
+          6010,
+          6025,
+          6031,
+          6045,
+          6046,
+          6064,
+          6065,
+          6081,
+          6082,
+          6097,
+          6098,
+          6113,
+          6114
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5984,
+          5990,
+          6002,
+          6006,
+          6014,
+          6022,
+          6034,
+          6040,
+          6055,
+          6059,
+          6070,
+          6078,
+          6090,
+          6094,
+          6102,
+          6110,
+          6118,
+          6126
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5896,
+          5897,
+          5907,
+          5908,
+          5909,
+          5919,
+          5920,
+          5921,
+          5931,
+          5932,
+          5933,
+          5943,
+          5944,
+          5945,
+          5954,
+          5955,
+          5969,
+          5970,
+          5972,
+          5983,
+          5995,
+          5996,
+          6012,
+          6013,
+          6026,
+          6032,
+          6048,
+          6049,
+          6068,
+          6069,
+          6083,
+          6084,
+          6100,
+          6101,
+          6116,
+          6117
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5988,
+          5992,
+          6004,
+          6008,
+          6020,
+          6024,
+          6036,
+          6042,
+          6057,
+          6061,
+          6076,
+          6080,
+          6092,
+          6096,
+          6108,
+          6112,
+          6124,
+          6128
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5902,
+          5903,
+          5913,
+          5914,
+          5915,
+          5925,
+          5926,
+          5927,
+          5937,
+          5938,
+          5939,
+          5949,
+          5950,
+          5951,
+          5958,
+          5959,
+          5977,
+          5978,
+          5980,
+          5987,
+          5999,
+          6000,
+          6018,
+          6019,
+          6029,
+          6030,
+          6052,
+          6053,
+          6074,
+          6075,
+          6087,
+          6088,
+          6106,
+          6107,
+          6122,
+          6123
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5986,
+          5991,
+          6003,
+          6007,
+          6017,
+          6023,
+          6035,
+          6041,
+          6056,
+          6060,
+          6073,
+          6079,
+          6091,
+          6095,
+          6105,
+          6111,
+          6121,
+          6127
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5899,
+          5900,
+          5910,
+          5911,
+          5912,
+          5922,
+          5923,
+          5924,
+          5934,
+          5935,
+          5936,
+          5946,
+          5947,
+          5948,
+          5956,
+          5957,
+          5973,
+          5974,
+          5976,
+          5985,
+          5997,
+          5998,
+          6015,
+          6016,
+          6027,
+          6028,
+          6050,
+          6051,
+          6071,
+          6072,
+          6085,
+          6086,
+          6103,
+          6104,
+          6119,
+          6120
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6574,
+          6581,
+          6593,
+          6597,
+          6603,
+          6613,
+          6625,
+          6629,
+          6635,
+          6645,
+          6651,
+          6661,
+          6670,
+          6677,
+          6689,
+          6695
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6496,
+          6500,
+          6501,
+          6502,
+          6512,
+          6513,
+          6520,
+          6521,
+          6522,
+          6532,
+          6536,
+          6537,
+          6544,
+          6545,
+          6546,
+          6556,
+          6563,
+          6573,
+          6585,
+          6586,
+          6601,
+          6602,
+          6617,
+          6618,
+          6633,
+          6634,
+          6649,
+          6650,
+          6665,
+          6669,
+          6681,
+          6682
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6576,
+          6582,
+          6594,
+          6598,
+          6606,
+          6614,
+          6626,
+          6630,
+          6638,
+          6646,
+          6654,
+          6662,
+          6672,
+          6678,
+          6690,
+          6696
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6497,
+          6503,
+          6504,
+          6505,
+          6514,
+          6515,
+          6523,
+          6524,
+          6525,
+          6533,
+          6538,
+          6539,
+          6547,
+          6548,
+          6549,
+          6564,
+          6566,
+          6575,
+          6587,
+          6588,
+          6604,
+          6605,
+          6619,
+          6620,
+          6636,
+          6637,
+          6652,
+          6653,
+          6666,
+          6671,
+          6683,
+          6684
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6580,
+          6584,
+          6596,
+          6600,
+          6612,
+          6616,
+          6628,
+          6632,
+          6644,
+          6648,
+          6660,
+          6664,
+          6676,
+          6679,
+          6692,
+          6698
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6499,
+          6509,
+          6510,
+          6511,
+          6518,
+          6519,
+          6529,
+          6530,
+          6531,
+          6535,
+          6542,
+          6543,
+          6553,
+          6554,
+          6555,
+          6570,
+          6572,
+          6579,
+          6591,
+          6592,
+          6610,
+          6611,
+          6623,
+          6624,
+          6642,
+          6643,
+          6658,
+          6659,
+          6668,
+          6675,
+          6687,
+          6688
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6578,
+          6583,
+          6595,
+          6599,
+          6609,
+          6615,
+          6627,
+          6631,
+          6641,
+          6647,
+          6657,
+          6663,
+          6674,
+          6680,
+          6691,
+          6697
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6498,
+          6506,
+          6507,
+          6508,
+          6516,
+          6517,
+          6526,
+          6527,
+          6528,
+          6534,
+          6540,
+          6541,
+          6550,
+          6551,
+          6552,
+          6567,
+          6569,
+          6577,
+          6589,
+          6590,
+          6607,
+          6608,
+          6621,
+          6622,
+          6639,
+          6640,
+          6655,
+          6656,
+          6667,
+          6673,
+          6685,
+          6686
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7150,
+          7157,
+          7169,
+          7173,
+          7182,
+          7189,
+          7198,
+          7205,
+          7217,
+          7221,
+          7235,
+          7237,
+          7246,
+          7253,
+          7267,
+          7273
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7069,
+          7076,
+          7077,
+          7078,
+          7088,
+          7089,
+          7096,
+          7097,
+          7098,
+          7111,
+          7112,
+          7113,
+          7120,
+          7121,
+          7122,
+          7132,
+          7139,
+          7149,
+          7161,
+          7162,
+          7177,
+          7181,
+          7193,
+          7197,
+          7209,
+          7210,
+          7225,
+          7226,
+          7241,
+          7245,
+          7259,
+          7260
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7152,
+          7158,
+          7170,
+          7174,
+          7184,
+          7190,
+          7200,
+          7206,
+          7218,
+          7222,
+          7236,
+          7238,
+          7248,
+          7254,
+          7268,
+          7274
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7071,
+          7079,
+          7080,
+          7081,
+          7090,
+          7091,
+          7099,
+          7100,
+          7101,
+          7102,
+          7114,
+          7115,
+          7123,
+          7124,
+          7125,
+          7140,
+          7142,
+          7151,
+          7163,
+          7164,
+          7178,
+          7183,
+          7194,
+          7199,
+          7211,
+          7212,
+          7227,
+          7228,
+          7242,
+          7247,
+          7261,
+          7262
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7156,
+          7160,
+          7172,
+          7176,
+          7188,
+          7192,
+          7204,
+          7208,
+          7220,
+          7224,
+          7234,
+          7240,
+          7252,
+          7256,
+          7270,
+          7276
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7075,
+          7085,
+          7086,
+          7087,
+          7094,
+          7095,
+          7107,
+          7108,
+          7109,
+          7110,
+          7118,
+          7119,
+          7129,
+          7130,
+          7131,
+          7146,
+          7148,
+          7155,
+          7167,
+          7168,
+          7180,
+          7187,
+          7196,
+          7203,
+          7215,
+          7216,
+          7232,
+          7233,
+          7244,
+          7251,
+          7265,
+          7266
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7154,
+          7159,
+          7171,
+          7175,
+          7186,
+          7191,
+          7202,
+          7207,
+          7219,
+          7223,
+          7231,
+          7239,
+          7250,
+          7255,
+          7269,
+          7275
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          7073,
+          7082,
+          7083,
+          7084,
+          7092,
+          7093,
+          7103,
+          7104,
+          7105,
+          7106,
+          7116,
+          7117,
+          7126,
+          7127,
+          7128,
+          7143,
+          7145,
+          7153,
+          7165,
+          7166,
+          7179,
+          7185,
+          7195,
+          7201,
+          7213,
+          7214,
+          7229,
+          7230,
+          7243,
+          7249,
+          7263,
+          7264
+        ],
+        "logged_rounded_threshold": 10.0
+      }
+    ]
+  },
+  "boundaries": [
+    "Replay totals count repeated per-layer/stage/rank checks, not unique generated tokens; rollout grouping follows driver train-start log order.",
+    "Logged reward/advantage values are means: zero mean is not proof that every element is zero. Debug dumps report mean absolute value and nonzero counts.",
+    "Native perf 0 is initial sync, perf 1..6 are six post-training syncs, perf 2..6 are five steady samples for seven-rollout runs.",
+    "Exact changed-weight bytes come from timing JSONL delta_bytes events, not gradient norm or printed rounded density.",
+    "Successful RPCs, versions and training completion do not establish active GPU weight byte equality or learned-task quality."
+  ]
+}

@@ -1,0 +1,8 @@
+mode,update_index,rollout_id,initial,success,driver_wall_s,trainer_max_wall_s,trainer_rank_count,paused_engine_count,resumed_engine_count,generation_pause_upper_bound_s,changed_bytes,total_bytes,wire_bytes,delta_rank_count,pull_weights_max_rpc_s,update_weights_from_disk_max_rpc_s,begin_weight_update_max_rpc_s,end_weight_update_max_rpc_s,delta_capture_baseline_max_s,delta_begin_encode_max_s,deltaafter_base_weights_max_s,delta_write_delta_files_max_s,delta_reload_engines_max_s
+broadcast,0,,True,True,17.368027898,17.1710864,4,2,2,17.169655978,,,,0,,,0.004381221,0.01798497,,,,,
+broadcast,1,0,False,True,1.278332511,1.266076565,4,2,2,1.264881299,,,,0,,,0.003972033,0.01700873,,,,,
+broadcast,2,1,False,True,1.271644968,1.261573798,4,2,2,1.260436728,,,,0,,,0.00382231,0.016857649,,,,,
+broadcast,3,2,False,True,1.31585837,1.302805633,4,2,2,1.301777017,,,,0,,,0.003983547,0.016790939,,,,,
+broadcast,4,3,False,True,1.737577933,1.725515947,4,2,2,1.724485113,,,,0,,,0.003616575,0.016980029,,,,,
+broadcast,5,4,False,True,1.260217968,1.248620204,4,2,2,1.247560357,,,,0,,,0.003464778,0.016509074,,,,,
+broadcast,6,5,False,True,1.262003201,1.249683967,4,2,2,1.248643007,,,,0,,,0.003287793,0.016995992,,,,,

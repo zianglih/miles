@@ -1,0 +1,8 @@
+mode,update_index,rollout_id,initial,success,driver_wall_s,trainer_max_wall_s,trainer_rank_count,paused_engine_count,resumed_engine_count,generation_pause_upper_bound_s,changed_bytes,total_bytes,wire_bytes,delta_rank_count,pull_weights_max_rpc_s,update_weights_from_disk_max_rpc_s,begin_weight_update_max_rpc_s,end_weight_update_max_rpc_s,delta_capture_baseline_max_s,delta_begin_encode_max_s,deltaafter_base_weights_max_s,delta_write_delta_files_max_s,delta_reload_engines_max_s
+disk-delta,0,,True,True,18.173466532,18.055196701,4,0,0,,,,,0,10.107072226,,,,18.054789379,,,,
+disk-delta,1,0,False,True,24.984287577,24.972286338,4,2,2,3.393843204,0,17900804608,0,4,0.021358044,3.3743455,,,,17.646190447,0.201791166,0.00415416,3.417312092
+disk-delta,2,1,False,True,6.454698969,6.443049675,4,2,2,3.119624202,0,17900804608,0,4,0.020893752,3.104569118,,,,0.003557771,0.191340453,0.009196634,3.141934835
+disk-delta,3,2,False,True,6.937701596,6.925990865,4,2,2,3.554552211,0,17900804608,0,4,0.02178868,3.538891406,,,,0.003450848,0.189421477,0.005315489,3.577914128
+disk-delta,4,3,False,True,6.615738117,6.603545004,4,2,2,3.276342037,0,17900804608,0,4,0.021305979,3.261083966,,,,0.002064847,0.202576137,0.005018598,3.299816938
+disk-delta,5,4,False,True,6.535530022,6.524371476,4,2,2,3.408622779,0,17900804608,0,4,0.0155214,3.393141174,,,,0.003165917,0.16151158,0.004941073,3.42560259
+disk-delta,6,5,False,True,6.90629906,6.893651117,4,2,2,3.545309097,0,17900804608,0,4,0.022675187,3.529202385,,,,0.002595509,0.192635606,0.004654761,3.569437646

@@ -1,0 +1,28 @@
+{
+  "implementation_label": "candidate",
+  "sources": {
+    "miles": "f17ba4bce13bf7d357e7560182dc859c41a7cb37",
+    "sglang": "2f5fb2a09f08eb9a44c0fed5a28be0bda2942b0f"
+  },
+  "runs": [
+    {
+      "name": "cpu-v2-native-disk-delta-01",
+      "mode": "disk-delta",
+      "reward_mode": "native",
+      "num_rollout": 7
+    },
+    {
+      "name": "cpu-v2-synthetic-balanced-broadcast-01",
+      "mode": "broadcast",
+      "reward_mode": "synthetic-balanced",
+      "num_rollout": 7
+    },
+    {
+      "name": "cpu-v2-synthetic-balanced-disk-delta-01",
+      "mode": "disk-delta",
+      "reward_mode": "synthetic-balanced",
+      "num_rollout": 7
+    }
+  ],
+  "purpose": "Final 4+4 C2 bring-up and local host CPU/wall accounting; large multi-node deployment is the intended target and is not measured here."
+}

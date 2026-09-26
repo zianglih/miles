@@ -1,0 +1,6677 @@
+{
+  "run": "native-broadcast-01",
+  "run_dir": "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01",
+  "mode": "broadcast",
+  "reward_mode": "native",
+  "log": "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01.log",
+  "log_sha256": "9d9f00074e4c785fad09e28cbeb7cd1178961c4d14552600818ec98e2e315e87",
+  "launcher_exit_code": 0,
+  "ray_terminal": {
+    "line": 7196,
+    "job_id": "miles-d54a332d442d4038bfbbd527f65a5580",
+    "status": "succeeded"
+  },
+  "run_succeeded": true,
+  "expected_rollouts": 7,
+  "expected_ranks": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "all_expected_rank_rollouts_completed": true,
+  "missing_rank_rollouts": [],
+  "unexpected_rank_rollouts": [],
+  "rank0_step_metric_count": 7,
+  "rank0_steps": [
+    {
+      "rollout": 0,
+      "step": 0,
+      "step_within_rollout": 0,
+      "train_log_line": 3716,
+      "rollout_log_line": 3426,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.358232498168945,
+      "rollout/raw_reward": 0.0,
+      "rollout/total_lengths": 256.0,
+      "rollout/ref_log_probs": -10.358922004699707,
+      "rollout/log_probs": -10.358621597290039,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.0,
+      "train/pg_loss": 0.0,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": -0.00012110635725548491,
+      "train/ess_ratio": 0.9998300075531006,
+      "train/train_rollout_logprob_abs_diff": 0.01143113523721695,
+      "train/train_rollout_kl": 0.00010583727271296084,
+      "train/kl_loss": 0.00018101105524692684,
+      "train/ois": 1.0002070665359497,
+      "train/tis": 0.9997134804725647,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011425461620092392,
+      "train/grad_norm": 0.0,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 0
+    },
+    {
+      "rollout": 1,
+      "step": 1,
+      "step_within_rollout": 0,
+      "train_log_line": 4280,
+      "rollout_log_line": 4107,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.31362533569336,
+      "rollout/raw_reward": 0.0,
+      "rollout/total_lengths": 250.625,
+      "rollout/ref_log_probs": -10.31381607055664,
+      "rollout/log_probs": -10.313934326171875,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.0,
+      "train/pg_loss": 0.0,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": 2.284754918946419e-05,
+      "train/ess_ratio": 0.9998276829719543,
+      "train/train_rollout_logprob_abs_diff": 0.01143453549593687,
+      "train/train_rollout_kl": 0.00010686973109841347,
+      "train/kl_loss": 0.00016404452617280185,
+      "train/ois": 1.0000638961791992,
+      "train/tis": 0.9997985363006592,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011430991813540459,
+      "train/grad_norm": 0.0,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 1
+    },
+    {
+      "rollout": 2,
+      "step": 2,
+      "step_within_rollout": 0,
+      "train_log_line": 4852,
+      "rollout_log_line": 4667,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.265039443969727,
+      "rollout/raw_reward": 0.0,
+      "rollout/total_lengths": 270.625,
+      "rollout/ref_log_probs": -10.264965057373047,
+      "rollout/log_probs": -10.264787673950195,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.0,
+      "train/pg_loss": 0.0,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": 0.0003151242563035339,
+      "train/ess_ratio": 0.9998351335525513,
+      "train/train_rollout_logprob_abs_diff": 0.011481523513793945,
+      "train/train_rollout_kl": 0.00010567249410087243,
+      "train/kl_loss": 0.0002214452251791954,
+      "train/ois": 0.9997681379318237,
+      "train/tis": 1.0003582239151,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011484111659228802,
+      "train/grad_norm": 0.0,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 2
+    },
+    {
+      "rollout": 3,
+      "step": 3,
+      "step_within_rollout": 0,
+      "train_log_line": 5416,
+      "rollout_log_line": 5235,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.27436637878418,
+      "rollout/raw_reward": 0.0,
+      "rollout/total_lengths": 251.125,
+      "rollout/ref_log_probs": -10.27460765838623,
+      "rollout/log_probs": -10.274657249450684,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.0,
+      "train/pg_loss": 0.0,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": 2.6775549486046657e-05,
+      "train/ess_ratio": 0.9998277425765991,
+      "train/train_rollout_logprob_abs_diff": 0.011436009779572487,
+      "train/train_rollout_kl": 0.0001065895557985641,
+      "train/kl_loss": 0.00025513547006994486,
+      "train/ois": 1.0000602006912231,
+      "train/tis": 0.9998128414154053,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011431533843278885,
+      "train/grad_norm": 0.0,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 3
+    },
+    {
+      "rollout": 4,
+      "step": 4,
+      "step_within_rollout": 0,
+      "train_log_line": 5973,
+      "rollout_log_line": 5798,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.297184944152832,
+      "rollout/raw_reward": 0.0,
+      "rollout/total_lengths": 270.75,
+      "rollout/ref_log_probs": -10.297876358032227,
+      "rollout/log_probs": -10.297531127929688,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.0,
+      "train/pg_loss": 0.0,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": 9.509264782536775e-05,
+      "train/ess_ratio": 0.9998353123664856,
+      "train/train_rollout_logprob_abs_diff": 0.01137244887650013,
+      "train/train_rollout_kl": 0.00010365455818828195,
+      "train/kl_loss": 0.0001718823186820373,
+      "train/ois": 0.9999880790710449,
+      "train/tis": 0.9997583627700806,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011368969455361366,
+      "train/grad_norm": 0.0,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 4
+    },
+    {
+      "rollout": 5,
+      "step": 5,
+      "step_within_rollout": 0,
+      "train_log_line": 6505,
+      "rollout_log_line": 6361,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.270833969116211,
+      "rollout/raw_reward": 0.0,
+      "rollout/total_lengths": 243.875,
+      "rollout/ref_log_probs": -10.270849227905273,
+      "rollout/log_probs": -10.270919799804688,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.0,
+      "train/pg_loss": 0.0,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": -0.0003614149463828653,
+      "train/ess_ratio": 0.9998319745063782,
+      "train/train_rollout_logprob_abs_diff": 0.01163469534367323,
+      "train/train_rollout_kl": 0.00011037122749257833,
+      "train/kl_loss": 0.00015177545719780028,
+      "train/ois": 1.0004463195800781,
+      "train/tis": 1.0000215768814087,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011634345166385174,
+      "train/grad_norm": 0.0,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 5
+    },
+    {
+      "rollout": 6,
+      "step": 6,
+      "step_within_rollout": 0,
+      "train_log_line": 7062,
+      "rollout_log_line": 6899,
+      "rollout/response_lengths": 100.0,
+      "rollout/rewards": 0.0,
+      "rollout/truncated": 1.0,
+      "rollout/rollout_log_probs": -10.252148628234863,
+      "rollout/raw_reward": 0.0,
+      "rollout/total_lengths": 239.25,
+      "rollout/ref_log_probs": -10.25257396697998,
+      "rollout/log_probs": -10.252511978149414,
+      "rollout/advantages": 0.0,
+      "rollout/returns": 0.0,
+      "train/loss": 0.0,
+      "train/pg_loss": 0.0,
+      "train/entropy_loss": 0.0,
+      "train/pg_clipfrac": 0.0,
+      "train/ppo_kl": -0.00025514536537230015,
+      "train/ess_ratio": 0.9998373985290527,
+      "train/train_rollout_logprob_abs_diff": 0.011493301950395107,
+      "train/train_rollout_kl": 0.00010630983888404444,
+      "train/kl_loss": 0.00022235559299588203,
+      "train/ois": 1.0003372430801392,
+      "train/tis": 0.9997439980506897,
+      "train/tis_clipfrac": 0.0,
+      "train/tis_abs": 0.011490019969642162,
+      "train/grad_norm": 0.0,
+      "train/lr-pg_0": 1e-06,
+      "train/lr-pg_1": 1e-06,
+      "train/lr-pg_2": 1e-06,
+      "train/step": 6
+    }
+  ],
+  "native_update_times": [
+    {
+      "perf_index": 0,
+      "line": 3725,
+      "initial": true,
+      "after_training_rollout": null,
+      "seconds": 17.210155248641968
+    },
+    {
+      "perf_index": 1,
+      "line": 4286,
+      "initial": false,
+      "after_training_rollout": 0,
+      "seconds": 1.2585723400115967
+    },
+    {
+      "perf_index": 2,
+      "line": 4858,
+      "initial": false,
+      "after_training_rollout": 1,
+      "seconds": 1.2708542346954346
+    },
+    {
+      "perf_index": 3,
+      "line": 5425,
+      "initial": false,
+      "after_training_rollout": 2,
+      "seconds": 1.2707023620605469
+    },
+    {
+      "perf_index": 4,
+      "line": 5979,
+      "initial": false,
+      "after_training_rollout": 3,
+      "seconds": 1.273667573928833
+    },
+    {
+      "perf_index": 5,
+      "line": 6511,
+      "initial": false,
+      "after_training_rollout": 4,
+      "seconds": 1.271005630493164
+    },
+    {
+      "perf_index": 6,
+      "line": 7068,
+      "initial": false,
+      "after_training_rollout": 5,
+      "seconds": 1.3588969707489014
+    }
+  ],
+  "native_update_time_distributions": {
+    "initial": {
+      "count": 1,
+      "finite_count": 1,
+      "min": 17.210155248641968,
+      "max": 17.210155248641968,
+      "mean": 17.210155248641968,
+      "median": 17.210155248641968
+    },
+    "post_training": {
+      "count": 6,
+      "finite_count": 6,
+      "min": 1.2585723400115967,
+      "max": 1.3588969707489014,
+      "mean": 1.283949851989746,
+      "median": 1.2709299325942993
+    },
+    "steady": {
+      "count": 5,
+      "finite_count": 5,
+      "min": 1.2707023620605469,
+      "max": 1.3588969707489014,
+      "mean": 1.289025354385376,
+      "median": 1.271005630493164
+    }
+  },
+  "replay_total_checks": 1464,
+  "replay_nonzero_checks": 0,
+  "replay_mismatched_token_comparisons": 0,
+  "engines": {
+    "available": true,
+    "source": "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/trainer-rank0.jsonl",
+    "summary": [
+      {
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "begin_weight_update",
+        "calls": 7,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "continue_generation",
+        "calls": 7,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "end_weight_update",
+        "calls": 7,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "flush_cache",
+        "calls": 7,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "pause_generation",
+        "calls": 7,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "update_weight_version",
+        "calls": 7,
+        "failed_calls": 0,
+        "requested_versions": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ]
+      },
+      {
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "begin_weight_update",
+        "calls": 7,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "continue_generation",
+        "calls": 7,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "end_weight_update",
+        "calls": 7,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "flush_cache",
+        "calls": 7,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "pause_generation",
+        "calls": 7,
+        "failed_calls": 0,
+        "requested_versions": []
+      },
+      {
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "update_weight_version",
+        "calls": 7,
+        "failed_calls": 0,
+        "requested_versions": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ]
+      }
+    ],
+    "records": [
+      {
+        "line": 2,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 3,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 4,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 5,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 6,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "begin_weight_update",
+        "success": true,
+        "request": {
+          "selector": "all",
+          "sync_base": true
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 7,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "begin_weight_update",
+        "success": true,
+        "request": {
+          "selector": "all",
+          "sync_base": true
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 9,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "end_weight_update",
+        "success": true,
+        "request": {
+          "expected_lora_checksums": null
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 10,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "end_weight_update",
+        "success": true,
+        "request": {
+          "expected_lora_checksums": null
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 11,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "update_weight_version",
+        "success": true,
+        "request": {
+          "abort_all_requests": false,
+          "new_version": "1"
+        },
+        "response": {
+          "message": "Weight version updated to 1",
+          "new_version": "1",
+          "success": true
+        }
+      },
+      {
+        "line": 12,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "update_weight_version",
+        "success": true,
+        "request": {
+          "abort_all_requests": false,
+          "new_version": "1"
+        },
+        "response": {
+          "message": "Weight version updated to 1",
+          "new_version": "1",
+          "success": true
+        }
+      },
+      {
+        "line": 13,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 14,
+        "update_index": 0,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 18,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 19,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 20,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 21,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 22,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "begin_weight_update",
+        "success": true,
+        "request": {
+          "selector": "all",
+          "sync_base": true
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 23,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "begin_weight_update",
+        "success": true,
+        "request": {
+          "selector": "all",
+          "sync_base": true
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 25,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "end_weight_update",
+        "success": true,
+        "request": {
+          "expected_lora_checksums": null
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 26,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "end_weight_update",
+        "success": true,
+        "request": {
+          "expected_lora_checksums": null
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 27,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "update_weight_version",
+        "success": true,
+        "request": {
+          "abort_all_requests": false,
+          "new_version": "2"
+        },
+        "response": {
+          "message": "Weight version updated to 2",
+          "new_version": "2",
+          "success": true
+        }
+      },
+      {
+        "line": 28,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "update_weight_version",
+        "success": true,
+        "request": {
+          "abort_all_requests": false,
+          "new_version": "2"
+        },
+        "response": {
+          "message": "Weight version updated to 2",
+          "new_version": "2",
+          "success": true
+        }
+      },
+      {
+        "line": 29,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 30,
+        "update_index": 1,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 34,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 35,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 36,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 37,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 38,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "begin_weight_update",
+        "success": true,
+        "request": {
+          "selector": "all",
+          "sync_base": true
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 39,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "begin_weight_update",
+        "success": true,
+        "request": {
+          "selector": "all",
+          "sync_base": true
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 41,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "end_weight_update",
+        "success": true,
+        "request": {
+          "expected_lora_checksums": null
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 42,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "end_weight_update",
+        "success": true,
+        "request": {
+          "expected_lora_checksums": null
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 43,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "update_weight_version",
+        "success": true,
+        "request": {
+          "abort_all_requests": false,
+          "new_version": "3"
+        },
+        "response": {
+          "message": "Weight version updated to 3",
+          "new_version": "3",
+          "success": true
+        }
+      },
+      {
+        "line": 44,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "update_weight_version",
+        "success": true,
+        "request": {
+          "abort_all_requests": false,
+          "new_version": "3"
+        },
+        "response": {
+          "message": "Weight version updated to 3",
+          "new_version": "3",
+          "success": true
+        }
+      },
+      {
+        "line": 45,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 46,
+        "update_index": 2,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 50,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 51,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 52,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 53,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 54,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "begin_weight_update",
+        "success": true,
+        "request": {
+          "selector": "all",
+          "sync_base": true
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 55,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "begin_weight_update",
+        "success": true,
+        "request": {
+          "selector": "all",
+          "sync_base": true
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 57,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "end_weight_update",
+        "success": true,
+        "request": {
+          "expected_lora_checksums": null
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 58,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "end_weight_update",
+        "success": true,
+        "request": {
+          "expected_lora_checksums": null
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 59,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "update_weight_version",
+        "success": true,
+        "request": {
+          "abort_all_requests": false,
+          "new_version": "4"
+        },
+        "response": {
+          "message": "Weight version updated to 4",
+          "new_version": "4",
+          "success": true
+        }
+      },
+      {
+        "line": 60,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "update_weight_version",
+        "success": true,
+        "request": {
+          "abort_all_requests": false,
+          "new_version": "4"
+        },
+        "response": {
+          "message": "Weight version updated to 4",
+          "new_version": "4",
+          "success": true
+        }
+      },
+      {
+        "line": 61,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 62,
+        "update_index": 3,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 66,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 67,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 68,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 69,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 70,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "begin_weight_update",
+        "success": true,
+        "request": {
+          "selector": "all",
+          "sync_base": true
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 71,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "begin_weight_update",
+        "success": true,
+        "request": {
+          "selector": "all",
+          "sync_base": true
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 73,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "end_weight_update",
+        "success": true,
+        "request": {
+          "expected_lora_checksums": null
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 74,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "end_weight_update",
+        "success": true,
+        "request": {
+          "expected_lora_checksums": null
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 75,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "update_weight_version",
+        "success": true,
+        "request": {
+          "abort_all_requests": false,
+          "new_version": "5"
+        },
+        "response": {
+          "message": "Weight version updated to 5",
+          "new_version": "5",
+          "success": true
+        }
+      },
+      {
+        "line": 76,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "update_weight_version",
+        "success": true,
+        "request": {
+          "abort_all_requests": false,
+          "new_version": "5"
+        },
+        "response": {
+          "message": "Weight version updated to 5",
+          "new_version": "5",
+          "success": true
+        }
+      },
+      {
+        "line": 77,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 78,
+        "update_index": 4,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 82,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 83,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 84,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 85,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 86,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "begin_weight_update",
+        "success": true,
+        "request": {
+          "selector": "all",
+          "sync_base": true
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 87,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "begin_weight_update",
+        "success": true,
+        "request": {
+          "selector": "all",
+          "sync_base": true
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 89,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "end_weight_update",
+        "success": true,
+        "request": {
+          "expected_lora_checksums": null
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 90,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "end_weight_update",
+        "success": true,
+        "request": {
+          "expected_lora_checksums": null
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 91,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "update_weight_version",
+        "success": true,
+        "request": {
+          "abort_all_requests": false,
+          "new_version": "6"
+        },
+        "response": {
+          "message": "Weight version updated to 6",
+          "new_version": "6",
+          "success": true
+        }
+      },
+      {
+        "line": 92,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "update_weight_version",
+        "success": true,
+        "request": {
+          "abort_all_requests": false,
+          "new_version": "6"
+        },
+        "response": {
+          "message": "Weight version updated to 6",
+          "new_version": "6",
+          "success": true
+        }
+      },
+      {
+        "line": 93,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 94,
+        "update_index": 5,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 98,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 99,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "pause_generation",
+        "success": true,
+        "request": {
+          "mode": "retract"
+        },
+        "response": null
+      },
+      {
+        "line": 100,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 101,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "flush_cache",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 102,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "begin_weight_update",
+        "success": true,
+        "request": {
+          "selector": "all",
+          "sync_base": true
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 103,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "begin_weight_update",
+        "success": true,
+        "request": {
+          "selector": "all",
+          "sync_base": true
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 105,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "end_weight_update",
+        "success": true,
+        "request": {
+          "expected_lora_checksums": null
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 106,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "end_weight_update",
+        "success": true,
+        "request": {
+          "expected_lora_checksums": null
+        },
+        "response": {
+          "message": "Success | Success",
+          "success": true
+        }
+      },
+      {
+        "line": 107,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "update_weight_version",
+        "success": true,
+        "request": {
+          "abort_all_requests": false,
+          "new_version": "7"
+        },
+        "response": {
+          "message": "Weight version updated to 7",
+          "new_version": "7",
+          "success": true
+        }
+      },
+      {
+        "line": 108,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "update_weight_version",
+        "success": true,
+        "request": {
+          "abort_all_requests": false,
+          "new_version": "7"
+        },
+        "response": {
+          "message": "Weight version updated to 7",
+          "new_version": "7",
+          "success": true
+        }
+      },
+      {
+        "line": 109,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20001",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      },
+      {
+        "line": 110,
+        "update_index": 6,
+        "engine": "http://10.102.0.90:20041",
+        "endpoint": "continue_generation",
+        "success": true,
+        "request": {},
+        "response": null
+      }
+    ],
+    "boundary": "RPC acknowledgement and version metadata are not active-GPU byte equality checks."
+  },
+  "debug_dumps": {
+    "files": {
+      "train_data": [
+        "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/train_data/0_0.pt",
+        "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/train_data/1_0.pt",
+        "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/train_data/2_0.pt",
+        "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/train_data/3_0.pt",
+        "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/train_data/4_0.pt",
+        "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/train_data/5_0.pt",
+        "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/train_data/6_0.pt"
+      ],
+      "rollout_data": [
+        "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/rollout_data/0.pt",
+        "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/rollout_data/1.pt",
+        "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/rollout_data/2.pt",
+        "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/rollout_data/3.pt",
+        "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/rollout_data/4.pt",
+        "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/rollout_data/5.pt",
+        "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/rollout_data/6.pt"
+      ]
+    },
+    "train": [
+      {
+        "path": "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/train_data/0_0.pt",
+        "rollout": 0,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.573246002197266,
+            "max": -0.022106418386101723,
+            "mean": -10.358622301851282,
+            "mean_abs": 10.358622301851282,
+            "rms": 10.565781803620078,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.573246002197266,
+              "max": -0.022106418386101723,
+              "mean": -10.358622301851282,
+              "mean_abs": 10.358622301851282,
+              "rms": 10.565781803620078
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.560359954833984,
+            "max": -0.022036688402295113,
+            "mean": -10.35892237922817,
+            "mean_abs": 10.35892237922817,
+            "rms": 10.566092674909529,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.560359954833984,
+              "max": -0.022036688402295113,
+              "mean": -10.35892237922817,
+              "mean_abs": 10.35892237922817,
+              "rms": 10.566092674909529
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.57537269592285,
+            "max": -0.02212965115904808,
+            "mean": -10.358229958072771,
+            "mean_abs": 10.358229958072771,
+            "rms": 10.565431316706198,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.57537269592285,
+              "max": -0.02212965115904808,
+              "mean": -10.358229958072771,
+              "mean_abs": 10.358229958072771,
+              "rms": 10.565431316706198
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 6.20819628238678e-06,
+          "max": 0.07366704940795898,
+          "mean": 0.011431134252925404,
+          "mean_abs": 0.011431134252925404,
+          "rms": 0.01455394397892966
+        }
+      },
+      {
+        "path": "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/train_data/1_0.pt",
+        "rollout": 1,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.82117462158203,
+            "max": -0.03340449184179306,
+            "mean": -10.313935499014915,
+            "mean_abs": 10.313935499014915,
+            "rms": 10.523552941847255,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.82117462158203,
+              "max": -0.03340449184179306,
+              "mean": -10.313935499014915,
+              "mean_abs": 10.313935499014915,
+              "rms": 10.523552941847255
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.816362380981445,
+            "max": -0.02984738163650036,
+            "mean": -10.313816540129773,
+            "mean_abs": 10.313816540129773,
+            "rms": 10.52341144783523,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.816362380981445,
+              "max": -0.02984738163650036,
+              "mean": -10.313816540129773,
+              "mean_abs": 10.313816540129773,
+              "rms": 10.52341144783523
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.826244354248047,
+            "max": -0.03194129839539528,
+            "mean": -10.313627162980847,
+            "mean_abs": 10.313627162980847,
+            "rms": 10.523266289892359,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.826244354248047,
+              "max": -0.03194129839539528,
+              "mean": -10.313627162980847,
+              "mean_abs": 10.313627162980847,
+              "rms": 10.523266289892359
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 3.814697265625e-06,
+          "max": 0.0762033462524414,
+          "mean": 0.01143453451397363,
+          "mean_abs": 0.01143453451397363,
+          "rms": 0.014623469819850661
+        }
+      },
+      {
+        "path": "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/train_data/2_0.pt",
+        "rollout": 2,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.539873123168945,
+            "max": -0.2369331568479538,
+            "mean": -10.26478844869649,
+            "mean_abs": 10.26478844869649,
+            "rms": 10.483371070578993,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.539873123168945,
+              "max": -0.2369331568479538,
+              "mean": -10.26478844869649,
+              "mean_abs": 10.26478844869649,
+              "rms": 10.483371070578993
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.45393180847168,
+            "max": -0.23706379532814026,
+            "mean": -10.26496583051514,
+            "mean_abs": 10.26496583051514,
+            "rms": 10.483532783882076,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.45393180847168,
+              "max": -0.23706379532814026,
+              "mean": -10.26496583051514,
+              "mean_abs": 10.26496583051514,
+              "rms": 10.483532783882076
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.52943229675293,
+            "max": -0.23269370198249817,
+            "mean": -10.265041056978516,
+            "mean_abs": 10.265041056978516,
+            "rms": 10.483641441091496,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.52943229675293,
+              "max": -0.23269370198249817,
+              "mean": -10.265041056978516,
+              "mean_abs": 10.265041056978516,
+              "rms": 10.483641441091496
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 4.76837158203125e-06,
+          "max": 0.06621742248535156,
+          "mean": 0.011481522398535162,
+          "mean_abs": 0.011481522398535162,
+          "rms": 0.014537003441796181
+        }
+      },
+      {
+        "path": "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/train_data/3_0.pt",
+        "rollout": 3,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -15.765786170959473,
+            "max": -0.09334283322095871,
+            "mean": -10.274658667061011,
+            "mean_abs": 10.274658667061011,
+            "rms": 10.500261786357227,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -15.765786170959473,
+              "max": -0.09334283322095871,
+              "mean": -10.274658667061011,
+              "mean_abs": 10.274658667061011,
+              "rms": 10.500261786357227
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -15.767115592956543,
+            "max": -0.0932270735502243,
+            "mean": -10.274607489302289,
+            "mean_abs": 10.274607489302289,
+            "rms": 10.500208932519511,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -15.767115592956543,
+              "max": -0.0932270735502243,
+              "mean": -10.274607489302289,
+              "mean_abs": 10.274607489302289,
+              "rms": 10.500208932519511
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -15.753626823425293,
+            "max": -0.09249193966388702,
+            "mean": -10.274364925301633,
+            "mean_abs": 10.274364925301633,
+            "rms": 10.500001391726052,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -15.753626823425293,
+              "max": -0.09249193966388702,
+              "mean": -10.274364925301633,
+              "mean_abs": 10.274364925301633,
+              "rms": 10.500001391726052
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 9.5367431640625e-07,
+          "max": 0.09574270248413086,
+          "mean": 0.01143600896000862,
+          "mean_abs": 0.01143600896000862,
+          "rms": 0.014604127925307613
+        }
+      },
+      {
+        "path": "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/train_data/4_0.pt",
+        "rollout": 4,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.147558212280273,
+            "max": -0.02494632825255394,
+            "mean": -10.297531621615635,
+            "mean_abs": 10.297531621615635,
+            "rms": 10.52021343243847,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.147558212280273,
+              "max": -0.02494632825255394,
+              "mean": -10.297531621615635,
+              "mean_abs": 10.297531621615635,
+              "rms": 10.52021343243847
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.14832305908203,
+            "max": -0.024934235960245132,
+            "mean": -10.29787857594958,
+            "mean_abs": 10.29787857594958,
+            "rms": 10.520686295451727,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.14832305908203,
+              "max": -0.024934235960245132,
+              "mean": -10.29787857594958,
+              "mean_abs": 10.29787857594958,
+              "rms": 10.520686295451727
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -17.143875122070312,
+            "max": -0.024117546156048775,
+            "mean": -10.29718642652064,
+            "mean_abs": 10.29718642652064,
+            "rms": 10.519869716590541,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -17.143875122070312,
+              "max": -0.024117546156048775,
+              "mean": -10.29718642652064,
+              "mean_abs": 10.29718642652064,
+              "rms": 10.519869716590541
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 1.9073486328125e-06,
+          "max": 0.058844566345214844,
+          "mean": 0.011372448494366836,
+          "mean_abs": 0.011372448494366836,
+          "rms": 0.014400803303536585
+        }
+      },
+      {
+        "path": "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/train_data/5_0.pt",
+        "rollout": 5,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.54726219177246,
+            "max": -0.05781721696257591,
+            "mean": -10.270922719088267,
+            "mean_abs": 10.270922719088267,
+            "rms": 10.493244989923335,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.54726219177246,
+              "max": -0.05781721696257591,
+              "mean": -10.270922719088267,
+              "mean_abs": 10.270922719088267,
+              "rms": 10.493244989923335
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.548715591430664,
+            "max": -0.057908348739147186,
+            "mean": -10.27084789282293,
+            "mean_abs": 10.27084789282293,
+            "rms": 10.493233094369364,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.548715591430664,
+              "max": -0.057908348739147186,
+              "mean": -10.27084789282293,
+              "mean_abs": 10.27084789282293,
+              "rms": 10.493233094369364
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.553415298461914,
+            "max": -0.06135203689336777,
+            "mean": -10.270833875115494,
+            "mean_abs": 10.270833875115494,
+            "rms": 10.4932066811242,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.553415298461914,
+              "max": -0.06135203689336777,
+              "mean": -10.270833875115494,
+              "mean_abs": 10.270833875115494,
+              "rms": 10.4932066811242
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 1.049041748046875e-05,
+          "max": 0.11461877822875977,
+          "mean": 0.011634695896063932,
+          "mean_abs": 0.011634695896063932,
+          "rms": 0.014859089863163576
+        }
+      },
+      {
+        "path": "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/train_data/6_0.pt",
+        "rollout": 6,
+        "rank": 0,
+        "response_tokens": 6400,
+        "trainable_response_tokens": 6400,
+        "fields": {
+          "raw_reward": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "rewards": {
+            "count": 64,
+            "finite_count": 64,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0
+          },
+          "advantages": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "returns": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "rms": 0.0,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 0,
+              "min": 0.0,
+              "max": 0.0,
+              "mean": 0.0,
+              "mean_abs": 0.0,
+              "rms": 0.0
+            }
+          },
+          "log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.107332229614258,
+            "max": -0.010158739052712917,
+            "mean": -10.252511406747944,
+            "mean_abs": 10.252511406747944,
+            "rms": 10.480141369309361,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.107332229614258,
+              "max": -0.010158739052712917,
+              "mean": -10.252511406747944,
+              "mean_abs": 10.252511406747944,
+              "rms": 10.480141369309361
+            }
+          },
+          "ref_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.116064071655273,
+            "max": -0.010149180889129639,
+            "mean": -10.252574873766862,
+            "mean_abs": 10.252574873766862,
+            "rms": 10.480273323859226,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.116064071655273,
+              "max": -0.010149180889129639,
+              "mean": -10.252574873766862,
+              "mean_abs": 10.252574873766862,
+              "rms": 10.480273323859226
+            }
+          },
+          "rollout_log_probs": {
+            "count": 6400,
+            "finite_count": 6400,
+            "nonzero_count": 6400,
+            "min": -16.128673553466797,
+            "max": -0.010640225373208523,
+            "mean": -10.252149121149996,
+            "mean_abs": 10.252149121149996,
+            "rms": 10.479838342445726,
+            "unmasked": {
+              "count": 6400,
+              "finite_count": 6400,
+              "nonzero_count": 6400,
+              "min": -16.128673553466797,
+              "max": -0.010640225373208523,
+              "mean": -10.252149121149996,
+              "mean_abs": 10.252149121149996,
+              "rms": 10.479838342445726
+            }
+          }
+        },
+        "train_rollout_logprob_abs_diff": {
+          "count": 6400,
+          "finite_count": 6400,
+          "nonzero_count": 6400,
+          "min": 1.049041748046875e-05,
+          "max": 0.0818166732788086,
+          "mean": 0.011493302684975788,
+          "mean_abs": 0.011493302684975788,
+          "rms": 0.014583920084883321
+        }
+      }
+    ],
+    "rollout": [
+      {
+        "path": "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/rollout_data/0.pt",
+        "rollout": 0,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "1": 64
+        },
+        "reward_groups": [
+          {
+            "group": "0",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "1",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "2",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "3",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "4",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "5",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "6",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "7",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          }
+        ]
+      },
+      {
+        "path": "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/rollout_data/1.pt",
+        "rollout": 1,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "2": 64
+        },
+        "reward_groups": [
+          {
+            "group": "10",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "11",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "12",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "13",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "14",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "15",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "8",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "9",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          }
+        ]
+      },
+      {
+        "path": "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/rollout_data/2.pt",
+        "rollout": 2,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "3": 64
+        },
+        "reward_groups": [
+          {
+            "group": "16",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "17",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "18",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "19",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "20",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "21",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "22",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "23",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          }
+        ]
+      },
+      {
+        "path": "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/rollout_data/3.pt",
+        "rollout": 3,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "4": 64
+        },
+        "reward_groups": [
+          {
+            "group": "24",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "25",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "26",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "27",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "28",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "29",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "30",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "31",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          }
+        ]
+      },
+      {
+        "path": "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/rollout_data/4.pt",
+        "rollout": 4,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "5": 64
+        },
+        "reward_groups": [
+          {
+            "group": "32",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "33",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "34",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "35",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "36",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "37",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "38",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "39",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          }
+        ]
+      },
+      {
+        "path": "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/rollout_data/5.pt",
+        "rollout": 5,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "6": 64
+        },
+        "reward_groups": [
+          {
+            "group": "40",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "41",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "42",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "43",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "44",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "45",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "46",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "47",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          }
+        ]
+      },
+      {
+        "path": "/Users/ziangli/playground/projects/glm52-w4a16-delta-sync-c2/artifacts/native-broadcast-01/dump_details/rollout_data/6.pt",
+        "rollout": 6,
+        "samples": 64,
+        "statuses": {
+          "truncated": 64
+        },
+        "response_tokens": 6400,
+        "weight_versions": {
+          "7": 64
+        },
+        "reward_groups": [
+          {
+            "group": "48",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "49",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "50",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "51",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "52",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "53",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "54",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          },
+          {
+            "group": "55",
+            "count": 8,
+            "rewards": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "zero_variance": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "note": "Only TP-rank0 on the last PP stage writes train dumps; four-rank completion comes from train_step log events.",
+    "status": "parsed"
+  },
+  "parsed_log_evidence": {
+    "train_events": [
+      {
+        "line": 3699,
+        "rank": 1,
+        "rollout": 0,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 3706,
+        "rank": 3,
+        "rollout": 0,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 3710,
+        "rank": 2,
+        "rollout": 0,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 3715,
+        "rank": 0,
+        "rollout": 0,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4265,
+        "rank": 1,
+        "rollout": 1,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4276,
+        "rank": 3,
+        "rollout": 1,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4279,
+        "rank": 0,
+        "rollout": 1,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4289,
+        "rank": 2,
+        "rollout": 1,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4834,
+        "rank": 1,
+        "rollout": 2,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4837,
+        "rank": 3,
+        "rollout": 2,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4840,
+        "rank": 2,
+        "rollout": 2,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 4851,
+        "rank": 0,
+        "rollout": 2,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5403,
+        "rank": 2,
+        "rollout": 3,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5409,
+        "rank": 1,
+        "rollout": 3,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5412,
+        "rank": 3,
+        "rollout": 3,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5415,
+        "rank": 0,
+        "rollout": 3,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5969,
+        "rank": 3,
+        "rollout": 4,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5972,
+        "rank": 0,
+        "rollout": 4,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5982,
+        "rank": 2,
+        "rollout": 4,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 5989,
+        "rank": 1,
+        "rollout": 4,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6504,
+        "rank": 0,
+        "rollout": 5,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6517,
+        "rank": 3,
+        "rollout": 5,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6524,
+        "rank": 2,
+        "rollout": 5,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 6527,
+        "rank": 1,
+        "rollout": 5,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 7058,
+        "rank": 2,
+        "rollout": 6,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 7061,
+        "rank": 0,
+        "rollout": 6,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 7071,
+        "rank": 3,
+        "rollout": 6,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      },
+      {
+        "line": 7074,
+        "rank": 1,
+        "rollout": 6,
+        "step": 0,
+        "attempt": 0,
+        "outcome": "NORMAL",
+        "valid_step": true
+      }
+    ],
+    "rank0_rollout_metrics": [
+      {
+        "line": 3426,
+        "index": 0,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.358232498168945,
+          "rollout/raw_reward": 0.0,
+          "rollout/total_lengths": 256.0,
+          "rollout/ref_log_probs": -10.358922004699707,
+          "rollout/log_probs": -10.358621597290039,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 4107,
+        "index": 1,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.31362533569336,
+          "rollout/raw_reward": 0.0,
+          "rollout/total_lengths": 250.625,
+          "rollout/ref_log_probs": -10.31381607055664,
+          "rollout/log_probs": -10.313934326171875,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 4667,
+        "index": 2,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.265039443969727,
+          "rollout/raw_reward": 0.0,
+          "rollout/total_lengths": 270.625,
+          "rollout/ref_log_probs": -10.264965057373047,
+          "rollout/log_probs": -10.264787673950195,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 5235,
+        "index": 3,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.27436637878418,
+          "rollout/raw_reward": 0.0,
+          "rollout/total_lengths": 251.125,
+          "rollout/ref_log_probs": -10.27460765838623,
+          "rollout/log_probs": -10.274657249450684,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 5798,
+        "index": 4,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.297184944152832,
+          "rollout/raw_reward": 0.0,
+          "rollout/total_lengths": 270.75,
+          "rollout/ref_log_probs": -10.297876358032227,
+          "rollout/log_probs": -10.297531127929688,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 6361,
+        "index": 5,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.270833969116211,
+          "rollout/raw_reward": 0.0,
+          "rollout/total_lengths": 243.875,
+          "rollout/ref_log_probs": -10.270849227905273,
+          "rollout/log_probs": -10.270919799804688,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      },
+      {
+        "line": 6899,
+        "index": 6,
+        "metrics": {
+          "rollout/response_lengths": 100.0,
+          "rollout/rewards": 0.0,
+          "rollout/truncated": 1.0,
+          "rollout/rollout_log_probs": -10.252148628234863,
+          "rollout/raw_reward": 0.0,
+          "rollout/total_lengths": 239.25,
+          "rollout/ref_log_probs": -10.25257396697998,
+          "rollout/log_probs": -10.252511978149414,
+          "rollout/advantages": 0.0,
+          "rollout/returns": 0.0
+        }
+      }
+    ],
+    "rank0_step_metrics": [
+      {
+        "line": 3716,
+        "index": 0,
+        "metrics": {
+          "train/loss": 0.0,
+          "train/pg_loss": 0.0,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": -0.00012110635725548491,
+          "train/ess_ratio": 0.9998300075531006,
+          "train/train_rollout_logprob_abs_diff": 0.01143113523721695,
+          "train/train_rollout_kl": 0.00010583727271296084,
+          "train/kl_loss": 0.00018101105524692684,
+          "train/ois": 1.0002070665359497,
+          "train/tis": 0.9997134804725647,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011425461620092392,
+          "train/grad_norm": 0.0,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 0
+        },
+        "rollout": 0,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 4280,
+        "index": 1,
+        "metrics": {
+          "train/loss": 0.0,
+          "train/pg_loss": 0.0,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": 2.284754918946419e-05,
+          "train/ess_ratio": 0.9998276829719543,
+          "train/train_rollout_logprob_abs_diff": 0.01143453549593687,
+          "train/train_rollout_kl": 0.00010686973109841347,
+          "train/kl_loss": 0.00016404452617280185,
+          "train/ois": 1.0000638961791992,
+          "train/tis": 0.9997985363006592,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011430991813540459,
+          "train/grad_norm": 0.0,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 1
+        },
+        "rollout": 1,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 4852,
+        "index": 2,
+        "metrics": {
+          "train/loss": 0.0,
+          "train/pg_loss": 0.0,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": 0.0003151242563035339,
+          "train/ess_ratio": 0.9998351335525513,
+          "train/train_rollout_logprob_abs_diff": 0.011481523513793945,
+          "train/train_rollout_kl": 0.00010567249410087243,
+          "train/kl_loss": 0.0002214452251791954,
+          "train/ois": 0.9997681379318237,
+          "train/tis": 1.0003582239151,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011484111659228802,
+          "train/grad_norm": 0.0,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 2
+        },
+        "rollout": 2,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 5416,
+        "index": 3,
+        "metrics": {
+          "train/loss": 0.0,
+          "train/pg_loss": 0.0,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": 2.6775549486046657e-05,
+          "train/ess_ratio": 0.9998277425765991,
+          "train/train_rollout_logprob_abs_diff": 0.011436009779572487,
+          "train/train_rollout_kl": 0.0001065895557985641,
+          "train/kl_loss": 0.00025513547006994486,
+          "train/ois": 1.0000602006912231,
+          "train/tis": 0.9998128414154053,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011431533843278885,
+          "train/grad_norm": 0.0,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 3
+        },
+        "rollout": 3,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 5973,
+        "index": 4,
+        "metrics": {
+          "train/loss": 0.0,
+          "train/pg_loss": 0.0,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": 9.509264782536775e-05,
+          "train/ess_ratio": 0.9998353123664856,
+          "train/train_rollout_logprob_abs_diff": 0.01137244887650013,
+          "train/train_rollout_kl": 0.00010365455818828195,
+          "train/kl_loss": 0.0001718823186820373,
+          "train/ois": 0.9999880790710449,
+          "train/tis": 0.9997583627700806,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011368969455361366,
+          "train/grad_norm": 0.0,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 4
+        },
+        "rollout": 4,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 6505,
+        "index": 5,
+        "metrics": {
+          "train/loss": 0.0,
+          "train/pg_loss": 0.0,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": -0.0003614149463828653,
+          "train/ess_ratio": 0.9998319745063782,
+          "train/train_rollout_logprob_abs_diff": 0.01163469534367323,
+          "train/train_rollout_kl": 0.00011037122749257833,
+          "train/kl_loss": 0.00015177545719780028,
+          "train/ois": 1.0004463195800781,
+          "train/tis": 1.0000215768814087,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011634345166385174,
+          "train/grad_norm": 0.0,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 5
+        },
+        "rollout": 5,
+        "step_within_rollout": 0,
+        "attempt": 0
+      },
+      {
+        "line": 7062,
+        "index": 6,
+        "metrics": {
+          "train/loss": 0.0,
+          "train/pg_loss": 0.0,
+          "train/entropy_loss": 0.0,
+          "train/pg_clipfrac": 0.0,
+          "train/ppo_kl": -0.00025514536537230015,
+          "train/ess_ratio": 0.9998373985290527,
+          "train/train_rollout_logprob_abs_diff": 0.011493301950395107,
+          "train/train_rollout_kl": 0.00010630983888404444,
+          "train/kl_loss": 0.00022235559299588203,
+          "train/ois": 1.0003372430801392,
+          "train/tis": 0.9997439980506897,
+          "train/tis_clipfrac": 0.0,
+          "train/tis_abs": 0.011490019969642162,
+          "train/grad_norm": 0.0,
+          "train/lr-pg_0": 1e-06,
+          "train/lr-pg_1": 1e-06,
+          "train/lr-pg_2": 1e-06,
+          "train/step": 6
+        },
+        "rollout": 6,
+        "step_within_rollout": 0,
+        "attempt": 0
+      }
+    ],
+    "native_perf_metrics": [
+      {
+        "line": 3725,
+        "index": 0,
+        "metrics": {
+          "perf/update_weights_implementation_time": 17.08987069129944,
+          "perf/finalize_and_resume_engines_time": 0.02655768394470215,
+          "perf/update_weights_time": 17.210155248641968,
+          "perf/data_preprocess_time": 0.00983428955078125,
+          "perf/train_wait_time": 26.440340280532837,
+          "perf/ref_log_probs_time": 9.95760440826416,
+          "perf/log_probs_time": 1.080103874206543,
+          "perf/actor_train_time": 70.08707475662231,
+          "perf/train_time": 81.56898903846741,
+          "perf/log_probs_tflops": 21.556231311489316,
+          "perf/ref_log_probs_tflops": 2.3382098744060027,
+          "perf/actor_train_tflops": 0.9966018285261106,
+          "perf/actor_train_tok_per_s": 233.76635502185695,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0004429341460116047,
+          "perf/step_time": 108.00932931900024,
+          "perf/wait_time_ratio": 0.24479681937883896
+        },
+        "initial": true,
+        "after_training_rollout": null
+      },
+      {
+        "line": 4286,
+        "index": 1,
+        "metrics": {
+          "perf/update_weights_implementation_time": 1.1967742443084717,
+          "perf/finalize_and_resume_engines_time": 0.02911233901977539,
+          "perf/update_weights_time": 1.2585723400115967,
+          "perf/data_preprocess_time": 0.00892329216003418,
+          "perf/train_wait_time": 3.1735007762908936,
+          "perf/ref_log_probs_time": 0.7605454921722412,
+          "perf/log_probs_time": 0.7827033996582031,
+          "perf/actor_train_time": 35.29491209983826,
+          "perf/train_time": 37.2822961807251,
+          "perf/log_probs_tflops": 29.121605623220333,
+          "perf/ref_log_probs_tflops": 29.97004118675116,
+          "perf/actor_train_tflops": 1.9374106664714819,
+          "perf/actor_train_tok_per_s": 454.4564370815788,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0008610714073206586,
+          "perf/step_time": 40.45579695701599,
+          "perf/wait_time_ratio": 0.07844365987061673
+        },
+        "initial": false,
+        "after_training_rollout": 0
+      },
+      {
+        "line": 4858,
+        "index": 2,
+        "metrics": {
+          "perf/update_weights_implementation_time": 1.222630500793457,
+          "perf/finalize_and_resume_engines_time": 0.024022817611694336,
+          "perf/update_weights_time": 1.2708542346954346,
+          "perf/data_preprocess_time": 0.00900721549987793,
+          "perf/train_wait_time": 3.677273988723755,
+          "perf/ref_log_probs_time": 0.7718439102172852,
+          "perf/log_probs_time": 0.7687013149261475,
+          "perf/actor_train_time": 32.502490758895874,
+          "perf/train_time": 34.48657965660095,
+          "perf/log_probs_tflops": 32.04015499638666,
+          "perf/ref_log_probs_tflops": 31.909702143308348,
+          "perf/actor_train_tflops": 2.2733004795411564,
+          "perf/actor_train_tok_per_s": 532.8822375023535,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0010103557686849585,
+          "perf/step_time": 38.16385364532471,
+          "perf/wait_time_ratio": 0.09635489180150554
+        },
+        "initial": false,
+        "after_training_rollout": 1
+      },
+      {
+        "line": 5425,
+        "index": 3,
+        "metrics": {
+          "perf/update_weights_implementation_time": 1.2235965728759766,
+          "perf/finalize_and_resume_engines_time": 0.024147748947143555,
+          "perf/update_weights_time": 1.2707023620605469,
+          "perf/data_preprocess_time": 0.008888006210327148,
+          "perf/train_wait_time": 3.53965163230896,
+          "perf/ref_log_probs_time": 0.756638765335083,
+          "perf/log_probs_time": 0.7622168064117432,
+          "perf/actor_train_time": 27.005645990371704,
+          "perf/train_time": 28.97043251991272,
+          "perf/log_probs_tflops": 29.962787252107674,
+          "perf/ref_log_probs_tflops": 30.183676883620898,
+          "perf/actor_train_tflops": 2.537040589805383,
+          "perf/actor_train_tok_per_s": 595.1348101700709,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.001127573595469059,
+          "perf/step_time": 32.51008415222168,
+          "perf/wait_time_ratio": 0.10887857489803103
+        },
+        "initial": false,
+        "after_training_rollout": 2
+      },
+      {
+        "line": 5979,
+        "index": 4,
+        "metrics": {
+          "perf/update_weights_implementation_time": 1.2270100116729736,
+          "perf/finalize_and_resume_engines_time": 0.023935317993164062,
+          "perf/update_weights_time": 1.273667573928833,
+          "perf/data_preprocess_time": 0.009223461151123047,
+          "perf/train_wait_time": 3.0834436416625977,
+          "perf/ref_log_probs_time": 0.7853243350982666,
+          "perf/log_probs_time": 0.7723405361175537,
+          "perf/actor_train_time": 24.111217498779297,
+          "perf/train_time": 26.11746120452881,
+          "perf/log_probs_tflops": 31.90263383797549,
+          "perf/ref_log_probs_tflops": 31.375186302995267,
+          "perf/actor_train_tflops": 3.0657552639013095,
+          "perf/actor_train_tok_per_s": 718.6696400079043,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0013625578950672488,
+          "perf/step_time": 29.200904846191406,
+          "perf/wait_time_ratio": 0.1055941128504024
+        },
+        "initial": false,
+        "after_training_rollout": 3
+      },
+      {
+        "line": 6511,
+        "index": 5,
+        "metrics": {
+          "perf/update_weights_implementation_time": 1.2256722450256348,
+          "perf/finalize_and_resume_engines_time": 0.023952484130859375,
+          "perf/update_weights_time": 1.271005630493164,
+          "perf/data_preprocess_time": 0.008846759796142578,
+          "perf/train_wait_time": 6.133650302886963,
+          "perf/ref_log_probs_time": 0.6621472835540771,
+          "perf/log_probs_time": 0.6865746974945068,
+          "perf/actor_train_time": 17.464428424835205,
+          "perf/train_time": 19.26740264892578,
+          "perf/log_probs_tflops": 32.30857344258813,
+          "perf/ref_log_probs_tflops": 33.500475783515604,
+          "perf/actor_train_tflops": 3.810416550411666,
+          "perf/actor_train_tok_per_s": 893.702308505254,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0016935184668496295,
+          "perf/step_time": 25.401052951812744,
+          "perf/wait_time_ratio": 0.24147228520498146
+        },
+        "initial": false,
+        "after_training_rollout": 4
+      },
+      {
+        "line": 7068,
+        "index": 6,
+        "metrics": {
+          "perf/update_weights_implementation_time": 1.3061020374298096,
+          "perf/finalize_and_resume_engines_time": 0.029430150985717773,
+          "perf/update_weights_time": 1.3588969707489014,
+          "perf/data_preprocess_time": 0.008803367614746094,
+          "perf/train_wait_time": 15.015564441680908,
+          "perf/ref_log_probs_time": 0.6933810710906982,
+          "perf/log_probs_time": 0.6847438812255859,
+          "perf/actor_train_time": 23.950254678726196,
+          "perf/train_time": 25.775722980499268,
+          "perf/log_probs_tflops": 31.771176366903333,
+          "perf/ref_log_probs_tflops": 31.37541465092909,
+          "perf/actor_train_tflops": 2.7250380726723513,
+          "perf/actor_train_tok_per_s": 639.3251431101014,
+          "perf/mfu_peak_tflops": 2250.0,
+          "perf/actor_train_mfu": 0.0012111280322988228,
+          "perf/step_time": 40.791287422180176,
+          "perf/wait_time_ratio": 0.36810714715310083
+        },
+        "initial": false,
+        "after_training_rollout": 5
+      }
+    ],
+    "rollout_service_metrics": [
+      {
+        "line": 3277,
+        "index": 0,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.0,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/count_0": 8,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.038461538461538464,
+          "rollout/avg_cached_tokens_per_sample": 6.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 1.0,
+          "rollout/weight_version/median": 1.0,
+          "rollout/weight_version/max": 1,
+          "rollout/weight_version/min": 1,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 8.776843547821045,
+          "perf/tokens_per_gpu_per_sec": 182.29788320622612,
+          "perf/longest_sample_tokens_per_sec": 11.393617700389132,
+          "perf/effective_tokens_per_gpu_per_sec": 182.29788320622612,
+          "perf/longest_effective_sample_tokens_per_sec": 11.393617700389132
+        }
+      },
+      {
+        "line": 4011,
+        "index": 1,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.0,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/count_0": 8,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.0,
+          "rollout/avg_cached_tokens_per_sample": 0.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 2.0,
+          "rollout/weight_version/median": 2.0,
+          "rollout/weight_version/max": 2,
+          "rollout/weight_version/min": 2,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.6398653984069824,
+          "perf/tokens_per_gpu_per_sec": 2500.525898076973,
+          "perf/longest_sample_tokens_per_sec": 156.28286862981082,
+          "perf/effective_tokens_per_gpu_per_sec": 2500.525898076973,
+          "perf/longest_effective_sample_tokens_per_sec": 156.28286862981082
+        }
+      },
+      {
+        "line": 4580,
+        "index": 2,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.0,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/count_0": 8,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.041025641025641026,
+          "rollout/avg_cached_tokens_per_sample": 7.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 3.0,
+          "rollout/weight_version/median": 3.0,
+          "rollout/weight_version/max": 3,
+          "rollout/weight_version/min": 3,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 1.0579848289489746,
+          "perf/tokens_per_gpu_per_sec": 1512.309020148687,
+          "perf/longest_sample_tokens_per_sec": 94.51931375929294,
+          "perf/effective_tokens_per_gpu_per_sec": 1512.309020148687,
+          "perf/longest_effective_sample_tokens_per_sec": 94.51931375929294
+        }
+      },
+      {
+        "line": 5146,
+        "index": 3,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.0,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/count_0": 8,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.019851116625310174,
+          "rollout/avg_cached_tokens_per_sample": 3.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 4.0,
+          "rollout/weight_version/median": 4.0,
+          "rollout/weight_version/max": 4,
+          "rollout/weight_version/min": 4,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 1.074540615081787,
+          "perf/tokens_per_gpu_per_sec": 1489.0083981406494,
+          "perf/longest_sample_tokens_per_sec": 93.06302488379059,
+          "perf/effective_tokens_per_gpu_per_sec": 1489.0083981406494,
+          "perf/longest_effective_sample_tokens_per_sec": 93.06302488379059
+        }
+      },
+      {
+        "line": 5711,
+        "index": 4,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.0,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/count_0": 8,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.01171303074670571,
+          "rollout/avg_cached_tokens_per_sample": 2.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 5.0,
+          "rollout/weight_version/median": 5.0,
+          "rollout/weight_version/max": 5,
+          "rollout/weight_version/min": 5,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.5945327281951904,
+          "perf/tokens_per_gpu_per_sec": 2691.1891038481326,
+          "perf/longest_sample_tokens_per_sec": 168.1993189905083,
+          "perf/effective_tokens_per_gpu_per_sec": 2691.1891038481326,
+          "perf/longest_effective_sample_tokens_per_sec": 168.1993189905083
+        }
+      },
+      {
+        "line": 6273,
+        "index": 5,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.0,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/count_0": 8,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.02780191138140747,
+          "rollout/avg_cached_tokens_per_sample": 4.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 6.0,
+          "rollout/weight_version/median": 6.0,
+          "rollout/weight_version/max": 6,
+          "rollout/weight_version/min": 6,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.591101884841919,
+          "perf/tokens_per_gpu_per_sec": 2706.809166118452,
+          "perf/longest_sample_tokens_per_sec": 169.17557288240326,
+          "perf/effective_tokens_per_gpu_per_sec": 2706.809166118452,
+          "perf/longest_effective_sample_tokens_per_sec": 169.17557288240326
+        }
+      },
+      {
+        "line": 6820,
+        "index": 6,
+        "metrics": {
+          "rollout/num_training_samples": 64,
+          "rollout/episode_raw_reward": 0.0,
+          "rollout/episode_response_length/mean": 100.0,
+          "rollout/episode_response_length/median": 100.0,
+          "rollout/episode_response_length/max": 100,
+          "rollout/episode_response_length/min": 100,
+          "rollout/episode_total_response_length/mean": 100.0,
+          "rollout/response_len/mean": 100.0,
+          "rollout/response_len/median": 100.0,
+          "rollout/response_len/max": 100,
+          "rollout/response_len/min": 100,
+          "rollout/zero_std/count_0": 8,
+          "rollout/zero_std/all_zero_percentage": 0.0,
+          "rollout/zero_std/all_one_percentage": 0.0,
+          "rollout/prefix_cache_hit_rate": 0.02154398563734291,
+          "rollout/avg_cached_tokens_per_sample": 3.0,
+          "rollout/repetition_frac": 0.0,
+          "rollout/truncated_ratio": 1.0,
+          "rollout/weight_version/mean": 7.0,
+          "rollout/weight_version/median": 7.0,
+          "rollout/weight_version/max": 7,
+          "rollout/weight_version/min": 7,
+          "rollout/weight_version/mixed_version_ratio": 0.0,
+          "perf/rollout_time": 0.6205122470855713,
+          "perf/tokens_per_gpu_per_sec": 2578.5147795468947,
+          "perf/longest_sample_tokens_per_sec": 161.15717372168092,
+          "perf/effective_tokens_per_gpu_per_sec": 2578.5147795468947,
+          "perf/longest_effective_sample_tokens_per_sec": 161.15717372168092
+        }
+      }
+    ],
+    "ray_terminal": [
+      {
+        "line": 7196,
+        "job_id": "miles-d54a332d442d4038bfbbd527f65a5580",
+        "status": "succeeded"
+      }
+    ],
+    "metric_parse_errors": [],
+    "fatal_signature_lines": [
+      {
+        "line": 2501,
+        "text": "(CommandActor pid=68888) Traceback (most recent call last):"
+      },
+      {
+        "line": 2513,
+        "text": "(CommandActor pid=68888) Traceback (most recent call last):"
+      },
+      {
+        "line": 2536,
+        "text": "(CommandActor pid=68888) Traceback (most recent call last):"
+      },
+      {
+        "line": 2550,
+        "text": "(CommandActor pid=68888) Traceback (most recent call last):"
+      },
+      {
+        "line": 2692,
+        "text": "(CommandActor pid=68887) Traceback (most recent call last):"
+      },
+      {
+        "line": 2704,
+        "text": "(CommandActor pid=68887) Traceback (most recent call last):"
+      },
+      {
+        "line": 2727,
+        "text": "(CommandActor pid=68887) Traceback (most recent call last):"
+      },
+      {
+        "line": 2741,
+        "text": "(CommandActor pid=68887) Traceback (most recent call last):"
+      },
+      {
+        "line": 7114,
+        "text": "Traceback (most recent call last):"
+      },
+      {
+        "line": 7181,
+        "text": "Traceback (most recent call last):"
+      }
+    ],
+    "duplicate_step_metric_lines": [
+      3717,
+      4281,
+      4853,
+      5417,
+      5974,
+      6506,
+      7063
+    ],
+    "conflicting_step_metric_lines": [],
+    "replay": [
+      {
+        "rollout": 0,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3494,
+          3522,
+          3551,
+          3557,
+          3572,
+          3576,
+          3589,
+          3592,
+          3598,
+          3608,
+          3614,
+          3624,
+          3630,
+          3640,
+          3649,
+          3656,
+          3670,
+          3674
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3353,
+          3357,
+          3358,
+          3359,
+          3369,
+          3370,
+          3377,
+          3378,
+          3379,
+          3389,
+          3390,
+          3400,
+          3401,
+          3402,
+          3409,
+          3410,
+          3411,
+          3421,
+          3446,
+          3447,
+          3531,
+          3532,
+          3564,
+          3565,
+          3580,
+          3581,
+          3596,
+          3597,
+          3612,
+          3613,
+          3628,
+          3629,
+          3644,
+          3648,
+          3662,
+          3663
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3500,
+          3524,
+          3555,
+          3559,
+          3574,
+          3578,
+          3591,
+          3594,
+          3604,
+          3610,
+          3620,
+          3626,
+          3636,
+          3642,
+          3653,
+          3658,
+          3672,
+          3676
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3355,
+          3363,
+          3364,
+          3365,
+          3373,
+          3374,
+          3383,
+          3384,
+          3385,
+          3394,
+          3395,
+          3396,
+          3405,
+          3406,
+          3415,
+          3416,
+          3417,
+          3430,
+          3450,
+          3451,
+          3539,
+          3540,
+          3568,
+          3569,
+          3584,
+          3585,
+          3602,
+          3603,
+          3618,
+          3619,
+          3634,
+          3635,
+          3646,
+          3652,
+          3666,
+          3667
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3497,
+          3523,
+          3554,
+          3558,
+          3573,
+          3577,
+          3590,
+          3593,
+          3601,
+          3609,
+          3617,
+          3625,
+          3633,
+          3641,
+          3651,
+          3657,
+          3671,
+          3675
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3354,
+          3360,
+          3361,
+          3362,
+          3371,
+          3372,
+          3380,
+          3381,
+          3382,
+          3391,
+          3392,
+          3393,
+          3403,
+          3404,
+          3412,
+          3413,
+          3414,
+          3428,
+          3448,
+          3449,
+          3535,
+          3536,
+          3566,
+          3567,
+          3582,
+          3583,
+          3599,
+          3600,
+          3615,
+          3616,
+          3631,
+          3632,
+          3645,
+          3650,
+          3664,
+          3665
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3503,
+          3525,
+          3556,
+          3560,
+          3575,
+          3579,
+          3588,
+          3595,
+          3607,
+          3611,
+          3623,
+          3627,
+          3639,
+          3643,
+          3655,
+          3659,
+          3673,
+          3677
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 0,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          3356,
+          3366,
+          3367,
+          3368,
+          3375,
+          3376,
+          3386,
+          3387,
+          3388,
+          3397,
+          3398,
+          3399,
+          3407,
+          3408,
+          3418,
+          3419,
+          3420,
+          3432,
+          3456,
+          3457,
+          3543,
+          3544,
+          3570,
+          3571,
+          3586,
+          3587,
+          3605,
+          3606,
+          3621,
+          3622,
+          3637,
+          3638,
+          3647,
+          3654,
+          3668,
+          3669
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4117,
+          4121,
+          4127,
+          4137,
+          4143,
+          4153,
+          4162,
+          4169,
+          4181,
+          4185,
+          4191,
+          4201,
+          4213,
+          4217,
+          4225,
+          4236,
+          4242,
+          4255
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4025,
+          4026,
+          4036,
+          4037,
+          4038,
+          4048,
+          4049,
+          4050,
+          4060,
+          4061,
+          4068,
+          4069,
+          4070,
+          4080,
+          4081,
+          4082,
+          4092,
+          4093,
+          4109,
+          4110,
+          4125,
+          4126,
+          4141,
+          4142,
+          4157,
+          4161,
+          4173,
+          4174,
+          4189,
+          4190,
+          4205,
+          4209,
+          4223,
+          4224,
+          4240,
+          4241
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4119,
+          4123,
+          4133,
+          4139,
+          4149,
+          4155,
+          4166,
+          4171,
+          4183,
+          4187,
+          4197,
+          4203,
+          4215,
+          4219,
+          4232,
+          4238,
+          4248,
+          4257
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4031,
+          4032,
+          4042,
+          4043,
+          4044,
+          4054,
+          4055,
+          4056,
+          4064,
+          4065,
+          4074,
+          4075,
+          4076,
+          4086,
+          4087,
+          4088,
+          4099,
+          4100,
+          4113,
+          4114,
+          4131,
+          4132,
+          4147,
+          4148,
+          4159,
+          4165,
+          4177,
+          4178,
+          4195,
+          4196,
+          4207,
+          4211,
+          4230,
+          4231,
+          4246,
+          4247
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4118,
+          4122,
+          4130,
+          4138,
+          4146,
+          4154,
+          4164,
+          4170,
+          4182,
+          4186,
+          4194,
+          4202,
+          4214,
+          4218,
+          4229,
+          4237,
+          4245,
+          4256
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4028,
+          4029,
+          4039,
+          4040,
+          4041,
+          4051,
+          4052,
+          4053,
+          4062,
+          4063,
+          4071,
+          4072,
+          4073,
+          4083,
+          4084,
+          4085,
+          4096,
+          4097,
+          4111,
+          4112,
+          4128,
+          4129,
+          4144,
+          4145,
+          4158,
+          4163,
+          4175,
+          4176,
+          4192,
+          4193,
+          4206,
+          4210,
+          4227,
+          4228,
+          4243,
+          4244
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4120,
+          4124,
+          4136,
+          4140,
+          4152,
+          4156,
+          4168,
+          4172,
+          4184,
+          4188,
+          4200,
+          4204,
+          4216,
+          4220,
+          4235,
+          4239,
+          4251,
+          4258
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 1,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4034,
+          4035,
+          4045,
+          4046,
+          4047,
+          4057,
+          4058,
+          4059,
+          4066,
+          4067,
+          4077,
+          4078,
+          4079,
+          4089,
+          4090,
+          4091,
+          4102,
+          4103,
+          4115,
+          4116,
+          4134,
+          4135,
+          4150,
+          4151,
+          4160,
+          4167,
+          4179,
+          4180,
+          4198,
+          4199,
+          4208,
+          4212,
+          4233,
+          4234,
+          4249,
+          4250
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4680,
+          4690,
+          4696,
+          4706,
+          4718,
+          4722,
+          4734,
+          4738,
+          4744,
+          4754,
+          4766,
+          4770,
+          4776,
+          4788,
+          4794,
+          4804,
+          4815,
+          4822
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4594,
+          4595,
+          4605,
+          4606,
+          4607,
+          4617,
+          4618,
+          4619,
+          4629,
+          4630,
+          4637,
+          4638,
+          4639,
+          4649,
+          4650,
+          4651,
+          4661,
+          4662,
+          4678,
+          4679,
+          4694,
+          4695,
+          4710,
+          4716,
+          4726,
+          4727,
+          4742,
+          4743,
+          4758,
+          4762,
+          4774,
+          4775,
+          4792,
+          4793,
+          4810,
+          4814
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4686,
+          4692,
+          4702,
+          4708,
+          4720,
+          4724,
+          4736,
+          4740,
+          4750,
+          4756,
+          4768,
+          4772,
+          4782,
+          4790,
+          4800,
+          4806,
+          4819,
+          4824
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4600,
+          4601,
+          4611,
+          4612,
+          4613,
+          4623,
+          4624,
+          4625,
+          4633,
+          4634,
+          4643,
+          4644,
+          4645,
+          4655,
+          4656,
+          4657,
+          4672,
+          4673,
+          4684,
+          4685,
+          4700,
+          4701,
+          4712,
+          4713,
+          4730,
+          4731,
+          4748,
+          4749,
+          4760,
+          4764,
+          4780,
+          4781,
+          4798,
+          4799,
+          4812,
+          4818
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4683,
+          4691,
+          4699,
+          4707,
+          4719,
+          4723,
+          4735,
+          4739,
+          4747,
+          4755,
+          4767,
+          4771,
+          4779,
+          4789,
+          4797,
+          4805,
+          4817,
+          4823
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4597,
+          4598,
+          4608,
+          4609,
+          4610,
+          4620,
+          4621,
+          4622,
+          4631,
+          4632,
+          4640,
+          4641,
+          4642,
+          4652,
+          4653,
+          4654,
+          4669,
+          4670,
+          4681,
+          4682,
+          4697,
+          4698,
+          4711,
+          4717,
+          4728,
+          4729,
+          4745,
+          4746,
+          4759,
+          4763,
+          4777,
+          4778,
+          4795,
+          4796,
+          4811,
+          4816
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4689,
+          4693,
+          4705,
+          4709,
+          4721,
+          4725,
+          4737,
+          4741,
+          4753,
+          4757,
+          4769,
+          4773,
+          4785,
+          4791,
+          4803,
+          4807,
+          4821,
+          4825
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 2,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          4603,
+          4604,
+          4614,
+          4615,
+          4616,
+          4626,
+          4627,
+          4628,
+          4635,
+          4636,
+          4646,
+          4647,
+          4648,
+          4658,
+          4659,
+          4660,
+          4675,
+          4676,
+          4687,
+          4688,
+          4703,
+          4704,
+          4714,
+          4715,
+          4732,
+          4733,
+          4751,
+          4752,
+          4761,
+          4765,
+          4783,
+          4784,
+          4801,
+          4802,
+          4813,
+          4820
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5248,
+          5258,
+          5267,
+          5274,
+          5286,
+          5290,
+          5296,
+          5306,
+          5318,
+          5322,
+          5334,
+          5338,
+          5344,
+          5354,
+          5360,
+          5370,
+          5379,
+          5386
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5162,
+          5163,
+          5173,
+          5174,
+          5175,
+          5185,
+          5186,
+          5187,
+          5197,
+          5198,
+          5205,
+          5206,
+          5207,
+          5217,
+          5221,
+          5222,
+          5229,
+          5230,
+          5246,
+          5247,
+          5262,
+          5266,
+          5278,
+          5279,
+          5294,
+          5295,
+          5310,
+          5314,
+          5326,
+          5327,
+          5342,
+          5343,
+          5358,
+          5359,
+          5374,
+          5378
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5254,
+          5260,
+          5271,
+          5276,
+          5288,
+          5292,
+          5302,
+          5308,
+          5320,
+          5324,
+          5336,
+          5340,
+          5350,
+          5356,
+          5366,
+          5372,
+          5383,
+          5388
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5168,
+          5169,
+          5179,
+          5180,
+          5181,
+          5191,
+          5192,
+          5193,
+          5201,
+          5202,
+          5211,
+          5212,
+          5213,
+          5219,
+          5225,
+          5226,
+          5240,
+          5241,
+          5252,
+          5253,
+          5264,
+          5270,
+          5282,
+          5283,
+          5300,
+          5301,
+          5312,
+          5316,
+          5330,
+          5331,
+          5348,
+          5349,
+          5364,
+          5365,
+          5376,
+          5382
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5251,
+          5259,
+          5269,
+          5275,
+          5287,
+          5291,
+          5299,
+          5307,
+          5319,
+          5323,
+          5335,
+          5339,
+          5347,
+          5355,
+          5363,
+          5371,
+          5381,
+          5387
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5165,
+          5166,
+          5176,
+          5177,
+          5178,
+          5188,
+          5189,
+          5190,
+          5199,
+          5200,
+          5208,
+          5209,
+          5210,
+          5218,
+          5223,
+          5224,
+          5237,
+          5238,
+          5249,
+          5250,
+          5263,
+          5268,
+          5280,
+          5281,
+          5297,
+          5298,
+          5311,
+          5315,
+          5328,
+          5329,
+          5345,
+          5346,
+          5361,
+          5362,
+          5375,
+          5380
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5257,
+          5261,
+          5273,
+          5277,
+          5289,
+          5293,
+          5305,
+          5309,
+          5321,
+          5325,
+          5337,
+          5341,
+          5353,
+          5357,
+          5369,
+          5373,
+          5385,
+          5389
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 3,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5171,
+          5172,
+          5182,
+          5183,
+          5184,
+          5194,
+          5195,
+          5196,
+          5203,
+          5204,
+          5214,
+          5215,
+          5216,
+          5220,
+          5227,
+          5228,
+          5243,
+          5244,
+          5255,
+          5256,
+          5265,
+          5272,
+          5284,
+          5285,
+          5303,
+          5304,
+          5313,
+          5317,
+          5332,
+          5333,
+          5351,
+          5352,
+          5367,
+          5368,
+          5377,
+          5384
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5811,
+          5821,
+          5830,
+          5837,
+          5849,
+          5853,
+          5865,
+          5869,
+          5875,
+          5885,
+          5894,
+          5901,
+          5913,
+          5917,
+          5929,
+          5933,
+          5944,
+          5954
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5725,
+          5726,
+          5736,
+          5737,
+          5744,
+          5745,
+          5746,
+          5756,
+          5760,
+          5761,
+          5768,
+          5769,
+          5770,
+          5780,
+          5781,
+          5782,
+          5792,
+          5793,
+          5809,
+          5810,
+          5825,
+          5829,
+          5841,
+          5842,
+          5857,
+          5858,
+          5873,
+          5874,
+          5889,
+          5893,
+          5905,
+          5906,
+          5921,
+          5925,
+          5942,
+          5943
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5817,
+          5823,
+          5834,
+          5839,
+          5851,
+          5855,
+          5867,
+          5871,
+          5881,
+          5887,
+          5898,
+          5903,
+          5915,
+          5919,
+          5931,
+          5935,
+          5950,
+          5956
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5731,
+          5732,
+          5740,
+          5741,
+          5750,
+          5751,
+          5752,
+          5758,
+          5764,
+          5765,
+          5774,
+          5775,
+          5776,
+          5786,
+          5787,
+          5788,
+          5803,
+          5804,
+          5815,
+          5816,
+          5827,
+          5833,
+          5845,
+          5846,
+          5861,
+          5862,
+          5879,
+          5880,
+          5891,
+          5897,
+          5909,
+          5910,
+          5923,
+          5927,
+          5948,
+          5949
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5814,
+          5822,
+          5832,
+          5838,
+          5850,
+          5854,
+          5866,
+          5870,
+          5878,
+          5886,
+          5896,
+          5902,
+          5914,
+          5918,
+          5930,
+          5934,
+          5947,
+          5955
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5728,
+          5729,
+          5738,
+          5739,
+          5747,
+          5748,
+          5749,
+          5757,
+          5762,
+          5763,
+          5771,
+          5772,
+          5773,
+          5783,
+          5784,
+          5785,
+          5800,
+          5801,
+          5812,
+          5813,
+          5826,
+          5831,
+          5843,
+          5844,
+          5859,
+          5860,
+          5876,
+          5877,
+          5890,
+          5895,
+          5907,
+          5908,
+          5922,
+          5926,
+          5945,
+          5946
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 18,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 18432,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5820,
+          5824,
+          5836,
+          5840,
+          5852,
+          5856,
+          5868,
+          5872,
+          5884,
+          5888,
+          5900,
+          5904,
+          5916,
+          5920,
+          5932,
+          5936,
+          5953,
+          5957
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 4,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 36,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 36864,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          5734,
+          5735,
+          5742,
+          5743,
+          5753,
+          5754,
+          5755,
+          5759,
+          5766,
+          5767,
+          5777,
+          5778,
+          5779,
+          5789,
+          5790,
+          5791,
+          5806,
+          5807,
+          5818,
+          5819,
+          5828,
+          5835,
+          5847,
+          5848,
+          5863,
+          5864,
+          5882,
+          5883,
+          5892,
+          5899,
+          5911,
+          5912,
+          5924,
+          5928,
+          5951,
+          5952
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6365,
+          6375,
+          6384,
+          6391,
+          6403,
+          6407,
+          6413,
+          6423,
+          6435,
+          6439,
+          6453,
+          6457,
+          6463,
+          6473,
+          6482,
+          6492
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6287,
+          6288,
+          6298,
+          6299,
+          6300,
+          6310,
+          6314,
+          6315,
+          6322,
+          6323,
+          6324,
+          6334,
+          6335,
+          6336,
+          6346,
+          6347,
+          6363,
+          6364,
+          6379,
+          6383,
+          6395,
+          6396,
+          6411,
+          6412,
+          6427,
+          6428,
+          6445,
+          6446,
+          6461,
+          6462,
+          6480,
+          6481
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6371,
+          6377,
+          6388,
+          6393,
+          6405,
+          6409,
+          6419,
+          6425,
+          6437,
+          6441,
+          6455,
+          6459,
+          6469,
+          6475,
+          6488,
+          6494
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6293,
+          6294,
+          6304,
+          6305,
+          6306,
+          6312,
+          6318,
+          6319,
+          6328,
+          6329,
+          6330,
+          6340,
+          6341,
+          6342,
+          6353,
+          6354,
+          6369,
+          6370,
+          6381,
+          6387,
+          6399,
+          6400,
+          6417,
+          6418,
+          6431,
+          6432,
+          6449,
+          6450,
+          6467,
+          6468,
+          6486,
+          6487
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6368,
+          6376,
+          6386,
+          6392,
+          6404,
+          6408,
+          6416,
+          6424,
+          6436,
+          6440,
+          6454,
+          6458,
+          6466,
+          6474,
+          6485,
+          6493
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6290,
+          6291,
+          6301,
+          6302,
+          6303,
+          6311,
+          6316,
+          6317,
+          6325,
+          6326,
+          6327,
+          6337,
+          6338,
+          6339,
+          6350,
+          6351,
+          6366,
+          6367,
+          6380,
+          6385,
+          6397,
+          6398,
+          6414,
+          6415,
+          6429,
+          6430,
+          6447,
+          6448,
+          6464,
+          6465,
+          6483,
+          6484
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6374,
+          6378,
+          6390,
+          6394,
+          6406,
+          6410,
+          6422,
+          6426,
+          6438,
+          6442,
+          6456,
+          6460,
+          6472,
+          6476,
+          6491,
+          6495
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 5,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6296,
+          6297,
+          6307,
+          6308,
+          6309,
+          6313,
+          6320,
+          6321,
+          6331,
+          6332,
+          6333,
+          6343,
+          6344,
+          6345,
+          6356,
+          6357,
+          6372,
+          6373,
+          6382,
+          6389,
+          6401,
+          6402,
+          6420,
+          6421,
+          6433,
+          6434,
+          6451,
+          6452,
+          6470,
+          6471,
+          6489,
+          6490
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 0,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6914,
+          6924,
+          6936,
+          6940,
+          6946,
+          6956,
+          6971,
+          6975,
+          6990,
+          6994,
+          7000,
+          7010,
+          7022,
+          7026,
+          7032,
+          7042
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 0,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6837,
+          6838,
+          6839,
+          6849,
+          6853,
+          6854,
+          6861,
+          6862,
+          6863,
+          6873,
+          6874,
+          6875,
+          6885,
+          6886,
+          6893,
+          6894,
+          6912,
+          6913,
+          6928,
+          6932,
+          6944,
+          6945,
+          6963,
+          6964,
+          6982,
+          6983,
+          6998,
+          6999,
+          7014,
+          7015,
+          7030,
+          7031
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 1,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6920,
+          6926,
+          6938,
+          6942,
+          6952,
+          6958,
+          6973,
+          6977,
+          6992,
+          6996,
+          7006,
+          7012,
+          7024,
+          7028,
+          7038,
+          7044
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 1,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6843,
+          6844,
+          6845,
+          6851,
+          6857,
+          6858,
+          6867,
+          6868,
+          6869,
+          6879,
+          6880,
+          6881,
+          6889,
+          6890,
+          6904,
+          6905,
+          6918,
+          6919,
+          6930,
+          6934,
+          6950,
+          6951,
+          6967,
+          6968,
+          6986,
+          6987,
+          7004,
+          7005,
+          7018,
+          7019,
+          7036,
+          7037
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 2,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6917,
+          6925,
+          6937,
+          6941,
+          6949,
+          6957,
+          6972,
+          6976,
+          6991,
+          6995,
+          7003,
+          7011,
+          7023,
+          7027,
+          7035,
+          7043
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 2,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6840,
+          6841,
+          6842,
+          6850,
+          6855,
+          6856,
+          6864,
+          6865,
+          6866,
+          6876,
+          6877,
+          6878,
+          6887,
+          6888,
+          6901,
+          6902,
+          6915,
+          6916,
+          6929,
+          6933,
+          6947,
+          6948,
+          6965,
+          6966,
+          6984,
+          6985,
+          7001,
+          7002,
+          7016,
+          7017,
+          7033,
+          7034
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 3,
+        "stage": "replay_backward",
+        "checks": 16,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 16384,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6923,
+          6927,
+          6939,
+          6943,
+          6955,
+          6959,
+          6974,
+          6978,
+          6993,
+          6997,
+          7009,
+          7013,
+          7025,
+          7029,
+          7041,
+          7045
+        ],
+        "logged_rounded_threshold": 10.0
+      },
+      {
+        "rollout": 6,
+        "rank": 3,
+        "stage": "replay_forward",
+        "checks": 32,
+        "mismatched_token_comparisons": 0,
+        "token_comparisons": 32768,
+        "max_mismatches_in_check": 0,
+        "nonzero_checks": 0,
+        "line_numbers": [
+          6846,
+          6847,
+          6848,
+          6852,
+          6859,
+          6860,
+          6870,
+          6871,
+          6872,
+          6882,
+          6883,
+          6884,
+          6891,
+          6892,
+          6907,
+          6908,
+          6921,
+          6922,
+          6931,
+          6935,
+          6953,
+          6954,
+          6969,
+          6970,
+          6988,
+          6989,
+          7007,
+          7008,
+          7020,
+          7021,
+          7039,
+          7040
+        ],
+        "logged_rounded_threshold": 10.0
+      }
+    ]
+  },
+  "boundaries": [
+    "Replay totals count repeated per-layer/stage/rank checks, not unique generated tokens; rollout grouping follows driver train-start log order.",
+    "Logged reward/advantage values are means: zero mean is not proof that every element is zero. Debug dumps report mean absolute value and nonzero counts.",
+    "Native perf 0 is initial sync, perf 1..6 are six post-training syncs, perf 2..6 are five steady samples for seven-rollout runs.",
+    "Exact changed-weight bytes come from timing JSONL delta_bytes events, not gradient norm or printed rounded density.",
+    "Successful RPCs, versions and training completion do not establish active GPU weight byte equality or learned-task quality."
+  ]
+}

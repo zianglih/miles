@@ -1,0 +1,85 @@
+pr-gate / pr-gate	UNKNOWN STEP	﻿2026-09-25T21:36:27.3864073Z Current runner version: '2.337.0'
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3888854Z ##[group]Runner Image Provisioner
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3889898Z Hosted Compute Agent
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3890510Z Version: 20260828.587
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3891281Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3892042Z Build Date: 2026-08-28T16:44:25Z
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3892817Z Worker ID: {9afba3f9-0928-4acb-a74b-67867696b9f8}
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3893573Z Azure Region: eastus
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3894156Z ##[endgroup]
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3895795Z ##[group]Operating System
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3896457Z Ubuntu
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3897053Z 24.04.5
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3897620Z LTS
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3898137Z ##[endgroup]
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3899164Z ##[group]Runner Image
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3899817Z Image: ubuntu-24.04
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3900479Z Version: 20260920.314.1
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3901777Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260920.314/images/ubuntu/Ubuntu2404-Readme.md
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3903432Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260920.314
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3904454Z ##[endgroup]
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3905744Z ##[group]GITHUB_TOKEN Permissions
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3908368Z Contents: read
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3909321Z Metadata: read
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3909951Z Packages: read
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3910529Z ##[endgroup]
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3912757Z Secret source: None
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3913744Z Cache mode: write
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.3914780Z Prepare workflow directory
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.4247730Z Prepare all required actions
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.4296092Z Getting action download info
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.6686827Z Download action repository 'actions/github-script@v8' (SHA:ed597411d8f924073f98dfc5c65a23a2325f34cd)
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.9469118Z Uses: sgl-project/sglang/.github/workflows/pr-gate.yml@refs/pull/41274/merge (5d88623c8d3292270dd1b1005a348544033604ef)
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.9473829Z ##[group] Inputs
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.9474823Z   require-run-ci: true
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.9475561Z   require-run-ci-extra: false
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.9477355Z   cool-down-minutes: 120
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.9477918Z ##[endgroup]
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:27.9478400Z Complete job name: pr-gate / pr-gate
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.0236222Z ##[group]Run actions/github-script@v8
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.0237156Z with:
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.0241312Z   github-token: ***
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.0243182Z   script: const pr = await github.rest.pulls.get({
+pr-gate / pr-gate	UNKNOWN STEP	  owner: context.repo.owner,
+pr-gate / pr-gate	UNKNOWN STEP	  repo: context.repo.repo,
+pr-gate / pr-gate	UNKNOWN STEP	  pull_number: context.issue.number
+pr-gate / pr-gate	UNKNOWN STEP	});
+pr-gate / pr-gate	UNKNOWN STEP	core.setOutput("labels", JSON.stringify(pr.data.labels.map(l => l.name)));
+pr-gate / pr-gate	UNKNOWN STEP	core.setOutput("draft", pr.data.draft);
+pr-gate / pr-gate	UNKNOWN STEP	core.setOutput("user", pr.data.user.login);
+pr-gate / pr-gate	UNKNOWN STEP	
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.0245071Z   debug: false
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.0245546Z   user-agent: actions/github-script
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.0246110Z   result-encoding: json
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.0246587Z   retries: 0
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.0247085Z   retry-exempt-status-codes: 400,401,403,404,422
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.0247984Z ##[endgroup]
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.7756072Z ##[group]Run echo "===== PR Info ====="
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.7757687Z ^[[36;1mecho "===== PR Info ====="^[[0m
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.7759362Z ^[[36;1mecho "PR Event: pull_request"^[[0m
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.7760817Z ^[[36;1mecho "PR Labels: []"^[[0m
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.7762135Z ^[[36;1mecho "PR Draft: true"^[[0m
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.7763429Z ^[[36;1mecho "PR User: zianglih"^[[0m
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.7764783Z ^[[36;1mecho "Require run-ci: true"^[[0m
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.7766221Z ^[[36;1mecho "Require run-ci-extra: false"^[[0m
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.7767698Z ^[[36;1mecho "Cool down minutes: 120"^[[0m
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.7769179Z ^[[36;1mecho "==================="^[[0m
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.8049809Z shell: /usr/bin/bash -e {0}
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.8051079Z ##[endgroup]
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.8180455Z ===== PR Info =====
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.8181685Z PR Event: pull_request
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.8182781Z PR Labels: []
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.8183772Z PR Draft: true
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.8184771Z PR User: zianglih
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.8186230Z Require run-ci: true
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.8187327Z Require run-ci-extra: false
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.8188518Z Cool down minutes: 120
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.8189909Z ===================
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.8297846Z ##[group]Run echo "PR is draft. Blocking CI."
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.8299555Z ^[[36;1mecho "PR is draft. Blocking CI."^[[0m
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.8300833Z ^[[36;1mexit 1^[[0m
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.8362032Z shell: /usr/bin/bash -e {0}
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.8363139Z ##[endgroup]
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.8454313Z PR is draft. Blocking CI.
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.8468250Z ##[error]Process completed with exit code 1.
+pr-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:28.8644535Z Cleaning up orphan processes

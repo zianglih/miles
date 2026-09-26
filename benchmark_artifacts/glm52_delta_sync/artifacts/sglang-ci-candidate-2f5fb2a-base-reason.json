@@ -1,0 +1,34 @@
+[
+  {
+    "line": 296,
+    "text": "check-changes / check-changes\tUNKNOWN STEP\t2026-09-25T21:36:22.1570506Z ##[error]## \u26a0\ufe0f Rebase Required Before CI Can Run"
+  },
+  {
+    "line": 297,
+    "text": "check-changes / check-changes\tUNKNOWN STEP\t2026-09-25T21:36:22.1572175Z ##[error]A major update has landed on `main`. All PRs must rebase onto the latest `main` before CI will run."
+  },
+  {
+    "line": 298,
+    "text": "check-changes / check-changes\tUNKNOWN STEP\t2026-09-25T21:36:22.1573480Z ##[error]Required base commit: `3fc7a669bfe3` (your PR is `diverged` relative to this commit)."
+  },
+  {
+    "line": 299,
+    "text": "check-changes / check-changes\tUNKNOWN STEP\t2026-09-25T21:36:22.1574653Z ##[error]What should you do?"
+  },
+  {
+    "line": 300,
+    "text": "check-changes / check-changes\tUNKNOWN STEP\t2026-09-25T21:36:22.1575713Z ##[error]- Rebase your branch onto the latest `main` and push again"
+  },
+  {
+    "line": 301,
+    "text": "check-changes / check-changes\tUNKNOWN STEP\t2026-09-25T21:36:22.1576958Z ##[error]- Follow CI Maintenance Mode issue: https://github.com/sgl-project/sglang/issues/21065 for context"
+  },
+  {
+    "line": 302,
+    "text": "check-changes / check-changes\tUNKNOWN STEP\t2026-09-25T21:36:22.1578154Z ##[error]- CI-fix PRs may request the `bypass-maintenance` label to skip this check"
+  },
+  {
+    "line": 303,
+    "text": "check-changes / check-changes\tUNKNOWN STEP\t2026-09-25T21:36:22.1582349Z ##[error]Process completed with exit code 1."
+  }
+]

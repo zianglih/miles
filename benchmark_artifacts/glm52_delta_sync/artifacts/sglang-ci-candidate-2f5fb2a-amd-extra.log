@@ -1,0 +1,87 @@
+call-gate / pr-gate	UNKNOWN STEP	﻿2026-09-25T21:36:20.5274630Z Current runner version: '2.337.0'
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5300500Z ##[group]Runner Image Provisioner
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5301720Z Hosted Compute Agent
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5302351Z Version: 20260828.587
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5302989Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5303854Z Build Date: 2026-08-28T16:44:25Z
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5304536Z Worker ID: {781420f5-2429-4d7a-826b-930fe1abb164}
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5305335Z Azure Region: westus
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5305910Z ##[endgroup]
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5307389Z ##[group]Operating System
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5308157Z Ubuntu
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5308700Z 24.04.5
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5309294Z LTS
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5309833Z ##[endgroup]
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5310391Z ##[group]Runner Image
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5311111Z Image: ubuntu-24.04
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5311944Z Version: 20260920.314.1
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5313331Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260920.314/images/ubuntu/Ubuntu2404-Readme.md
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5314895Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260920.314
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5315976Z ##[endgroup]
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5317327Z ##[group]GITHUB_TOKEN Permissions
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5319411Z Actions: read
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5320051Z Contents: read
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5320708Z Issues: read
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5321296Z Metadata: read
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5322200Z PullRequests: read
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5322847Z ##[endgroup]
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5324936Z Secret source: None
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5326007Z Cache mode: write
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5326759Z Prepare workflow directory
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5672901Z Prepare all required actions
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.5724888Z Getting action download info
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:20.9347121Z Download action repository 'actions/github-script@v8' (SHA:ed597411d8f924073f98dfc5c65a23a2325f34cd)
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:21.4277633Z Uses: sgl-project/sglang/.github/workflows/pr-gate.yml@refs/pull/41274/merge (5d88623c8d3292270dd1b1005a348544033604ef)
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:21.4283294Z ##[group] Inputs
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:21.4284248Z   require-run-ci: true
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:21.4284804Z   require-run-ci-extra: true
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:21.4286494Z   cool-down-minutes: 120
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:21.4287060Z ##[endgroup]
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:21.4287568Z Complete job name: call-gate / pr-gate
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:21.5112462Z ##[group]Run actions/github-script@v8
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:21.5113478Z with:
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:21.5117413Z   github-token: ***
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:21.5119311Z   script: const pr = await github.rest.pulls.get({
+call-gate / pr-gate	UNKNOWN STEP	  owner: context.repo.owner,
+call-gate / pr-gate	UNKNOWN STEP	  repo: context.repo.repo,
+call-gate / pr-gate	UNKNOWN STEP	  pull_number: context.issue.number
+call-gate / pr-gate	UNKNOWN STEP	});
+call-gate / pr-gate	UNKNOWN STEP	core.setOutput("labels", JSON.stringify(pr.data.labels.map(l => l.name)));
+call-gate / pr-gate	UNKNOWN STEP	core.setOutput("draft", pr.data.draft);
+call-gate / pr-gate	UNKNOWN STEP	core.setOutput("user", pr.data.user.login);
+call-gate / pr-gate	UNKNOWN STEP	
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:21.5121260Z   debug: false
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:21.5122049Z   user-agent: actions/github-script
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:21.5122621Z   result-encoding: json
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:21.5123154Z   retries: 0
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:21.5123675Z   retry-exempt-status-codes: 400,401,403,404,422
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:21.5124584Z ##[endgroup]
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.1999835Z ##[group]Run echo "===== PR Info ====="
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2000605Z ^[[36;1mecho "===== PR Info ====="^[[0m
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2001214Z ^[[36;1mecho "PR Event: pull_request"^[[0m
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2002014Z ^[[36;1mecho "PR Labels: []"^[[0m
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2002584Z ^[[36;1mecho "PR Draft: true"^[[0m
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2003146Z ^[[36;1mecho "PR User: zianglih"^[[0m
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2003721Z ^[[36;1mecho "Require run-ci: true"^[[0m
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2004387Z ^[[36;1mecho "Require run-ci-extra: true"^[[0m
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2005014Z ^[[36;1mecho "Cool down minutes: 120"^[[0m
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2005587Z ^[[36;1mecho "==================="^[[0m
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2307170Z shell: /usr/bin/bash -e {0}
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2307877Z ##[endgroup]
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2432846Z ===== PR Info =====
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2433505Z PR Event: pull_request
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2434078Z PR Labels: []
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2434900Z PR Draft: true
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2435368Z PR User: zianglih
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2435917Z Require run-ci: true
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2436416Z Require run-ci-extra: true
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2436943Z Cool down minutes: 120
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2437429Z ===================
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2505931Z ##[group]Run echo "PR is draft. Blocking CI."
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2506682Z ^[[36;1mecho "PR is draft. Blocking CI."^[[0m
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2507277Z ^[[36;1mexit 1^[[0m
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2568758Z shell: /usr/bin/bash -e {0}
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2569316Z ##[endgroup]
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2650769Z PR is draft. Blocking CI.
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2663318Z ##[error]Process completed with exit code 1.
+call-gate / pr-gate	UNKNOWN STEP	2026-09-25T21:36:22.2796972Z Cleaning up orphan processes
