@@ -146,6 +146,7 @@ def test_compilation_failure_uses_existing_baseline_error_coordination(tmp_path)
         patch(f"{_MODULE}.dist") as distributed,
         patch(f"{_MODULE}.get_gloo_group", return_value=None),
         patch(f"{_MODULE}.make_tensor_reader", return_value=lambda *args, **kwargs: np.zeros(1, dtype=np.uint8)),
+        patch(f"{_MODULE}.checkpoint_tensor_layout", return_value=("U8", (1,))),
         patch.object(protocol._packed, "initialize", side_effect=fail_compile),
     ):
         distributed.get_rank.return_value = 1
@@ -153,6 +154,31 @@ def test_compilation_failure_uses_existing_baseline_error_coordination(tmp_path)
         distributed.all_gather_object.side_effect = lambda output, value, **kwargs: output.__setitem__(1, value)
         with pytest.raises(RuntimeError, match="baseline validation failed on rank 1.*compiler unavailable"):
             protocol._capture_baseline(buckets)
+
+
+def test_combined_backend_captures_and_sends_canonical_storage_dtype(tmp_path):
+    from safetensors.torch import save_file
+
+    save_file({"weight": torch.zeros((2, 3), dtype=torch.float32)}, tmp_path / "model.safetensors")
+    args = _args(tmp_path)
+    args.hf_checkpoint = str(tmp_path)
+    protocol = UpdateWeightFromDiskDelta(args)
+    protocol.is_sender = True
+    bucket = [("weight", torch.ones((2, 3), dtype=torch.bfloat16))]
+    with (
+        patch(f"{_MODULE}.dist") as distributed,
+        patch(f"{_MODULE}.get_gloo_group", return_value=None),
+        patch.object(protocol._packed, "initialize"),
+    ):
+        distributed.get_rank.return_value = 1
+        protocol._capture_baseline(lambda **kwargs: iter([bucket]))
+    state = protocol._packed._buckets[("weight",)]
+    assert state.metadata == ((torch.float32, (2, 3)),)
+    assert state.layout.entries == (("weight", 24),)
+    protocol._encode_error = None
+    with patch.object(protocol._packed, "submit") as submit:
+        protocol.send_bucket(bucket)
+    assert submit.call_args.args[0][0][1].dtype == torch.float32
 
 
 def test_non_sender_finishes_empty_encoder_before_error_coordination(tmp_path):
