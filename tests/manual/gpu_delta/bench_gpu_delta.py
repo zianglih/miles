@@ -678,14 +678,42 @@ def _seal_fixture(args, plan, metadata, assignments, results):
 
 
 async def _request(client, endpoint, payload=None, timeout=1200):
-    async with httpx.AsyncClient(trust_env=False, timeout=timeout) as http:
-        response = await (
-            http.get(client.server_url + "/" + endpoint)
-            if payload is None
-            else http.post(client.server_url + "/" + endpoint, json=payload)
-        )
-        response.raise_for_status()
-        return response.json() if response.content else None
+    # Reuse the engine-scoped transport: client/TLS-context construction must
+    # not run between an applied receipt and the resume request.
+    http = client.http
+    response = await (
+        http.get(client.server_url + "/" + endpoint, timeout=timeout)
+        if payload is None
+        else http.post(client.server_url + "/" + endpoint, json=payload, timeout=timeout)
+    )
+    response.raise_for_status()
+    return response.json() if response.content else None
+
+
+class _BenchmarkClient:
+    """Direct HTTP facade for the standalone producer/receiver benchmark."""
+
+    def __init__(self, server_url):
+        self.server_url = server_url
+        self.http = None
+
+    async def get_gpu_delta_info(self, engine_id):
+        return await _request(self, "get_gpu_delta_info", {"engine_id": engine_id})
+
+    async def prepare_gpu_delta(self, **payload):
+        return await _request(self, "prepare_gpu_delta", payload)
+
+    async def get_gpu_delta_status(self, session_id):
+        return await _request(self, "get_gpu_delta_status", {"session_id": session_id})
+
+    async def apply_gpu_delta(self, session_id):
+        return await _request(self, "apply_gpu_delta", {"session_id": session_id})
+
+    async def resume_gpu_delta(self, session_id):
+        return await _request(self, "resume_gpu_delta", {"session_id": session_id})
+
+    async def abort_gpu_delta(self, session_id):
+        return await _request(self, "abort_gpu_delta", {"session_id": session_id})
 
 
 async def _ready(client, process, timeout):
@@ -694,10 +722,9 @@ async def _ready(client, process, timeout):
             if process.poll() is not None:
                 raise RuntimeError("Engine exited during startup; inspect retained server log")
             try:
-                async with httpx.AsyncClient(trust_env=False, timeout=2) as http:
-                    response = await http.get(client.server_url + "/health")
-                    if response.status_code == 200:
-                        return
+                response = await client.http.get(client.server_url + "/health", timeout=2)
+                if response.status_code == 200:
+                    return
             except httpx.HTTPError:
                 pass
             await asyncio.sleep(2)
@@ -706,9 +733,8 @@ async def _ready(client, process, timeout):
 
 
 async def _freeze_gc(client):
-    async with httpx.AsyncClient(trust_env=False, timeout=60) as http:
-        response = await http.post(client.server_url + "/freeze_gc")
-        response.raise_for_status()
+    response = await client.http.post(client.server_url + "/freeze_gc", timeout=60)
+    response.raise_for_status()
 
 
 def _group_alive(pgid):
@@ -742,9 +768,6 @@ def _stop_engine(process):
 
 @asynccontextmanager
 async def _engines(args, model):
-    # Keep fixture creation independent of serving client imports.
-    from miles.backends.sglang_utils.sglang_api_client import SGLangApiClient
-
     processes, logs, clients = [], [], []
     commands = []
     try:
@@ -781,7 +804,9 @@ async def _engines(args, model):
             )
             processes.append(process)
             logs.append(log)
-            clients.append(SGLangApiClient(f"http://127.0.0.1:{port}"))
+            client = _BenchmarkClient(f"http://127.0.0.1:{port}")
+            clients.append(client)
+            client.http = httpx.AsyncClient(trust_env=False, timeout=1200)
             commands.append(spec | {"command": command, "pid": process.pid})
         _save(
             args.output / "launch.json",
@@ -813,12 +838,22 @@ async def _engines(args, model):
         await asyncio.gather(*[_freeze_gc(client) for client in clients])
         yield clients
     finally:
+        # Close every transport even after partial startup or a failed request.
         # Only the benchmark's own fresh process groups; the devbox is retained.
         try:
-            await asyncio.gather(*[asyncio.to_thread(_stop_engine, process) for process in processes])
+            results = await asyncio.gather(
+                *[client.http.aclose() for client in clients if client.http is not None],
+                return_exceptions=True,
+            )
+            for result in results:
+                if isinstance(result, BaseException):
+                    raise result
         finally:
-            for log in logs:
-                log.close()
+            try:
+                await asyncio.gather(*[asyncio.to_thread(_stop_engine, process) for process in processes])
+            finally:
+                for log in logs:
+                    log.close()
 
 
 async def _generation(clients):
