@@ -46,7 +46,7 @@ user-facing configuration API. Runtime defaults are sufficient for normal use.
 | Development variable | Meaning |
 | --- | --- |
 | `GPU_DELTA_CODEC=snappy-zstd` | Trainer codec for ordinary learned updates; `lz4-zstd` selects LZ4 with outer Zstd; `lz4` skips outer Zstd. Read once at launch. The receiver selects the codec from each authenticated publication. |
-| `GPU_DELTA_INITIAL_SYNC_CODEC=lz4-zstd` | Trainer codec for initial sync, engine recovery and checkpoint companions; `snappy-zstd` or plain `lz4` overrides it. Recovery uses this setting even when startup sync is disabled. |
+| `GPU_DELTA_INITIAL_SYNC_CODEC=lz4-zstd` | Trainer codec for initial sync, engine recovery and checkpoint companions; `snappy-zstd` or plain `lz4` overrides it. Initial synchronization is mandatory. |
 | `GPU_DELTA_SORT_BEFORE_HW_DECOMPRESS=0` | Receiver only. Set `1` to let nvCOMP sort chunks during paused DE submission; default off for all codecs. It does not change publication bytes or move sorting into preparation. |
 | `GPU_DELTA_TIMING=1` | Optional per-phase CUDA events. Default off; instrumentation can perturb timing. |
 | `GPU_DELTA_CPU_WORKERS=32` | CPU workers per rank. Each engine-host cache creator also uses its pool for parallel owner-file read/hash before local payload preparation. Two EP4 engines have eight pools (up to 256 workers at the default). |
@@ -75,11 +75,12 @@ checkpoints with delta companions. Attention FP8 conversion remains disabled.
 
 ## Startup delta
 
-`--update-weight-delta-initial-sync` is an opt-in flag for both `disk-delta` and
-`gpu-delta`. By default, the initial call captures HF baseline version 0 without
-replacing rollout weights. Enable the flag when the loaded trainer
-weights differ from that HF checkpoint: the initial call then publishes and
-applies version 1 before the first rollout. Subsequent updates start at version 2;
+GPU delta always captures HF baseline version 0, then publishes and applies the
+loaded trainer's version 1 before the first rollout. This includes a trainer
+resumed from a checkpoint that differs from the HF base.
+`--update-weight-delta-initial-sync` remains accepted for compatibility, but it is
+not required and GPU delta has no initial-sync opt-out. Disk-delta is unchanged.
+Subsequent updates start at version 2;
 these transfer versions are independent of restored optimizer/rollout steps.
 GPU delta defaults to LZ4-Zstd for this initial publication, then Snappy-Zstd for
 learned updates. Selection follows the initial-sync call, not transfer-version

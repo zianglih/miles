@@ -214,7 +214,8 @@ def test_pipeline_stage_inventory_requires_unique_owners_before_baseline_declara
         assert not events and not protocol._baseline_captured
         assert [engine.version for engine in protocol.rollout_engines] == ["default", "default"]
     else:
-        assert protocol.begin_sync(1, _buckets) is False
+        protocol._error, protocol._seen = None, set()
+        protocol._capture_baseline(_buckets)
         assert protocol._baseline_captured and not protocol._uncommitted and sorted(events) == [0, 1]
         assert not protocol._stream_dir.exists()
         assert protocol._raw_names == ("w",) and protocol._gpu_batch_names == ()
@@ -235,7 +236,7 @@ def test_initial_delta_publishes_loaded_trainer_then_switches_to_cached_update_c
         monkeypatch.setenv("GPU_DELTA_CODEC", codec)
         initial_codec = "lz4" if codec == "lz4-zstd" else "snappy-zstd"
         monkeypatch.setenv("GPU_DELTA_INITIAL_SYNC_CODEC", initial_codec)
-    # Recovery uses the initial-sync codec even when startup sync is disabled.
+    # The historical flag cannot disable mandatory startup synchronization.
     frame_bytes = 1 << 22 if initial_sync else gpu_delta_publication.FRAME_BYTES
     protocol, events = _setup(tmp_path, frame_bytes=frame_bytes, initial_sync=initial_sync)
     monkeypatch.setenv("GPU_DELTA_CODEC", "invalid-after-construction")
@@ -263,15 +264,12 @@ def test_initial_delta_publishes_loaded_trainer_then_switches_to_cached_update_c
     read_baseline = Mock(wraps=gpu_delta.disk_delta.make_tensor_reader(str(tmp_path)))
     monkeypatch.setattr(gpu_delta.disk_delta, "make_tensor_reader", lambda _: read_baseline)
 
-    first_codec = initial_codec if initial_sync else codec
+    first_codec = initial_codec
     protocol.connect(protocol.rollout_engines, None, [0, 1], None, None, None)
     assert set(encoders) == {initial_codec, first_codec}
     assert all(encoder.frame_bytes == frame_bytes for encoder in encoders.values())
-    assert protocol.begin_sync(1, _buckets) is initial_sync
+    assert protocol.begin_sync(1, _buckets) is True
     assert sorted(events) == [0, 1]
-    if not initial_sync:
-        assert not protocol._stream_dir.exists()
-        assert protocol.begin_sync(1, _buckets) is True
     assert not protocol._seen  # Baseline export does not consume this update's inventory.
     previous = [1, 2, 3, 4]
     for version, expected_codec in enumerate((first_codec, codec, codec), 1):
@@ -573,7 +571,8 @@ def _ready_protocol(tmp_path, monkeypatch):
 
     monkeypatch.setattr(gpu_delta_encoder, "GpuBatchEncoder", encoder)
     protocol.connect(protocol.rollout_engines, [1, 1], [0, 1], None, None, None)
-    assert protocol.begin_sync(1, _buckets) is False
+    protocol._error, protocol._seen = None, set()
+    protocol._capture_baseline(_buckets)
     return protocol
 
 

@@ -52,7 +52,7 @@ class UpdateWeightFromGpuDelta(WeightTransferProtocol):
         super().__init__(args)
         self._update_codec = gpu_delta_publication.configured_codec()
         self._initial_sync_codec = gpu_delta_publication.configured_codec(initial_sync=True)
-        self.codec = self._initial_sync_codec if args.update_weight_delta_initial_sync else self._update_codec
+        self.codec = self._initial_sync_codec
         self._frame_bytes = frame_bytes
         self._timing = os.environ.get("GPU_DELTA_TIMING", "0") == "1"
         self._snapshot = {}
@@ -145,8 +145,8 @@ class UpdateWeightFromGpuDelta(WeightTransferProtocol):
         initial_sync = not self._baseline_captured
         if initial_sync:
             self._capture_baseline(iter_buckets)
-            if not self.args.update_weight_delta_initial_sync:
-                return False
+            # A resumed trainer can differ from the immutable HF base. Publish
+            # its actual bytes before generation, even for direct protocol callers.
             self._seen.clear()
         # The baseline-capture call owns initial-sync policy; transfer version
         # numbers can also start at 1 for an ordinary learned update.

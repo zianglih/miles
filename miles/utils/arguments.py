@@ -28,6 +28,7 @@ from miles.utils.eval_config import EvalDatasetConfig, build_eval_dataset_config
 from miles.utils.file_arg_utils import resolve_file_arg
 from miles.utils.ft_utils.health_checker import SimpleHealthCheckerConfig
 from miles.utils.function_registry import load_function
+from miles.utils.gpu_delta.admission import validate_gpu_delta_args
 from miles.utils.hf_utils.config import is_dsa, load_hf_config
 from miles.utils.logging_utils import configure_logger_raw
 from miles.utils.lora.arguments import add_lora_arguments, validate_lora_args
@@ -616,7 +617,7 @@ def get_miles_extra_args_provider(add_custom_arguments=None):
                     "The huggingface checkpoint of the trained model. "
                     "This is used to initialize sglang and also provide the tokenizer. "
                     "Full-weight transfer replaces startup weights with the loaded trainer weights before the first rollout. "
-                    "For disk-delta and gpu-delta, enable --update-weight-delta-initial-sync when "
+                    "GPU delta always synchronizes the loaded trainer before generation. For disk-delta, enable --update-weight-delta-initial-sync when "
                     "the trainer starts from different weights; otherwise the initial sync only captures the baseline."
                 ),
             )
@@ -1061,9 +1062,9 @@ def get_miles_extra_args_provider(add_custom_arguments=None):
                 action="store_true",
                 default=False,
                 help=(
-                    "For disk-delta and gpu-delta, publish and apply an initial delta from --hf-checkpoint "
+                    "For disk-delta, publish and apply an initial delta from --hf-checkpoint "
                     "to the loaded trainer weights before the first rollout. Without this flag, only capture "
-                    "the HF baseline. Both modes still require rollout engines to load the common HF base; "
+                    "the HF baseline. GPU delta always performs this initial sync. Both modes require the common HF base; "
                     "this does not support dummy-weight initialization."
                 ),
             )
@@ -3623,24 +3624,7 @@ def miles_validate_args(args):
             args.megatron_to_hf_mode != "bridge"
         ), f"{args.update_weight_transfer_mode} mode is not supported when use megatron-bridge"
 
-    if args.update_weight_transfer_mode == "gpu-delta":
-        assert args.update_weight_delta_encoding == "xor", "GPU delta supports only --update-weight-delta-encoding xor"
-        assert not args.colocate, "GPU delta requires separate training and rollout GPUs"
-        assert (
-            args.train_backend == "megatron" and args.megatron_to_hf_mode != "bridge"
-        ), "GPU delta requires the direct Megatron exporter"
-        assert args.lora_rank <= 0, "GPU delta does not support LoRA"
-        assert args.prefill_num_servers is None, "GPU delta does not support PD"
-        assert args.pause_generation_mode == "retract", "GPU delta requires retract pause"
-        assert (
-            not args.check_weight_update_equal
-        ), "GPU delta requires an independent, non-destructive correctness check"
-        assert args.update_weight_disk_dir and os.path.isdir(
-            args.hf_checkpoint
-        ), "GPU delta requires a shared publication directory and a local canonical HF checkpoint"
-        from miles.utils.gpu_delta.publication import configured_codec
-
-        configured_codec()
+    validate_gpu_delta_args(args)
 
     if args.update_weight_transfer_mode == "disk-delta":
         assert not args.colocate, (
