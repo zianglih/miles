@@ -8,8 +8,10 @@ Requires eight Blackwell GPUs, CUDA 13 and nvCOMP >=5.3. The GLM5.2 W4A16
 workload uses static bundled MTP and two independent TP4/DP4/EP4 receivers.
 Sender processes split whole layers across GPUs; no Megatron checkpoint is needed.
 Defaults: three codecs x payload hashing on/off, all with 1 MiB inner frames.
-Results include actual compression, preparation, decompression and scheduler-pause
-measurements, plus a final selected-output comparison with a disk-loaded target.
+Use --reuse-fixtures with a reviewed producer SPEC to skip encoding and apply
+saved deltas. Reused sender timings are historical; receiver timings are fresh.
+The expensive second model load/oracle is opt-in with --validate-final-target.
+Without it, reports explicitly remain NOT_VALIDATED for target equivalence.
 """
 
 from __future__ import annotations
@@ -35,6 +37,7 @@ from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 
+import _fixture_reuse
 import httpx
 import numpy as np
 import zstandard
@@ -1142,7 +1145,12 @@ def _markdown(summary):
     lines = [
         "# GPU delta end-to-end benchmark",
         "",
-        f"Status: **{summary['status']}**. Every arm's final selected text, token IDs and full input/output logprobs are compared with one independently loaded target checkpoint on every route; see `comparison.json`.",
+        f"Status: **{summary['status']}**. "
+        + (
+            "Final target oracle NOT_RUN: no target-equivalence or full correctness claim. Apply/resume receipts and per-update ordinary generations were checked."
+            if summary.get("final_target_validation") == "NOT_RUN"
+            else "Every arm's final selected text, token IDs and full input/output logprobs are compared with one independently loaded target checkpoint on every route; see `comparison.json`."
+        ),
         "",
         "One row per arm/version, including the first update. SHA on/off controls both sender payload "
         "hashing and receiver verification; manifest SHA remains enabled. Versions are cumulative synthetic "
@@ -1158,6 +1166,7 @@ def _markdown(summary):
             "Frame KiB",
             "SHA",
             "Version",
+            "Sender timing origin",
             "Compression s",
             "Prepare s",
             "Pause ms",
@@ -1171,6 +1180,7 @@ def _markdown(summary):
                 row["frame_bytes"] / 1024,
                 "off" if arm["skip_payload_hash"] else "on",
                 row["version"],
+                row["compression"].get("measurement_scope", "current_run"),
                 _format(row["compression"]["owner_max"]["compression_and_publication_s"]),
                 _format(row["receiver_max"]["prepare_s"]),
                 _format(row["receiver_max"]["pause_s"], scale=1000),
@@ -1186,6 +1196,11 @@ def _markdown(summary):
         ),
     )
     lines += [
+        "In saved-delta apply mode, every sender/read/encode/seal/compression timing is historical from "
+        "the referenced fixture, never current-run encoder performance. Validation I/O is recorded separately "
+        "in fixture-verification.json; no encoding time is invented or included in current totals. "
+        "New receiver apply/resume/generation measurements remain current. The final oracle is opt-in.",
+        "",
         "Compression is the maximum owner compression/publication wall time, including optional payload SHA, "
         "H2D/XOR/final D2H, writes and shard flush/fsync. It excludes prepared-input reads/pinning, shared input "
         "construction and parent manifest sealing. Prepare is the maximum receiver background-preparation "
@@ -1244,7 +1259,8 @@ def _markdown(summary):
 
 
 def _arm_report(output, arm, oracle_records):
-    fixture = _read(output / "fixture" / "fixture.json")
+    fixture_directory, reuse = _fixture_reuse.resolve(output)
+    fixture = _read(fixture_directory / "fixture.json")
     codec = arm["codec"]
     checksum = "none" if arm["skip_payload_hash"] else "sha256"
     if fixture["codec"] != codec or fixture["arm"] != arm["name"]:
@@ -1280,6 +1296,7 @@ def _arm_report(output, arm, oracle_records):
         if any(rank["skip_payload_hash"] != arm["skip_payload_hash"] for rank in ranks):
             raise ValueError("Receiver hash policy differs from arm")
         compression = _compression(row, codec, assignments)
+        compression["measurement_scope"] = "historical_saved_fixture" if reuse else "current_run"
         if any(owner["raw_metrics"]["payload_checksum_format"] != checksum for owner in compression["owners"]):
             raise ValueError("Sender owner hash policy differs from arm")
         selected = _generations(_read(output / "receiver" / f"generation-{version}.json"), routes, version)
@@ -1318,10 +1335,15 @@ def _arm_report(output, arm, oracle_records):
         )
     if not versions:
         raise ValueError("No fixture updates")
-    oracle = _generations(oracle_records, routes)
-    comparison = _compare(selected, oracle)
+    comparison = (
+        _compare(selected, _generations(oracle_records, routes))
+        if oracle_records is not None
+        else {"status": "NOT_RUN", "reason": "Final target oracle disabled; use --validate-final-target"}
+    )
     return arm | {
-        "status": comparison["status"],
+        "status": "NOT_VALIDATED" if comparison["status"] == "NOT_RUN" else comparison["status"],
+        "fixture_origin": reuse or {"mode": "fresh_encoding", "path": str(fixture_directory)},
+        "update_checks": "PASS",
         "plan_digest": fixture["plan_digest"],
         "seed": fixture["seed"],
         "rate": fixture["rate"],
@@ -1342,8 +1364,8 @@ def _report_geometry(report):
     ]
 
 
-def _write_report(output: Path, arms):
-    oracle = _read(output / "oracle" / "target-generation.json")
+def _write_report(output: Path, arms, validate_final_target=True):
+    oracle = _read(output / "oracle" / "target-generation.json") if validate_final_target else None
     reports = [_arm_report(output / "arms" / arm["name"], arm, oracle) for arm in arms]
     reference = reports[0]
     for arm in reports[1:]:
@@ -1354,11 +1376,20 @@ def _write_report(output: Path, arms):
             raise ValueError("Arms do not share the same target and sender ownership")
         if _report_geometry(arm) != _report_geometry(reference):
             raise ValueError("Arms do not share the same update geometry")
-    status = "PASS" if all(arm["status"] == "PASS" for arm in reports) else "FAILED"
+    status = (
+        ("PASS" if all(arm["status"] == "PASS" for arm in reports) else "FAILED")
+        if validate_final_target
+        else "NOT_VALIDATED"
+    )
     inputs = _read(output / "inputs.json")
     if reference["input_cache_id"] != inputs["id"]:
         raise ValueError("Arm inputs differ from the prepared-input reference")
-    summary = {"status": status, "inputs": inputs, "arms": reports}
+    summary = {
+        "status": status,
+        "inputs": inputs,
+        "arms": reports,
+        "final_target_validation": status if validate_final_target else "NOT_RUN",
+    }
     _save(
         output / "comparison.json",
         {
@@ -1368,7 +1399,7 @@ def _write_report(output: Path, arms):
     )
     _save(output / "summary.json", summary)
     (output / "REPORT.md").write_text(_markdown(summary))
-    if status != "PASS":
+    if status == "FAILED":
         raise ValueError("Final selected generation differs from target checkpoint; see comparison.json")
     return summary
 
@@ -1388,7 +1419,11 @@ def _phase(phase, args, directory, settings, arm):
                 | {
                     "output": stage_output,
                     "inventory": args.prepared_inputs / "inventory" / "inventory.json",
-                    "fixture": args.output / "arms" / arm["name"] / "fixture" if phase in {"run", "oracle"} else None,
+                    "fixture": (
+                        _fixture_reuse.resolve(args.output / "arms" / arm["name"])[0]
+                        if phase in {"run", "oracle"}
+                        else None
+                    ),
                     "target": args.prepared_inputs / "target-checkpoint",
                     "arm_name": arm["name"],
                 }
@@ -1439,7 +1474,13 @@ def _run_phase(phase, args, directory, arm, records):
 
 def _end_to_end(args):
     records = []
+    if args.sender_gpus is None:
+        import torch
+
+        args.sender_gpus = torch.cuda.device_count()
     reused = args.prepared_inputs.exists()
+    if args.reuse_fixtures and not reused:
+        raise ValueError("Saved-delta apply requires the preserved prepared-input cache; encoding is disabled")
     if not reused:
         args.prepared_inputs.mkdir(parents=True)
         _run_phase("inventory", args, args.prepared_inputs / "inventory", args.arms[0], records)
@@ -1452,12 +1493,53 @@ def _end_to_end(args):
         {"path": str(args.prepared_inputs), "id": args.input_cache_id, "reused": reused, "preparation": prepared},
     )
     _save(args.output / "arguments.json", {k: str(v) if isinstance(v, Path) else v for k, v in vars(args).items()})
+    fixture_refs = {}
+    if not args.reuse_fixtures:
+        _fixture_reuse.record_producer(args, prepared)
+    if args.reuse_fixtures:
+        from sglang.srt.weight_sync.gpu_delta.payload import validate_codec
+
+        started = time.monotonic()
+        plan, _, _ = merge_plans(_read(args.prepared_inputs / "inventory" / "inventory.json")["descriptions"])
+        owners = [o for o in _partition_plan(plan, args.sender_gpus) if o["groups"]]
+        assignments = [o | {"tensors": [t["name"] for t in o["tensors"]]} for o in owners]
+        fixture_refs = _fixture_reuse.admit(args, prepared, plan, assignments, validate_codec, _publication_accounting)
+        _save(
+            args.output / "fixture-verification.json",
+            {
+                "status": "VERIFIED",
+                "wall_s": time.monotonic() - started,
+                "scope": "Current saved-publication metadata and payload SHA verification; no encoding",
+            },
+        )
     for arm in args.arms:
         directory = Path("arms") / arm["name"]
-        _run_phase("fixture", args, directory / "fixture", arm, records)
+        if fixture_refs:
+            arm_output = args.output / directory
+            arm_output.mkdir(parents=True)
+            with (arm_output / "fixture-reuse.json").open("x") as file:
+                json.dump(fixture_refs[arm["name"]], file, indent=2, allow_nan=False)
+                file.write("\n")
+            records.append(
+                {
+                    "phase": "fixture",
+                    "arm": arm["name"],
+                    "status": "REUSED",
+                    "encoding": "SKIPPED_ENCODING",
+                    "wall_s": None,
+                    "reference": str(directory / "fixture-reuse.json"),
+                }
+            )
+            _save(args.output / "workflow.json", {"arms": args.arms, "phases": records})
+        else:
+            _run_phase("fixture", args, directory / "fixture", arm, records)
         _run_phase("run", args, directory / "receiver", arm, records)
-    _run_phase("oracle", args, Path("oracle"), args.arms[0], records)
-    _write_report(args.output, args.arms)
+    if args.validate_final_target:
+        _run_phase("oracle", args, Path("oracle"), args.arms[0], records)
+    else:
+        records.append({"phase": "oracle", "status": "NOT_RUN", "reason": "--validate-final-target not selected"})
+        _save(args.output / "workflow.json", {"arms": args.arms, "phases": records})
+    _write_report(args.output, args.arms, validate_final_target=args.validate_final_target)
     print((args.output / "REPORT.md").read_text(), flush=True)
 
 
@@ -1467,6 +1549,20 @@ def main():
     parser.add_argument("--output", type=Path, help="New output directory; generated automatically if omitted")
     parser.add_argument(
         "--prepared-inputs", type=Path, help="Create or reuse a completed input cache; defaults to OUTPUT/inputs"
+    )
+    parser.add_argument(
+        "--reuse-fixtures", type=Path, help="Saved-delta apply mode: existing encoder run root; skip encoding"
+    )
+    parser.add_argument(
+        "--reuse-producer-spec",
+        type=Path,
+        help="Reviewed producer-spec.json or provenance adapter (not the receiver run)",
+    )
+    parser.add_argument("--reuse-producer-spec-sha256", help="Reviewed SHA256 of the original producer SPEC")
+    parser.add_argument(
+        "--validate-final-target",
+        action="store_true",
+        help="Load the full target checkpoint and compare selected outputs on all routes (expensive)",
     )
     parser.add_argument("--codecs", choices=CODECS, nargs="+", default=list(CODECS), help="Sender/receiver codecs")
     parser.add_argument("--frame-bytes", type=int, default=FRAME_BYTES, help="Inner frame bytes; at most 4 MiB")
@@ -1488,6 +1584,17 @@ def main():
     )
     parser.add_argument("--startup-timeout", type=float, default=3600)
     args = parser.parse_args()
+    if args.reuse_fixtures:
+        if not all(
+            (args.prepared_inputs, args.reuse_producer_spec, args.reuse_producer_spec_sha256, args.sender_gpus)
+        ):
+            parser.error("--reuse-fixtures requires --prepared-inputs, --sender-gpus and both producer SPEC options")
+        if args.hashing != ["on"]:
+            parser.error("Saved-delta apply currently requires --hashing on (authenticated saved payloads)")
+        for path in (args.reuse_fixtures, args.reuse_producer_spec, args.prepared_inputs):
+            _fixture_reuse.safe_path(path)
+    elif args.reuse_producer_spec or args.reuse_producer_spec_sha256:
+        parser.error("Producer SPEC options require --reuse-fixtures")
     args.model = args.model.resolve(strict=True)
     args.output = (
         args.output or Path("gpu-delta-" + datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S-%f"))

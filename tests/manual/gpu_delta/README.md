@@ -378,7 +378,7 @@ copies plus one full checkpoint, in addition to the arms’ encoded publications
 The source checkpoint is immutable. No Megatron checkpoint, trainer initialization
 or distributed export setup is required.
 
-One invocation uses shared prepared inputs and one oracle, with six serial
+One invocation uses shared prepared inputs and an optional oracle, with six serial
 codec/hash arms. Each stage releases its CUDA contexts before the next starts:
 
 1. For a new cache, start the receiver pair, record its canonical tensor plan,
@@ -391,8 +391,10 @@ codec/hash arms. Each stage releases its CUDA contexts before the next starts:
 3. After each arm’s compression, start fresh receivers from the original base,
    prepare/apply/resume its publications, and record all rank receipts and
    selected generation routes.
-4. Load the shared final checkpoint once with the original static draft and
-   compare every arm’s final text, tokens and prompt/output logprobs.
+4. With `--validate-final-target`, load the shared final checkpoint once with
+   the original static draft and compare every arm’s final text, tokens and
+   prompt/output logprobs. Without this flag, target equivalence remains
+   `NOT_VALIDATED` and the oracle phase is `NOT_RUN`.
 
 `READY.json` is published only after all prepared files are complete. Reuse
 requires the same base path/file sizes/modification times, canonical plan,
@@ -439,19 +441,75 @@ not forced to that value. Static draft and calibration scales stay unchanged.
 The versions are constructed cumulative targets, not learned gradients or three
 statistical repeats of one delta.
 
-Stdout and `REPORT.md` show one table with a row per arm/version: codec, inner frame size (KiB), payload
+Stdout and `REPORT.md` show a summary row per arm/version: codec, inner frame size (KiB), payload
 SHA policy, compression/publication wall time (seconds), receiver preparation
 (seconds), scheduler pause (milliseconds), and inner, outer and total payload
 sizes (GiB). Plain LZ4 has no outer stage. Full-precision timing components,
 exact byte counts and every sender owner/receiver rank metric remain in
 `summary.json`; `comparison.json` records
-each arm’s final selected-output comparison. `inputs.json` records the cache
+each arm’s final selected-output comparison, or `NOT_RUN` when disabled. `inputs.json` records the cache
 identity, whether it was reused, and its original preparation measurements.
 Arm artifacts live under `arms/`; the inventory and final checkpoint stay in
 the input cache with their preparation logs. The fresh oracle, arm logs, launch
 configuration, owner assignments, publications, original-rank receipts and
 generation responses remain in the output directory.
 A failure stops advancement and preserves partial output; it is never retried.
+
+### Saved-delta apply mode for receiver iterations
+
+`--reuse-fixtures OLD_RUN_ROOT` skips sender encoding. It uses the existing sealed
+publications in place, starts fresh receivers from the original HF base, and runs
+fresh prepare/apply/resume, generation and clear-state checks for every version.
+Add `--validate-final-target` for the expensive independent final target oracle.
+Default fresh encoding remains the mode for measuring sender performance.
+
+```bash
+python tests/manual/gpu_delta/bench_gpu_delta.py \
+  --model /models/GLM5.2-NVFP4 --prepared-inputs /data/gpu-delta/prepared-inputs \
+  --output /data/gpu-delta/new-saved-apply-run \
+  --reuse-fixtures /data/gpu-delta/original-encoder-run \
+  --reuse-producer-spec /data/gpu-delta/original-encoder-run/producer-spec.json \
+  --reuse-producer-spec-sha256 ORIGINAL_REVIEWED_SPEC_SHA256 \
+  --codecs snappy-zstd --hashing on --frame-bytes 1048576 \
+  --versions 3 --sender-gpus 8
+```
+
+Fresh encoding runs write `producer-spec.json` with explicit encoder settings,
+prepared-cache metadata hashes, the settings hash and producer source-file hashes.
+Its reviewed SHA is required for reuse; today's receiver source does not establish
+old producer provenance. Package versions remain unknown unless separately recorded.
+For older runs, a reviewed provenance adapter can supply the same `argv`,
+`cache_files`, `prepared_settings_sha256` and `guard_files` fields, while linking
+the exact original producer evidence. Do not fabricate a historical launch record
+or relabel an old failed oracle as a successful run. The selected fixture phase
+must have completed successfully; a later oracle failure does not invalidate it.
+It requires SHA-on payloads, the same input cache/settings/plan, codec/frame,
+version chain, mutation settings and sender owner partition. Each selected arm must
+have a completed original fixture phase and all owner/version records. Merely finding
+`fixture.json` is insufficient because older encoders rewrite it after each round.
+
+Admission streams every saved payload's SHA and verifies stable size/file identity,
+sealed manifest SHA, canonical plan and original owner records before any receiver
+starts. It rejects symlinks, path escapes, partial seals, missing owners, changed
+settings and incomplete producer workflow. Missing prepared inputs fail without
+starting preparation or encoding. The existing production receiver rechecks the
+publication and its negotiated plan when consuming it. Prepared checkpoint bytes
+retain the existing metadata/settings/size boundary; this does not claim every
+checkpoint byte was rehashed or that selected generation proves all weights equal.
+
+No bulk files are copied, relocated or symlinked. The new output contains a small
+`arms/ARM/fixture-reuse.json` reference, fresh receiver artifacts and an optional
+fresh oracle. The original fixture/publication paths and bytes remain unchanged.
+Workflow says `REUSED` / `SKIPPED_ENCODING`, with no fresh encoder wall time;
+`fixture-verification.json` records current verification I/O separately.
+All sender/read/encode/seal/compression measurements in reports are labeled
+`historical_saved_fixture`; they preserve the original values and provenance.
+They must not be counted as current sender performance or current end-to-end time.
+
+External capture/reduction scripts must resolve this explicit reference and handle
+`NOT_RUN` oracle status. Scripts assuming output-local fixtures or a mandatory
+oracle are not compatible without an explicit update. Do not relabel a quick run
+as a formal validated benchmark.
 
 Report timing scopes separately:
 
