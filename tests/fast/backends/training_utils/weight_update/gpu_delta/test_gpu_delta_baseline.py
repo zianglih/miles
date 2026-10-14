@@ -525,7 +525,11 @@ def test_gpu_baseline_swaps_only_after_successful_receiver_activation(monkeypatc
         return {
             "summary_counts": dict(tensor_count=4, wire_bytes=1, changed_bytes=13, canonical_bytes=13),
             "manifest_sha256": "test",
+            "manifest_path": "/publication/manifest.json",
+            "stream_id": "test-stream",
             "base_version": 0,
+            "target_version": 1,
+            "plan_digest": "plan",
             "producer_summary_metrics": {},
         }
 

@@ -143,6 +143,9 @@ class UpdateWeightFromGpuDelta(WeightTransferProtocol):
         # always export. Checkpoint capture and training sync share rollout_id.
         self._source_step = rollout_id if rollout_id is not None else object()
         initial_sync = not self._baseline_captured
+        self._initial_sync = initial_sync
+        self._completed_activation = None
+        self._recovery_resumed_receipts = []
         if initial_sync:
             self._capture_baseline(iter_buckets)
             # A resumed trainer can differ from the immutable HF base. Publish
@@ -601,6 +604,7 @@ class UpdateWeightFromGpuDelta(WeightTransferProtocol):
             if isinstance(result, BaseException):
                 raise result
             receipts.extend(gpu_delta_session._receipts(result))
+        self._recovery_resumed_receipts = receipts
         logger.info(
             "[gpu delta recovery] %s",
             gpu_delta_publication.canonical_json(
@@ -704,6 +708,17 @@ class UpdateWeightFromGpuDelta(WeightTransferProtocol):
 
     def finalize(self, weight_version):
         publication = self.publish()
+        self._completed_publication = {
+            key: publication[key]
+            for key in (
+                "manifest_path",
+                "manifest_sha256",
+                "stream_id",
+                "base_version",
+                "target_version",
+                "plan_digest",
+            )
+        }
         incarnations = self._incarnations()
         ordinary = tuple(
             engine_id
@@ -723,6 +738,7 @@ class UpdateWeightFromGpuDelta(WeightTransferProtocol):
 
         def settle():
             result = future.result()
+            self._completed_activation = result
             logger.info(
                 "[gpu delta activation] %s",
                 gpu_delta_publication.canonical_json(

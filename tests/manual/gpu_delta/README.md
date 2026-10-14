@@ -255,6 +255,16 @@ span. Diagnostic benchmarks may collect the local values after their timed span;
 these fields add no collective or training-metric reduction. The manifest uses
 sorted orjson serialization, while canonical plan-digest JSON remains unchanged.
 
+## Completed-update evidence
+
+The driver writes `monitoring-success.json` in each publication directory after
+all engines resume and the existing trainer barrier completes. The bounded
+record contains the original publication identity, participant receipts, native
+rollout ID and completed metrics; it makes no new receiver calls or collectives.
+Creation is exclusive and limited to 1 MiB. A logging, serialization or storage
+failure is reported without retrying the committed XOR update. The record is
+completion evidence, not an independent numerical or rollout-quality oracle.
+
 ## Training metrics
 
 Successful actor weight updates publish `perf/gpu_delta/*` through the existing
