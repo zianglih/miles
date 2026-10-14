@@ -336,3 +336,26 @@ def test_failed_update_is_not_reported_and_tracking_failure_cannot_retry_a_compl
     assert result == 1
     assert updater.pop_metrics() == {}
     assert "Tracking failed for completed GPU-delta target version 1" in caplog.text
+
+
+def test_kernel_preparation_and_metadata_require_complete_rank_coverage():
+    activation = _activation()
+    for receipt in activation["resumed_receipts"]:
+        receipt["result"]["timings"].update(
+            apply_kernel_cache_misses=0,
+            apply_kernel_cache_reused=1,
+            apply_descriptor_h2d_bytes=128,
+            apply_metadata_h2d_bytes=512,
+        )
+    result = metrics.activation_metrics(activation)
+    prefix = "perf/gpu_delta/receiver_"
+    assert result[prefix + "host_apply_kernel_prepare_s/max"] == 4
+    assert result[prefix + "apply_kernel_cache_misses/max"] == 0
+    assert result[prefix + "apply_kernel_cache_reused/min"] == 1
+    assert result[prefix + "apply_descriptor_h2d_bytes/max"] == 128
+    assert result[prefix + "apply_metadata_h2d_bytes/max"] == 512
+    # An older/missing rank cannot be silently reported as a zero module-cache miss count.
+    del activation["resumed_receipts"][0]["result"]["timings"]["apply_kernel_cache_misses"]
+    result = metrics.activation_metrics(activation)
+    assert prefix + "apply_kernel_cache_misses/max" not in result
+    assert result[prefix + "apply_kernel_cache_reused/min"] == 1

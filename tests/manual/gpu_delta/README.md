@@ -281,8 +281,13 @@ producer prefixes reuse the existing owner gather.
   before pause, including small metadata preparation and its own stream waits.
   `receiver_host_metadata_prepare_s`/`receiver_host_metadata_wait_s` expose those
   nested spans. `receiver_paused_setup_host_s` includes decoded allocation,
-  pointer uploads and cold kernel work; `receiver_paused_apply_tune_s` isolates
-  tuning. Other `receiver_host_*` summaries retain their source span names.
+  pointer uploads and binding; kernel preparation happens before the pause.
+  `receiver_host_apply_kernel_prepare_s` includes the fixed-family cache lookup or
+  first compilation/loading. `receiver_apply_kernel_cache_misses` counts module
+  warmup requests, not guaranteed compiler invocations; a request can load a disk
+  binary. `receiver_apply_kernel_cache_reused` identifies a cache hit.
+  `receiver_apply_descriptor_h2d_bytes` is included in total apply metadata bytes.
+  Other `receiver_host_*` summaries retain their source span names.
 - `creator_host_encoded_cache_*` samples the one encoded-cache creator per
   engine-host, excluding reusers' zero counters. `host_encoded_cache_creators`
   records coverage. `read_hash_s` is elapsed submission/join wall time for parallel
@@ -318,7 +323,7 @@ producer prefixes reuse the existing owner gather.
 - `receiver_decoded_buffers`, `receiver_decoded_scratch_bytes` and
   `receiver_decoder_workspace_bytes` report per-rank prepared capacities, not peak
   HBM. Decoded scratch is the total of both paused slots. Batch, layer-count,
-  gap-zeroing and tuning counters retain their source names. These optional rank
+  gap-zeroing and kernel-cache counters retain their source names. These optional rank
   summaries use `{min,p50,max}` only when all ranks provide the field; GPU capacities
   are not summed as shared host storage.
 - `engine_coordinator_{prepare,apply,resume,activation}_s/{min,p50,max}` reports

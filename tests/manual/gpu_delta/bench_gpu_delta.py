@@ -984,6 +984,25 @@ def _compare(left, right):
     return {"status": "PASS" if all(row["exact"] for row in rows) else "FAILED", "routes": rows}
 
 
+def _apply_metrics(timings):
+    """Optional kernel/setup measurements; old receipts remain unmeasured."""
+    fields = {
+        "kernel_prepare_s": "host_apply_kernel_prepare_s",
+        "kernel_cache_misses": "apply_kernel_cache_misses",
+        "kernel_cache_reused": "apply_kernel_cache_reused",
+        "setup_s": "paused_setup_host_s",
+        "apply_host_s": "paused_apply_host_wall_s",
+        "descriptor_h2d_bytes": "apply_descriptor_h2d_bytes",
+        "apply_metadata_h2d_bytes": "apply_metadata_h2d_bytes",
+    }
+    result = {name: _seconds(timings[field]) if field in timings else None for name, field in fields.items()}
+    # Three fixed kernel families can each miss once; reuse is a boolean counter.
+    for name, allowed in (("kernel_cache_misses", (0, 1, 2, 3)), ("kernel_cache_reused", (0, 1))):
+        if result[name] is not None and result[name] not in allowed:
+            raise ValueError(f"Invalid per-update kernel counter: {name}")
+    return result
+
+
 def _rank_rows(update, publication, identities):
     receipt = update["receipt"]
     stages = []
@@ -1022,10 +1041,16 @@ def _rank_rows(update, publication, identities):
                 "plain_copy_s": _seconds(metrics["host_rank_encoded_copy_s"]),
                 "de_stream_cuda_s": _seconds(cuda["decode"]) / 1000 if cuda is not None else None,
                 "matrix_apply_cuda_s": _seconds(cuda["layout_apply"]) / 1000 if cuda is not None else None,
+                "gpu_pipeline_s": (
+                    _seconds(cuda["paused_gpu_pipeline"]) / 1000
+                    if cuda is not None and "paused_gpu_pipeline" in cuda
+                    else None
+                ),
                 "prepare_s": _seconds(metrics["host_prepare_s"]),
                 "pause_s": pause,
                 "skip_payload_hash": metrics["host_encoded_cache_skip_payload_hash"],
                 "receipt": resumed,
+                **_apply_metrics(metrics),
             }
         )
     return sorted(rows, key=lambda row: (row["identity"]["engine_id"], row["identity"]["dp_rank"]))
@@ -1117,18 +1142,14 @@ def _markdown(summary):
     lines = [
         "# GPU delta end-to-end benchmark",
         "",
-        f"Status: **{summary['status']}**. "
-        "Every arm's final selected text, token IDs and full input/output logprobs are compared with one "
-        "independently loaded target checkpoint on every route; see `comparison.json`.",
+        f"Status: **{summary['status']}**. Every arm's final selected text, token IDs and full input/output logprobs are compared with one independently loaded target checkpoint on every route; see `comparison.json`.",
         "",
         "One row per arm/version, including the first update. SHA on/off controls both sender payload "
         "hashing and receiver verification; manifest SHA remains enabled. Versions are cumulative synthetic "
         "targets, not learned updates or statistical repeats. Selected outputs do not prove every weight byte. "
         "Startup and oracle generation are outside the update timings.",
         "",
-        f"Prepared inputs: `{summary['inputs']['path']}`; reused: {summary['inputs']['reused']}. "
-        "Input construction is shared across all arms and excluded from compression measurements; "
-        "its metadata remains in `inputs.json`.",
+        f"Prepared inputs: `{summary['inputs']['path']}`; reused: {summary['inputs']['reused']}. Input construction is shared across all arms and excluded from compression measurements; its metadata remains in `inputs.json`.",
         "",
     ]
     lines += _report_table(
@@ -1181,6 +1202,42 @@ def _markdown(summary):
         "CPU outer decode/plain copy, DE stream, matrix apply and coordinator time. Components overlap; "
         "CUDA intervals include wrapper/launch gaps and are not pure hardware busy time. Unavailable "
         "measurements are unmeasured. The table rounds values to three decimal places.",
+        "",
+    ]
+    lines += _report_table(
+        [
+            "Codec",
+            "Version",
+            "Kernel prepare ms",
+            "Kernel cache misses/rank",
+            "Paused setup ms",
+            "Apply wall ms",
+            "Layout CUDA ms",
+            "GPU pipeline ms",
+            "Descriptor KiB",
+            "Apply metadata KiB",
+        ],
+        (
+            [
+                arm["codec"],
+                row["version"],
+                _format(row["receiver_max"]["kernel_prepare_s"], scale=1000),
+                _format(row["receiver_max"]["kernel_cache_misses"]),
+                _format(row["receiver_max"]["setup_s"], scale=1000),
+                _format(row["receiver_max"]["apply_host_s"], scale=1000),
+                _format(row["receiver_max"]["matrix_apply_cuda_s"], scale=1000),
+                _format(row["receiver_max"]["gpu_pipeline_s"], scale=1000),
+                _format(row["receiver_max"]["descriptor_h2d_bytes"], scale=1 / 1024),
+                _format(row["receiver_max"]["apply_metadata_h2d_bytes"], scale=1 / 1024),
+            ]
+            for arm, row in versions
+        ),
+    )
+    lines += [
+        "Kernel preparation occurs before the serving pause and includes the cached kernel lookup or first "
+        "compilation/loading. Cache misses count per-process module warmup requests per update; a request may compile or load a disk-cached binary. Missing counters in older "
+        "receipts remain unmeasured. Descriptor bytes are included in total apply metadata bytes. Each cell is "
+        "an independent rank maximum; nested host spans and overlapping CUDA events must not be added.",
         "",
     ]
     return "\n".join(lines) + "\n"
@@ -1244,8 +1301,16 @@ def _arm_report(output, arm, oracle_records):
                         "plain_copy_s",
                         "de_stream_cuda_s",
                         "matrix_apply_cuda_s",
+                        "gpu_pipeline_s",
                         "prepare_s",
                         "pause_s",
+                        "kernel_prepare_s",
+                        "kernel_cache_misses",
+                        "kernel_cache_reused",
+                        "setup_s",
+                        "apply_host_s",
+                        "descriptor_h2d_bytes",
+                        "apply_metadata_h2d_bytes",
                     )
                 },
                 "ranks": ranks,

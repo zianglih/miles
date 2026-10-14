@@ -28,7 +28,7 @@ _RANK_TIMINGS = (
     "host_metadata_prepare_s",
     "host_metadata_wait_s",
     "paused_setup_host_s",
-    "paused_apply_tune_s",
+    "host_apply_kernel_prepare_s",
     "host_matrix_enqueue_s",
     "host_apply_completion_wait_s",
 )
@@ -60,10 +60,9 @@ _RANK_COUNTERS = (
     "apply_metadata_h2d_bytes",
     "decoded_zero_ranges",
     "decoded_zero_bytes",
-    "apply_tuned_batches",
-    "apply_tune_cache_hits",
-    "apply_tune_skipped_batches",
-    "apply_tune_bytes",
+    "apply_kernel_cache_misses",
+    "apply_kernel_cache_reused",
+    "apply_descriptor_h2d_bytes",
 )
 _RANK_WORK_TOTALS = (
     "host_rank_outer_zstd_encoded_bytes",
@@ -159,7 +158,7 @@ def log_completed_update(args, metrics, rollout_id, is_primary_rank):
     if not is_primary_rank:
         return
     if rollout_id is None:
-        # An opt-in initial delta precedes any trained rollout. Report it without
+        # An initial delta precedes any trained rollout. Report it without
         # assigning an invented rollout step to the tracking series.
         logger.info("GPU-delta initial sync completed before the first rollout: %s", metrics)
         return
