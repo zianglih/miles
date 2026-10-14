@@ -19,6 +19,7 @@ def _updater(monkeypatch, requires_export):
     protocol.finalize.return_value = None
     protocol.pop_metrics.return_value = {"perf/update_weights_gpu_delta_s": 1.0}
     updater.protocol = protocol
+    updater._receiver_pools = updater_module.ReceiverPools()
     updater.weight_version = 3
     updater.is_lora = False
     updater.args = SimpleNamespace(check_lora_weight_equal=False)

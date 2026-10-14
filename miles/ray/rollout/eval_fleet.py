@@ -68,6 +68,16 @@ class RolloutExecutorEvalFleet:
             raise EvalSkip(skip_reason)
         return self._state
 
+    async def current(self, weight_version: str) -> GenerateState:
+        """Use the synchronized fleet only after every engine confirms its version."""
+        try:
+            pin = await self._inference_controller.check_eval_fleet_version(weight_version=weight_version)
+        except UNREACHABLE_CONTROLLER_ERRORS as e:
+            raise EvalSkip("controller_unreachable") from e
+        if pin.skip_reason is not None:
+            raise EvalSkip(pin.skip_reason)
+        return self._state
+
 
 class InferenceControllerEvalFleet:
     """The dedicated in-job eval engines (``--eval-num-gpus``)."""
@@ -98,6 +108,21 @@ class InferenceControllerEvalFleet:
             logger.warning(f"Eval router not ready: {e}")
             return EvalFleetPin(skip_reason="unhealthy")
 
+        return EvalFleetPin(skip_reason=None)
+
+    async def check_version(self, weight_version: str) -> EvalFleetPin:
+        """Read every current engine's version; never reload or retry a committed delta."""
+        try:
+            versions = await asyncio.wait_for(
+                asyncio.gather(*[client.get_weight_version() for client in await self._fleet_api_clients()]),
+                timeout=EVAL_WEIGHT_LOAD_TIMEOUT_SECS,
+            )
+            if not versions or any(str(version) != weight_version for version in versions):
+                return EvalFleetPin(skip_reason="pin_violation")
+            await self._wait_router_ready()
+        except Exception as e:
+            logger.warning(f"Synchronized eval fleet is not ready: {e}")
+            return EvalFleetPin(skip_reason="unhealthy")
         return EvalFleetPin(skip_reason=None)
 
     async def _pin_fleet(self, checkpoint_dir: str, weight_version: str, *, retries: int = 2) -> bool:

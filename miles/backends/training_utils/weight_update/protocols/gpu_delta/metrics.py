@@ -153,7 +153,7 @@ def producer_metrics(owners):
     return metrics
 
 
-def log_completed_update(args, metrics, rollout_id, is_primary_rank):
+def log_completed_update(args, metrics, rollout_id, is_primary_rank, receiver_pool="rollout"):
     """Log completed metrics, including a final update with no subsequent train call."""
     if not is_primary_rank:
         return
@@ -162,8 +162,9 @@ def log_completed_update(args, metrics, rollout_id, is_primary_rank):
         # assigning an invented rollout step to the tracking series.
         logger.info("GPU-delta initial sync completed before the first rollout: %s", metrics)
         return
+    pool_metrics = {f"eval/{key}": value for key, value in metrics.items()} if receiver_pool == "eval" else metrics
     log_dict, step_key = namespace_metrics(
-        metrics,
+        pool_metrics,
         trainer_model_id=args.trainer_model_id,
         step_name="rollout/step",
         step=compute_rollout_step(args, rollout_id),

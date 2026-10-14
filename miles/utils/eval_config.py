@@ -4,6 +4,17 @@ from collections.abc import Iterable
 from dataclasses import dataclass, field
 from typing import Any
 
+from miles.backends.training_utils.weight_update.capabilities import supports_receiver_pools
+
+
+def uses_synced_eval(args) -> bool:
+    """Select live eval sync only when its protocol supports independent receiver pools."""
+    return (
+        supports_receiver_pools(getattr(args, "update_weight_transfer_mode", None))
+        and getattr(args, "eval_num_gpus", 0) > 0
+    )
+
+
 _MISSING = object()
 
 # TODO: This is ugly, temporarily leave this. We should unify all the config name for dataset, default, and args. (advice from Tom.)

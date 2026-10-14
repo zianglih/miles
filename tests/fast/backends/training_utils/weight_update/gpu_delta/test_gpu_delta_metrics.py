@@ -7,7 +7,7 @@ import sys
 from argparse import Namespace
 from contextlib import nullcontext
 from pathlib import Path
-from types import SimpleNamespace
+from types import MethodType, SimpleNamespace
 from unittest.mock import Mock
 
 import pytest
@@ -200,8 +200,13 @@ def actor_update(monkeypatch):
     """Execute the exact actor entry point without importing native Megatron."""
     source = Path(gpu_delta.__file__).parents[4] / "megatron_utils" / "actor.py"
     actor = next(node for node in ast.parse(source.read_text()).body if isinstance(node, ast.ClassDef))
-    method = next(node for node in actor.body if isinstance(node, ast.FunctionDef) and node.name == "update_weights")
-    method.decorator_list = []
+    methods = [
+        node
+        for node in actor.body
+        if isinstance(node, ast.FunctionDef) and node.name in {"update_weights", "_update_receiver_weights"}
+    ]
+    for method in methods:
+        method.decorator_list = []
     parallel = SimpleNamespace(
         tp=SimpleNamespace(rank=0), is_pp_last_stage=True, effective_dp_cp=SimpleNamespace(rank=0)
     )
@@ -212,7 +217,7 @@ def actor_update(monkeypatch):
         "get_parallel_state": lambda: parallel,
         "log_completed_update": metrics.log_completed_update,
     }
-    exec(compile(ast.Module(body=[method], type_ignores=[]), str(source), "exec"), namespace)
+    exec(compile(ast.Module(body=methods, type_ignores=[]), str(source), "exec"), namespace)
 
     def run(mode="gpu-delta", rollout_id=7, primary=True, update_error=None, completed_metrics=None):
         parallel.is_pp_last_stage = primary
@@ -252,6 +257,8 @@ def actor_update(monkeypatch):
         updater.args = args
         updater.conn_status = SimpleNamespace(needs_reconnect=lambda _: False)
         updater.weight_version = 0
+        updater._receiver_pools = updater_module.ReceiverPools()
+        updater._registered_adapters = set()
         updater.is_lora = False
         updater.weights_getter = lambda: {}
         updater._hf_weight_iterator = SimpleNamespace(iter_hf_weights=lambda *args, **kwargs: [])
@@ -265,8 +272,9 @@ def actor_update(monkeypatch):
             _last_rollout_id=rollout_id,
             _heartbeat=SimpleNamespace(bump=lambda: None),
         )
+        instance._update_receiver_weights = MethodType(namespace["_update_receiver_weights"], instance)
         result = namespace["update_weights"](
-            instance, SimpleNamespace(rollout_engines=[], snapshot_cell_id_to_hashes={})
+            instance, SimpleNamespace(rollout_engines=[], snapshot_cell_id_to_hashes={}, receiver_pool="rollout")
         )
         return result, updater
 
@@ -359,3 +367,25 @@ def test_kernel_preparation_and_metadata_require_complete_rank_coverage():
     result = metrics.activation_metrics(activation)
     assert prefix + "apply_kernel_cache_misses/max" not in result
     assert result[prefix + "apply_kernel_cache_reused/min"] == 1
+
+
+def test_eval_metrics_do_not_collide_with_rollout_at_same_training_step(monkeypatch):
+    args = Namespace(
+        trainer_model_id="actor",
+        wandb_always_use_train_step=True,
+        rollout_batch_size=16,
+        n_samples_per_prompt=4,
+        global_batch_size=8,
+    )
+    submit = Mock()
+    monkeypatch.setattr(metrics.tracking, "log", submit)
+    completed = {"perf/update_weights_gpu_delta_s": 2.0}
+    metrics.log_completed_update(args, completed, 3, True)
+    metrics.log_completed_update(args, completed, 3, True, receiver_pool="eval")
+    rollout, evaluation = [call.args[1] for call in submit.call_args_list]
+    assert rollout["actor/perf/update_weights_gpu_delta_s"] == 2.0
+    assert "actor/eval/perf/update_weights_gpu_delta_s" not in rollout
+    assert evaluation["actor/eval/perf/update_weights_gpu_delta_s"] == 2.0
+    assert "actor/perf/update_weights_gpu_delta_s" not in evaluation
+    assert rollout["actor/rollout/step"] == evaluation["actor/rollout/step"]
+    assert completed == {"perf/update_weights_gpu_delta_s": 2.0}

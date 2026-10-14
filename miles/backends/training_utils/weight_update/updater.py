@@ -22,6 +22,7 @@ from miles.backends.training_utils.weight_update.conn_status import ConnStatusMa
 from miles.backends.training_utils.weight_update.protocol import get_weight_transfer_protocol
 from miles.backends.training_utils.weight_update.protocols.gpu_delta.evidence import record_completed_update
 from miles.backends.training_utils.weight_update.protocols.gpu_delta.protocol import UpdateWeightFromGpuDelta
+from miles.backends.training_utils.weight_update.receiver_pool import ReceiverPools
 from miles.backends.training_utils.weight_update.session import (
     begin_weight_update,
     end_weight_update,
@@ -70,16 +71,26 @@ class WeightUpdater:
             model_name=model_name,
             quantization_config=quantization_config,
         )
-        if isinstance(self.protocol, UpdateWeightFromGpuDelta):
-            self._hf_weight_iterator.local_consumer = self.protocol.send_bucket
-            self._hf_weight_iterator.local_error_consumer = self.protocol.record_export_error
+        self._bind_protocol_iterator()
         self.weights_getter = weights_getter
         self.weight_version = 0
+        self._receiver_pools = ReceiverPools()
         self.is_lora = is_lora
         if is_lora:
             assert lora_sync_config is not None
         self._lora_sync_config = lora_sync_config
         self._registered_adapters: set[str] = set()
+
+    def _bind_protocol_iterator(self):
+        if isinstance(self.protocol, UpdateWeightFromGpuDelta):
+            self._hf_weight_iterator.local_consumer = self.protocol.send_bucket
+            self._hf_weight_iterator.local_error_consumer = self.protocol.record_export_error
+
+    def receiver_pool(self, pool_id: str):
+        return self._receiver_pools.activate(self, pool_id)
+
+    def mark_trainer_stale(self) -> None:
+        self._receiver_pools.mark_trainer_stale(self)
 
     def connect_rollout_engines(
         self,
@@ -196,7 +207,7 @@ class WeightUpdater:
         protocol.after_engines_resumed()
         if isinstance(protocol, UpdateWeightFromGpuDelta):
             if driver:
-                record_completed_update(protocol, rollout_id=rollout_id)
+                record_completed_update(protocol, rollout_id=rollout_id, pool_id=self._receiver_pools.active)
             return protocol.pop_metrics()
 
     def _iter_base_buckets(self, *, materialize: bool):

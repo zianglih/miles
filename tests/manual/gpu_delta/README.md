@@ -100,6 +100,21 @@ data, raw scalar/vector replacements and alignment padding, excluding the JSON
 manifest. It reuses the existing owner gather; no codec-specific metric, additional
 payload scan, collective or CUDA synchronization is required.
 
+## Dedicated eval synchronization
+
+With `--update-weight-transfer-mode gpu-delta` and dedicated eval GPUs, each
+receiver pool keeps its own protocol, baseline, connection and transfer version.
+Eval synchronization blocks until its receivers have applied and resumed, then
+the eval executor checks that pool's version before generation. It uses live
+trainer weights without exporting an HF checkpoint or requiring snapshot-save
+cadence. Rollout and eval updates remain serialized; existing engine launch
+settings are unchanged. Eval completion metrics use an `eval/` prefix in the
+trainer namespace.
+
+The shared eval and receiver-pool interfaces admit protocols through one capability
+query. GPU-delta currently provides that capability; disk-delta keeps its existing
+snapshot-based eval path.
+
 ## Recovery and checkpoint companions
 
 Each trainer owner keeps an immutable copy of its canonical HF-base bytes in

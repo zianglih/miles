@@ -242,6 +242,7 @@ def test_update_weights_only_uses_temporary_process_groups_when_asleep(actor_mod
     worker._asleep = asleep
     worker._heartbeat = Mock()
     worker.weight_updater = Mock()
+    worker.weight_updater.receiver_pool.side_effect = lambda _pool: nullcontext()
     worker.weight_updater.conn_status = Mock(spec=ConnStatusManager)
     worker.weight_updater.conn_status.needs_reconnect.return_value = False
     info = UpdatableEngines(
@@ -703,6 +704,12 @@ class _RecordingWeightUpdater:
         self.connect_calls: list[dict[str, Any]] = []
         self.update_weights_calls: int = 0
         self.weight_version: int = 0
+
+    def receiver_pool(self, _pool: str):
+        return nullcontext()
+
+    def mark_trainer_stale(self) -> None:
+        self.conn_status.mark_trainer_stale()
 
     def connect_rollout_engines(
         self,
