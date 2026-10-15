@@ -84,18 +84,20 @@ class NvcompCompressor:
         if status:
             raise RuntimeError(f"nvCOMP {self.codec} compression failed: status={status}")
 
-    def _allocation_sizes(self, count, maximum, total):
+    def _temporary_bytes(self, count, maximum, total):
         key = count, maximum, total
-        if key in self._size_cache:
-            return self._size_cache[key]
-        bound, temporary = ctypes.c_size_t(), ctypes.c_size_t()
-        self._check(self._bound(maximum, self._options, ctypes.byref(bound)))
-        self._check(self._temporary(count, maximum, self._options, ctypes.byref(temporary), total))
-        alignment = self._alignments.output
-        stride = (bound.value + alignment - 1) // alignment * alignment
-        result = stride, temporary.value
-        self._size_cache[key] = result
-        return result
+        if key not in self._size_cache:
+            temporary = ctypes.c_size_t()
+            self._check(self._temporary(count, maximum, self._options, ctypes.byref(temporary), total))
+            self._size_cache[key] = temporary.value
+        return self._size_cache[key]
+
+    def _output_bound(self, length):
+        if length not in self._bound_cache:
+            bound = ctypes.c_size_t()
+            self._check(self._bound(length, self._options, ctypes.byref(bound)))
+            self._bound_cache[length] = bound.value
+        return self._bound_cache[length]
 
     def compress(
         self, frames: list[torch.Tensor], stream: torch.cuda.Stream, compact_outputs=False
@@ -117,11 +119,7 @@ class NvcompCompressor:
     def _compact_outputs(self, lengths):
         offsets, total = [], 0
         for length in lengths:
-            if length not in self._bound_cache:
-                bound = ctypes.c_size_t()
-                self._check(self._bound(length, self._options, ctypes.byref(bound)))
-                self._bound_cache[length] = bound.value
-            size = self._bound_cache[length]
+            size = self._output_bound(length)
             total = (total + self._alignments.output - 1) // self._alignments.output * self._alignments.output
             offsets.append((total, size))
             total += size
@@ -135,7 +133,8 @@ class NvcompCompressor:
         if not count:
             return CompressionBatch([], sizes, statuses, ())
         lengths = [frame.numel() for frame in frames]
-        stride, temporary_bytes = self._allocation_sizes(count, max(lengths), sum(lengths))
+        maximum = max(lengths)
+        temporary_bytes = self._temporary_bytes(count, maximum, sum(lengths))
         # One output allocation avoids per-frame allocator traffic. Rounded
         # strides preserve the independently queried nvCOMP output alignment.
         if compact_outputs:
@@ -143,6 +142,8 @@ class NvcompCompressor:
             # maximum bound for every tiny tensor can waste model-sized HBM.
             output, outputs = self._compact_outputs(lengths)
         else:
+            alignment = self._alignments.output
+            stride = (self._output_bound(maximum) + alignment - 1) // alignment * alignment
             output = torch.empty((count, stride), dtype=torch.uint8, device=self.device)
             outputs = list(output.unbind())
         temporary = torch.empty(temporary_bytes, dtype=torch.uint8, device=self.device)
@@ -156,7 +157,7 @@ class NvcompCompressor:
                 self._compress(
                     device_parameters[0].data_ptr(),
                     device_parameters[1].data_ptr(),
-                    max(lengths),
+                    maximum,
                     count,
                     temporary.data_ptr(),
                     temporary_bytes,

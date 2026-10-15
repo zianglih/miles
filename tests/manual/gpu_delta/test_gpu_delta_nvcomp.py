@@ -26,7 +26,7 @@ def qualify(codec, device):
     with torch.cuda.stream(stream):
         inputs = [torch.from_numpy(item).to(device) for item in raw]
         first = compressor.compress(inputs, stream)
-        second = compressor.compress(inputs[::-1], stream)
+        second = compressor.compress(inputs[::-1], stream, compact_outputs=True)
         ready = torch.cuda.Event()
         ready.record(stream)
     del inputs
