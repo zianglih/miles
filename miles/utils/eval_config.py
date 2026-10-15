@@ -9,10 +9,7 @@ from miles.backends.training_utils.weight_update.capabilities import supports_re
 
 def uses_synced_eval(args) -> bool:
     """Select live eval sync only when its protocol supports independent receiver pools."""
-    return (
-        supports_receiver_pools(getattr(args, "update_weight_transfer_mode", None))
-        and getattr(args, "eval_num_gpus", 0) > 0
-    )
+    return supports_receiver_pools(args.update_weight_transfer_mode) and args.eval_num_gpus > 0
 
 
 _MISSING = object()

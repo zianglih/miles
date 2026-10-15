@@ -21,6 +21,9 @@ class ReceiverPools:
                 raise ValueError("Separate eval synchronization requires a protocol with receiver-pool support")
             yield
             return
+        if pool_id == self.active:
+            yield
+            return
         previous = self.active
         self._save(updater)
         if pool_id not in self._states:

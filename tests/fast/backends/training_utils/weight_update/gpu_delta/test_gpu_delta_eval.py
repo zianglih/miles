@@ -40,9 +40,14 @@ def make_updater(monkeypatch):
 
 def test_eval_and_rollout_keep_independent_committed_state(monkeypatch):
     updater, created = make_updater(monkeypatch)
+    bind_iterator = Mock(wraps=updater._bind_protocol_iterator)
+    monkeypatch.setattr(updater, "_bind_protocol_iterator", bind_iterator)
     rollout_protocol, rollout_connection = updater.protocol, updater.conn_status
     rollout_protocol.pop_metrics.return_value = {"rollout": 1}
     rollout_connection.mark_reconnected({"rollout": "incarnation-1"})
+    with updater.receiver_pool("rollout"):
+        assert updater.protocol is rollout_protocol
+    bind_iterator.assert_not_called()
     with updater.receiver_pool("eval"):
         assert updater.protocol is not rollout_protocol
         updater.protocol.pop_metrics.return_value = {"eval": 2}
@@ -54,6 +59,9 @@ def test_eval_and_rollout_keep_independent_committed_state(monkeypatch):
         updater.conn_status.mark_reconnected({"eval": "incarnation-1"})
         updater.weight_version = 1
         assert updater._hf_weight_iterator.local_consumer == updater.protocol.send_bucket
+        with updater.receiver_pool("eval"):
+            assert updater.weight_version == 1
+        bind_iterator.assert_called_once_with()
     assert updater.protocol is rollout_protocol
     assert updater.pop_metrics() == {"rollout": 1}
     assert updater.conn_status is rollout_connection
@@ -62,6 +70,7 @@ def test_eval_and_rollout_keep_independent_committed_state(monkeypatch):
     assert updater._hf_weight_iterator.local_consumer == rollout_protocol.send_bucket
     with updater.receiver_pool("rollout"):
         updater.weight_version = 5
+    assert bind_iterator.call_count == 2
     with updater.receiver_pool("eval"):
         assert updater.protocol is created[0]
         assert updater.weight_version == 1
@@ -77,8 +86,9 @@ def test_failed_eval_restores_active_rollout_without_rolling_back_committed_eval
     original = updater.protocol
     with pytest.raises(RuntimeError, match="post-commit"):
         with updater.receiver_pool("eval"):
-            updater.weight_version = 2
-            raise RuntimeError("post-commit")
+            with updater.receiver_pool("eval"):
+                updater.weight_version = 2
+                raise RuntimeError("post-commit")
     assert updater.protocol is original
     assert updater.weight_version == 4
     with updater.receiver_pool("eval"):
@@ -174,6 +184,7 @@ async def test_current_eval_checks_every_engine_without_loading_weights(versions
     fleet._wait_router_ready = AsyncMock()
     result = await fleet.check_version("2")
     assert result.skip_reason == reason
+    fleet._fleet_api_clients.assert_awaited_once_with()
     for client in clients:
         client.get_weight_version.assert_awaited_once()
         client.update_weights_from_disk.assert_not_awaited()

@@ -113,10 +113,7 @@ class InferenceControllerEvalFleet:
     async def check_version(self, weight_version: str) -> EvalFleetPin:
         """Read every current engine's version; never reload or retry a committed delta."""
         try:
-            versions = await asyncio.wait_for(
-                asyncio.gather(*[client.get_weight_version() for client in await self._fleet_api_clients()]),
-                timeout=EVAL_WEIGHT_LOAD_TIMEOUT_SECS,
-            )
+            versions = await self._weight_versions()
             if not versions or any(str(version) != weight_version for version in versions):
                 return EvalFleetPin(skip_reason="pin_violation")
             await self._wait_router_ready()
@@ -142,10 +139,7 @@ class InferenceControllerEvalFleet:
                     ),
                     timeout=EVAL_WEIGHT_LOAD_TIMEOUT_SECS,
                 )
-                versions = await asyncio.wait_for(
-                    asyncio.gather(*[client.get_weight_version() for client in await self._fleet_api_clients()]),
-                    timeout=EVAL_WEIGHT_LOAD_TIMEOUT_SECS,
-                )
+                versions = await self._weight_versions()
             except Exception as e:
                 logger.warning(f"Weight pin to {checkpoint_dir} failed (attempt {attempt + 1}/{retries}): {e}")
                 continue
@@ -153,6 +147,12 @@ class InferenceControllerEvalFleet:
                 return True
         logger.warning(f"Failed to pin weight_version={weight_version} to {checkpoint_dir} (got {versions})")
         return False
+
+    async def _weight_versions(self):
+        return await asyncio.wait_for(
+            asyncio.gather(*[client.get_weight_version() for client in await self._fleet_api_clients()]),
+            timeout=EVAL_WEIGHT_LOAD_TIMEOUT_SECS,
+        )
 
     async def _fleet_api_clients(self) -> list[SGLangApiClient]:
         async with self._srv.context_lock:

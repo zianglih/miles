@@ -239,6 +239,7 @@ class InferenceController:
                 engine_gpu_counts=[],
                 engine_gpu_offsets=[],
                 snapshot_cell_id_to_hashes={},
+                receiver_pool=receiver_pool,
             )
 
         return UpdatableEngines(
