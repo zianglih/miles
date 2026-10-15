@@ -13,6 +13,13 @@ ownership stays in `miles.backends.megatron_utils.update_weight.gpu_delta`.
 Feature-only fast tests use matching `gpu_delta/` subdirectories, while the manual
 benchmarks remain in this directory.
 
+Fast tests are grouped by behavior: baseline/export/checkpoint ownership,
+publication validation, session/API lifecycle, metrics, and dedicated eval
+synchronization. Eval dispatch, version checks and independent receiver pools
+share `test_gpu_delta_eval.py`. Shared disk-delta engine calls and rollout
+restart actions are covered in their existing shared test suites. The manual
+encoder, nvCOMP and recovery tests remain separate GPU harnesses.
+
 ## Environment
 
 Use a CUDA 13 Miles development image, the paired SGLang branch on `PYTHONPATH`,

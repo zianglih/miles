@@ -4,6 +4,7 @@ import asyncio
 import copy
 
 import pytest
+from tests.fast.backends.sglang_utils import test_sglang_api_client
 
 from miles.backends.training_utils.weight_update.protocols.gpu_delta import session
 from miles.utils.gpu_delta.publication import CODECS
@@ -225,3 +226,36 @@ def test_bounded_wait_cancels_inflight_status_requests():
     with pytest.raises(asyncio.TimeoutError):
         asyncio.run(session._wait_prepared(clients[0], session_id="s", timeout=0.01))
     assert events == [(0, "status_cancelled")]
+
+
+client = test_sglang_api_client.client
+recorder = test_sglang_api_client.recorder
+
+
+@pytest.mark.parametrize(
+    "one_shot,options,policy",
+    [
+        pytest.param(False, {}, (True, False), id="staged-defaults"),
+        pytest.param(False, {"flush_cache": False}, (False, False), id="staged-no-flush"),
+        pytest.param(False, {"abort_all_requests": True}, (True, True), id="staged-abort"),
+        pytest.param(True, {}, (True, False), id="one-shot-defaults"),
+        pytest.param(True, {"release_state": False}, (True, False), id="one-shot-retain-state"),
+        pytest.param(True, {"flush_cache": False}, (False, False), id="one-shot-no-flush"),
+        pytest.param(True, {"abort_all_requests": True}, (True, True), id="one-shot-abort"),
+    ],
+)
+async def test_gpu_delta_request_lifetime_and_cache_policy(client, recorder, one_shot, options, policy):
+    expected = {"flush_cache": policy[0], "abort_all_requests": policy[1]}
+    if one_shot:
+        await client.update_weights_from_gpu_delta("/checkpoint/gpu-delta/manifest.json", **options)
+        endpoint = "update_weights_from_gpu_delta"
+        expected.update(
+            manifest_path="/checkpoint/gpu-delta/manifest.json", release_state=options.get("release_state", True)
+        )
+    else:
+        await client.apply_gpu_delta("publication-1", **options)
+        endpoint = "apply_gpu_delta"
+        expected["session_id"] = "publication-1"
+    verb, url, kwargs = recorder.calls[0]
+    assert (verb, url) == ("post", f"{test_sglang_api_client.SERVER_URL}/{endpoint}")
+    assert kwargs["json"] == expected
