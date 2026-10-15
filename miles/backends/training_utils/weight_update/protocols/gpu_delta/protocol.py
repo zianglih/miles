@@ -106,6 +106,9 @@ class UpdateWeightFromGpuDelta(WeightTransferProtocol):
             for engine_id, participants in zip(self._cohort.engine_ids, self._cohort.participants, strict=True)
         }
 
+    def get_export_plan(self):
+        return self._plan
+
     def _select_codec(self, codec):
         if self._gpu_encoder is not None and self.codec == codec:
             return
@@ -279,9 +282,7 @@ class UpdateWeightFromGpuDelta(WeightTransferProtocol):
                     raise ValueError(f"Duplicate canonical tensor owner for {name!r}")
                 self._seen.add(name)
                 if self._capturing:
-                    original = self._read_baseline(
-                        name, expected_dtype=self._plan[name]["dtype"], expected_shape=tuple(tensor.shape)
-                    )
+                    original = gpu_delta_publication.read_canonical_tensor(self._read_baseline, name, self._plan[name])
                     self._snapshot[name] = torch.from_numpy(original).pin_memory()
                     continue
                 if name not in self._snapshot:

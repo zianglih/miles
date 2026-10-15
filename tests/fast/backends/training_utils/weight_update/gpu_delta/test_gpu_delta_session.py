@@ -197,6 +197,21 @@ def test_common_plan_deduplicates_replicas_and_rejects_view_conflicts_before_pre
     assert all(client.args is None for client in clients)
 
 
+@pytest.mark.parametrize("field,value", [("format", "fp8-block128-ue8m0"), ("checkpoint_dtype", "F32")])
+def test_common_plan_binds_optional_canonical_representation(field, value):
+    _, descriptions, _, _ = _setup()
+    previous, _, previous_digest = session.merge_plans(descriptions)
+    for description in descriptions:
+        for participant in description["participants"]:
+            participant["plan"]["tensors"][0][field] = value
+    plan, _, digest = session.merge_plans(descriptions)
+    assert field not in previous[0] and plan[0][field] == value and digest != previous_digest
+    del descriptions[1]["participants"][0]["plan"]["tensors"][0][field]
+    for ordered in (descriptions, descriptions[::-1]):
+        with pytest.raises(ValueError, match="Receiver canonical plans differ"):
+            session.merge_plans(ordered)
+
+
 def test_bounded_wait_cancels_inflight_status_requests():
     clients, descriptions, publication, events = _setup()
 

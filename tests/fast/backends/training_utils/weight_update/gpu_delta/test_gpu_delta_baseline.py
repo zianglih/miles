@@ -185,6 +185,32 @@ def test_checkpoint_reader_rejects_different_canonical_layout_before_rollout(tmp
     assert not protocol._baseline_captured and not events
 
 
+def test_ue8m0_canonical_baseline_losslessly_reads_every_finite_exponent(tmp_path):
+    exponents = np.arange(255, dtype=np.uint8)
+    scales = np.exp2(exponents.astype(np.float64) - 127).astype(np.float32)
+    safetensors.numpy.save_file({"scale": scales}, tmp_path / "model.safetensors")
+    reader = gpu_delta.disk_delta.make_tensor_reader(str(tmp_path))
+    spec = {"dtype": "U8", "shape": [255], "format": "fp8-block128-ue8m0", "checkpoint_dtype": "F32"}
+    actual = gpu_delta_publication.read_canonical_tensor(reader, "scale", spec)
+    np.testing.assert_array_equal(actual, exponents)
+    assert actual.dtype == np.uint8
+    with pytest.raises(ValueError, match="Unsupported GPU-delta checkpoint representation"):
+        gpu_delta_publication.read_canonical_tensor(reader, "scale", {k: v for k, v in spec.items() if k != "format"})
+    with pytest.raises(ValueError, match="Checkpoint tensor 'scale' has dtype=F32"):
+        gpu_delta_publication.read_canonical_tensor(
+            reader, "scale", {k: v for k, v in spec.items() if k != "checkpoint_dtype"}
+        )
+
+
+@pytest.mark.parametrize("value", [0.0, -1.0, 1.5, float("nan"), float("inf"), 2.0**-128])
+def test_ue8m0_canonical_baseline_rejects_rounding_or_invalid_values(tmp_path, value):
+    safetensors.numpy.save_file({"scale": np.array([value], dtype=np.float32)}, tmp_path / "model.safetensors")
+    reader = gpu_delta.disk_delta.make_tensor_reader(str(tmp_path))
+    spec = {"dtype": "U8", "shape": [1], "format": "fp8-block128-ue8m0", "checkpoint_dtype": "F32"}
+    with pytest.raises(ValueError, match="not exact positive finite UE8M0"):
+        gpu_delta_publication.read_canonical_tensor(reader, "scale", spec)
+
+
 @pytest.mark.parametrize("duplicate_owner", [False, True])
 def test_pipeline_stage_inventory_requires_unique_owners_before_baseline_declaration(
     tmp_path, single_rank, monkeypatch, duplicate_owner

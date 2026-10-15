@@ -8,6 +8,7 @@ from types import MappingProxyType
 import torch
 import torch.distributed as dist
 
+from miles.backends.megatron_utils.megatron_to_hf import convert_to_hf
 from miles.backends.megatron_utils.update_weight.hf_weight_iterator_direct import (
     HfWeightIteratorDirect,
     _check_and_fix_partition,
@@ -103,6 +104,46 @@ def _gather_batch(batch, weights, rank, tp_group, tp_size, device):
     return pending
 
 
+def _block_fp8_scales(plan, config):
+    """Validate the immutable format contract once per selected receiver plan."""
+    scales = {}
+    for name, spec in plan.items():
+        if spec.get("format") != "fp8-block128-ue8m0":
+            continue
+        weight_name = name.removesuffix("_scale_inv")
+        scale_name = weight_name + "_scale_inv"
+        weight, scale = plan.get(weight_name, {}), plan.get(scale_name, {})
+        if not (
+            weight_name.endswith(".weight")
+            and weight.get("format") == "fp8-block128-ue8m0"
+            and weight.get("dtype") == "F8_E4M3"
+            and scale.get("format") == "fp8-block128-ue8m0"
+            and scale.get("dtype") == "U8"
+        ):
+            raise ValueError(f"Incomplete canonical block128 UE8M0 plan for {name!r}")
+        scales[weight_name] = scale_name
+    if scales and (config.get("quant_method") != "fp8" or config.get("weight_block_size") != [128, 128]):
+        raise ValueError("Canonical block128 UE8M0 export requires FP8 block size [128, 128]")
+    return scales
+
+
+def _quantize_block_fp8(named_params, scale_names):
+    # SGLang is optional; use its native quantizer only for this negotiated
+    # format, never its receiver-specific scale packing.
+    from sglang.srt.layers.quantization.fp8_utils import quant_weight_ue8m0
+
+    output = []
+    for name, tensor in named_params:
+        if name not in scale_names:
+            output.append((name, tensor))
+            continue
+        weight, sf = quant_weight_ue8m0(tensor, weight_block_size=[128, 128])
+        # Publish compact UE8M0 without TMA padding or receiver permutations.
+        scale_bytes = (sf.view(torch.int32) >> 23).to(torch.uint8)
+        output.extend(((name, weight), (scale_names[name], scale_bytes)))
+    return output
+
+
 class HfWeightIteratorGpuDelta(HfWeightIteratorDirect):
     """Consume complete tensors on their fixed owners, independent of yield placement."""
 
@@ -120,6 +161,8 @@ class HfWeightIteratorGpuDelta(HfWeightIteratorDirect):
         self._device = torch.cuda.current_device()
         self.local_consumer: Callable[[list[tuple[str, torch.Tensor]]], None] | None = None
         self.local_error_consumer: Callable[[Exception], None] | None = None
+        self.local_plan_getter: Callable[[], dict] | None = None
+        self._canonical_plan, self._block_fp8_scales = None, {}
 
     def _hf_atomic_update_groups(self):
         # The complete publication is applied together. Incremental load-call groups
@@ -127,9 +170,22 @@ class HfWeightIteratorGpuDelta(HfWeightIteratorDirect):
         return []
 
     def _convert_to_hf_param_units(self, named_params):
+        plan = self.local_plan_getter() if self.local_plan_getter is not None else {}
+        if plan is not self._canonical_plan:
+            try:
+                self._block_fp8_scales = _block_fp8_scales(plan, self.quantization_config or {})
+                self._canonical_plan = plan
+            except Exception as error:
+                self.local_error_consumer(error)
+                return
         for named_param in named_params:
             try:
-                yield from super()._convert_to_hf_param_units([named_param])
+                if self._block_fp8_scales:
+                    # Ordinary HF naming; negotiated wire format selects scales.
+                    converted = convert_to_hf(self.args, self.model_name, *named_param)
+                    yield _quantize_block_fp8(converted, self._block_fp8_scales)
+                else:
+                    yield from super()._convert_to_hf_param_units([named_param])
             except Exception as error:
                 self.local_error_consumer(error)
 

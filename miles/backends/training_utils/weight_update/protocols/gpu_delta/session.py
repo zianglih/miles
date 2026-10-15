@@ -22,8 +22,9 @@ def merge_plans(descriptions: Sequence[dict]) -> tuple[list[dict], list[dict], s
             for tensor in participant["plan"]["tensors"]:
                 name = tensor["name"]
                 spec = {key: tensor[key] for key in ("name", "dtype", "shape", "encoding")}
+                spec.update({key: tensor[key] for key in ("format", "checkpoint_dtype") if key in tensor})
                 entry = entries.setdefault(name, spec | {"views": {}})
-                if any(entry[key] != value for key, value in spec.items()):
+                if {key: value for key, value in entry.items() if key != "views"} != spec:
                     raise ValueError(f"Receiver canonical plans differ for {name}")
                 for view in tensor["views"]:
                     previous = entry["views"].setdefault(view["id"], view)

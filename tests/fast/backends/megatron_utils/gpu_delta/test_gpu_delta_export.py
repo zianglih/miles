@@ -394,6 +394,8 @@ def test_gpu_delta_owner_failure_drains_later_gathers_and_reports_once(direct_mo
     iterator.model_name, iterator.quantization_config, iterator.packed_weight_basenames = "test", None, None
     iterator._rank, iterator._tp_size, iterator._tp_group, iterator._device = 7, 2, object(), "cpu"
     iterator._non_expert_batches, iterator._expert_batches = batches, []
+    iterator.local_plan_getter = None
+    iterator._canonical_plan, iterator._block_fp8_scales = None, {}
     events, errors = [], []
     failure = ValueError("quantization failed")
 
@@ -426,6 +428,58 @@ def test_gpu_delta_owner_failure_drains_later_gathers_and_reports_once(direct_mo
         ("convert", names[1]),
         ("consume", [names[1]]),
     ]
+
+
+def test_block128_export_uses_negotiated_compact_scales_and_preserves_other_tensors(
+    direct_module, gpu_delta_module, monkeypatch
+):
+    weight_name, scale_name, norm_name = "layer.weight", "layer.weight_scale_inv", "norm.weight"
+    weight = torch.ones((128, 256), dtype=torch.bfloat16)
+    packed = torch.ones_like(weight, dtype=torch.float8_e4m3fn)
+    norm = torch.ones(128, dtype=torch.bfloat16)
+    plan = {
+        weight_name: {"dtype": "F8_E4M3", "shape": [128, 256], "format": "fp8-block128-ue8m0"},
+        scale_name: {"dtype": "U8", "shape": [1, 2], "format": "fp8-block128-ue8m0"},
+        norm_name: {"dtype": "BF16", "shape": [128]},
+    }
+    calls, errors = [], []
+
+    def quantize(tensor, weight_block_size):
+        assert tensor is weight and weight_block_size == [128, 128]
+        calls.append("quantize")
+        return packed, torch.tensor([[0.5, 2.0]], dtype=torch.float32)
+
+    fp8 = sys.modules["sglang.srt.layers.quantization.fp8_utils"]
+    monkeypatch.setattr(fp8, "quant_weight_ue8m0", quantize)
+    monkeypatch.setattr(fp8, "transform_scale_ue8m0", lambda *a, **k: pytest.fail("Receiver packing entered export"))
+
+    def convert(args, model, name, tensor):
+        calls.append("name_conversion")
+        return [(weight_name, tensor), (norm_name, norm)]
+
+    monkeypatch.setattr(gpu_delta_module, "convert_to_hf", convert)
+    iterator = gpu_delta_module.HfWeightIteratorGpuDelta.__new__(gpu_delta_module.HfWeightIteratorGpuDelta)
+    iterator.args, iterator.model_name = Namespace(), "test"
+    iterator.quantization_config = {"quant_method": "fp8", "weight_block_size": [128, 128]}
+    iterator.local_plan_getter = lambda: plan
+    iterator._canonical_plan, iterator._block_fp8_scales = None, {}
+    iterator.local_error_consumer = errors.append
+    output = dict(next(iterator._convert_to_hf_param_units([("trainer.weight", weight)])))
+    assert calls == ["name_conversion", "quantize"] and not errors
+    assert output[weight_name] is packed and output[norm_name] is norm
+    assert output[scale_name].dtype == torch.uint8 and output[scale_name].shape == (1, 2)
+    assert output[scale_name].tolist() == [[126, 128]]
+    cached_scales = iterator._block_fp8_scales
+    # Metadata validation is cold-only; steady export reuses the exact mapping.
+    validate = gpu_delta_module._block_fp8_scales
+    monkeypatch.setattr(gpu_delta_module, "_block_fp8_scales", lambda *a: pytest.fail("Repeated plan validation"))
+    assert len(list(iterator._convert_to_hf_param_units([("trainer.weight", weight)]))) == 1
+    assert iterator._block_fp8_scales is cached_scales
+    monkeypatch.setattr(gpu_delta_module, "_block_fp8_scales", validate)
+    # A new receiver pool cannot silently request mismatched scale representation.
+    plan = plan | {scale_name: plan[scale_name] | {"dtype": "F32"}}
+    assert list(iterator._convert_to_hf_param_units([("trainer.weight", weight)])) == []
+    assert len(errors) == 1 and "Incomplete canonical" in str(errors[0])
 
 
 def test_gpu_delta_full_snapshot_uses_direct_factory(direct_module, gpu_delta_module, monkeypatch):

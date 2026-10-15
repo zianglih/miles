@@ -84,6 +84,7 @@ class WeightUpdater:
         if isinstance(self.protocol, UpdateWeightFromGpuDelta):
             self._hf_weight_iterator.local_consumer = self.protocol.send_bucket
             self._hf_weight_iterator.local_error_consumer = self.protocol.record_export_error
+            self._hf_weight_iterator.local_plan_getter = self.protocol.get_export_plan
 
     def receiver_pool(self, pool_id: str):
         return self._receiver_pools.activate(self, pool_id)

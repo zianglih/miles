@@ -14,13 +14,10 @@ import threading
 import time
 import uuid
 from collections.abc import Iterable, Mapping
-from functools import cache
 from pathlib import Path
 
 import numpy as np
 import orjson
-
-from miles.utils.disk_delta import _tensor_locations
 
 FRAME_BYTES = 1 << 20
 CODECS = {"snappy-zstd": ("snappy", "zstd"), "lz4-zstd": ("lz4", "zstd"), "lz4": ("lz4", None)}
@@ -45,15 +42,26 @@ DTYPE_BYTES = {
 }
 
 
-# This feature fixes its checkpoint for the stream lifetime. Ordinary disk-delta
-# readers keep their existing uncached indexing when checkpoints change in place.
-_immutable_tensor_locations = cache(_tensor_locations)
-
-
-def checkpoint_tensor_layout(ckpt_dir: str, name: str) -> tuple[str, tuple[int, ...]]:
-    """Return the immutable startup checkpoint's declared dtype and shape."""
-    _, _, _, dtype, shape = _immutable_tensor_locations(ckpt_dir)[name]
-    return dtype, shape
+def read_canonical_tensor(reader, name, spec):
+    """Read exact checkpoint bytes, with explicit lossless UE8M0 normalization."""
+    dtype = spec.get("checkpoint_dtype", spec["dtype"])
+    if dtype != spec["dtype"] and not (
+        spec.get("format") == "fp8-block128-ue8m0" and dtype == "F32" and spec["dtype"] == "U8"
+    ):
+        raise ValueError(f"Unsupported GPU-delta checkpoint representation for {name!r}")
+    raw = reader(name, expected_dtype=dtype, expected_shape=tuple(spec["shape"]))
+    if dtype == spec["dtype"]:
+        if spec.get("format") == "fp8-block128-ue8m0" and dtype == "U8" and raw.max(initial=0) == 255:
+            raise ValueError(f"Checkpoint scale {name!r} contains UE8M0 NaN")
+        return raw
+    bits = np.frombuffer(raw, dtype="<u4")
+    exponent = (bits >> 23) & 255
+    normal = ((bits & 0x807FFFFF) == 0) & (exponent > 0) & (exponent < 255)
+    # UE8M0 exponent zero is 2**-127, an exactly representable FP32 subnormal.
+    smallest = bits == 0x00400000
+    if not np.all(normal | smallest):
+        raise ValueError(f"Checkpoint scale {name!r} is not exact positive finite UE8M0")
+    return exponent.astype(np.uint8)
 
 
 def canonical_json(value: object) -> bytes:
