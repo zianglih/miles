@@ -20,6 +20,7 @@ def make_updater(monkeypatch):
     updater = object.__new__(updater_module.WeightUpdater)
     updater.args = SimpleNamespace(update_weight_transfer_mode="gpu-delta")
     updater.protocol = Mock(spec=UpdateWeightFromGpuDelta)
+    updater._uses_gpu_delta = True
     updater.conn_status = ConnStatusManager()
     updater.weight_version = 4
     updater._receiver_pools = updater_module.ReceiverPools()

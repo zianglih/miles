@@ -750,10 +750,12 @@ def _updater(monkeypatch, requires_export):
     protocol.finalize.return_value = None
     protocol.pop_metrics.return_value = {"perf/update_weights_gpu_delta_s": 1.0}
     updater.protocol = protocol
+    updater._uses_gpu_delta = True
+    updater.parallel_state = SimpleNamespace(is_metrics_rank=False)
     updater._receiver_pools = updater_module.ReceiverPools()
     updater.weight_version = 3
     updater.is_lora = False
-    updater.args = SimpleNamespace(check_lora_weight_equal=False)
+    updater.args = SimpleNamespace(check_lora_weight_equal=False, update_weight_transfer_mode="gpu-delta")
     updater.weights_getter = Mock(return_value={"w": object()})
     updater._hf_weight_iterator = Mock()
     updater._hf_weight_iterator.iter_hf_weights.return_value = [[("w", object())]]

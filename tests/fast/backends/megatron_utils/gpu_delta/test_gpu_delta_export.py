@@ -106,7 +106,7 @@ def test_gpu_delta_consumer_defers_failure_until_all_local_units_are_visited(
     protocol.is_sender = False
     monkeypatch.setattr(updater, "get_weight_transfer_protocol", lambda args: protocol)
     updater.WeightUpdater(
-        Namespace(),
+        Namespace(update_weight_transfer_mode="gpu-delta", colocate=False),
         [],
         weights_getter=lambda: {},
         model_name="test",

@@ -20,7 +20,7 @@ from miles.backends.sglang_utils.sglang_api_client import SGLangApiClient
 from miles.backends.training_utils.parallel import ParallelState
 from miles.backends.training_utils.weight_update.conn_status import ConnStatusManager
 from miles.backends.training_utils.weight_update.protocol import get_weight_transfer_protocol
-from miles.backends.training_utils.weight_update.protocols.gpu_delta.protocol import UpdateWeightFromGpuDelta
+from miles.backends.training_utils.weight_update.protocols.gpu_delta.metrics import log_completed_update
 from miles.backends.training_utils.weight_update.receiver_pool import ReceiverPools
 from miles.backends.training_utils.weight_update.session import (
     begin_weight_update,
@@ -59,6 +59,11 @@ class WeightUpdater:
         self.args = args
         self.parallel_state = parallel_state
         self.protocol = get_weight_transfer_protocol(args)
+        # Match the factory's fixed mode without importing the GPU-delta protocol
+        # for other transports. Older callers may omit the transfer-mode argument.
+        self._uses_gpu_delta = (
+            getattr(args, "update_weight_transfer_mode", "broadcast") == "gpu-delta" and not args.colocate
+        )
         self.conn_status = ConnStatusManager()
         assert (
             not is_lora or self.protocol.supports_lora
@@ -81,7 +86,7 @@ class WeightUpdater:
         self._registered_adapters: set[str] = set()
 
     def _bind_protocol_iterator(self):
-        if isinstance(self.protocol, UpdateWeightFromGpuDelta):
+        if self._uses_gpu_delta:
             self._hf_weight_iterator.local_consumer = self.protocol.send_bucket
             self._hf_weight_iterator.local_error_consumer = self.protocol.record_export_error
             self._hf_weight_iterator.local_plan_getter = self.protocol.get_export_plan
@@ -138,20 +143,20 @@ class WeightUpdater:
 
     @torch.no_grad()
     def save_checkpoint_delta(self, checkpoint_dir: str, rollout_id: int) -> None:
-        if isinstance(self.protocol, UpdateWeightFromGpuDelta):
+        if self._uses_gpu_delta:
             self.protocol.prepare_checkpoint(
                 checkpoint_dir, rollout_id, self.weight_version + 1, self._iter_base_buckets
             )
 
     def finish_checkpoint_delta(self) -> None:
-        if isinstance(self.protocol, UpdateWeightFromGpuDelta):
+        if self._uses_gpu_delta:
             self.protocol.finalize_checkpoint()
 
     @torch.no_grad()
     def update_weights(self, rollout_id: int | None = None) -> dict[str, float] | None:
-        """Run one sync and return completed GPU-delta metrics for immediate logging."""
+        """Run one sync and log completed GPU-delta metrics before the next train step."""
         protocol = self.protocol
-        if isinstance(protocol, UpdateWeightFromGpuDelta):
+        if self._uses_gpu_delta:
             started = protocol.begin_sync(self.weight_version + 1, self._iter_base_buckets, rollout_id)
         else:
             started = protocol.begin_sync(self.weight_version + 1, self._iter_base_buckets)
@@ -180,7 +185,7 @@ class WeightUpdater:
             pbar = tqdm(desc=f"[{protocol.group_name}] Update weights", total=0) if protocol.is_sender else None
             buckets = (
                 ()
-                if isinstance(protocol, UpdateWeightFromGpuDelta) and not protocol.requires_export
+                if self._uses_gpu_delta and not protocol.requires_export
                 else self._hf_weight_iterator.iter_hf_weights(
                     self.weights_getter(),
                     include_base=sync_base,
@@ -205,8 +210,17 @@ class WeightUpdater:
                 resume_engines(protocol.rollout_engines)
             dist.barrier(group=get_gloo_group())
         protocol.after_engines_resumed()
-        if isinstance(protocol, UpdateWeightFromGpuDelta):
-            return protocol.pop_metrics()
+        if self._uses_gpu_delta:
+            metrics = protocol.pop_metrics()
+            if metrics:
+                log_completed_update(
+                    self.args,
+                    metrics,
+                    rollout_id=rollout_id,
+                    receiver_pool=self._receiver_pools.active,
+                    is_primary_rank=self.parallel_state.is_metrics_rank,
+                )
+            return metrics
 
     def _iter_base_buckets(self, *, materialize: bool):
         return self._hf_weight_iterator.iter_hf_weights(self.weights_getter(), materialize=materialize)

@@ -32,7 +32,6 @@ from miles.backends.training_utils.metrics.log_utils import log_cpu_memory, log_
 from miles.backends.training_utils.replay.data import fill_replay_data, register_replay_list_sequential
 from miles.backends.training_utils.types import TrainStepOutput
 from miles.backends.training_utils.weight_update.hf_weight_iterator import WeightUpdatePlacement
-from miles.backends.training_utils.weight_update.protocols.gpu_delta.metrics import log_completed_update
 from miles.backends.training_utils.weight_update.snapshot_publisher import SnapshotPublisher
 from miles.backends.training_utils.weight_update.updater import WeightUpdater
 from miles.dashboard import hooks as dashboard_hooks
@@ -929,20 +928,7 @@ class MegatronTrainRayActor(TrainRayActor):
 
         with torch_memory_saver.disable() if self.args.offload_train else nullcontext():
             print_memory("before update_weights")
-            completed_metrics = self.weight_updater.update_weights(self._last_rollout_id)
-            if completed_metrics:
-                parallel_state = get_parallel_state()
-                log_completed_update(
-                    self.args,
-                    completed_metrics,
-                    rollout_id=self._last_rollout_id,
-                    receiver_pool=info.receiver_pool,
-                    is_primary_rank=(
-                        parallel_state.tp.rank == 0
-                        and parallel_state.is_pp_last_stage
-                        and parallel_state.effective_dp_cp.rank == 0
-                    ),
-                )
+            self.weight_updater.update_weights(self._last_rollout_id)
             print_memory("after update_weights")
 
             if self.args.ci_test and not is_lora_enabled(self.args):

@@ -207,20 +207,23 @@ def actor_update(monkeypatch):
     ]
     for method in methods:
         method.decorator_list = []
-    parallel = SimpleNamespace(
-        tp=SimpleNamespace(rank=0), is_pp_last_stage=True, effective_dp_cp=SimpleNamespace(rank=0)
-    )
+    parallel = SimpleNamespace(is_metrics_rank=True)
     namespace = {
         "UpdatableEngines": object,
         "nullcontext": nullcontext,
         "print_memory": lambda _: None,
-        "get_parallel_state": lambda: parallel,
-        "log_completed_update": metrics.log_completed_update,
     }
     exec(compile(ast.Module(body=methods, type_ignores=[]), str(source), "exec"), namespace)
 
-    def run(mode="gpu-delta", rollout_id=7, primary=True, update_error=None, completed_metrics=None):
-        parallel.is_pp_last_stage = primary
+    def run(
+        mode="gpu-delta",
+        rollout_id=7,
+        primary=True,
+        update_error=None,
+        completed_metrics=None,
+        receiver_pool="rollout",
+    ):
+        parallel.is_metrics_rank = primary
         args = Namespace(
             update_weight_transfer_mode=mode,
             colocate=False,
@@ -254,10 +257,13 @@ def actor_update(monkeypatch):
         # None return, not a copied completion hook or synthetic updater result.
         updater = object.__new__(updater_module.WeightUpdater)
         updater.protocol = protocol
+        updater._uses_gpu_delta = mode == "gpu-delta"
+        updater.parallel_state = parallel
         updater.args = args
         updater.conn_status = SimpleNamespace(needs_reconnect=lambda _: False)
         updater.weight_version = 0
         updater._receiver_pools = updater_module.ReceiverPools()
+        updater._receiver_pools.active = receiver_pool
         updater._registered_adapters = set()
         updater.is_lora = False
         updater.weights_getter = lambda: {}
@@ -274,7 +280,7 @@ def actor_update(monkeypatch):
         )
         instance._update_receiver_weights = MethodType(namespace["_update_receiver_weights"], instance)
         result = namespace["update_weights"](
-            instance, SimpleNamespace(rollout_engines=[], snapshot_cell_id_to_hashes={}, receiver_pool="rollout")
+            instance, SimpleNamespace(rollout_engines=[], snapshot_cell_id_to_hashes={}, receiver_pool=receiver_pool)
         )
         return result, updater
 
@@ -369,19 +375,13 @@ def test_kernel_preparation_and_metadata_require_complete_rank_coverage():
     assert result[prefix + "apply_kernel_cache_reused/min"] == 1
 
 
-def test_eval_metrics_do_not_collide_with_rollout_at_same_training_step(monkeypatch):
-    args = Namespace(
-        trainer_model_id="actor",
-        wandb_always_use_train_step=True,
-        rollout_batch_size=16,
-        n_samples_per_prompt=4,
-        global_batch_size=8,
-    )
+def test_eval_metrics_do_not_collide_with_rollout_at_same_training_step(actor_update, monkeypatch):
     submit = Mock()
     monkeypatch.setattr(metrics.tracking, "log", submit)
     completed = {"perf/update_weights_gpu_delta_s": 2.0}
-    metrics.log_completed_update(args, completed, 3, True)
-    metrics.log_completed_update(args, completed, 3, True, receiver_pool="eval")
+    _, rollout_updater = actor_update(completed_metrics=completed, rollout_id=3)
+    _, eval_updater = actor_update(completed_metrics=completed, rollout_id=3, receiver_pool="eval")
+    assert rollout_updater.pop_metrics() == eval_updater.pop_metrics() == {}
     rollout, evaluation = [call.args[1] for call in submit.call_args_list]
     assert rollout["actor/perf/update_weights_gpu_delta_s"] == 2.0
     assert "actor/eval/perf/update_weights_gpu_delta_s" not in rollout
