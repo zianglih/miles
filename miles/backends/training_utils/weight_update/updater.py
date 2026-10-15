@@ -20,6 +20,8 @@ from miles.backends.sglang_utils.sglang_api_client import SGLangApiClient
 from miles.backends.training_utils.parallel import ParallelState
 from miles.backends.training_utils.weight_update.conn_status import ConnStatusManager
 from miles.backends.training_utils.weight_update.protocol import get_weight_transfer_protocol
+from miles.backends.training_utils.weight_update.protocols.gpu_delta.metrics import log_completed_update
+from miles.backends.training_utils.weight_update.receiver_pool import ReceiverPools
 from miles.backends.training_utils.weight_update.session import (
     begin_weight_update,
     end_weight_update,
@@ -57,6 +59,11 @@ class WeightUpdater:
         self.args = args
         self.parallel_state = parallel_state
         self.protocol = get_weight_transfer_protocol(args)
+        # Match the factory's fixed mode without importing the GPU-delta protocol
+        # for other transports. Older callers may omit the transfer-mode argument.
+        self._uses_gpu_delta = (
+            getattr(args, "update_weight_transfer_mode", "broadcast") == "gpu-delta" and not args.colocate
+        )
         self.conn_status = ConnStatusManager()
         assert (
             not is_lora or self.protocol.supports_lora
@@ -68,13 +75,27 @@ class WeightUpdater:
             model_name=model_name,
             quantization_config=quantization_config,
         )
+        self._bind_protocol_iterator()
         self.weights_getter = weights_getter
         self.weight_version = 0
+        self._receiver_pools = ReceiverPools()
         self.is_lora = is_lora
         if is_lora:
             assert lora_sync_config is not None
         self._lora_sync_config = lora_sync_config
         self._registered_adapters: set[str] = set()
+
+    def _bind_protocol_iterator(self):
+        if self._uses_gpu_delta:
+            self._hf_weight_iterator.local_consumer = self.protocol.send_bucket
+            self._hf_weight_iterator.local_error_consumer = self.protocol.record_export_error
+            self._hf_weight_iterator.local_plan_getter = self.protocol.get_export_plan
+
+    def receiver_pool(self, pool_id: str):
+        return self._receiver_pools.activate(self, pool_id)
+
+    def mark_trainer_stale(self) -> None:
+        self._receiver_pools.mark_trainer_stale(self)
 
     def connect_rollout_engines(
         self,
@@ -121,10 +142,25 @@ class WeightUpdater:
         return self.protocol.pop_metrics()
 
     @torch.no_grad()
-    def update_weights(self) -> None:
-        """Run one weight sync: session frame + base-bucket stream + adapter pushes for LoRA."""
+    def save_checkpoint_delta(self, checkpoint_dir: str, rollout_id: int) -> None:
+        if self._uses_gpu_delta:
+            self.protocol.prepare_checkpoint(
+                checkpoint_dir, rollout_id, self.weight_version + 1, self._iter_base_buckets
+            )
+
+    def finish_checkpoint_delta(self) -> None:
+        if self._uses_gpu_delta:
+            self.protocol.finalize_checkpoint()
+
+    @torch.no_grad()
+    def update_weights(self, rollout_id: int | None = None) -> dict[str, float] | None:
+        """Run one sync and log completed GPU-delta metrics before the next train step."""
         protocol = self.protocol
-        if not protocol.begin_sync(self.weight_version + 1, self._iter_base_buckets):
+        if self._uses_gpu_delta:
+            started = protocol.begin_sync(self.weight_version + 1, self._iter_base_buckets, rollout_id)
+        else:
+            started = protocol.begin_sync(self.weight_version + 1, self._iter_base_buckets)
+        if not started:
             return
         self.weight_version += 1
 
@@ -147,12 +183,17 @@ class WeightUpdater:
             ), "the LoRA checksum manifest is recorded on one rank, which must hold the full adapter"
         with timer("update_weights_implementation"):
             pbar = tqdm(desc=f"[{protocol.group_name}] Update weights", total=0) if protocol.is_sender else None
-            for bucket in self._hf_weight_iterator.iter_hf_weights(
-                self.weights_getter(),
-                include_base=sync_base,
-                adapters=adapters,
-                materialize=protocol.is_sender,
-            ):
+            buckets = (
+                ()
+                if self._uses_gpu_delta and not protocol.requires_export
+                else self._hf_weight_iterator.iter_hf_weights(
+                    self.weights_getter(),
+                    include_base=sync_base,
+                    adapters=adapters,
+                    materialize=protocol.is_sender,
+                )
+            )
+            for bucket in buckets:
                 if protocol.is_sender:
                     if driver and checksums is not None:
                         record_lora_checksums(bucket, checksums)
@@ -169,6 +210,17 @@ class WeightUpdater:
                 resume_engines(protocol.rollout_engines)
             dist.barrier(group=get_gloo_group())
         protocol.after_engines_resumed()
+        if self._uses_gpu_delta:
+            metrics = protocol.pop_metrics()
+            if metrics:
+                log_completed_update(
+                    self.args,
+                    metrics,
+                    rollout_id=rollout_id,
+                    receiver_pool=self._receiver_pools.active,
+                    is_primary_rank=self.parallel_state.is_metrics_rank,
+                )
+            return metrics
 
     def _iter_base_buckets(self, *, materialize: bool):
         return self._hf_weight_iterator.iter_hf_weights(self.weights_getter(), materialize=materialize)
