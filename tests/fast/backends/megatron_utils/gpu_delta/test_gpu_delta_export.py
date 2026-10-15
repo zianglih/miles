@@ -308,7 +308,9 @@ def test_gpu_delta_cached_owners_select_one_tp_replica_and_reconstruct_current_v
         quantization_config=None,
     )
     assert isinstance(iterator, gpu_delta_module.HfWeightIteratorGpuDelta)
-    assert iterator.ordinary_owners == expected_owners
+    assert {info.name: batch.owner for batch in iterator._non_expert_batches for info in batch.param_infos} == {
+        name: owner for name, owner in expected_owners.items() if owner in tp_ranks
+    }
     assert iterator._hf_atomic_update_groups() == []
     cached_batches = iterator._non_expert_batches
     monkeypatch.setattr(

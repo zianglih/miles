@@ -3,7 +3,6 @@
 import re
 from collections.abc import Callable, Sequence
 from dataclasses import dataclass
-from types import MappingProxyType
 
 import torch
 import torch.distributed as dist
@@ -154,8 +153,8 @@ class HfWeightIteratorGpuDelta(HfWeightIteratorDirect):
         tp_ranks = tuple(dist.get_process_group_ranks(parallel.tp.group))
         ranks = tuple(dist.get_process_group_ranks(parallel.tp_dp_cp.group))
         infos = [info for batch in self._non_expert_batches for info in batch]
-        self.ordinary_owners = MappingProxyType(_ordinary_owners(infos, ranks))
-        self._non_expert_batches = _ordinary_batches(self.args, infos, self.ordinary_owners, tp_ranks)
+        owners = _ordinary_owners(infos, ranks)
+        self._non_expert_batches = _ordinary_batches(self.args, infos, owners, tp_ranks)
         self._rank = dist.get_rank()
         self._tp_group, self._tp_size = parallel.tp.group, parallel.tp.size
         self._device = torch.cuda.current_device()

@@ -455,13 +455,8 @@ class UpdateWeightFromGpuDelta(WeightTransferProtocol):
             raise
         self._target_step = self._source_step
 
-    @property
-    def pending_baseline(self):
-        """Complete canonical target for external producer correctness checks."""
-        return self._next_snapshot
-
-    def commit_pending_baseline(self):
-        """Advance only after activation, or an explicit producer-only benchmark acknowledgement."""
+    def _commit_baseline(self):
+        """Advance the baseline only after receiver activation succeeds."""
         reusable = {} if self._snapshot is self._hf_snapshot else self._snapshot
         self._snapshot, self._next_snapshot = self._next_snapshot, reusable
         self._target_step = None
@@ -749,7 +744,7 @@ class UpdateWeightFromGpuDelta(WeightTransferProtocol):
         self._commit_activation(publication, activation, weight_version)
 
     def _commit_activation(self, publication, activation, weight_version):
-        self.commit_pending_baseline()
+        self._commit_baseline()
         counts = publication["summary_counts"]
         tensor_count, wire, changed, total = (
             counts[key] for key in ("tensor_count", "wire_bytes", "changed_bytes", "canonical_bytes")

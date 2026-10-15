@@ -71,7 +71,7 @@ def _encoded(base, target, frame_bytes=publication.FRAME_BYTES, codec="snappy-zs
 
 
 def _add(writer, name, base, target):
-    frames, payload, outer, changed = _encoded(base, target, writer.frame_bytes, writer.metadata["codec"])
+    frames, payload, outer, changed = _encoded(base, target, writer.metadata["frame_bytes"], writer.metadata["codec"])
     return writer.add_encoded_tensor(
         name, frames, payload, outer, changed_bytes=changed, dtype="U8", shape=list(base.shape)
     )

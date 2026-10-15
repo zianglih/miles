@@ -319,7 +319,7 @@ def test_initial_delta_publishes_loaded_trainer_then_switches_to_cached_update_c
         assert publication["summary_counts"]["raw_bytes"] == publication["summary_counts"]["wire_bytes"] == 4
         assert (protocol._version_dir / "owner-00000.bin").read_bytes() == bytes(current)
         np.testing.assert_array_equal(protocol._snapshot["w"], previous)
-        protocol.commit_pending_baseline()
+        protocol._commit_baseline()
         np.testing.assert_array_equal(protocol._snapshot["w"], current)
         previous = current
     assert encoder_type.call_count == len({initial_codec, codec})
@@ -443,7 +443,6 @@ def test_ready_batches_overlap_export_without_waiting_for_earlier_incomplete_bat
         i for i, event in enumerate(events) if isinstance(event, tuple) and event[0] == "write"
     )
     assert protocol._gpu_batch_count == 3 and not protocol._encoding_jobs
-    assert protocol.pending_baseline is protocol._next_snapshot
     assert all(torch.count_nonzero(value) == 0 for value in protocol._snapshot.values())
 
 
@@ -497,7 +496,7 @@ def test_cached_gpu_schedule_uses_current_buffers_after_commit(monkeypatch, sing
     schedule = protocol._gpu_batch_names
     _export(protocol)
     protocol.after_base_weights()
-    protocol.commit_pending_baseline()
+    protocol._commit_baseline()
     _start_update(protocol)
 
     def encode(tensors):
@@ -563,7 +562,7 @@ def test_gpu_baseline_swaps_only_after_successful_receiver_activation(monkeypatc
 
     async def activate(*args):
         assert protocol._snapshot is old
-        assert protocol.pending_baseline is current
+        assert protocol._next_snapshot is current
         if activation_fails:
             raise RuntimeError("uncertain receiver resume")
         return {"resumed_receipts": [identity]}

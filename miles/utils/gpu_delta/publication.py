@@ -123,7 +123,6 @@ class PublicationWriter:
     ):
         if type(frame_bytes) is not int or not 0 < frame_bytes <= 4 << 20:
             raise ValueError("GPU-delta frame_bytes must be a positive integer at most 4 MiB")
-        self.frame_bytes = frame_bytes
         if codec not in CODECS:
             raise ValueError("GPU-delta codec must be snappy-zstd, lz4-zstd or lz4")
         self.directory = Path(directory)
