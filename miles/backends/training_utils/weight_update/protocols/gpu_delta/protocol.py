@@ -583,7 +583,6 @@ class UpdateWeightFromGpuDelta(WeightTransferProtocol):
         indices = [i for i, engine_id in enumerate(self._cohort.engine_ids) if engine_id in selected]
         cohort = gpu_delta_session.ReceiverCohort(
             self._cohort.plan,
-            tuple(identity for i in indices for identity in self._cohort.participants[i]),
             tuple(self._cohort.participants[i] for i in indices),
             tuple(self._cohort.engine_ids[i] for i in indices),
             self._cohort.plan_digest,

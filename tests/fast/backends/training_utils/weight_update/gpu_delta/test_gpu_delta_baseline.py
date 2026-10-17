@@ -71,7 +71,7 @@ def _setup(tmp_path, fail=False, frame_bytes=gpu_delta_publication.FRAME_BYTES, 
         }
     }
     protocol.is_sender = True
-    protocol._cohort = gpu_delta.gpu_delta_session.ReceiverCohort([], (), (), (), "plan")
+    protocol._cohort = gpu_delta.gpu_delta_session.ReceiverCohort([], (), (), "plan")
     events = []
     protocol.rollout_engines = [_Engine(protocol, events, 0, fail), _Engine(protocol, events, 1)]
     return protocol, events
@@ -367,7 +367,7 @@ def _gpu_pending(monkeypatch, fail_batch=None):
         name: {"dtype": "U8", "shape": [size], "views": [], "encoding": "xor_bytes"} for name, size in sizes.items()
     }
     protocol._uncommitted = True
-    protocol._cohort = gpu_delta.gpu_delta_session.ReceiverCohort([], (), (), (), "plan")
+    protocol._cohort = gpu_delta.gpu_delta_session.ReceiverCohort([], (), (), "plan")
     protocol._staging_stream = Mock()
     protocol._started = time.monotonic()
     protocol._match_layout = lambda name, tensor: tensor
@@ -573,9 +573,7 @@ def test_gpu_baseline_swaps_only_after_successful_receiver_activation(monkeypatc
     protocol.after_base_weights()
     old, current = protocol._snapshot, protocol._next_snapshot
     identity = {"rank_id": "rank0", "engine_id": "engine-00000"}
-    protocol._cohort = gpu_delta.gpu_delta_session.ReceiverCohort(
-        [], (identity,), ((identity,),), ("engine-00000",), "plan"
-    )
+    protocol._cohort = gpu_delta.gpu_delta_session.ReceiverCohort([], ((identity,),), ("engine-00000",), "plan")
     protocol.rollout_engines = [object()]
     protocol._committed_incarnations = protocol._incarnations()
     protocol._target_version = 1
@@ -790,9 +788,9 @@ def test_participant_reply_order_does_not_change_engine_incarnation(tmp_path):
     protocol, _ = _setup(tmp_path)
     cohort_type = gpu_delta.gpu_delta_session.ReceiverCohort
     participants = ({"rank_id": "a", "process": "one"}, {"rank_id": "b", "process": "two"})
-    protocol._cohort = cohort_type([], participants, (participants,), ("engine",), "plan")
+    protocol._cohort = cohort_type([], (participants,), ("engine",), "plan")
     initial = protocol._incarnations()
-    protocol._cohort = cohort_type([], participants, (participants[::-1],), ("engine",), "plan")
+    protocol._cohort = cohort_type([], (participants[::-1],), ("engine",), "plan")
     assert initial == protocol._incarnations()
 
 

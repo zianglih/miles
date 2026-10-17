@@ -20,7 +20,10 @@ the benchmark.
 Use a CUDA 13 Miles development image, the paired SGLang branch on `PYTHONPATH`,
 and eight Blackwell GPUs. This manual workload uses GLM5.2 NVFP4 W4A16, CuTe DSL
 MoE, no MoE A2A and static bundled MTP. The benchmark defaults to two
-TP4/DP4/EP4 engines; one `--ports` value selects one TP8/DP8/EP8 engine.
+TP4/attention-DP4/EP4 engines; one `--ports` value selects one TP8/attention-DP8/EP8
+engine. On the current SGLang base, these are one replica per engine with
+`attn_dp_size` equal to its TP size. The existing `dp_size` plus
+`enable_dp_attention` launch settings normalize to this topology.
 FlashInfer autotuning and prefill CUDA graphs are disabled; BS1 decode graphs
 are enabled to initialize the CuTe decode path.
 The original checkpoint must already be available and is never modified.
@@ -218,8 +221,8 @@ Encoded-file staging uses a separate retained tmpfs mapping for every codec.
 
 Preparation builds CPU plans and small GPU metadata/workspace, and uploads raw
 scalar/vector targets without writing model weights. After the serving pause and
-reader fence, the receiver allocates two decoded HBM slots sized for the largest
-batch. Hardware Snappy or LZ4 reads compressed bytes directly from the rank-owned host arena;
+reader fence, the fixed double buffer allocates two decoded HBM slots sized for
+the largest batch. Hardware Snappy or LZ4 reads compressed bytes directly from the rank-owned host arena;
 there is no encoded HBM ring or explicit compressed H2D copy. A DE stream decodes
 the next batch while the apply stream checks status and applies the current masks.
 Events protect decoded-slot and status-row reuse. Slots are released after GPU
@@ -441,6 +444,8 @@ single arm, use `--codecs snappy-zstd --hashing off`. Hash-on arms generate and
 verify payload SHA256; hash-off arms skip it on both sides. Host wall clocks and
 scheduler pause timestamps remain available without per-phase CUDA events.
 Use `--profile-version` with an external Nsight Systems launcher for GPU profiling.
+It enables all receiver NVTX ranges through `SGLANG_ENABLE_NVTX_OPERATIONS=1`;
+there is no separate GPU-delta NVTX mode or configurable decode-stage count.
 Historical event measurements in saved fixtures remain identifiable as old
 measurements; missing CUDA intervals are reported as unmeasured, not zero.
 

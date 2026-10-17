@@ -143,7 +143,7 @@ def _engine_specs(ports):
 
 def _validate_cohort(cohort, engine_count):
     size = 8 // engine_count
-    if len(cohort.identities) != 8 or len(cohort.participants) != engine_count:
+    if sum(len(group) for group in cohort.participants) != 8 or len(cohort.participants) != engine_count:
         raise ValueError("Expected eight original participants across the requested engines")
     for engine, participants in enumerate(cohort.participants):
         if (
@@ -329,7 +329,7 @@ def _prepare_inputs(args):
     started, cache = time.monotonic(), args.prepared_inputs
     settings = _prepared_settings(args)
     inventory_path = cache / "inventory" / "inventory.json"
-    plan, _, digest = merge_plans(json.loads(inventory_path.read_text())["descriptions"])
+    plan, digest = merge_plans(json.loads(inventory_path.read_text())["descriptions"])
     base_index, index, canonical_bytes = _tensor_index(args.model), {}, 0
     for tensor in plan:
         spec = base_index[tensor["name"]]
@@ -399,7 +399,7 @@ def _load_prepared_inputs(args):
         if not path.is_file() or path.stat().st_size != file["nbytes"]:
             raise ValueError(f"Prepared input file is missing or has changed size: {path}")
     inventory = json.loads((cache / "inventory" / "inventory.json").read_text())
-    _, _, digest = merge_plans(inventory["descriptions"])
+    _, digest = merge_plans(inventory["descriptions"])
     if digest != manifest["plan_digest"]:
         raise ValueError("Prepared input inventory plan differs from READY")
     return manifest
@@ -597,7 +597,7 @@ def _fixture(args):
 
     codec = configured_codec()
     inventory = json.loads(args.inventory.read_text())
-    plan, _, digest = merge_plans(inventory["descriptions"])
+    plan, digest = merge_plans(inventory["descriptions"])
     index = _read(args.prepared_inputs / "data" / "index.json")
     visible = torch.cuda.device_count()
     owner_count = visible if args.sender_gpus is None else args.sender_gpus
@@ -1539,7 +1539,7 @@ def _end_to_end(args):
         from sglang.srt.weight_sync.gpu_delta.payload import validate_codec
 
         started = time.monotonic()
-        plan, _, _ = merge_plans(_read(args.prepared_inputs / "inventory" / "inventory.json")["descriptions"])
+        plan, _ = merge_plans(_read(args.prepared_inputs / "inventory" / "inventory.json")["descriptions"])
         owners = [o for o in _partition_plan(plan, args.sender_gpus) if o["groups"]]
         assignments = [o | {"tensors": [t["name"] for t in o["tensors"]]} for o in owners]
         fixture_refs = _fixture_reuse.admit(args, prepared, plan, assignments, validate_codec, _publication_accounting)

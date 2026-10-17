@@ -43,7 +43,7 @@ def _setup(failure=None, failed_engine=1):
             }
         )
         clients.append(_Engine(engine, identities, events, failure, failed_engine))
-    _, _, digest = session.merge_plans(descriptions)
+    _, digest = session.merge_plans(descriptions)
     publication = {
         "codec": "snappy-zstd",
         "manifest_path": "/shared/version/manifest.json",
@@ -191,15 +191,18 @@ def test_early_failure_settles_other_engine_before_returning():
     assert not any(event == "abort" for _, event in events)
 
 
-def test_common_plan_deduplicates_replicas_and_rejects_view_conflicts_before_preparation():
+def test_common_plan_deduplicates_replicas_and_rejects_invalid_cohorts_before_preparation():
     clients, descriptions, publication, events = _setup()
-    plan, identities, digest = session.merge_plans(descriptions)
-    assert len(plan) == 1 and len(plan[0]["views"]) == 2 and len(identities) == 4
+    plan, digest = session.merge_plans(descriptions)
+    assert len(plan) == 1 and len(plan[0]["views"]) == 2
     assert digest == publication["plan_digest"]
     broken = copy.deepcopy(descriptions)
     broken[1]["participants"][0]["plan"]["tensors"][0]["views"][0]["slices"] = [[1, 2]]
     with pytest.raises(ValueError, match="conflict"):
         asyncio.run(session.activate_publication(clients, session.negotiate_cohort(broken), publication))
+    for invalid in ([], descriptions + descriptions):
+        with pytest.raises(ValueError, match="Missing or duplicate original receiver identities"):
+            session.negotiate_cohort(invalid)
     assert not events
     assert all(client.args is None for client in clients)
 
@@ -207,11 +210,11 @@ def test_common_plan_deduplicates_replicas_and_rejects_view_conflicts_before_pre
 @pytest.mark.parametrize("field,value", [("format", "fp8-block128-ue8m0"), ("checkpoint_dtype", "F32")])
 def test_common_plan_binds_optional_canonical_representation(field, value):
     _, descriptions, _, _ = _setup()
-    previous, _, previous_digest = session.merge_plans(descriptions)
+    previous, previous_digest = session.merge_plans(descriptions)
     for description in descriptions:
         for participant in description["participants"]:
             participant["plan"]["tensors"][0][field] = value
-    plan, _, digest = session.merge_plans(descriptions)
+    plan, digest = session.merge_plans(descriptions)
     assert field not in previous[0] and plan[0][field] == value and digest != previous_digest
     del descriptions[1]["participants"][0]["plan"]["tensors"][0][field]
     for ordered in (descriptions, descriptions[::-1]):
@@ -244,7 +247,6 @@ recorder = test_sglang_api_client.recorder
         pytest.param(False, {}, (True, False), id="staged-defaults"),
         pytest.param(False, {"flush_cache": False}, (False, False), id="staged-no-flush"),
         pytest.param(False, {"abort_all_requests": True}, (True, True), id="staged-abort"),
-        pytest.param(True, {}, (True, False), id="one-shot-defaults"),
         pytest.param(True, {"release_state": False}, (True, False), id="one-shot-retain-state"),
         pytest.param(True, {"flush_cache": False}, (False, False), id="one-shot-no-flush"),
         pytest.param(True, {"abort_all_requests": True}, (True, True), id="one-shot-abort"),

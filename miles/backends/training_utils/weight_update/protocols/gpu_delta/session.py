@@ -11,14 +11,17 @@ from dataclasses import dataclass
 from miles.utils.gpu_delta.publication import canonical_json, sha256
 
 
-def merge_plans(descriptions: Sequence[dict]) -> tuple[list[dict], list[dict], str]:
+def merge_plans(descriptions: Sequence[dict]) -> tuple[list[dict], str]:
     """Merge canonical views, never receiver-specific physical layout maps."""
-    entries, identities = {}, []
+    entries, rank_ids = {}, set()
     for description in descriptions:
         if not description["success"]:
             raise RuntimeError(f"GPU-delta describe failed: {description['message']}")
         for participant in description["participants"]:
-            identities.append(participant["identity"])
+            rank_id = participant["identity"]["rank_id"]
+            if rank_id in rank_ids:
+                raise ValueError("Missing or duplicate original receiver identities")
+            rank_ids.add(rank_id)
             for tensor in participant["plan"]["tensors"]:
                 name = tensor["name"]
                 spec = {key: tensor[key] for key in ("name", "dtype", "shape", "encoding")}
@@ -30,11 +33,11 @@ def merge_plans(descriptions: Sequence[dict]) -> tuple[list[dict], list[dict], s
                     previous = entry["views"].setdefault(view["id"], view)
                     if previous != view:
                         raise ValueError(f"Receiver view IDs conflict for {name}")
-    if not identities or len({x["rank_id"] for x in identities}) != len(identities):
+    if not rank_ids:
         raise ValueError("Missing or duplicate original receiver identities")
     plan = [entry | {"views": sorted(entry["views"].values(), key=lambda v: v["id"])} for entry in entries.values()]
     plan.sort(key=lambda x: x["name"])
-    return plan, identities, sha256(canonical_json(plan))
+    return plan, sha256(canonical_json(plan))
 
 
 @dataclass(frozen=True)
@@ -42,17 +45,16 @@ class ReceiverCohort:
     """Negotiated immutable engine membership and plan for one update stream."""
 
     plan: list[dict]
-    identities: tuple[dict, ...]
     participants: tuple[tuple[dict, ...], ...]
     engine_ids: tuple[str, ...]
     plan_digest: str
 
 
 def negotiate_cohort(descriptions: Sequence[dict]) -> ReceiverCohort:
-    plan, identities, digest = merge_plans(descriptions)
+    plan, digest = merge_plans(descriptions)
     participants = tuple(tuple(p["identity"] for p in d["participants"]) for d in descriptions)
     engine_ids = tuple(group[0]["engine_id"] for group in participants)
-    return ReceiverCohort(plan, tuple(identities), participants, engine_ids, digest)
+    return ReceiverCohort(plan, participants, engine_ids, digest)
 
 
 def _receipts(response):
