@@ -1,8 +1,10 @@
 # GPU-delta development benchmark
 
-The experimental `--update-weight-transfer-mode gpu-delta` uses SGLang's paired
-prepare/apply/resume APIs and blocking `update_weights_from_gpu_delta` endpoint. `disk-delta` remains a separate checkpoint
-handoff path. GPU-delta supports `snappy-zstd` (default), `lz4-zstd` and plain
+The experimental `--update-weight-transfer-mode gpu-delta` uses SGLang's
+`update_weights_from_gpu_delta` endpoint for both rolling updates and recovery.
+SGLang owns preparation, application and resume within each engine. `disk-delta`
+remains a separate checkpoint handoff path. GPU-delta supports `snappy-zstd`
+(default), `lz4-zstd` and plain
 `lz4`, with `--update-weight-delta-encoding xor`. Changed scalar/vector tensors
 carry complete target bytes; the `overwrite` transport option belongs to disk-delta.
 
@@ -137,9 +139,10 @@ Training resumes after activation and this background work have both drained.
 
 Existing Miles rollout fault tolerance recreates failed engines from the HF
 checkpoint between weight updates. On the next update, healthy engines receive
-the rolling delta while fresh engines use the blocking one-shot API with the
-base-relative payload. Recovery keeps the receiver cache for later updates. The
-normal update RPC returns only after all engines resume, then commits the rolling
+the rolling delta while fresh engines use the base-relative payload. Both use the
+same update endpoint and negotiated participant identities. Recovery keeps the
+receiver cache for later updates. The normal update RPC returns only after all
+engines resume, then commits the rolling
 baseline. This requires live trainer snapshots and the same canonical plan.
 An in-flight activation error follows the existing Miles failure path; GPU delta
 does not retry an uncertain XOR or add a separate trainer recovery mechanism.
@@ -152,21 +155,21 @@ the Megatron writer finishes. The manifest records the HF-base path, owner byte
 fingerprints, training step and separate transfer version. Ship the completed
 directory together with that unchanged HF base.
 
-For inference deployment, start SGLang from the base HF checkpoint and call
-`POST /update_weights_from_gpu_delta` with `{"manifest_path": "/bundle/manifest.json"}`.
-It prepares, applies and releases delta resources by default, preserving an
-existing caller pause. `flush_cache` defaults to `true` for KV and multimodal
-caches; set it to `false` only when the caller already owns cache invalidation.
+The SGLang control endpoints are an internal interface to Miles: `get_gpu_delta_info`
+negotiates the plan and original participants; `update_weights_from_gpu_delta`
+accepts those participants, a session ID and the publication descriptor;
+`get_gpu_delta_status` inspects that session; `clear_gpu_delta_state` releases idle
+delta resources. The descriptor carries manifest path/SHA256, stream, base/target
+versions and plan digest. There is no separate manifest-only loading path.
+Updates preserve an existing caller pause. `flush_cache` defaults to `true` for KV
+and multimodal caches; set it to `false` only when the caller already owns cache invalidation.
 `abort_all_requests` defaults to `false`: in-flight requests are retracted and
 requeued at apply. Set it to `true` to abort them after preparation succeeds.
-The staged `apply_gpu_delta` endpoint accepts the same `flush_cache` and
-`abort_all_requests` controls; `prepare_gpu_delta` leaves serving state unchanged.
-Set `"release_state": false` to retain delta buffers and codec setup for later
-updates, as Miles recovery does. The committed version and model weights remain
-resident. `POST /clear_gpu_delta_state` with `{}` also releases idle delta
-resources after the staged API. Keep a new deployment out of routing until its
-one-shot update succeeds; an uncertain apply requires restarting from the base,
-not replaying XOR on that process.
+Preparation leaves serving state unchanged. Delta buffers and codec setup are
+retained by default (`release_state=false`); `true` releases them after successful
+activation, preserving the phase receipts, committed version and model weights.
+An uncertain update is inspected or handled by the existing engine recovery path,
+never by replaying XOR on that process.
 
 ## Producer and receiver pipeline
 
@@ -241,25 +244,23 @@ not enqueue one unbounded future for every tensor/frame.
 The global canonical inventory must have complete, unique owner coverage. Duplicate
 exports, including overlapping PP/MTP names, are rejected rather than deduplicated.
 
-One Miles coordinator exclusively owns the engine endpoints during an update;
-concurrent administration and external pause/resume are unsupported. Each engine
-independently prepares while its old version serves,
-waits for its own original ranks to be PREPARED, then calls
-`apply_gpu_delta(session_id)`. That engine closes admission, pauses,
-fences readers, retracts requests, flushes caches and applies. A failed reader
-fence never reclaims KV. Miles awaits the successful all-rank apply reply before
-calling `resume_gpu_delta(session_id)`; the engine records the new
-version and resumes without waiting for other engines. Ordinary pause/continue
-APIs remain unchanged. Each engine's local TP/EP participants still synchronize
-for safe activation; independent replicas may temporarily serve different versions.
+One Miles coordinator exclusively owns the engine endpoints during an update.
+It submits one update request per engine. Each engine's tokenizer independently
+prepares while its old version serves, waits for its own original ranks to be
+PREPARED, then closes admission, pauses, fences readers, retracts requests,
+flushes caches and applies. A failed reader fence never reclaims KV. The tokenizer
+awaits the successful all-rank apply reply before sending the internal resume
+message; the engine records the new version and resumes without waiting for other
+engines. Ordinary pause/continue APIs remain unchanged. Each engine's local TP/EP
+participants still synchronize for safe activation; independent replicas may
+temporarily serve different versions.
 
-The trainer drains every engine coroutine before handling failures. Preparation
-failure aborts only that engine; uncertain apply requires a fresh engine before
-base-relative recovery. Successful peers keep their target version, and the
-sender baseline advances only after the whole cohort resumes. Replaying or
-reordering calls is unsupported. External cancellation may leave remote work
-outstanding and does not authorize retry or cleanup. Successful activation alone
-does not prove full weight-content equality.
+The trainer drains every engine coroutine before handling failures. The server
+aborts preparation only before apply dispatch. An update HTTP failure has an
+unknown phase and does not authorize a client abort or retry; the server may have
+already completed and resumed. Successful peers keep their target version, and
+the sender baseline advances only after the whole cohort resumes. Successful
+activation alone does not prove full weight-content equality.
 
 For the ordinary delta of N matrix bytes, the sender transfers N new export bytes D2H plus old/new
 snapshots H2D (3N total), followed by final encoded D2H. Raw targets avoid both
@@ -340,9 +341,12 @@ producer prefixes reuse the existing owner gather.
   summaries use `{min,p50,max}` only when all ranks provide the field; GPU capacities
   are not summed as shared host storage.
 - `engine_coordinator_{prepare,apply,resume,activation}_s/{min,p50,max}` reports
-  independent per-engine RPC lifetimes. `coordinator_activation_s` is the enclosing
-  trainer-side await of all engines; no global preparation/apply/resume phases are
-  inferred from overlapping engine lifetimes. `receiver_engines` counts coverage.
+  server-side tokenizer phase spans, excluding optional resource clearing. These
+  retain their metric names but no longer include a separate HTTP round trip per
+  phase. `coordinator_activation_s` remains the enclosing trainer-side await of
+  all engine HTTP requests; no global preparation/apply/resume phases are inferred
+  from overlapping engine lifetimes. Scheduler pause retains its rank-local
+  timestamps and definition. `receiver_engines` counts coverage.
   `producer_prefix_*` distributions end at the existing pre-publication owner
   gather, before receiver activation.
 - `trainer_logging_rank_blocked_s` measures this update's `begin_sync` through

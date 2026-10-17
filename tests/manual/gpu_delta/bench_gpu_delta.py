@@ -675,8 +675,7 @@ def _seal_fixture(args, plan, metadata, assignments, results):
 
 
 async def _request(client, endpoint, payload=None, timeout=1200):
-    # Reuse the engine-scoped transport: client/TLS-context construction must
-    # not run between an applied receipt and the resume request.
+    # Reuse the engine-scoped HTTP client and TLS context across updates.
     http = client.http
     response = await (
         http.get(client.server_url + "/" + endpoint, timeout=timeout)
@@ -697,20 +696,16 @@ class _BenchmarkClient:
     async def get_gpu_delta_info(self, engine_id):
         return await _request(self, "get_gpu_delta_info", {"engine_id": engine_id})
 
-    async def prepare_gpu_delta(self, **payload):
-        return await _request(self, "prepare_gpu_delta", payload)
+    async def update_weights_from_gpu_delta(self, **payload):
+        # Preparation has its own server deadline; a client read deadline must
+        # not turn a valid slow preparation into an uncertain update.
+        return await _request(self, "update_weights_from_gpu_delta", payload, timeout=httpx.Timeout(1200.0, read=None))
 
     async def get_gpu_delta_status(self, session_id):
         return await _request(self, "get_gpu_delta_status", {"session_id": session_id})
 
-    async def apply_gpu_delta(self, session_id):
-        return await _request(self, "apply_gpu_delta", {"session_id": session_id})
-
-    async def resume_gpu_delta(self, session_id):
-        return await _request(self, "resume_gpu_delta", {"session_id": session_id})
-
-    async def abort_gpu_delta(self, session_id):
-        return await _request(self, "abort_gpu_delta", {"session_id": session_id})
+    async def clear_gpu_delta_state(self):
+        return await _request(self, "clear_gpu_delta_state", {})
 
 
 async def _ready(client, process, timeout):
@@ -941,7 +936,7 @@ async def _run(args, phase):
             # Untimed functional check; exact storage checks belong to primitive
             # tests. Generation equality alone does not prove every weight byte.
             _save(args.output / f"generation-{version['version']}.json", await _generation(clients))
-        cleared = await asyncio.gather(*[_request(client, "clear_gpu_delta_state", {}) for client in clients])
+        cleared = await asyncio.gather(*[client.clear_gpu_delta_state() for client in clients])
         _save(args.output / "clear-state.json", cleared)
         if any(not reply["success"] for reply in cleared):
             raise RuntimeError("Receiver state release failed")

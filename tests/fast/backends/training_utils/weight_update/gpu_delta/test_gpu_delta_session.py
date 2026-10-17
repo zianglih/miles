@@ -1,4 +1,4 @@
-"""Independent engine phase ordering and failure boundaries without GPUs or HTTP."""
+"""Independent engine update requests and failure boundaries without GPUs or HTTP."""
 
 import asyncio
 import copy
@@ -61,12 +61,11 @@ class _Engine:
         self.index, self.identities, self.events, self.failure = index, identities, events, failure
         self.failed_engine = failed_engine
         self.args = None
-        self.polls = 0
-        self.prepared = False
-        self.model_version = None
+        self.calls = 0
+        self.timings = {"prepare_s": 10.0 + index, "apply_s": 2.0, "resume_s": 3.0, "activation_s": 15.0 + index}
 
-    def _response(self, state):
-        receipts = [
+    def _receipts(self, state):
+        return [
             {
                 "identity": identity,
                 "state": state,
@@ -84,55 +83,34 @@ class _Engine:
             }
             for identity in self.identities
         ]
-        return {"success": True, "participants": receipts}
 
-    async def prepare_gpu_delta(self, **kwargs):
+    async def update_weights_from_gpu_delta(self, **kwargs):
+        self.calls += 1
         self.args = kwargs
         assert list(kwargs["participants"]) == self.identities
         await asyncio.sleep(0.01 if self.index else 0)
-        if self.failure == "prepare" and self.index == self.failed_engine:
-            raise RuntimeError("prepare rejected")
-        return self._response("PREPARING")
-
-    async def get_gpu_delta_status(self, **kwargs):
-        self.polls += 1
-        if self.failure == "prepare_worker" and self.index == self.failed_engine:
-            return {"success": False, "message": "CPU preparation failed"}
-        if self.index == 1 and self.polls == 1:
-            return self._response("PREPARING")
-        if not self.prepared:
-            self.events.append((self.index, "prepared"))
-            self.prepared = True
-        return self._response("PREPARED")
-
-    async def apply_gpu_delta(self, **kwargs):
-        assert (self.index, "prepared") in self.events
-        assert kwargs == {"session_id": self.args["session_id"]}
-        await asyncio.sleep(0.01 if self.index else 0)
-        self.events.append((self.index, "applied"))
-        if self.failure == "apply" and self.index == self.failed_engine:
-            return {"success": False, "message": "apply failed"}
-        reply = self._response("APPLIED")
-        for receipt in reply["participants"]:
+        failure = self.failure if self.index == self.failed_engine else None
+        if failure == "transport":
+            raise RuntimeError("update request lost")
+        self.events.append((self.index, "prepared"))
+        if failure == "rejected":
+            return {"success": False, "message": "update rejected"}
+        applied = self._receipts("APPLIED")
+        for receipt in applied:
             receipt["result"] = {"large_nested_diagnostics": [1, 2, 3]}
-        return reply
-
-    async def resume_gpu_delta(self, **kwargs):
-        assert (self.index, "applied") in self.events
-        self.model_version = kwargs.get("weight_version")
-        assert set(kwargs) <= {"session_id", "weight_version"}
-        assert kwargs["session_id"] == self.args["session_id"]
-        if self.failure == "resume" and self.index == self.failed_engine:
-            raise RuntimeError("resume reply lost")
         self.events.append((self.index, "resumed"))
-        reply = self._response("RESUMED")
-        for receipt in reply["participants"]:
+        if failure == "reply":
+            raise RuntimeError("update reply lost")
+        resumed = self._receipts("RESUMED")
+        for receipt in resumed:
             receipt["scheduler_timing"] = {"blocked_s": 1.0 + self.index}
-        return reply
-
-    async def abort_gpu_delta(self, **kwargs):
-        self.events.append((self.index, "abort"))
-        return {"success": True}
+        return {
+            "success": True,
+            "message": "",
+            "participants": resumed,
+            "applied_participants": applied,
+            "timings": self.timings,
+        }
 
 
 @pytest.mark.parametrize("weight_version", [None, "42"])
@@ -143,52 +121,41 @@ def test_fast_engine_resumes_while_other_engine_still_prepares(monkeypatch, weig
     result = asyncio.run(
         session.activate_publication(clients, cohort, publication, session_id="s", weight_version=weight_version)
     )
-    assert [client.model_version for client in clients] == [weight_version, weight_version]
+    for client in clients:
+        assert client.calls == 1
+        assert client.args == {
+            **{key: value for key, value in publication.items() if key != "codec"},
+            "session_id": "s",
+            "participants": tuple(client.identities),
+            "weight_version": weight_version,
+        }
     assert all(receipt["target_version"] == 1 for receipt in result["resumed_receipts"])
     assert len(result["receipts"]) == 4
     assert all(r["state"] == "APPLIED" and "result" in r for r in result["receipts"])
     assert len(result["resumed_receipts"]) == 4
     assert [r["scheduler_timing"]["blocked_s"] for r in result["resumed_receipts"]] == [1.0, 1.0, 2.0, 2.0]
     assert sum(event == "resumed" for _, event in events) == 2
-    assert clients[1].polls >= 2
     assert events.index((0, "resumed")) < events.index((1, "prepared"))
-    assert {r["engine_id"] for r in result["engine_timings"]} == {"engine-0", "engine-1"}
+    assert result["engine_timings"] == [
+        {"engine_id": f"engine-{client.index}", **client.timings} for client in clients
+    ]
     assert set(result["coordinator_timings"]) == {"activation_s"}
+    assert result["coordinator_timings"]["activation_s"] > 0
 
 
-@pytest.mark.parametrize("failure", ["prepare", "prepare_worker", "apply"])
-def test_failure_is_scoped_to_its_engine_without_blind_replay(failure):
-    clients, descriptions, publication, events = _setup(failure)
-    with pytest.raises(RuntimeError):
+@pytest.mark.parametrize("failure", ["transport", "rejected", "reply"])
+@pytest.mark.parametrize("failed_engine", [0, 1])
+def test_update_failure_settles_other_engine_without_abort_or_replay(failure, failed_engine):
+    clients, descriptions, publication, events = _setup(failure, failed_engine)
+    with pytest.raises(RuntimeError, match="update"):
         asyncio.run(
             session.activate_publication(clients, session.negotiate_cohort(descriptions), publication, session_id="s")
         )
-    assert (0, "resumed") in events and (1, "resumed") not in events
-    if failure.startswith("prepare"):
-        assert (1, "abort") in events and (0, "abort") not in events
-        assert (1, "applied") not in events
-    else:
-        assert not any(event == "abort" for _, event in events)
-
-
-def test_uncertain_resume_is_terminal_without_abort_or_replay():
-    clients, descriptions, publication, events = _setup("resume")
-    with pytest.raises(RuntimeError, match="resume reply lost"):
-        asyncio.run(
-            session.activate_publication(clients, session.negotiate_cohort(descriptions), publication, session_id="s")
-        )
-    assert sum(event == "applied" for _, event in events) == 2
-    assert not any(event == "abort" for _, event in events)
-    assert (0, "resumed") in events
-
-
-def test_early_failure_settles_other_engine_before_returning():
-    clients, descriptions, publication, events = _setup("apply", failed_engine=0)
-    with pytest.raises(RuntimeError, match="apply failed"):
-        asyncio.run(session.activate_publication(clients, session.negotiate_cohort(descriptions), publication))
-    assert events.index((0, "applied")) < events.index((1, "resumed"))
-    assert (0, "resumed") not in events
-    assert not any(event == "abort" for _, event in events)
+    assert [client.calls for client in clients] == [1, 1]
+    assert (1 - failed_engine, "resumed") in events
+    # A lost reply may hide a completed update. Neither that ambiguity nor an
+    # explicit failure authorizes another update request or a client abort.
+    assert ((failed_engine, "resumed") in events) == (failure == "reply")
 
 
 def test_common_plan_deduplicates_replicas_and_rejects_invalid_cohorts_before_preparation():
@@ -222,48 +189,39 @@ def test_common_plan_binds_optional_canonical_representation(field, value):
             session.merge_plans(ordered)
 
 
-def test_bounded_wait_cancels_inflight_status_requests():
-    clients, descriptions, publication, events = _setup()
-
-    async def hanging_status(**kwargs):
-        try:
-            await asyncio.Future()
-        finally:
-            events.append((0, "status_cancelled"))
-
-    clients[0].get_gpu_delta_status = hanging_status
-    with pytest.raises(asyncio.TimeoutError):
-        asyncio.run(session._wait_prepared(clients[0], session_id="s", timeout=0.01))
-    assert events == [(0, "status_cancelled")]
-
-
 client = test_sglang_api_client.client
 recorder = test_sglang_api_client.recorder
 
 
 @pytest.mark.parametrize(
-    "one_shot,options,policy",
+    "options",
     [
-        pytest.param(False, {}, (True, False), id="staged-defaults"),
-        pytest.param(False, {"flush_cache": False}, (False, False), id="staged-no-flush"),
-        pytest.param(False, {"abort_all_requests": True}, (True, True), id="staged-abort"),
-        pytest.param(True, {"release_state": False}, (True, False), id="one-shot-retain-state"),
-        pytest.param(True, {"flush_cache": False}, (False, False), id="one-shot-no-flush"),
-        pytest.param(True, {"abort_all_requests": True}, (True, True), id="one-shot-abort"),
+        pytest.param({}, id="defaults"),
+        pytest.param({"release_state": True}, id="release-state"),
+        pytest.param({"flush_cache": False}, id="no-flush"),
+        pytest.param({"abort_all_requests": True}, id="abort-inflight"),
+        pytest.param({"weight_version": "actor-42"}, id="model-version"),
     ],
 )
-async def test_gpu_delta_request_lifetime_and_cache_policy(client, recorder, one_shot, options, policy):
-    expected = {"flush_cache": policy[0], "abort_all_requests": policy[1]}
-    if one_shot:
-        await client.update_weights_from_gpu_delta("/checkpoint/gpu-delta/manifest.json", **options)
-        endpoint = "update_weights_from_gpu_delta"
-        expected.update(
-            manifest_path="/checkpoint/gpu-delta/manifest.json", release_state=options.get("release_state", True)
-        )
-    else:
-        await client.apply_gpu_delta("publication-1", **options)
-        endpoint = "apply_gpu_delta"
-        expected["session_id"] = "publication-1"
+async def test_gpu_delta_request_identity_and_cache_policy(client, recorder, options):
+    request = {
+        "session_id": "publication-1",
+        "manifest_path": "/checkpoint/gpu-delta/manifest.json",
+        "manifest_sha256": "a" * 64,
+        "stream_id": "stream-1",
+        "base_version": 2,
+        "target_version": 3,
+        "plan_digest": "b" * 64,
+        "participants": [{"engine_id": "engine", "rank_id": "rank"}],
+    }
+    await client.update_weights_from_gpu_delta(**request, **options)
     verb, url, kwargs = recorder.calls[0]
-    assert (verb, url) == ("post", f"{test_sglang_api_client.SERVER_URL}/{endpoint}")
-    assert kwargs["json"] == expected
+    assert (verb, url) == ("post", f"{test_sglang_api_client.SERVER_URL}/update_weights_from_gpu_delta")
+    assert kwargs["json"] == {
+        **request,
+        "release_state": False,
+        "flush_cache": True,
+        "abort_all_requests": False,
+        **options,
+    }
+    assert len(recorder.calls) == 1

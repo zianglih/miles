@@ -709,7 +709,7 @@ def test_checkpoint_target_reuse_anchor_retention_and_background_overlap(tmp_pat
     [(0, 17, True), (0, 42, False), (1, 42, False)],
     ids=["same-snapshot", "same-rollout-new-model", "next-rollout"],
 )
-def test_restarted_engine_uses_one_shot_and_retains_cache(
+def test_restarted_engine_uses_negotiated_update_and_retains_cache(
     tmp_path, single_rank, monkeypatch, recovery_fails, rollout_id, model_version, reuse_payload
 ):
     protocol = _ready_protocol(tmp_path, monkeypatch)
@@ -718,6 +718,12 @@ def test_restarted_engine_uses_one_shot_and_retains_cache(
     async def activate(clients, cohort, publication, weight_version=None):
         calls.append((cohort.engine_ids, publication["base_version"], publication["target_version"]))
         model_versions.append(weight_version)
+        if publication["base_version"] == 0 and publication["target_version"] == 2:
+            assert clients == [protocol.rollout_engines[1]]
+            assert cohort.engine_ids == ("engine-00001",)
+            assert cohort.participants == (protocol._cohort.participants[1],)
+            assert cohort.participants[0][0]["rank_id"] == "2"
+            return await load(publication, weight_version)
         return _activation_result(cohort)
 
     monkeypatch.setattr(gpu_delta.gpu_delta_session, "activate_publication", activate)
@@ -749,19 +755,17 @@ def test_restarted_engine_uses_one_shot_and_retains_cache(
     old, target = protocol._snapshot, protocol._next_snapshot
     loads = []
 
-    async def load(manifest_path, release_state, weight_version):
+    async def load(publication, weight_version):
         assert weight_version == str(model_version)
-        assert not release_state
         assert protocol._snapshot is old and protocol._next_snapshot is target
         assert (protocol._recovery_payload is cached_payload) == reuse_payload
         assert protocol._recovery_payload.raw["w"] == expected
-        manifest = json.loads(Path(manifest_path).read_text())
+        manifest = json.loads(Path(publication["manifest_path"]).read_text())
         loads.append((manifest["base_version"], manifest["target_version"], manifest["codec"]))
         if recovery_fails:
             raise RuntimeError("recovery apply failed")
-        return {"success": True, "participants": [{"state": "RESUMED", "target_version": 2}]}
+        return {"resumed_receipts": [{"state": "RESUMED", "target_version": 2}]}
 
-    protocol.rollout_engines[1].update_weights_from_gpu_delta = load
     if recovery_fails:
         with pytest.raises(RuntimeError, match="recovery apply failed"):
             protocol.finalize(model_version)
@@ -771,14 +775,14 @@ def test_restarted_engine_uses_one_shot_and_retains_cache(
         assert protocol._snapshot is target and not protocol._uncommitted
         assert protocol._committed_incarnations == protocol._incarnations()
         # The retained recovery cache leaves this incarnation on the ordinary
-        # rolling path at the next update; the initial-sync RPC is not repeated.
+        # rolling path at the next update; HF-relative recovery is not repeated.
         assert protocol.begin_sync(3, _buckets, rollout_id=2)
         protocol.send_bucket([("w", torch.tensor([13, 14, 15, 16], dtype=torch.uint8))])
         protocol.after_base_weights()
         protocol.finalize(3)
         assert calls[-1] == (("engine-00000", "engine-00001"), 2, 3)
-    assert calls[0] == (("engine-00000",), 1, 2)
-    assert model_versions[1] == str(model_version)
+    assert calls[:2] == [(("engine-00000",), 1, 2), (("engine-00001",), 0, 2)]
+    assert model_versions[1:3] == [str(model_version), str(model_version)]
     assert previous_descriptor["target_version"] == 1
     assert loads == [(0, 2, "lz4-zstd")]
     assert protocol._hf_snapshot["w"].tolist() == [1, 2, 3, 4]

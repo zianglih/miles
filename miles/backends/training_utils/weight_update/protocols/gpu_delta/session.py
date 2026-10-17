@@ -68,11 +68,10 @@ async def activate_publication(
 ):
     """Activate engines independently; settle all before advancing the trainer.
 
-    An engine may resume while another prepares or remains failed/paused. Only
-    that engine's successful apply reply authorizes its resume. After apply dispatch there
-    is no automatic abort, resume or XOR retry. An RPC failure drains every
-    other engine coroutine before returning an error to the trainer. External
-    cancellation leaves an incomplete operation and does not authorize recovery.
+    Each engine owns preparation, all-rank apply acknowledgement and resume.
+    An RPC failure settles every other engine request before returning an error.
+    A lost response may hide a completed update: the client never aborts or
+    retries it. External cancellation also leaves an uncertain operation.
     """
     started = time.monotonic()
     session_id = session_id or uuid.uuid4().hex
@@ -97,54 +96,18 @@ async def activate_publication(
 
 
 async def _activate_engine(client, engine_id, participants, publication, session_id, weight_version):
-    started = time.monotonic()
     common = {
         key: publication[key]
         for key in ("manifest_path", "manifest_sha256", "stream_id", "base_version", "target_version", "plan_digest")
     }
-    try:
-        preparation = await client.prepare_gpu_delta(
-            **common,
-            session_id=session_id,
-            participants=participants,
-        )
-        _receipts(preparation)
-        await _wait_prepared(client, session_id=session_id)
-    except Exception:
-        # No pause or mutation was requested on this engine. Its uncertain
-        # prepare reply does not authorize aborting another engine's lease.
-        await asyncio.gather(client.abort_gpu_delta(session_id=session_id), return_exceptions=True)
-        raise
-    prepared_at = time.monotonic()
-    applied = await client.apply_gpu_delta(session_id=session_id)
-    receipts = _receipts(applied)
-    applied_at = time.monotonic()
     # Serving reports the actor's model version, while publication/receipt
     # versions retain their consecutive XOR-stream identity.
-    version_args = {} if weight_version is None else {"weight_version": weight_version}
-    resumed = await client.resume_gpu_delta(session_id=session_id, **version_args)
-    resumed_receipts = _receipts(resumed)
-    resumed_at = time.monotonic()
+    response = await client.update_weights_from_gpu_delta(
+        **common, session_id=session_id, participants=participants, weight_version=weight_version
+    )
+    resumed_receipts = _receipts(response)
     return {
-        "timings": {
-            "engine_id": engine_id,
-            "prepare_s": prepared_at - started,
-            "apply_s": applied_at - prepared_at,
-            "resume_s": resumed_at - applied_at,
-            "activation_s": resumed_at - started,
-        },
-        "receipts": receipts,
+        "timings": {"engine_id": engine_id, **response["timings"]},
+        "receipts": response["applied_participants"],
         "resumed_receipts": resumed_receipts,
     }
-
-
-async def _wait_prepared(client, session_id, timeout=1800):
-    async def poll():
-        while True:
-            response = await client.get_gpu_delta_status(session_id=session_id)
-            receipts = _receipts(response)
-            if all(receipt["state"] == "PREPARED" for receipt in receipts):
-                return receipts
-            await asyncio.sleep(0.05)
-
-    return await asyncio.wait_for(poll(), timeout=timeout)

@@ -593,23 +593,7 @@ class UpdateWeightFromGpuDelta(WeightTransferProtocol):
 
     async def _update_restarted_engines(self, publication, engine_ids, weight_version):
         started = time.monotonic()
-        results = await asyncio.gather(
-            *[
-                client.update_weights_from_gpu_delta(
-                    publication["manifest_path"], release_state=False, weight_version=str(weight_version)
-                )
-                for engine_id, client in zip(self._cohort.engine_ids, self.rollout_engines, strict=True)
-                if engine_id in engine_ids
-            ],
-            return_exceptions=True,
-        )
-        # Settle every fresh engine before propagating an error. Existing Miles
-        # fault tolerance owns engine replacement; this path never retries XOR.
-        receipts = []
-        for result in results:
-            if isinstance(result, BaseException):
-                raise result
-            receipts.extend(gpu_delta_session._receipts(result))
+        result = await self._activate_subset(publication, engine_ids, weight_version)
         logger.info(
             "[gpu delta recovery] %s",
             gpu_delta_publication.canonical_json(
@@ -617,7 +601,7 @@ class UpdateWeightFromGpuDelta(WeightTransferProtocol):
                     "base_version": 0,
                     "target_version": self._target_version,
                     "engine_ids": engine_ids,
-                    "resumed_receipts": receipts,
+                    "resumed_receipts": result["resumed_receipts"],
                     "release_state": False,
                 }
             ).decode(),
