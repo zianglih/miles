@@ -57,12 +57,6 @@ def negotiate_cohort(descriptions: Sequence[dict]) -> ReceiverCohort:
     return ReceiverCohort(plan, participants, engine_ids, digest)
 
 
-def _receipts(response):
-    if not response["success"]:
-        raise RuntimeError(f"GPU-delta RPC failed: {response['message']}")
-    return response["participants"]
-
-
 async def activate_publication(
     clients, cohort: ReceiverCohort, publication, session_id: str | None = None, weight_version: str | None = None
 ):
@@ -75,39 +69,35 @@ async def activate_publication(
     """
     started = time.monotonic()
     session_id = session_id or uuid.uuid4().hex
-    results = await asyncio.gather(
-        *[
-            _activate_engine(client, engine_id, participants, publication, session_id, weight_version)
-            for client, engine_id, participants in zip(clients, cohort.engine_ids, cohort.participants, strict=True)
-        ],
-        return_exceptions=True,
-    )
-    for result in results:
-        if isinstance(result, BaseException):
-            raise result
-    return {
-        "coordinator_timings": {"activation_s": time.monotonic() - started},
-        "engine_timings": [result["timings"] for result in results],
-        "session_id": session_id,
-        "receipts": [receipt for result in results for receipt in result["receipts"]],
-        "resumed_receipts": [receipt for result in results for receipt in result["resumed_receipts"]],
-        "plan_digest": cohort.plan_digest,
-    }
-
-
-async def _activate_engine(client, engine_id, participants, publication, session_id, weight_version):
+    if len(clients) != len(cohort.engine_ids) or len(clients) != len(cohort.participants):
+        raise ValueError("GPU-delta client and cohort sizes differ")
     common = {
         key: publication[key]
         for key in ("manifest_path", "manifest_sha256", "stream_id", "base_version", "target_version", "plan_digest")
     }
     # Serving reports the actor's model version, while publication/receipt
     # versions retain their consecutive XOR-stream identity.
-    response = await client.update_weights_from_gpu_delta(
-        **common, session_id=session_id, participants=participants, weight_version=weight_version
+    common.update(session_id=session_id, weight_version=weight_version)
+    responses = await asyncio.gather(
+        *[
+            client.update_weights_from_gpu_delta(**common, participants=participants)
+            for client, participants in zip(clients, cohort.participants, strict=True)
+        ],
+        return_exceptions=True,
     )
-    resumed_receipts = _receipts(response)
+    for response in responses:
+        if isinstance(response, BaseException):
+            raise response
+        if not response["success"]:
+            raise RuntimeError(f"GPU-delta RPC failed: {response['message']}")
     return {
-        "timings": {"engine_id": engine_id, **response["timings"]},
-        "receipts": response["applied_participants"],
-        "resumed_receipts": resumed_receipts,
+        "coordinator_timings": {"activation_s": time.monotonic() - started},
+        "engine_timings": [
+            {"engine_id": engine_id, **response["timings"]}
+            for engine_id, response in zip(cohort.engine_ids, responses, strict=True)
+        ],
+        "session_id": session_id,
+        "receipts": [receipt for response in responses for receipt in response["applied_participants"]],
+        "resumed_receipts": [receipt for response in responses for receipt in response["participants"]],
+        "plan_digest": cohort.plan_digest,
     }

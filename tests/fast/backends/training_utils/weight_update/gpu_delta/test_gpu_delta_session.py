@@ -2,6 +2,7 @@
 
 import asyncio
 import copy
+from dataclasses import replace
 
 import pytest
 from tests.fast.backends.sglang_utils import test_sglang_api_client
@@ -97,13 +98,14 @@ class _Engine:
             return {"success": False, "message": "update rejected"}
         applied = self._receipts("APPLIED")
         for receipt in applied:
-            receipt["result"] = {"large_nested_diagnostics": [1, 2, 3]}
+            receipt["result"] = {"applied": True, "target_version": self.args["target_version"]}
         self.events.append((self.index, "resumed"))
         if failure == "reply":
             raise RuntimeError("update reply lost")
         resumed = self._receipts("RESUMED")
         for receipt in resumed:
             receipt["scheduler_timing"] = {"blocked_s": 1.0 + self.index}
+            receipt["result"] = {"large_nested_diagnostics": [1, 2, 3]}
         return {
             "success": True,
             "message": "",
@@ -131,8 +133,11 @@ def test_fast_engine_resumes_while_other_engine_still_prepares(monkeypatch, weig
         }
     assert all(receipt["target_version"] == 1 for receipt in result["resumed_receipts"])
     assert len(result["receipts"]) == 4
-    assert all(r["state"] == "APPLIED" and "result" in r for r in result["receipts"])
+    assert all(
+        r["state"] == "APPLIED" and r["result"] == {"applied": True, "target_version": 1} for r in result["receipts"]
+    )
     assert len(result["resumed_receipts"]) == 4
+    assert all(r["result"] == {"large_nested_diagnostics": [1, 2, 3]} for r in result["resumed_receipts"])
     assert [r["scheduler_timing"]["blocked_s"] for r in result["resumed_receipts"]] == [1.0, 1.0, 2.0, 2.0]
     assert sum(event == "resumed" for _, event in events) == 2
     assert events.index((0, "resumed")) < events.index((1, "prepared"))
@@ -170,6 +175,14 @@ def test_common_plan_deduplicates_replicas_and_rejects_invalid_cohorts_before_pr
     for invalid in ([], descriptions + descriptions):
         with pytest.raises(ValueError, match="Missing or duplicate original receiver identities"):
             session.negotiate_cohort(invalid)
+    cohort = session.negotiate_cohort(descriptions)
+    for selected_clients, selected_cohort in (
+        (clients[:1], cohort),
+        (clients, replace(cohort, engine_ids=cohort.engine_ids[:1])),
+        (clients, replace(cohort, participants=cohort.participants[:1])),
+    ):
+        with pytest.raises(ValueError, match="client and cohort sizes differ"):
+            asyncio.run(session.activate_publication(selected_clients, selected_cohort, publication))
     assert not events
     assert all(client.args is None for client in clients)
 

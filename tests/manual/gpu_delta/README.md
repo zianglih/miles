@@ -168,6 +168,9 @@ requeued at apply. Set it to `true` to abort them after preparation succeeds.
 Preparation leaves serving state unchanged. Delta buffers and codec setup are
 retained by default (`release_state=false`); `true` releases them after successful
 activation, preserving the phase receipts, committed version and model weights.
+An explicit `clear_gpu_delta_state` request can also release idle resources.
+APPLIED acknowledgements carry the original rank/publication identity and apply
+result; detailed metrics are returned once in the RESUMED receipts.
 An uncertain update is inspected or handled by the existing engine recovery path,
 never by replaying XOR on that process.
 

@@ -701,9 +701,6 @@ class _BenchmarkClient:
         # not turn a valid slow preparation into an uncertain update.
         return await _request(self, "update_weights_from_gpu_delta", payload, timeout=httpx.Timeout(1200.0, read=None))
 
-    async def get_gpu_delta_status(self, session_id):
-        return await _request(self, "get_gpu_delta_status", {"session_id": session_id})
-
     async def clear_gpu_delta_state(self):
         return await _request(self, "clear_gpu_delta_state", {})
 
