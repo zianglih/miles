@@ -46,24 +46,15 @@ def _activation():
             "identity": {
                 "rank_id": str(rank),
                 "engine_id": f"engine-{rank // 2}",
-                "pid": 100 + rank,
-                "start_ticks": 12,
                 "host_cache_id": f"host-{rank // 2}",
             },
-            "session_id": "s",
-            "manifest_sha256": "m",
-            "stream_id": "stream",
             "base_version": 0,
             "target_version": 1,
-            "plan_digest": "p",
-            "state": "RESUMED",
             "result": {"timings": timings},
             "scheduler_timing": {
-                "clock": "monotonic_ns",
                 "pause_started_ns": start,
                 "reader_fence_completed_ns": start + 100_000_000,
                 "resumed_ns": start + blocked * 10**9,
-                "blocked_s": float(blocked),
             },
         }
         resumed.append(receipt)

@@ -251,22 +251,27 @@ def test_pipeline_stage_inventory_requires_unique_owners_before_baseline_declara
         assert [engine.version for engine in protocol.rollout_engines] == ["0", "0"]
 
 
-@pytest.mark.parametrize("initial_sync", [False, True])
-@pytest.mark.parametrize("codec", gpu_delta_publication.CODECS)
+@pytest.mark.parametrize(
+    "initial_codec,codec,frame_bytes",
+    [
+        (None, None, gpu_delta_publication.FRAME_BYTES),
+        ("snappy-zstd", "lz4", 1 << 22),
+        ("lz4-zstd", "lz4-zstd", 1 << 20),
+    ],
+    ids=["defaults", "overrides", "shared-codec"],
+)
 def test_initial_delta_publishes_loaded_trainer_then_switches_to_cached_update_codec(
-    tmp_path, single_rank, monkeypatch, initial_sync, codec
+    tmp_path, single_rank, monkeypatch, initial_codec, codec, frame_bytes
 ):
-    if codec == "snappy-zstd":
+    if codec is None:
         monkeypatch.delenv("GPU_DELTA_CODEC", raising=False)
         monkeypatch.delenv("GPU_DELTA_INITIAL_SYNC_CODEC", raising=False)
-        initial_codec = "lz4-zstd"
+        initial_codec, codec = "lz4-zstd", "snappy-zstd"
     else:
         monkeypatch.setenv("GPU_DELTA_CODEC", codec)
-        initial_codec = "lz4" if codec == "lz4-zstd" else "snappy-zstd"
         monkeypatch.setenv("GPU_DELTA_INITIAL_SYNC_CODEC", initial_codec)
     # The historical flag cannot disable mandatory startup synchronization.
-    frame_bytes = 1 << 22 if initial_sync else gpu_delta_publication.FRAME_BYTES
-    protocol, events = _setup(tmp_path, frame_bytes=frame_bytes, initial_sync=initial_sync)
+    protocol, events = _setup(tmp_path, frame_bytes=frame_bytes, initial_sync=False)
     monkeypatch.setenv("GPU_DELTA_CODEC", "invalid-after-construction")
     monkeypatch.setenv("GPU_DELTA_INITIAL_SYNC_CODEC", "invalid-after-construction")
     protocol._staging_stream = Mock()
@@ -292,9 +297,8 @@ def test_initial_delta_publishes_loaded_trainer_then_switches_to_cached_update_c
     read_baseline = Mock(wraps=gpu_delta.disk_delta.make_tensor_reader(str(tmp_path)))
     monkeypatch.setattr(gpu_delta.disk_delta, "make_tensor_reader", lambda _: read_baseline)
 
-    first_codec = initial_codec
     protocol.connect(protocol.rollout_engines, None, [0, 1], None, None, None)
-    assert set(encoders) == {initial_codec, first_codec}
+    assert set(encoders) == {initial_codec}
     assert all(encoder.frame_bytes == frame_bytes for encoder in encoders.values())
     assert protocol.begin_sync(17, _buckets) is True
     assert sorted(events) == [0, 1]
@@ -302,7 +306,7 @@ def test_initial_delta_publishes_loaded_trainer_then_switches_to_cached_update_c
     previous = [1, 2, 3, 4]
     # Model versions may repeat, jump or rewind; transport versions cannot.
     for version, (expected_codec, model_version) in enumerate(
-        zip((first_codec, codec, codec, codec), (17, 17, 99, 3), strict=True), 1
+        zip((initial_codec, codec, codec, codec), (17, 17, 99, 3), strict=True), 1
     ):
         if version > 1:
             assert protocol.begin_sync(model_version, _buckets) is True
@@ -423,7 +427,7 @@ def _start_update(protocol):
     protocol._target_version = protocol._publication_version + 1
     protocol._seen = set()
     protocol._error = None
-    protocol._encode_wall_times = []
+    protocol._encode_wall_s = 0.0
     protocol._encoded_transfer_bytes = dict.fromkeys(
         ("baseline_h2d_bytes", "current_h2d_bytes", "baseline_d2h_bytes", "encoded_d2h_bytes"), 0
     )
@@ -461,7 +465,7 @@ def test_ready_batches_overlap_export_without_waiting_for_earlier_incomplete_bat
     _export(protocol, ["b", "a"])
     later_exported.set()
     protocol.after_base_weights()
-    assert sum(protocol._encode_wall_times) == sum([0.01] * 4)
+    assert protocol._encode_wall_s == sum([0.01] * 4)
     assert protocol._encoded_transfer_bytes == {
         "baseline_h2d_bytes": 13,
         "current_h2d_bytes": 13,

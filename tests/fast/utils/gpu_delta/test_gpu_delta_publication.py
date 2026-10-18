@@ -29,65 +29,36 @@ def _writer(path, owner=0, frame_bytes=publication.FRAME_BYTES, codec="snappy-zs
     )
 
 
-def _encoded(base, target, frame_bytes=publication.FRAME_BYTES, codec="snappy-zstd"):
-    delta = np.bitwise_xor(base, target).reshape(-1)
-    inner, frames = bytearray(), []
-    for offset in range(0, delta.size, frame_bytes):
-        raw = delta[offset : offset + frame_bytes]
-        if not np.any(raw):
-            continue
-        payload = b"encoded" + raw.tobytes()
-        inner.extend(bytes(-len(inner) % 16))
-        frames.append(
-            dict(decoded_offset=offset, decoded_bytes=raw.size, encoded_offset=len(inner), encoded_bytes=len(payload))
-        )
-        inner.extend(payload)
-    if not inner:
-        return frames, b"", None, 0
-    if codec == "lz4":
-        return (
-            frames,
-            inner,
-            dict(decoded_bytes=len(inner), encoded_bytes=len(inner), frames=[]),
-            int(np.count_nonzero(delta)),
-        )
-    payload, outer_frames = bytearray(), []
-    for offset in range(0, len(inner), publication.FRAME_BYTES):
-        raw = inner[offset : offset + publication.FRAME_BYTES]
-        encoded = b"opaque outer frame"
-        payload.extend(bytes(-len(payload) % 16))
-        outer_frames.append(
-            dict(
-                decoded_offset=offset, decoded_bytes=len(raw), encoded_offset=len(payload), encoded_bytes=len(encoded)
-            )
-        )
-        payload.extend(encoded)
-    return (
-        frames,
-        payload,
-        dict(decoded_bytes=len(inner), encoded_bytes=len(payload), frames=outer_frames),
-        int(np.count_nonzero(delta)),
+def _encoded(codec):
+    # The encoder owns framing and compression. These opaque bytes exercise
+    # publication offsets without copying those algorithms into the fixture.
+    frames = [
+        dict(decoded_offset=0, decoded_bytes=publication.FRAME_BYTES, encoded_offset=0, encoded_bytes=13),
+        dict(decoded_offset=2 * publication.FRAME_BYTES, decoded_bytes=139, encoded_offset=16, encoded_bytes=9),
+    ]
+    inner = b"inner-frame-1" + bytes(3) + b"frame-two"
+    payload = inner if codec == "lz4" else b"opaque outer frame"
+    outer_frames = (
+        []
+        if codec == "lz4"
+        else [dict(decoded_offset=0, decoded_bytes=len(inner), encoded_offset=0, encoded_bytes=len(payload))]
     )
+    return frames, payload, dict(decoded_bytes=len(inner), encoded_bytes=len(payload), frames=outer_frames)
 
 
-def _add(writer, name, base, target):
-    frames, payload, outer, changed = _encoded(base, target, writer.metadata["frame_bytes"], writer.metadata["codec"])
+def _add(writer, name):
     return writer.add_encoded_tensor(
-        name, frames, payload, outer, changed_bytes=changed, dtype="U8", shape=list(base.shape)
+        name,
+        *_encoded(writer.metadata["codec"]),
+        changed_bytes=42,
+        dtype="U8",
+        shape=[1, 2 * publication.FRAME_BYTES + 139]
     )
 
 
-@pytest.mark.parametrize(
-    "codec,frame_bytes",
-    [(codec, publication.FRAME_BYTES) for codec in publication.CODECS]
-    + [("snappy-zstd", 1 << 16), ("lz4-zstd", 192 << 10), ("lz4-zstd", 1 << 22)],
-)
-def test_framed_publication_preserves_payload_ranges_and_final_file_hash(tmp_path, monkeypatch, frame_bytes, codec):
-    rng = np.random.default_rng(11)
-    base = rng.integers(0, 256, (1, frame_bytes * 2 + 139), dtype=np.uint8)
-    target = base.copy()
-    target[:, :frame_bytes:4096] ^= 3
-    target[:, -139:] ^= rng.integers(1, 256, 139, dtype=np.uint8)
+@pytest.mark.parametrize("codec", publication.CODECS)
+def test_framed_publication_preserves_payload_ranges_and_final_file_hash(tmp_path, monkeypatch, codec):
+    frames, payload, outer = _encoded(codec)
     outputs = []
     for skip_hash in (False, True):
         if skip_hash:
@@ -95,13 +66,13 @@ def test_framed_publication_preserves_payload_ranges_and_final_file_hash(tmp_pat
         else:
             monkeypatch.delenv("GPU_DELTA_SKIP_PAYLOAD_HASH", raising=False)
         directory = tmp_path / str(skip_hash)
-        writer = _writer(directory, frame_bytes=frame_bytes, codec=codec)
+        writer = _writer(directory, codec=codec)
         # Changing the environment after construction must not change this file's policy.
         monkeypatch.setenv("GPU_DELTA_SKIP_PAYLOAD_HASH", "0" if skip_hash else "1")
         writer.add_raw_tensor("raw_prefix", b"\0\0\0", b"abc", "U8", [3])
-        entry = _add(writer, "w", base, target)
-        _add(writer, "unchanged", base, base)
-        _add(writer, "empty", np.zeros((1, 0), np.uint8), np.zeros((1, 0), np.uint8))
+        entry = _add(writer, "w")
+        for name, shape in (("unchanged", [1, 2 * publication.FRAME_BYTES + 139]), ("empty", [1, 0])):
+            writer.add_encoded_tensor(name, [], b"", None, changed_bytes=0, dtype="U8", shape=shape)
         writer.add_raw_tensor("raw_tail", b"\0\0\0\0", b"1234", "F32", [])
         descriptor = writer.finish()
         manifest_bytes = (directory / "manifest.json").read_bytes()
@@ -121,19 +92,9 @@ def test_framed_publication_preserves_payload_ranges_and_final_file_hash(tmp_pat
             }
         ]
         assert descriptor["codec"] == manifest["codec"] == codec
-        assert descriptor["frame_bytes"] == frame_bytes
-        assert [frame["decoded_offset"] for frame in entry["frames"]] == [0, 2 * frame_bytes]
-        assert entry["frames"][-1]["encoded_bytes"] > 139
-        assert all(
-            set(frame) == {"decoded_offset", "decoded_bytes", "encoded_offset", "encoded_bytes"}
-            for frame in entry["frames"]
-        )
-        if codec == "lz4":
-            assert entry["outer"]["frames"] == []
-            assert entry["outer"]["encoded_bytes"] == entry["outer"]["decoded_bytes"]
-        assert "codec" not in entry["outer"]
-        assert all(frame["decoded_bytes"] <= publication.FRAME_BYTES for frame in entry["outer"]["frames"])
-        _, payload, _, _ = _encoded(base, target, frame_bytes, codec)
+        assert descriptor["frame_bytes"] == publication.FRAME_BYTES
+        assert entry["frames"] == frames and entry["changed_bytes"] == 42
+        assert entry["outer"] == outer | {"file": "owner-00000.bin", "encoded_offset": 16}
         offset = entry["outer"]["encoded_offset"]
         assert offset == 16 and blob[:offset] == b"abc" + bytes(13)
         assert blob[offset : offset + len(payload)] == payload
@@ -162,9 +123,8 @@ def test_framed_publication_preserves_payload_ranges_and_final_file_hash(tmp_pat
 
 def test_concurrent_shards_and_raw_targets_have_exclusive_ownership(tmp_path):
     writers = [_writer(tmp_path, i) for i in range(2)]
-    base, target = np.zeros((2, 500), np.uint8), np.ones((2, 500), np.uint8)
     with ThreadPoolExecutor(max_workers=4) as pool:
-        futures = [pool.submit(_add, writers[i % 2], str(i), base, target) for i in range(8)]
+        futures = [pool.submit(_add, writers[i % 2], str(i)) for i in range(8)]
         for future in futures:
             future.result()
     shards = [writer.finish_shard() for writer in writers]

@@ -161,7 +161,7 @@ class UpdateWeightFromGpuDelta(WeightTransferProtocol):
         self._target_version = self._publication_version + 1
         self._started = time.monotonic()
         self._version_dir = self._stream_dir / f"weight_v{self._target_version:06d}"
-        self._encode_wall_times = []
+        self._encode_wall_s = 0.0
         self._encoded_transfer_bytes = dict.fromkeys(
             ("baseline_h2d_bytes", "current_h2d_bytes", "baseline_d2h_bytes", "encoded_d2h_bytes"), 0
         )
@@ -244,7 +244,7 @@ class UpdateWeightFromGpuDelta(WeightTransferProtocol):
         # for every engine's scheduler/tokenizer acknowledgement before rollout;
         # an ambiguous partial acknowledgement must not be automatically retried.
         self._uncommitted = True
-        self._declare_baseline()
+        _on_root(lambda: set_weight_version(self.rollout_engines, 0), broadcast_value=False)
         self._uncommitted = False
         self._baseline_captured = True
         self._committed_incarnations = self._incarnations()
@@ -254,9 +254,6 @@ class UpdateWeightFromGpuDelta(WeightTransferProtocol):
                 len(names),
                 self._stream_id,
             )
-
-    def _declare_baseline(self):
-        _on_root(lambda: set_weight_version(self.rollout_engines, 0), broadcast_value=False)
 
     def _match_layout(self, name, tensor):
         spec = self._plan[name]
@@ -319,8 +316,8 @@ class UpdateWeightFromGpuDelta(WeightTransferProtocol):
     def _enqueue_ready_batches(self, names):
         complete = []
         for name in names:
-            if name in self._batch_by_name:
-                index = self._batch_by_name[name]
+            index = self._batch_by_name.get(name)
+            if index is not None:
                 self._batch_remaining[index] -= 1
                 if self._batch_remaining[index] == 0:
                     complete.append(index)
@@ -358,7 +355,7 @@ class UpdateWeightFromGpuDelta(WeightTransferProtocol):
             finalized = self._gpu_encoder.finish_device(encoded)
             self._bulk_encode_s = time.monotonic() - started
             for name, (frames, payload, outer, changed, metrics) in zip(names, finalized, strict=True):
-                self._encode_wall_times.append(metrics["encode_wall_s"])
+                self._encode_wall_s += metrics["encode_wall_s"]
                 for key in self._encoded_transfer_bytes:
                     self._encoded_transfer_bytes[key] += metrics[key]
                 spec = self._plan[name]
@@ -628,7 +625,7 @@ class UpdateWeightFromGpuDelta(WeightTransferProtocol):
             "raw_bytes": sum(t["raw"]["encoded_bytes"] for t in shard["tensors"] if "raw" in t),
             "wire_bytes": sum(f["nbytes"] for f in shard["files"]),
             "producer_wall_s": time.monotonic() - self._started,
-            "encode_tensor_wall_sum_s": sum(self._encode_wall_times),
+            "encode_tensor_wall_sum_s": self._encode_wall_s,
             "encoding_tail_wait_s": self._encoding_tail_wait_s,
             "export_staging_wait_s": self._export_staging_wait_s,
             "bulk_encode_s": self._bulk_encode_s,

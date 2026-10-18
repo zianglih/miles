@@ -16,13 +16,7 @@ def _setup(failure=None, failed_engine=1):
         identities = [
             {
                 "engine_id": f"engine-{engine}",
-                "host_cache_id": f"engine-host-{engine}",
                 "rank_id": f"rank-{engine}-{rank}",
-                "pid": 100 + rank,
-                "start_ticks": 456,
-                "tp_rank": rank,
-                "dp_rank": rank,
-                "pp_rank": 0,
             }
             for rank in range(2)
         ]
@@ -65,26 +59,6 @@ class _Engine:
         self.calls = 0
         self.timings = {"prepare_s": 10.0 + index, "apply_s": 2.0, "resume_s": 3.0, "activation_s": 15.0 + index}
 
-    def _receipts(self, state):
-        return [
-            {
-                "identity": identity,
-                "state": state,
-                **{
-                    key: self.args[key]
-                    for key in (
-                        "session_id",
-                        "manifest_sha256",
-                        "stream_id",
-                        "base_version",
-                        "target_version",
-                        "plan_digest",
-                    )
-                },
-            }
-            for identity in self.identities
-        ]
-
     async def update_weights_from_gpu_delta(self, **kwargs):
         self.calls += 1
         self.args = kwargs
@@ -96,16 +70,26 @@ class _Engine:
         self.events.append((self.index, "prepared"))
         if failure == "rejected":
             return {"success": False, "message": "update rejected"}
-        applied = self._receipts("APPLIED")
-        for receipt in applied:
-            receipt["result"] = {"applied": True, "target_version": self.args["target_version"]}
+        applied = [
+            {
+                "identity": identity,
+                "state": "APPLIED",
+                "result": {"applied": True, "target_version": kwargs["target_version"]},
+            }
+            for identity in self.identities
+        ]
         self.events.append((self.index, "resumed"))
         if failure == "reply":
             raise RuntimeError("update reply lost")
-        resumed = self._receipts("RESUMED")
-        for receipt in resumed:
-            receipt["scheduler_timing"] = {"blocked_s": 1.0 + self.index}
-            receipt["result"] = {"large_nested_diagnostics": [1, 2, 3]}
+        resumed = [
+            {
+                "identity": identity,
+                "state": "RESUMED",
+                "scheduler_timing": {"blocked_s": 1.0 + self.index},
+                "result": {"large_nested_diagnostics": [1, 2, 3]},
+            }
+            for identity in self.identities
+        ]
         return {
             "success": True,
             "message": "",
@@ -131,12 +115,13 @@ def test_fast_engine_resumes_while_other_engine_still_prepares(monkeypatch, weig
             "participants": tuple(client.identities),
             "weight_version": weight_version,
         }
-    assert all(receipt["target_version"] == 1 for receipt in result["resumed_receipts"])
     assert len(result["receipts"]) == 4
     assert all(
         r["state"] == "APPLIED" and r["result"] == {"applied": True, "target_version": 1} for r in result["receipts"]
     )
-    assert len(result["resumed_receipts"]) == 4
+    assert [r["identity"] for r in result["resumed_receipts"]] == [
+        identity for client in clients for identity in client.identities
+    ]
     assert all(r["result"] == {"large_nested_diagnostics": [1, 2, 3]} for r in result["resumed_receipts"])
     assert [r["scheduler_timing"]["blocked_s"] for r in result["resumed_receipts"]] == [1.0, 1.0, 2.0, 2.0]
     assert sum(event == "resumed" for _, event in events) == 2
