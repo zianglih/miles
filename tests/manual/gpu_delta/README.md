@@ -8,14 +8,15 @@ remains a separate checkpoint handoff path. GPU-delta supports `snappy-zstd`
 `lz4`, with `--update-weight-delta-encoding xor`. Changed scalar/vector tensors
 carry complete target bytes; the `overwrite` transport option belongs to disk-delta.
 
-The backend-neutral codec and publication modules live in `miles.utils.gpu_delta`.
-Training protocol, session, and metrics live in
+Backend-neutral admission, encoding, cached recovery payloads and publication
+live in `miles.utils.gpu_delta`. Training protocol, session, and metrics live in
 `miles.backends.training_utils.weight_update.protocols.gpu_delta`; Megatron export
 ownership stays in `miles.backends.megatron_utils.update_weight.gpu_delta`.
-Fast tests use matching `gpu_delta/` subdirectories, grouped by ownership,
-publication, lifecycle, metrics and eval synchronization. The manual encoder,
-nvCOMP and recovery tests here provide GPU correctness coverage separately from
-the benchmark.
+Fast tests use matching `gpu_delta/` subdirectories: utility tests cover admission
+and publication; training tests cover protocol lifecycle, session, metrics and
+eval synchronization. The manual encoder suite includes cached recovery coverage;
+the separate nvCOMP entrypoint checks native codec conformance. Both remain
+separate from the benchmark.
 
 ## Environment
 

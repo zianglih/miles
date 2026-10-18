@@ -25,7 +25,6 @@ from miles.backends.training_utils.weight_update.protocol import WeightTransferP
 from miles.backends.training_utils.weight_update.protocols.delta import _safetensors_dtype
 from miles.backends.training_utils.weight_update.protocols.gpu_delta import metrics as gpu_delta_metrics
 from miles.backends.training_utils.weight_update.protocols.gpu_delta import session as gpu_delta_session
-from miles.backends.training_utils.weight_update.protocols.gpu_delta.recovery import RecoveryPayload
 from miles.backends.training_utils.weight_update.protocols.utils.data_replica import get_data_replica_rank_and_size
 from miles.backends.training_utils.weight_update.session import set_weight_version
 from miles.utils import async_utils, disk_delta
@@ -472,6 +471,9 @@ class UpdateWeightFromGpuDelta(WeightTransferProtocol):
         """Compress the captured target without export, publication or collectives."""
         if self._recovery_step == self._source_step:
             return
+        # Keep Triton imports out of metadata-only protocol setup.
+        from miles.utils.gpu_delta.encoder import RecoveryPayload
+
         started = time.monotonic()
         self._recovery_payload = RecoveryPayload.encode(
             self._gpu_encoders[self._initial_sync_codec],
