@@ -8,7 +8,7 @@ import uuid
 from collections.abc import Sequence
 from dataclasses import dataclass
 
-from miles.utils.gpu_delta.publication import canonical_json, sha256
+from miles.utils.gpu_delta.publication import canonical_json, configured_skip_payload_hash, sha256
 
 
 def merge_plans(descriptions: Sequence[dict]) -> tuple[list[dict], str]:
@@ -77,7 +77,9 @@ async def activate_publication(
     }
     # Serving reports the actor's model version, while publication/receipt
     # versions retain their consecutive XOR-stream identity.
-    common.update(session_id=session_id, weight_version=weight_version)
+    common.update(
+        session_id=session_id, weight_version=weight_version, validate_payload_hash=not configured_skip_payload_hash()
+    )
     responses = await asyncio.gather(
         *[
             client.update_weights_from_gpu_delta(**common, participants=participants)

@@ -56,6 +56,7 @@ from miles.utils.gpu_delta.publication import (
     PublicationWriter,
     canonical_json,
     configured_codec,
+    configured_skip_payload_hash,
     seal_publication,
     sha256,
 )
@@ -782,6 +783,8 @@ async def _engines(args, model):
             code = "import json,sys; from sglang.srt.server_args import ServerArgs; from sglang.srt.entrypoints.http_server import launch_server; launch_server(ServerArgs(**json.load(open(sys.argv[1]))))"
             command = [sys.executable, "-c", code, str(config_path)]
             env = os.environ | SERVER_ENV | {"CUDA_VISIBLE_DEVICES": spec["gpu_ids"]}
+            # Miles selects payload hashing and sends it in each update request.
+            env.pop("GPU_DELTA_SKIP_PAYLOAD_HASH", None)
             log = (args.output / f"engine-{engine}.log").open("x")
             process = subprocess.Popen(
                 command,
@@ -801,10 +804,10 @@ async def _engines(args, model):
             args.output / "launch.json",
             {
                 "engines": commands,
+                "receiver_validate_payload_hash": not configured_skip_payload_hash(),
                 "feature_env": {
                     key: os.environ.get(key)
                     for key in (
-                        "GPU_DELTA_SKIP_PAYLOAD_HASH",
                         "GPU_DELTA_SORT_BEFORE_HW_DECOMPRESS",
                         "GPU_DELTA_LAYERS_PER_BATCH",
                         "GPU_DELTA_CPU_WORKERS",

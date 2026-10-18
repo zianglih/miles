@@ -80,6 +80,10 @@ def configured_codec(initial_sync: bool = False) -> str:
     return codec
 
 
+def configured_skip_payload_hash() -> bool:
+    return os.environ.get("GPU_DELTA_SKIP_PAYLOAD_HASH") == "1"
+
+
 def tensor_metadata(name: str, dtype: str, shape: list[int], views=None, encoding="xor_bytes") -> dict:
     """Describe a canonical tensor from the negotiated receiver plan."""
     return {
@@ -128,7 +132,7 @@ class PublicationWriter:
         self.directory = Path(directory)
         self.directory.mkdir(parents=True, exist_ok=True)
         self.payload_metrics = dict(matrix_hash_write_s=0.0, matrix_inner_arena_bytes=0, matrix_payload_bytes=0)
-        self._hash = None if os.environ.get("GPU_DELTA_SKIP_PAYLOAD_HASH") == "1" else hashlib.sha256()
+        self._hash = None if configured_skip_payload_hash() else hashlib.sha256()
         self.metadata = {
             "codec": codec,
             "frame_bytes": frame_bytes,

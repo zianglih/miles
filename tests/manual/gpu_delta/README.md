@@ -57,7 +57,7 @@ user-facing configuration API. Runtime defaults are sufficient for normal use.
 | `GPU_DELTA_INITIAL_SYNC_CODEC=lz4-zstd` | Trainer codec for initial sync, engine recovery and checkpoint companions; `snappy-zstd` or plain `lz4` overrides it. Initial synchronization is mandatory. |
 | `GPU_DELTA_SORT_BEFORE_HW_DECOMPRESS=0` | Receiver only. Set `1` to let nvCOMP sort chunks during paused DE submission; default off for all codecs. It does not change publication bytes or move sorting into preparation. |
 | `GPU_DELTA_CPU_WORKERS=32` | CPU workers per rank. Each engine-host cache creator also uses its pool for parallel owner-file read/hash before local payload preparation. Two EP4 engines have eight pools (up to 256 workers at the default). |
-| `GPU_DELTA_SKIP_PAYLOAD_HASH=1` | Shared sender/receiver opt-in: omit owner-file SHA256 generation and verification. Defaults off. The manifest declares `payload_checksum_format="none"` and null file hashes; receivers accept this only when their same flag is enabled. Manifest SHA256 and native decoder checks remain mandatory. |
+| `GPU_DELTA_SKIP_PAYLOAD_HASH=1` | Miles-only opt-in: omit owner-file SHA256 generation and send `validate_payload_hash=false` with each receiver update. Defaults off. Such publications declare `payload_checksum_format="none"` and null file hashes; SGLang accepts them only with this explicit request option and does not read the environment variable. Manifest SHA256 and native decoder checks remain mandatory. |
 | `GPU_DELTA_HOST_CACHE_DIR` | Tmpfs base for engine-host encoded caches; defaults to `/dev/shm/sglang-gpu-delta-<uid>`. Each engine has separate identities and locks. Its ranks share encoded files, while DE input arenas remain private to each rank. |
 
 For Ray launches, set job-level variables through `runtime_env` or
@@ -162,6 +162,9 @@ accepts those participants, a session ID and the publication descriptor;
 `get_gpu_delta_status` inspects that session; `clear_gpu_delta_state` releases idle
 delta resources. The descriptor carries manifest path/SHA256, stream, base/target
 versions and plan digest. There is no separate manifest-only loading path.
+The `validate_payload_hash` request option defaults to `true`; Miles supplies its
+configured policy for ordinary, recovery and eval updates through the shared
+activation path. SGLang uses the request policy instead of process environment.
 Updates preserve an existing caller pause. `flush_cache` defaults to `true` for KV
 and multimodal caches; set it to `false` only when the caller already owns cache invalidation.
 `abort_all_requests` defaults to `false`: in-flight requests are retracted and

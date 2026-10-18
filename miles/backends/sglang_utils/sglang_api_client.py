@@ -436,6 +436,7 @@ class SGLangApiClient:
         flush_cache=True,
         abort_all_requests=False,
         weight_version: str | None = None,
+        validate_payload_hash: bool = True,
     ):
         payload = {
             "session_id": session_id,
@@ -449,6 +450,7 @@ class SGLangApiClient:
             "release_state": release_state,
             "flush_cache": flush_cache,
             "abort_all_requests": abort_all_requests,
+            "validate_payload_hash": validate_payload_hash,
         }
         if weight_version is not None:
             payload["weight_version"] = weight_version

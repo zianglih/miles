@@ -99,8 +99,12 @@ class _Engine:
         }
 
 
-@pytest.mark.parametrize("weight_version", [None, "42"])
-def test_fast_engine_resumes_while_other_engine_still_prepares(monkeypatch, weight_version):
+@pytest.mark.parametrize("weight_version,skip_payload_hash", [(None, False), ("42", True)])
+def test_fast_engine_resumes_while_other_engine_still_prepares(monkeypatch, weight_version, skip_payload_hash):
+    if skip_payload_hash:
+        monkeypatch.setenv("GPU_DELTA_SKIP_PAYLOAD_HASH", "1")
+    else:
+        monkeypatch.delenv("GPU_DELTA_SKIP_PAYLOAD_HASH", raising=False)
     clients, descriptions, publication, events = _setup()
     cohort = session.negotiate_cohort(descriptions)
     monkeypatch.setattr(session, "merge_plans", lambda *args, **kwargs: pytest.fail("Immutable plan renegotiated"))
@@ -114,6 +118,7 @@ def test_fast_engine_resumes_while_other_engine_still_prepares(monkeypatch, weig
             "session_id": "s",
             "participants": tuple(client.identities),
             "weight_version": weight_version,
+            "validate_payload_hash": not skip_payload_hash,
         }
     assert len(result["receipts"]) == 4
     assert all(
@@ -199,6 +204,7 @@ recorder = test_sglang_api_client.recorder
         pytest.param({"flush_cache": False}, id="no-flush"),
         pytest.param({"abort_all_requests": True}, id="abort-inflight"),
         pytest.param({"weight_version": "actor-42"}, id="model-version"),
+        pytest.param({"validate_payload_hash": False}, id="skip-payload-hash"),
     ],
 )
 async def test_gpu_delta_request_identity_and_cache_policy(client, recorder, options):
@@ -220,6 +226,7 @@ async def test_gpu_delta_request_identity_and_cache_policy(client, recorder, opt
         "release_state": False,
         "flush_cache": True,
         "abort_all_requests": False,
+        "validate_payload_hash": True,
         **options,
     }
     assert len(recorder.calls) == 1
